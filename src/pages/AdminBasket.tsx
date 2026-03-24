@@ -4,8 +4,6 @@ import { supabase } from "@/integrations/supabase/client";
 import { Leaf, Plus, Trash2, ArrowLeft, Loader2, Save } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Label } from "@/components/ui/label";
 
 export default function AdminBasket() {
   const navigate = useNavigate();
@@ -17,7 +15,6 @@ export default function AdminBasket() {
   const [newProductUnit, setNewProductUnit] = useState("un");
   const [basketName, setBasketName] = useState("");
   const [basketPrice, setBasketPrice] = useState("");
-  const [importCategory, setImportCategory] = useState("hortifruti");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [editingItem, setEditingItem] = useState<any>(null);
@@ -363,62 +360,6 @@ export default function AdminBasket() {
                 </button>
               </div>
           </div>
-        </div>
-
-        {/* Importar Banco de Dados Fixo */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-border">
-            <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground mb-4">Importar Banco de Dados</h2>
-            <div className="space-y-4">
-                <div className="space-y-2">
-                    <Label className="text-xs font-bold text-muted-foreground">Selecione a Categoria Padrão</Label>
-                    <Select value={importCategory} onValueChange={setImportCategory}>
-                        <SelectTrigger className="h-11 rounded-xl">
-                            <SelectValue placeholder="Selecione..." />
-                        </SelectTrigger>
-                        <SelectContent>
-                            <SelectItem value="hortifruti">Hortifruti (10 itens)</SelectItem>
-                            <SelectItem value="mercearia">Mercearia (10 itens)</SelectItem>
-                        </SelectContent>
-                    </Select>
-                </div>
-                <button
-                    onClick={() => {
-                        let items = [];
-                        if (importCategory === "mercearia") {
-                            items = [
-                                { name: "Arroz Tio João 5kg", price: 29.90, unit: "un", active: true },
-                                { name: "Feijão Carioca 1kg", price: 8.50, unit: "un", active: true },
-                                { name: "Macarrão Espaguete 500g", price: 4.20, unit: "un", active: true },
-                                { name: "Óleo de Soja 900ml", price: 6.80, unit: "un", active: true },
-                                { name: "Açúcar Refinado 1kg", price: 4.90, unit: "un", active: true },
-                                { name: "Café Torrado 500g", price: 18.90, unit: "un", active: true },
-                                { name: "Sal Refinado 1kg", price: 2.10, unit: "un", active: true },
-                                { name: "Farinha de Trigo 1kg", price: 5.50, unit: "un", active: true },
-                                { name: "Leite Integral 1L", price: 5.90, unit: "un", active: true },
-                                { name: "Biscoito Recheado", price: 3.50, unit: "un", active: true }
-                            ];
-                        } else {
-                            items = [
-                                { name: "Banana Prata", price: 8.90, unit: "un", active: true },
-                                { name: "Maçã Gala", price: 11.50, unit: "kg", active: true },
-                                { name: "Laranja Pera", price: 5.50, unit: "kg", active: true },
-                                { name: "Tomate Carmem", price: 9.90, unit: "kg", active: true },
-                                { name: "Cebola Nacional", price: 6.80, unit: "kg", active: true },
-                                { name: "Batata Lavada", price: 7.50, unit: "kg", active: true },
-                                { name: "Cenoura", price: 5.90, unit: "kg", active: true },
-                                { name: "Alface Crespa", price: 3.50, unit: "un", active: true },
-                                { name: "Cheiro Verde", price: 2.50, unit: "un", active: true },
-                                { name: "Pimentão Verde", price: 8.90, unit: "kg", active: true }
-                            ];
-                        }
-                        bulkImportMutation.mutate(items);
-                    }}
-                    disabled={bulkImportMutation.isPending}
-                    className="w-full h-11 rounded-xl border border-emerald-600 text-emerald-600 font-bold hover:bg-emerald-50 transition-colors flex items-center justify-center"
-                >
-                    {bulkImportMutation.isPending ? "Importando..." : "Importar Mercadorias (Padrão)"}
-                </button>
-            </div>
         </div>
 
         {/* Lista de Produtos */}
