@@ -11,6 +11,8 @@ export default function Login() {
     const [mode, setMode] = useState<"login" | "register">("login");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [newPassword, setNewPassword] = useState("");
+    const [isResettingPassword, setIsResettingPassword] = useState(false);
     
     // Campos do Registro
     const [storeName, setStoreName] = useState("");
@@ -22,11 +24,20 @@ export default function Login() {
     useEffect(() => {
         // Redireciona usuários já logados para o painel de admin
         supabase.auth.getSession().then(({ data: { session } }) => {
-            if (session) {
+            if (session && !isResettingPassword) {
                 navigate("/admin");
             }
         });
-    }, [navigate]);
+
+        // Escuta eventos de autenticação (como clicar no link de recuperação)
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+            if (event === "PASSWORD_RECOVERY") {
+                setIsResettingPassword(true);
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [navigate, isResettingPassword]);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -63,6 +74,24 @@ export default function Login() {
             toast.success("E-mail de recuperação enviado com sucesso! Verifique sua caixa de entrada.");
         }
     };
+
+    const handleUpdatePassword = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setLoading(true);
+        const { error } = await supabase.auth.updateUser({
+            password: newPassword,
+        });
+        setLoading(false);
+
+        if (error) {
+            toast.error(error.message);
+        } else {
+            toast.success("Senha atualizada com sucesso! Agora você pode entrar.");
+            setIsResettingPassword(false);
+            setMode("login");
+        }
+    };
+
 
 
     const handleRegister = async (e: React.FormEvent) => {
@@ -144,69 +173,102 @@ export default function Login() {
                         </button>
                     </div>
 
-                    <form onSubmit={mode === "login" ? handleLogin : handleRegister} className="space-y-4">
+                    <form onSubmit={isResettingPassword ? handleUpdatePassword : (mode === "login" ? handleLogin : handleRegister)} className="space-y-4">
                         
-                        {mode === "register" && (
-                            <div className="space-y-3 animate-fade-in">
-                                <div className="space-y-1.5">
-                                    <Label className="text-slate-600 font-bold flex items-center gap-2"><Store className="h-4 w-4" /> Nome da sua Empresa</Label>
-                                    <Input placeholder="Ex: Sítio São João" value={storeName} onChange={(e) => setStoreName(e.target.value)} required className="h-12 rounded-xl" />
+                        {isResettingPassword ? (
+                            <div className="space-y-4 animate-fade-in">
+                                <div className="text-center mb-4">
+                                    <h2 className="text-xl font-bold text-slate-800">Recuperar Senha</h2>
+                                    <p className="text-xs text-slate-500">Digite sua nova senha de acesso abaixo</p>
                                 </div>
                                 <div className="space-y-1.5">
-                                    <Label className="text-slate-600 font-bold flex items-center gap-2"><LinkIcon className="h-4 w-4" /> Link Personalizado</Label>
-                                    <div className="flex h-12 rounded-xl border border-input focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 overflow-hidden bg-white">
-                                        <div className="flex items-center px-3 bg-slate-50 text-slate-500 text-sm border-r select-none">/</div>
-                                        <input 
-                                            placeholder="sitio-sao-joao" 
-                                            value={slug} 
-                                            onChange={(e) => {
-                                                let val = e.target.value;
-                                                // Se o usuário colou uma URL, tenta extrair só a última parte (o slug)
-                                                if (val.includes('/') && val.indexOf('/') !== val.lastIndexOf('/')) {
-                                                  const parts = val.split('/').filter(Boolean);
-                                                  val = parts[parts.length - 1];
-                                                }
-                                                setSlug(val.toLowerCase().replace(/[^a-z0-9-]/g, ""));
-                                            }} 
-                                            required 
-                                            className="flex-1 bg-transparent px-3 text-sm focus:outline-none placeholder:text-muted-foreground"
-                                        />
-                                    </div>
-                                    <p className="text-[10px] text-slate-400 font-medium">Seus clientes vão acessar: hortidelivery.com.br/<span className="text-emerald-500 font-bold">{slug || "seu-nome"}</span></p>
+                                    <Label className="text-slate-600 font-bold">Nova Senha</Label>
+                                    <Input 
+                                        type="password" 
+                                        placeholder="Mínimo 6 caracteres" 
+                                        value={newPassword} 
+                                        onChange={(e) => setNewPassword(e.target.value)} 
+                                        required 
+                                        autoComplete="new-password"
+                                        className="h-12 rounded-xl" 
+                                    />
                                 </div>
-
-                            </div>
-                        )}
-
-                        <div className="space-y-1.5">
-                            <Label className="text-slate-600 font-bold">Email</Label>
-                            <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12 rounded-xl" />
-                        </div>
-                        <div className="space-y-1.5 relative">
-                            <Label className="text-slate-600 font-bold">Senha</Label>
-                            <Input 
-                                type="password" 
-                                value={password} 
-                                onChange={(e) => setPassword(e.target.value)} 
-                                required={mode === "login"}
-                                className="h-12 rounded-xl" 
-                                autoComplete={mode === "login" ? "current-password" : "new-password"} 
-                            />
-                            {mode === "login" && (
-                                <button
-                                    type="button"
-                                    onClick={handleForgotPassword}
-                                    className="text-[10px] text-emerald-600 font-bold hover:underline absolute right-0 top-0 pt-1"
+                                <Button type="submit" className="w-full h-12 rounded-xl gradient-hero mt-2 shadow-button text-base font-bold" disabled={loading}>
+                                    {loading ? "Atualizando..." : "Salvar Nova Senha"}
+                                </Button>
+                                <button 
+                                    type="button" 
+                                    onClick={() => setIsResettingPassword(false)}
+                                    className="w-full text-xs text-slate-400 hover:text-emerald-600 font-bold"
                                 >
-                                    Esqueci minha senha
+                                    Cancelar e Voltar
                                 </button>
-                            )}
-                        </div>
-                        
-                        <Button type="submit" className="w-full h-12 rounded-xl gradient-hero mt-2 shadow-button text-base font-bold" disabled={loading}>
-                            {loading ? "Aguarde..." : (mode === "login" ? "Entrar Seguramente" : "Lançar Minha Loja 🚀")}
-                        </Button>
+                            </div>
+                        ) : (
+                            <>
+                                {mode === "register" && (
+                                    <div className="space-y-3 animate-fade-in">
+                                        <div className="space-y-1.5">
+                                            <Label className="text-slate-600 font-bold flex items-center gap-2"><Store className="h-4 w-4" /> Nome da sua Empresa</Label>
+                                            <Input placeholder="Ex: Sítio São João" value={storeName} onChange={(e) => setStoreName(e.target.value)} required className="h-12 rounded-xl" />
+                                        </div>
+                                        <div className="space-y-1.5">
+                                            <Label className="text-slate-600 font-bold flex items-center gap-2"><LinkIcon className="h-4 w-4" /> Link Personalizado</Label>
+                                            <div className="flex h-12 rounded-xl border border-input focus-within:ring-2 focus-within:ring-ring focus-within:ring-offset-2 overflow-hidden bg-white">
+                                                <div className="flex items-center px-3 bg-slate-50 text-slate-500 text-sm border-r select-none">/</div>
+                                                <input 
+                                                    placeholder="sitio-sao-joao" 
+                                                    value={slug} 
+                                                    onChange={(e) => {
+                                                        let val = e.target.value;
+                                                        // Se o usuário colou uma URL, tenta extrair só a última parte (o slug)
+                                                        if (val.includes('/') && val.indexOf('/') !== val.lastIndexOf('/')) {
+                                                          const parts = val.split('/').filter(Boolean);
+                                                          val = parts[parts.length - 1];
+                                                        }
+                                                        setSlug(val.toLowerCase().replace(/[^a-z0-9-]/g, ""));
+                                                    }} 
+                                                    required 
+                                                    className="flex-1 bg-transparent px-3 text-sm focus:outline-none placeholder:text-muted-foreground"
+                                                />
+                                            </div>
+                                            <p className="text-[10px] text-slate-400 font-medium">Seus clientes vão acessar: hortidelivery.com.br/<span className="text-emerald-500 font-bold">{slug || "seu-nome"}</span></p>
+                                        </div>
+                                    </div>
+                                )}
+
+                                <div className="space-y-1.5">
+                                    <Label className="text-slate-600 font-bold">Email</Label>
+                                    <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12 rounded-xl" />
+                                </div>
+                                <div className="space-y-1.5 relative">
+                                    <Label className="text-slate-600 font-bold">Senha</Label>
+                                    <Input 
+                                        type="password" 
+                                        value={password} 
+                                        onChange={(e) => setPassword(e.target.value)} 
+                                        required={mode === "login"}
+                                        className="h-12 rounded-xl" 
+                                        autoComplete={mode === "login" ? "current-password" : "new-password"} 
+                                    />
+                                    {mode === "login" && (
+                                        <button
+                                            type="button"
+                                            onClick={handleForgotPassword}
+                                            className="text-[10px] text-emerald-600 font-bold hover:underline absolute right-0 top-0 pt-1"
+                                        >
+                                            Esqueci minha senha
+                                        </button>
+                                    )}
+                                </div>
+                                
+                                <Button type="submit" className="w-full h-12 rounded-xl gradient-hero mt-2 shadow-button text-base font-bold" disabled={loading}>
+                                    {loading ? "Aguarde..." : (mode === "login" ? "Entrar Seguramente" : "Lançar Minha Loja 🚀")}
+                                </Button>
+                            </>
+                        )}
                     </form>
+
                 </div>
                 
                 <p className="text-center text-xs text-slate-400 font-medium pt-4">
