@@ -14,6 +14,7 @@ export default function AdminBasket() {
   const [newProductPrice, setNewProductPrice] = useState("");
   const [newProductQuantity, setNewProductQuantity] = useState("1");
   const [newProductUnit, setNewProductUnit] = useState("un");
+  const [newProductImageUrl, setNewProductImageUrl] = useState("");
   const [basketName, setBasketName] = useState("");
   const [basketPrice, setBasketPrice] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -91,6 +92,7 @@ export default function AdminBasket() {
            name: newProductName, 
            price: priceVal, 
            unit: newProductUnit,
+           image_url: newProductImageUrl,
            active: true
         }])
         .select()
@@ -111,6 +113,7 @@ export default function AdminBasket() {
       setNewProductPrice("");
       setNewProductQuantity("1");
       setNewProductUnit("un");
+      setNewProductImageUrl("");
       queryClient.invalidateQueries({ queryKey: ["admin-active-basket"] });
     },
     onError: (err: any) => toast.error(err.message)
@@ -160,11 +163,11 @@ export default function AdminBasket() {
   });
 
   const editItemMutation = useMutation({
-    mutationFn: async (data: { itemId: string; productId: string; name: string; quantity: number; price: number; unit: string }) => {
+    mutationFn: async (data: { itemId: string; productId: string; name: string; quantity: number; price: number; unit: string; image_url: string }) => {
       // 1. Atualizar produto
       const { error: prodErr } = await supabase
         .from("products")
-        .update({ name: data.name, price: data.price, unit: data.unit })
+        .update({ name: data.name, price: data.price, unit: data.unit, image_url: data.image_url })
         .eq("id", data.productId);
       if (prodErr) throw prodErr;
 
@@ -359,6 +362,16 @@ export default function AdminBasket() {
                 className="w-full mt-1 h-11 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50" 
               />
             </div>
+            <div className="sm:col-span-4">
+              <label className="text-xs font-bold text-muted-foreground">Link da Foto (Internet)</label>
+              <input 
+                type="text" 
+                value={newProductImageUrl}
+                onChange={(e) => setNewProductImageUrl(e.target.value)}
+                placeholder="https://exemplo.com/foto.jpg"
+                className="w-full mt-1 h-11 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50" 
+              />
+            </div>
           </div>
           
           <div className="mt-4 flex flex-col gap-3">
@@ -489,6 +502,25 @@ export default function AdminBasket() {
                             className="w-full h-9 px-3 border border-border rounded-lg text-sm"
                           />
                         </div>
+                        <div className="col-span-2 sm:col-span-3 flex items-center gap-2">
+                          <div className="h-9 w-9 shrink-0 bg-slate-50 border border-border rounded-lg flex items-center justify-center overflow-hidden">
+                            {editingItem.image_url ? (
+                              <img src={editingItem.image_url} alt="" className="w-full h-full object-cover" />
+                            ) : (
+                              <span className="text-xs">🖼️</span>
+                            )}
+                          </div>
+                          <div className="flex-1">
+                            <label className="text-xs font-bold text-muted-foreground">Link da Foto (Internet)</label>
+                            <input 
+                              type="text" 
+                              value={editingItem.image_url || ""} 
+                              onChange={(e) => setEditingItem({ ...editingItem, image_url: e.target.value })}
+                              className="w-full h-9 px-3 border border-border rounded-lg text-sm"
+                              placeholder="https://..."
+                            />
+                          </div>
+                        </div>
                       </div>
                       <div className="flex gap-2">
                         <button 
@@ -504,7 +536,8 @@ export default function AdminBasket() {
                             name: editingItem.name,
                             quantity: editingItem.quantity || 1,
                             price: editingItem.price,
-                            unit: editingItem.unit
+                            unit: editingItem.unit,
+                            image_url: editingItem.image_url
                           })}
                           disabled={editItemMutation.isPending}
                           className="flex-1 h-9 rounded-lg bg-primary text-white text-sm font-bold flex items-center justify-center gap-1 hover:bg-primary/90"
@@ -557,7 +590,8 @@ export default function AdminBasket() {
                             name: item.products.name, 
                             quantity: item.quantity, 
                             price: item.products.price,
-                            unit: item.products.unit || "un"
+                            unit: item.products.unit || "un",
+                            image_url: item.products.image_url
                           })}
                           className="h-9 w-9 bg-slate-50 text-slate-500 rounded-lg flex items-center justify-center hover:bg-slate-100 transition-colors"
                           title="Editar item"
