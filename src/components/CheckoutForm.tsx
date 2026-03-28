@@ -1,13 +1,24 @@
 import { useState, useEffect } from "react";
-import { Loader2, ArrowLeft, User, Phone, MapPin, Truck } from "lucide-react";
+import { Loader2, ArrowLeft, User, Phone, MapPin, Truck, Ticket, X } from "lucide-react";
 import { useDeliveryZones, type DeliveryZone } from "@/hooks/useDeliveryZones";
+import { useValidateCoupon } from "@/hooks/useCoupons";
+import { toast } from "sonner";
 
 interface Props {
   loading: boolean;
   basketName: string;
   basketPrice: number;
   storeId?: string;
-  onSubmit: (data: { customer_name: string; phone: string; address: string; total_with_fee: number; neighborhood_id?: string }) => void;
+  onSubmit: (data: { 
+    customer_name: string; 
+    phone: string; 
+    address: string; 
+    total_with_fee: number; 
+    neighborhood_id?: string;
+    coupon_id?: string;
+    discount?: number;
+    delivery_fee?: number;
+  }) => void;
   onBack: () => void;
 }
 
@@ -20,11 +31,14 @@ function formatPhone(value: string) {
 
 export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubmit, onBack }: Props) {
   const { data: zones } = useDeliveryZones(storeId);
+  const validateCoupon = useValidateCoupon();
   
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [address, setAddress] = useState("");
   const [selectedZone, setSelectedZone] = useState<string>("");
+  const [couponCode, setCouponCode] = useState("");
+  const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
   const [touched, setTouched] = useState({ name: false, phone: false, address: false, zone: false });
 
   // Carregar histórico local do cliente (Fase 3: Retenção LocalStorage)
@@ -41,7 +55,18 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
 
   const currentZoneData = zones?.find(z => z.id === selectedZone);
   const deliveryFee = currentZoneData ? currentZoneData.fee : 0;
-  const finalTotal = basketPrice + deliveryFee;
+  
+  // Calculate discount
+  let discount = 0;
+  if (appliedCoupon) {
+    if (appliedCoupon.discount_type === "percentage") {
+      discount = (basketPrice * appliedCoupon.discount_value) / 100;
+    } else {
+      discount = appliedCoupon.discount_value;
+    }
+  }
+  
+  const finalTotal = Math.max(0, basketPrice - discount + deliveryFee);
 
   const errors = {
     name: name.trim().length < 2 ? "Informe seu nome completo" : "",
@@ -51,6 +76,30 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
   };
 
   const isValid = !errors.name && !errors.phone && !errors.address && !errors.zone;
+
+  const handleApplyCoupon = async () => {
+    if (!couponCode.trim()) {
+      toast.error("Digite um código de cupom");
+      return;
+    }
+    try {
+      const coupon = await validateCoupon.mutateAsync({
+        code: couponCode,
+        storeId,
+        orderTotal: basketPrice,
+      });
+      setAppliedCoupon(coupon);
+      toast.success(`Cupom aplicado! ${coupon.discount_type === "percentage" ? `${coupon.discount_value}%` : `R$ ${coupon.discount_value}`} OFF`);
+    } catch (err: any) {
+      toast.error(err.message || "Cupom inválido");
+    }
+  };
+
+  const handleRemoveCoupon = () => {
+    setAppliedCoupon(null);
+    setCouponCode("");
+    toast.info("Cupom removido");
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,7 +116,7 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
     }));
 
     const finalAddressInfo = currentZoneData 
-      ? `${address.trim()} (${currentZoneData.neighborhood})` 
+      ? `${address.trim()} (${currentZoneData.name})` 
       : address.trim();
 
     onSubmit({ 
@@ -75,7 +124,10 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
       phone, 
       address: finalAddressInfo,
       total_with_fee: finalTotal,
-      neighborhood_id: selectedZone || undefined
+      neighborhood_id: selectedZone || undefined,
+      coupon_id: appliedCoupon?.id,
+      discount: discount,
+      delivery_fee: deliveryFee,
     });
   };
 
@@ -101,6 +153,12 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
           <span>Subtotal:</span>
           <span>R$ {basketPrice.toFixed(2).replace(".", ",")}</span>
         </div>
+        {discount > 0 && (
+          <div className="flex justify-between text-sm font-semibold text-emerald-600">
+            <span>Desconto ({appliedCoupon.code}):</span>
+            <span>- R$ {discount.toFixed(2).replace(".", ",")}</span>
+          </div>
+        )}
         <div className="flex justify-between text-sm font-semibold text-muted-foreground mb-1">
           <span>Taxa de Entrega:</span>
           <span>+ R$ {deliveryFee.toFixed(2).replace(".", ",")}</span>
@@ -114,6 +172,51 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+        {/* Cupom de Desconto */}
+        <div className="space-y-1">
+          <label className="text-sm font-bold text-foreground flex items-center gap-1.5">
+            <Ticket className="h-4 w-4 text-primary" /> Cupom de Desconto (opcional)
+          </label>
+          {appliedCoupon ? (
+            <div className="flex items-center gap-2 p-3 bg-emerald-50 border border-emerald-200 rounded-xl">
+              <Ticket className="h-5 w-5 text-emerald-600" />
+              <div className="flex-1">
+                <p className="text-sm font-bold text-emerald-700">{appliedCoupon.code}</p>
+                <p className="text-xs text-emerald-600">
+                  {appliedCoupon.discount_type === "percentage" 
+                    ? `${appliedCoupon.discount_value}% OFF` 
+                    : `R$ ${appliedCoupon.discount_value.toFixed(2)} OFF`}
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={handleRemoveCoupon}
+                className="h-8 w-8 rounded-lg bg-emerald-100 hover:bg-emerald-200 flex items-center justify-center"
+              >
+                <X className="h-4 w-4 text-emerald-700" />
+              </button>
+            </div>
+          ) : (
+            <div className="flex gap-2">
+              <input
+                type="text"
+                placeholder="Digite o código"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
+                className="flex-1 h-12 rounded-xl border border-border px-4 text-base font-semibold bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
+              />
+              <button
+                type="button"
+                onClick={handleApplyCoupon}
+                disabled={validateCoupon.isPending}
+                className="h-12 px-6 rounded-xl bg-primary text-white font-bold hover:bg-primary/90 disabled:opacity-50"
+              >
+                {validateCoupon.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : "Aplicar"}
+              </button>
+            </div>
+          )}
+        </div>
+
         {/* Campo Nome */}
         <div className="space-y-1">
           <label className="text-sm font-bold text-foreground flex items-center gap-1.5">
@@ -159,7 +262,7 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
               <option value="" disabled>Selecione seu bairro...</option>
               {zones.map(z => (
                 <option key={z.id} value={z.id}>
-                  {z.neighborhood} - R$ {z.fee.toFixed(2).replace(".", ",")}
+                  {z.name} - R$ {z.fee.toFixed(2).replace(".", ",")}
                 </option>
               ))}
             </select>

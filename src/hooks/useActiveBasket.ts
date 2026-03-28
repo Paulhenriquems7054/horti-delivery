@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { supabase } from "@/services/supabase";
+import { supabase } from "@/integrations/supabase/client";
 
 export interface BasketProduct {
   id: string;
@@ -8,6 +8,8 @@ export interface BasketProduct {
   image_url: string | null;
   unit: string;
   quantity: number;
+  description?: string;
+  category_id?: string;
 }
 
 export interface ActiveBasket {
@@ -21,47 +23,58 @@ export function useActiveBasket(storeId?: string) {
   return useQuery<ActiveBasket | null>({
     queryKey: ["active-basket", storeId],
     queryFn: async () => {
-      let targetStoreId = storeId;
-      
-      if (!targetStoreId) {
-        const { data: authData } = await supabase.auth.getUser();
-        if (!authData.user) return null;
-        const { data: store } = await (supabase as any).from("stores").select("id").eq("user_id", authData.user.id).single();
-        targetStoreId = store?.id;
+      // 1. Busca a cesta ativa — tenta filtrar por store_id se disponível,
+      //    mas cai no fallback global se não encontrar nada
+      let basket: any = null;
+
+      if (storeId) {
+        const { data, error } = await supabase
+          .from("baskets")
+          .select("*")
+          .eq("store_id", storeId)
+          .eq("active", true)
+          .limit(1)
+          .maybeSingle();
+
+        if (error) throw error;
+        basket = data;
       }
 
-      if (!targetStoreId) return null;
+      // Fallback: pega qualquer cesta ativa (sem filtro de loja)
+      if (!basket) {
+        const { data, error } = await supabase
+          .from("baskets")
+          .select("*")
+          .eq("active", true)
+          .limit(1)
+          .maybeSingle();
 
-      // 1. Busca a cesta ativa
-      const { data: basket, error: bErr } = await (supabase as any)
-        .from("baskets")
-        .select("*")
-        .eq("store_id", targetStoreId)
-        .eq("active", true)
-        .limit(1)
-        .maybeSingle();
+        if (error) throw error;
+        basket = data;
+      }
 
-      if (bErr) throw bErr;
       if (!basket) return null;
 
-      // 2. Busca os itens com dados dos produtos via join (incluindo unit e in_stock)
+      // 2. Busca os itens com dados dos produtos
       const { data: items, error: iErr } = await supabase
         .from("basket_items")
-        .select("quantity, products(id, name, price, image_url, unit, in_stock)")
+        .select("quantity, products(id, name, price, image_url, unit, description, category_id, active)")
         .eq("basket_id", basket.id);
 
       if (iErr) throw iErr;
 
       const products: BasketProduct[] = (items ?? [])
-        .filter((item: any) => item.products?.in_stock !== false)
+        .filter((item: any) => item.products != null && item.products.active !== false)
         .map((item: any) => ({
-        id: item.products.id,
-        name: item.products.name,
-        price: item.products.price,
-        image_url: item.products.image_url,
-        unit: item.products.unit || "un",
-        quantity: item.quantity,
-      }));
+          id: item.products.id,
+          name: item.products.name,
+          price: item.products.price,
+          image_url: item.products.image_url,
+          unit: item.products.unit || "un",
+          quantity: item.quantity,
+          description: item.products.description,
+          category_id: item.products.category_id,
+        }));
 
       return {
         id: basket.id,
@@ -70,6 +83,6 @@ export function useActiveBasket(storeId?: string) {
         products,
       };
     },
-    staleTime: 60_000,
+    staleTime: 30_000,
   });
 }

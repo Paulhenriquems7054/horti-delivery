@@ -85,7 +85,11 @@ export default function AdminBasket() {
         throw new Error("Preencha todos os campos corretamente");
       }
 
-      // 1. Criar o produto 
+      // Pega o store_id da cesta ativa
+      const { data: basketData } = await supabase
+        .from("baskets").select("store_id").eq("id", basket.id).single();
+
+      // 1. Criar o produto com store_id
       const { data: prodData, error: prodErr } = await supabase
         .from("products")
         .insert([{ 
@@ -93,7 +97,8 @@ export default function AdminBasket() {
            price: priceVal, 
            unit: newProductUnit,
            image_url: newProductImageUrl,
-           active: true
+           active: true,
+           store_id: basketData?.store_id ?? null,
         }])
         .select()
         .single();
@@ -122,10 +127,16 @@ export default function AdminBasket() {
   const bulkImportMutation = useMutation({
     mutationFn: async (items: {name: string; price: number; unit: string; active: boolean}[]) => {
       if (!basket) throw new Error("Cesta não encontrada");
+
+      // Pega o store_id da cesta ativa
+      const { data: basketData } = await supabase
+        .from("baskets").select("store_id").eq("id", basket.id).single();
+
+      const itemsWithStore = items.map(i => ({ ...i, store_id: basketData?.store_id ?? null }));
       
       const { data: prods, error: prodErr } = await supabase
         .from("products")
-        .insert(items)
+        .insert(itemsWithStore)
         .select();
 
       if (prodErr) throw prodErr;

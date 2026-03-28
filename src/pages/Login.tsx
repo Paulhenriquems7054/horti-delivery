@@ -117,7 +117,8 @@ export default function Login() {
         const { error: storeError } = await (supabase as any).from("stores").insert({
             user_id: user.id,
             name: storeName,
-            slug: formattedSlug
+            slug: formattedSlug,
+            active: true,
         });
 
         if (storeError) {
@@ -127,7 +128,7 @@ export default function Login() {
         }
         
         // 3. Cria o primeiro Catálogo (Basket) Ativo da Nova Loja
-        const { data: storeInfo } = await (supabase as any).from("stores").select("id").eq("user_id", user.id).single();
+        const { data: storeInfo } = await (supabase as any).from("stores").select("id").eq("slug", formattedSlug).single();
         if (storeInfo) {
           await (supabase as any).from("baskets").insert({
             name: `Catálogo | ${storeName}`,

@@ -40,11 +40,11 @@ export default function Landing() {
           </div>
           <span className="font-extrabold text-xl text-slate-800 tracking-tight hidden sm:block">horti<span className="text-emerald-600">delivery</span></span>
         </div>
-        <button 
-          onClick={() => navigate("/login")}
-          className="text-sm font-extrabold text-emerald-600 bg-emerald-50 border border-emerald-100 px-5 py-2.5 rounded-full hover:bg-emerald-100 transition-colors shadow-sm"
+        <button
+          onClick={() => navigate("/track")}
+          className="px-4 py-2 bg-white hover:bg-emerald-50 text-emerald-700 rounded-xl font-bold text-sm transition-colors border border-emerald-200"
         >
-          Área do Produtor
+          Rastrear Pedido
         </button>
       </nav>
 

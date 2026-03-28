@@ -97,24 +97,88 @@ export default function Admin() {
       </header>
 
       <main className="mx-auto max-w-2xl px-4 py-5 pb-12">
-        {/* Botão para gerenciar a vitrine de produtos da cesta */}
-        <button
-          onClick={() => navigate("/admin/basket")}
-          className="w-full mb-6 bg-white border-2 border-primary/20 p-4 rounded-2xl flex items-center justify-between shadow-sm hover:border-primary/50 hover:bg-emerald-50/30 transition-all group"
-        >
-          <div className="flex items-center gap-4">
-            <div className="h-14 w-14 rounded-xl gradient-card shadow-card flex items-center justify-center text-3xl">
+        {/* Menu de Gestão */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
+          <button
+            onClick={() => navigate("/admin/basket")}
+            className="bg-white border-2 border-primary/20 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-primary/50 hover:bg-emerald-50/30 transition-all group"
+          >
+            <div className="h-12 w-12 rounded-xl gradient-card shadow-card flex items-center justify-center text-2xl shrink-0">
               🛒
             </div>
-            <div className="text-left text-sm">
-              <h2 className="font-extrabold text-foreground text-lg leading-tight">Painel de Produtos</h2>
-              <p className="text-muted-foreground mt-0.5">Adicione os itens e defina o que o cliente vê</p>
+            <div className="text-left flex-1 min-w-0">
+              <h2 className="font-extrabold text-foreground text-base leading-tight">Produtos</h2>
+              <p className="text-muted-foreground text-xs mt-0.5">Gerenciar catálogo</p>
             </div>
-          </div>
-          <div className="h-10 w-10 shrink-0 bg-primary text-white rounded-full flex items-center justify-center shadow-button group-hover:scale-105 transition-transform">
-            <span className="font-extrabold text-lg">➔</span>
-          </div>
-        </button>
+          </button>
+
+          <button
+            onClick={() => navigate("/admin/stores")}
+            className="bg-white border-2 border-blue-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-blue-400 hover:bg-blue-50/30 transition-all group"
+          >
+            <div className="h-12 w-12 rounded-xl bg-blue-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+              🏪
+            </div>
+            <div className="text-left flex-1 min-w-0">
+              <h2 className="font-extrabold text-foreground text-base leading-tight">Lojas</h2>
+              <p className="text-muted-foreground text-xs mt-0.5">Multi-tenant</p>
+            </div>
+          </button>
+
+          <button
+            onClick={() => navigate("/admin/delivery-zones")}
+            className="bg-white border-2 border-amber-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-amber-400 hover:bg-amber-50/30 transition-all group"
+          >
+            <div className="h-12 w-12 rounded-xl bg-amber-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+              📍
+            </div>
+            <div className="text-left flex-1 min-w-0">
+              <h2 className="font-extrabold text-foreground text-base leading-tight">Zonas</h2>
+              <p className="text-muted-foreground text-xs mt-0.5">Taxas de entrega</p>
+            </div>
+          </button>
+
+          <button
+            onClick={() => navigate("/admin/coupons")}
+            className="bg-white border-2 border-purple-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-purple-400 hover:bg-purple-50/30 transition-all group"
+          >
+            <div className="h-12 w-12 rounded-xl bg-purple-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+              🎟️
+            </div>
+            <div className="text-left flex-1 min-w-0">
+              <h2 className="font-extrabold text-foreground text-base leading-tight">Cupons</h2>
+              <p className="text-muted-foreground text-xs mt-0.5">Descontos</p>
+            </div>
+          </button>
+
+          <button
+            onClick={() => navigate("/admin/analytics")}
+            className="bg-white border-2 border-indigo-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-indigo-400 hover:bg-indigo-50/30 transition-all group sm:col-span-2"
+          >
+            <div className="h-12 w-12 rounded-xl bg-indigo-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+              📊
+            </div>
+            <div className="text-left flex-1 min-w-0">
+              <h2 className="font-extrabold text-foreground text-base leading-tight">Analytics</h2>
+              <p className="text-muted-foreground text-xs mt-0.5">Relatórios e métricas</p>
+            </div>
+          </button>
+
+          <a
+            href="/delivery"
+            target="_blank"
+            rel="noreferrer"
+            className="bg-white border-2 border-orange-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-orange-400 hover:bg-orange-50/30 transition-all sm:col-span-2"
+          >
+            <div className="h-12 w-12 rounded-xl bg-orange-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+              🛵
+            </div>
+            <div className="text-left flex-1 min-w-0">
+              <h2 className="font-extrabold text-foreground text-base leading-tight">Tela do Entregador</h2>
+              <p className="text-muted-foreground text-xs mt-0.5">Abrir link para o motoboy • PIN: 1234</p>
+            </div>
+          </a>
+        </div>
 
         {/* Resumo de Vendas */}
         <div className="mb-6 grid grid-cols-2 gap-3">

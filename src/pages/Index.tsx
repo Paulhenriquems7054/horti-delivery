@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useActiveBasket } from "@/hooks/useActiveBasket";
 import { useCreateOrder } from "@/hooks/useCreateOrder";
 import { ProductCard } from "@/components/ProductCard";
 import { CheckoutForm } from "@/components/CheckoutForm";
+import { ProductSearch } from "@/components/ProductSearch";
+import { CategoryFilter } from "@/components/CategoryFilter";
 import { ShoppingCart, CheckCircle2, Leaf, Package, Store } from "lucide-react";
 import { toast } from "sonner";
 import { useParams, Navigate } from "react-router-dom";
@@ -20,6 +22,9 @@ export default function Index() {
   
   const [step, setStep] = useState<Step>("basket");
   const [cart, setCart] = useState<Record<string, number>>({});
+  const [confirmedTotal, setConfirmedTotal] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const handleAdd = (id: string) => setCart(p => ({ ...p, [id]: (p[id] || 0) + 1 }));
   const handleRemove = (id: string) => {
@@ -33,6 +38,29 @@ export default function Index() {
 
   const cartTotal = basket?.products.reduce((acc, p) => acc + (p.price * (cart[p.id] || 0)), 0) || 0;
   const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
+
+  // Filter products based on search and category
+  const filteredProducts = useMemo(() => {
+    if (!basket?.products) return [];
+    
+    let filtered = basket.products;
+    
+    // Apply search filter
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      filtered = filtered.filter(p => 
+        p.name.toLowerCase().includes(query) ||
+        p.description?.toLowerCase().includes(query)
+      );
+    }
+    
+    // Apply category filter
+    if (selectedCategory) {
+      filtered = filtered.filter(p => p.category_id === selectedCategory);
+    }
+    
+    return filtered;
+  }, [basket?.products, searchQuery, selectedCategory]);
 
   /* ─── Loading Global ─── */
   if (isStoreLoading || isBasketLoading) {
@@ -128,7 +156,7 @@ export default function Index() {
               </p>
               <p className="text-lg font-extrabold text-foreground">Carrinho Personalizado</p>
               <p className="text-3xl font-extrabold text-primary">
-                R$ {cartTotal.toFixed(2).replace(".", ",")}
+                R$ {confirmedTotal.toFixed(2).replace(".", ",")}
               </p>
             </div>
 
@@ -190,11 +218,29 @@ export default function Index() {
             </div>
 
             {/* Lista de produtos */}
-            <div className="mt-5 space-y-2.5">
+            <div className="mt-5 space-y-3">
               <h3 className="text-sm font-extrabold text-muted-foreground uppercase tracking-wider px-1">
                 Catálogo da Semana
               </h3>
-              {basket.products.map((p, i) => (
+              
+              {/* Search and Filter */}
+              <div className="space-y-3">
+                <ProductSearch onSearch={setSearchQuery} />
+                <CategoryFilter 
+                  storeId={store.id} 
+                  selectedCategory={selectedCategory}
+                  onSelectCategory={setSelectedCategory}
+                />
+              </div>
+
+              {filteredProducts.length === 0 && (
+                <div className="text-center py-12">
+                  <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
+                  <p className="text-muted-foreground">Nenhum produto encontrado</p>
+                </div>
+              )}
+
+              {filteredProducts.map((p, i) => (
                 <div
                   key={p.id}
                   className="animate-slide-up"
@@ -243,10 +289,20 @@ export default function Index() {
                   .map(p => ({ ...p, quantity: cart[p.id] }));
                   
                 createOrder.mutate(
-                  { ...data, total: data.total_with_fee || cartTotal, products: selectedProducts, storeId: store.id },
+                  { 
+                    ...data, 
+                    total: data.total_with_fee || cartTotal, 
+                    products: selectedProducts, 
+                    storeId: store.id,
+                    delivery_zone_id: data.neighborhood_id,
+                    coupon_id: data.coupon_id,
+                    delivery_fee: data.delivery_fee,
+                    discount: data.discount,
+                  },
                   {
                     onSuccess: () => {
                       toast.success("Pedido enviado com sucesso! 🎉");
+                      setConfirmedTotal(data.total_with_fee || cartTotal);
                       setCart({});
                       setStep("confirmation");
                     },
@@ -264,13 +320,9 @@ export default function Index() {
 
       {/* Footer com link para Administração */}
       <footer className="py-6 text-center border-t mt-auto">
-        <a 
-          href="/login" 
-          className="text-xs font-bold uppercase tracking-wider text-muted-foreground hover:text-primary transition-colors flex items-center justify-center gap-1"
-        >
-          <span>🔒 Área do Produtor</span>
-        </a>
+        <p className="text-[10px] text-slate-400 font-medium">© {new Date().getFullYear()} {store?.name || "HortiDelivery"} • Pedidos Seguros</p>
       </footer>
+
     </div>
   );
 }
