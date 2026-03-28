@@ -8,6 +8,13 @@ export function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    // Se há token de recuperação de senha na URL, redireciona para /login
+    const hash = window.location.hash;
+    if (hash && hash.includes("type=recovery")) {
+      window.location.replace("/login" + hash);
+      return;
+    }
+
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       setLoading(false);

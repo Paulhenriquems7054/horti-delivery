@@ -24,6 +24,13 @@ export default function Login() {
     const navigate = useNavigate();
 
     useEffect(() => {
+        // Verifica se há token de recuperação na URL (hash fragment do Supabase)
+        const hash = window.location.hash;
+        if (hash && hash.includes("type=recovery")) {
+            setIsResettingPassword(true);
+            return; // não redireciona para /admin
+        }
+
         // Redireciona usuários já logados para o painel de admin
         supabase.auth.getSession().then(({ data: { session } }) => {
             if (session && !isResettingPassword) {
@@ -266,7 +273,7 @@ export default function Login() {
 
                                 <div className="space-y-1.5">
                                     <Label className="text-slate-600 font-bold">Email</Label>
-                                    <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12 rounded-xl" />
+                                    <Input type="email" autoComplete="email" value={email} onChange={(e) => setEmail(e.target.value)} required className="h-12 rounded-xl" />
                                 </div>
                                 <div className="space-y-1.5 relative">
                                     <Label className="text-slate-600 font-bold">Senha</Label>
