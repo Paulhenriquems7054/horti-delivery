@@ -35,20 +35,28 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
   
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
+  const [street, setStreet] = useState("");
+  const [number, setNumber] = useState("");
+  const [neighborhood, setNeighborhood] = useState("");
+  const [reference, setReference] = useState("");
   const [selectedZone, setSelectedZone] = useState<string>("");
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
-  const [touched, setTouched] = useState({ name: false, phone: false, address: false, zone: false });
+  const [touched, setTouched] = useState({
+    name: false, phone: false, street: false, number: false, neighborhood: false, zone: false,
+  });
 
-  // Carregar histórico local do cliente (Fase 3: Retenção LocalStorage)
+  // Carregar histórico local do cliente
   useEffect(() => {
     const savedCustomer = localStorage.getItem("horti_customer_profile");
     if (savedCustomer) {
       const parsed = JSON.parse(savedCustomer);
       if (parsed.name) setName(parsed.name);
       if (parsed.phone) setPhone(parsed.phone);
-      if (parsed.address) setAddress(parsed.address);
+      if (parsed.street) setStreet(parsed.street);
+      if (parsed.number) setNumber(parsed.number);
+      if (parsed.neighborhood) setNeighborhood(parsed.neighborhood);
+      if (parsed.reference) setReference(parsed.reference);
       if (parsed.zone) setSelectedZone(parsed.zone);
     }
   }, []);
@@ -71,11 +79,13 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
   const errors = {
     name: name.trim().length < 2 ? "Informe seu nome completo" : "",
     phone: phone.replace(/\D/g, "").length < 10 ? "Informe um telefone válido" : "",
-    address: address.trim().length < 5 ? "Informe a rua e número" : "",
-    zone: zones?.length && !selectedZone ? "Selecione seu bairro" : ""
+    street: street.trim().length < 3 ? "Informe a rua" : "",
+    number: number.trim().length < 1 ? "Informe o número" : "",
+    neighborhood: neighborhood.trim().length < 2 ? "Informe o bairro" : "",
+    zone: zones?.length && !selectedZone ? "Selecione seu bairro" : "",
   };
 
-  const isValid = !errors.name && !errors.phone && !errors.address && !errors.zone;
+  const isValid = !errors.name && !errors.phone && !errors.street && !errors.number && !errors.neighborhood && !errors.zone;
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) {
@@ -103,30 +113,34 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setTouched({ name: true, phone: true, address: true, zone: true });
+    setTouched({ name: true, phone: true, street: true, number: true, neighborhood: true, zone: true });
     
     if (!isValid) return;
 
-    // Salvar no Histórico Local para a próxima compra do cliente
+    // Monta endereço completo
+    const fullAddress = [
+      `${street.trim()}, ${number.trim()}`,
+      neighborhood.trim(),
+      currentZoneData?.name,
+      reference.trim() ? `Ref: ${reference.trim()}` : "",
+    ].filter(Boolean).join(" - ");
+
+    // Salvar no localStorage para a próxima compra
     localStorage.setItem("horti_customer_profile", JSON.stringify({
-      name: name.trim(),
-      phone,
-      address: address.trim(),
-      zone: selectedZone
+      name: name.trim(), phone,
+      street: street.trim(), number: number.trim(),
+      neighborhood: neighborhood.trim(), reference: reference.trim(),
+      zone: selectedZone,
     }));
 
-    const finalAddressInfo = currentZoneData 
-      ? `${address.trim()} (${currentZoneData.name})` 
-      : address.trim();
-
-    onSubmit({ 
-      customer_name: name.trim(), 
-      phone, 
-      address: finalAddressInfo,
+    onSubmit({
+      customer_name: name.trim(),
+      phone,
+      address: fullAddress,
       total_with_fee: finalTotal,
       neighborhood_id: selectedZone || undefined,
       coupon_id: appliedCoupon?.id,
-      discount: discount,
+      discount,
       delivery_fee: deliveryFee,
     });
   };
@@ -269,19 +283,49 @@ export function CheckoutForm({ loading, basketName, basketPrice, storeId, onSubm
           </div>
         )}
 
-        {/* Campo Endereço */}
+        {/* Campos de Endereço */}
         <div className="space-y-1">
           <label className="text-sm font-bold text-foreground flex items-center gap-1.5">
-            <MapPin className="h-4 w-4 text-primary" /> Rua, Número e Referência
+            <MapPin className="h-4 w-4 text-primary" /> Endereço de Entrega
           </label>
-          <input
-            type="text"
-            placeholder="Ex: Rua das Flores, 123"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-            onBlur={() => setTouched((t) => ({ ...t, address: true }))}
-            className={`w-full h-12 rounded-xl border px-4 text-base font-semibold bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${touched.address && errors.address ? "border-destructive ring-1 ring-destructive/30" : "border-border"}`}
-          />
+          <div className="space-y-2">
+            {/* Rua */}
+            <input
+              type="text"
+              placeholder="Rua / Avenida / Travessa"
+              value={street}
+              onChange={(e) => setStreet(e.target.value)}
+              onBlur={() => setTouched((t) => ({ ...t, street: true }))}
+              className={`w-full h-12 rounded-xl border px-4 text-base font-semibold bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${touched.street && errors.street ? "border-destructive ring-1 ring-destructive/30" : "border-border"}`}
+            />
+            {/* Número + Bairro */}
+            <div className="grid grid-cols-2 gap-2">
+              <input
+                type="text"
+                placeholder="Número"
+                value={number}
+                onChange={(e) => setNumber(e.target.value)}
+                onBlur={() => setTouched((t) => ({ ...t, number: true }))}
+                className={`h-12 rounded-xl border px-4 text-base font-semibold bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${touched.number && errors.number ? "border-destructive ring-1 ring-destructive/30" : "border-border"}`}
+              />
+              <input
+                type="text"
+                placeholder="Bairro"
+                value={neighborhood}
+                onChange={(e) => setNeighborhood(e.target.value)}
+                onBlur={() => setTouched((t) => ({ ...t, neighborhood: true }))}
+                className={`h-12 rounded-xl border px-4 text-base font-semibold bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all ${touched.neighborhood && errors.neighborhood ? "border-destructive ring-1 ring-destructive/30" : "border-border"}`}
+              />
+            </div>
+            {/* Ponto de Referência */}
+            <input
+              type="text"
+              placeholder="Ponto de referência (opcional) — Ex: Próximo ao mercado"
+              value={reference}
+              onChange={(e) => setReference(e.target.value)}
+              className="w-full h-12 rounded-xl border border-border px-4 text-base font-semibold bg-white text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+            />
+          </div>
         </div>
 
         {/* Botão submit */}
