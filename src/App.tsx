@@ -14,6 +14,8 @@ import AdminDeliveryZones from "./pages/AdminDeliveryZones";
 import AdminAnalytics from "./pages/AdminAnalytics";
 import OrderTracking from "./pages/OrderTracking";
 import Delivery from "./pages/Delivery";
+import AdminDirectDelivery from "./pages/AdminDirectDelivery";
+import DirectDeliveryTracking from "./pages/DirectDeliveryTracking";
 import { ProtectedRoute } from "./components/ProtectedRoute";
 
 const queryClient = new QueryClient({
@@ -35,6 +37,7 @@ const App = () => (
           <Route path="/" element={<Landing />} />
           <Route path="/login" element={<Login />} />
           <Route path="/track" element={<OrderTracking />} />
+          <Route path="/delivery-tracking" element={<DirectDeliveryTracking />} />
           <Route path="/delivery" element={<Delivery />} />
           <Route path="/delivery/:slug" element={<Delivery />} />
 
@@ -45,6 +48,7 @@ const App = () => (
           <Route path="/admin/stores" element={<ProtectedRoute><AdminStores /></ProtectedRoute>} />
           <Route path="/admin/delivery-zones" element={<ProtectedRoute><AdminDeliveryZones /></ProtectedRoute>} />
           <Route path="/admin/analytics" element={<ProtectedRoute><AdminAnalytics /></ProtectedRoute>} />
+          <Route path="/admin/direct-delivery" element={<ProtectedRoute><AdminDirectDelivery /></ProtectedRoute>} />
 
           {/* ── Entregador por loja ── */}
           <Route path="/:slug/delivery" element={<Delivery />} />

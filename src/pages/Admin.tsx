@@ -228,6 +228,19 @@ export default function Admin() {
             </div>
           </button>
 
+          <button
+            onClick={() => navigate("/admin/direct-delivery")}
+            className="bg-white border-2 border-teal-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-teal-400 hover:bg-teal-50/30 transition-all group sm:col-span-2"
+          >
+            <div className="h-12 w-12 rounded-xl bg-teal-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+              🏪
+            </div>
+            <div className="text-left flex-1 min-w-0">
+              <h2 className="font-extrabold text-foreground text-base leading-tight">Entrega Direta</h2>
+              <p className="text-muted-foreground text-xs mt-0.5">Cliente comprou na loja • solicita entrega</p>
+            </div>
+          </button>
+
           {/* Card Entregador com PIN editável */}
           <div className="bg-white border-2 border-orange-200 p-4 rounded-2xl shadow-sm sm:col-span-2">
             <div className="flex items-start gap-3">

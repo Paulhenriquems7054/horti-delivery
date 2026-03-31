@@ -5,10 +5,12 @@ import { ProductCard } from "@/components/ProductCard";
 import { CheckoutForm } from "@/components/CheckoutForm";
 import { ProductSearch } from "@/components/ProductSearch";
 import { CategoryFilter } from "@/components/CategoryFilter";
+import { WeightPickerModal } from "@/components/WeightPickerModal";
 import { ShoppingCart, CheckCircle2, Leaf, Package, Store } from "lucide-react";
 import { toast } from "sonner";
-import { useParams, Navigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
+import type { BasketProduct } from "@/hooks/useActiveBasket";
 
 type Step = "basket" | "checkout" | "confirmation";
 
@@ -21,7 +23,9 @@ export default function Index() {
   const createOrder = useCreateOrder();
   
   const [step, setStep] = useState<Step>("basket");
-  const [cart, setCart] = useState<Record<string, number>>({});
+  const [cart, setCart] = useState<Record<string, number>>({});        // unit: qty
+  const [weightCart, setWeightCart] = useState<Record<string, number>>({}); // weight: kg
+  const [weightModalProduct, setWeightModalProduct] = useState<BasketProduct | null>(null);
   const [confirmedTotal, setConfirmedTotal] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
@@ -35,9 +39,28 @@ export default function Index() {
       return next;
     });
   };
+  const handleWeightConfirm = (productId: string, weight: number) => {
+    if (weight <= 0) {
+      setWeightCart(p => { const n = { ...p }; delete n[productId]; return n; });
+    } else {
+      setWeightCart(p => ({ ...p, [productId]: weight }));
+    }
+  };
 
-  const cartTotal = basket?.products.reduce((acc, p) => acc + (p.price * (cart[p.id] || 0)), 0) || 0;
-  const totalItems = Object.values(cart).reduce((a, b) => a + b, 0);
+  // Calcula total considerando peso e unidade
+  const cartTotal = useMemo(() => {
+    if (!basket?.products) return 0;
+    return basket.products.reduce((acc, p) => {
+      if (p.sell_by === "weight") {
+        const kg = weightCart[p.id] || 0;
+        return acc + kg * (p.price_per_kg ?? p.price);
+      }
+      return acc + p.price * (cart[p.id] || 0);
+    }, 0);
+  }, [basket?.products, cart, weightCart]);
+
+  const totalItems = Object.values(cart).reduce((a, b) => a + b, 0)
+    + Object.keys(weightCart).length;
 
   // Filter products based on search and category
   const filteredProducts = useMemo(() => {
@@ -241,16 +264,14 @@ export default function Index() {
               )}
 
               {filteredProducts.map((p, i) => (
-                <div
-                  key={p.id}
-                  className="animate-slide-up"
-                  style={{ animationDelay: `${i * 60}ms`, opacity: 0 }}
-                >
-                  <ProductCard 
-                    product={p} 
+                <div key={p.id} className="animate-slide-up" style={{ animationDelay: `${i * 60}ms`, opacity: 0 }}>
+                  <ProductCard
+                    product={p}
                     cartQty={cart[p.id] || 0}
+                    cartWeight={weightCart[p.id]}
                     onAdd={() => handleAdd(p.id)}
                     onRemove={() => handleRemove(p.id)}
+                    onSelectWeight={() => setWeightModalProduct(p)}
                   />
                 </div>
               ))}
@@ -281,18 +302,21 @@ export default function Index() {
               loading={createOrder.isPending}
               basketName={basket.name}
               basketPrice={cartTotal}
-              storeId={store.id}  /* <- Enviamos ID pro Checkout para a zona! */
+              storeId={store.id}
               onBack={() => setStep("basket")}
               onSubmit={(data) => {
                 const selectedProducts = basket.products
-                  .filter(p => cart[p.id])
-                  .map(p => ({ ...p, quantity: cart[p.id] }));
-                  
+                  .filter(p => p.sell_by === "weight" ? (weightCart[p.id] || 0) > 0 : (cart[p.id] || 0) > 0)
+                  .map(p => p.sell_by === "weight"
+                    ? { ...p, quantity: 1, weight_kg: weightCart[p.id], price: (p.price_per_kg ?? p.price) * weightCart[p.id] }
+                    : { ...p, quantity: cart[p.id] }
+                  );
+
                 createOrder.mutate(
-                  { 
-                    ...data, 
-                    total: data.total_with_fee || cartTotal, 
-                    products: selectedProducts, 
+                  {
+                    ...data,
+                    total: data.total_with_fee || cartTotal,
+                    products: selectedProducts,
                     storeId: store.id,
                     delivery_zone_id: data.neighborhood_id,
                     coupon_id: data.coupon_id,
@@ -304,6 +328,7 @@ export default function Index() {
                       toast.success("Pedido enviado com sucesso! 🎉");
                       setConfirmedTotal(data.total_with_fee || cartTotal);
                       setCart({});
+                      setWeightCart({});
                       setStep("confirmation");
                     },
                     onError: (err: any) => {
@@ -317,6 +342,13 @@ export default function Index() {
           </div>
         )}
       </main>
+
+      {/* Modal de seleção de peso */}
+      <WeightPickerModal
+        product={weightModalProduct}
+        onClose={() => setWeightModalProduct(null)}
+        onConfirm={handleWeightConfirm}
+      />
 
       {/* Footer com link para Administração */}
       <footer className="py-6 text-center border-t mt-auto">

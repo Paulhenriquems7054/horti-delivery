@@ -10,6 +10,10 @@ export interface BasketProduct {
   quantity: number;
   description?: string;
   category_id?: string;
+  sell_by: "unit" | "weight";
+  price_per_kg?: number;
+  min_weight?: number;
+  step_weight?: number;
 }
 
 export interface ActiveBasket {
@@ -58,7 +62,7 @@ export function useActiveBasket(storeId?: string) {
       // 2. Busca os itens com dados dos produtos
       const { data: items, error: iErr } = await supabase
         .from("basket_items")
-        .select("quantity, products(id, name, price, image_url, unit, description, category_id, active)")
+        .select("quantity, products(id, name, price, image_url, unit, description, category_id, active, sell_by, price_per_kg, min_weight, step_weight)")
         .eq("basket_id", basket.id);
 
       if (iErr) throw iErr;
@@ -74,6 +78,10 @@ export function useActiveBasket(storeId?: string) {
           quantity: item.quantity,
           description: item.products.description,
           category_id: item.products.category_id,
+          sell_by: item.products.sell_by || "unit",
+          price_per_kg: item.products.price_per_kg,
+          min_weight: item.products.min_weight || 0.25,
+          step_weight: item.products.step_weight || 0.25,
         }));
 
       return {
