@@ -40,12 +40,6 @@ export default function Landing() {
           </div>
           <span className="font-extrabold text-xl text-slate-800 tracking-tight hidden sm:block">horti<span className="text-emerald-600">delivery</span></span>
         </div>
-        <button
-          onClick={() => navigate("/login")}
-          className="px-4 py-2 bg-white hover:bg-emerald-50 text-emerald-700 rounded-xl font-bold text-sm transition-colors border border-emerald-200"
-        >
-          Área do Empreendedor
-        </button>
       </nav>
 
       <main className="flex-1 flex flex-col px-4 mx-auto w-full max-w-5xl animate-fade-in relative">
