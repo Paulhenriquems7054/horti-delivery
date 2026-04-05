@@ -204,9 +204,9 @@ export default function Admin() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-6">
           <button
             onClick={() => navigate("/track")}
-            className="bg-white border-2 border-emerald-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-emerald-400 hover:bg-emerald-50/30 transition-all group"
+            className="bg-card dark:bg-card border-2 border-emerald-200 dark:border-emerald-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-emerald-400 dark:hover:border-emerald-600 hover:bg-emerald-50/30 dark:hover:bg-emerald-900/20 transition-all group"
           >
-            <div className="h-12 w-12 rounded-xl bg-emerald-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+            <div className="h-12 w-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 shadow-card flex items-center justify-center text-2xl shrink-0">
               📦
             </div>
             <div className="text-left flex-1 min-w-0">
@@ -217,7 +217,7 @@ export default function Admin() {
 
           <button
             onClick={() => navigate("/admin/basket")}
-            className="bg-white border-2 border-primary/20 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-primary/50 hover:bg-emerald-50/30 transition-all group"
+            className="bg-card dark:bg-card border-2 border-primary/20 dark:border-primary/40 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-primary/50 dark:hover:border-primary/60 hover:bg-emerald-50/30 dark:hover:bg-emerald-900/20 transition-all group"
           >
             <div className="h-12 w-12 rounded-xl gradient-card shadow-card flex items-center justify-center text-2xl shrink-0">
               🛒
@@ -230,9 +230,9 @@ export default function Admin() {
 
           <button
             onClick={() => navigate("/admin/stores")}
-            className="bg-white border-2 border-blue-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-blue-400 hover:bg-blue-50/30 transition-all group"
+            className="bg-card dark:bg-card border-2 border-blue-200 dark:border-blue-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-blue-400 dark:hover:border-blue-600 hover:bg-blue-50/30 dark:hover:bg-blue-900/20 transition-all group"
           >
-            <div className="h-12 w-12 rounded-xl bg-blue-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+            <div className="h-12 w-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 shadow-card flex items-center justify-center text-2xl shrink-0">
               🏪
             </div>
             <div className="text-left flex-1 min-w-0">
@@ -243,9 +243,9 @@ export default function Admin() {
 
           <button
             onClick={() => navigate("/admin/delivery-zones")}
-            className="bg-white border-2 border-amber-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-amber-400 hover:bg-amber-50/30 transition-all group"
+            className="bg-card dark:bg-card border-2 border-amber-200 dark:border-amber-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-amber-400 dark:hover:border-amber-600 hover:bg-amber-50/30 dark:hover:bg-amber-900/20 transition-all group"
           >
-            <div className="h-12 w-12 rounded-xl bg-amber-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+            <div className="h-12 w-12 rounded-xl bg-amber-100 dark:bg-amber-900/50 shadow-card flex items-center justify-center text-2xl shrink-0">
               📍
             </div>
             <div className="text-left flex-1 min-w-0">
@@ -256,9 +256,9 @@ export default function Admin() {
 
           <button
             onClick={() => navigate("/admin/coupons")}
-            className="bg-white border-2 border-purple-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-purple-400 hover:bg-purple-50/30 transition-all group"
+            className="bg-card dark:bg-card border-2 border-purple-200 dark:border-purple-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-purple-400 dark:hover:border-purple-600 hover:bg-purple-50/30 dark:hover:bg-purple-900/20 transition-all group"
           >
-            <div className="h-12 w-12 rounded-xl bg-purple-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+            <div className="h-12 w-12 rounded-xl bg-purple-100 dark:bg-purple-900/50 shadow-card flex items-center justify-center text-2xl shrink-0">
               🎟️
             </div>
             <div className="text-left flex-1 min-w-0">
@@ -269,9 +269,9 @@ export default function Admin() {
 
           <button
             onClick={() => navigate("/admin/analytics")}
-            className="bg-white border-2 border-indigo-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-indigo-400 hover:bg-indigo-50/30 transition-all group sm:col-span-2"
+            className="bg-card dark:bg-card border-2 border-indigo-200 dark:border-indigo-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-indigo-400 dark:hover:border-indigo-600 hover:bg-indigo-50/30 dark:hover:bg-indigo-900/20 transition-all group sm:col-span-2"
           >
-            <div className="h-12 w-12 rounded-xl bg-indigo-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+            <div className="h-12 w-12 rounded-xl bg-indigo-100 dark:bg-indigo-900/50 shadow-card flex items-center justify-center text-2xl shrink-0">
               📊
             </div>
             <div className="text-left flex-1 min-w-0">
@@ -282,9 +282,9 @@ export default function Admin() {
 
           <button
             onClick={() => navigate("/admin/direct-delivery")}
-            className="bg-white border-2 border-teal-200 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-teal-400 hover:bg-teal-50/30 transition-all group sm:col-span-2"
+            className="bg-card dark:bg-card border-2 border-teal-200 dark:border-teal-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-teal-400 dark:hover:border-teal-600 hover:bg-teal-50/30 dark:hover:bg-teal-900/20 transition-all group sm:col-span-2"
           >
-            <div className="h-12 w-12 rounded-xl bg-teal-100 shadow-card flex items-center justify-center text-2xl shrink-0">
+            <div className="h-12 w-12 rounded-xl bg-teal-100 dark:bg-teal-900/50 shadow-card flex items-center justify-center text-2xl shrink-0">
               🏪
             </div>
             <div className="text-left flex-1 min-w-0">
@@ -294,9 +294,9 @@ export default function Admin() {
           </button>
 
           {/* Card Entregador com PIN editável */}
-          <div className="bg-white border-2 border-orange-200 p-4 rounded-2xl shadow-sm sm:col-span-2">
+          <div className="bg-card dark:bg-card border-2 border-orange-200 dark:border-orange-800 p-4 rounded-2xl shadow-sm sm:col-span-2">
             <div className="flex items-start gap-3">
-              <div className="h-12 w-12 rounded-xl bg-orange-100 flex items-center justify-center text-2xl shrink-0">
+              <div className="h-12 w-12 rounded-xl bg-orange-100 dark:bg-orange-900/50 flex items-center justify-center text-2xl shrink-0">
                 🛵
               </div>
               <div className="flex-1 min-w-0">
@@ -371,7 +371,7 @@ export default function Admin() {
 
         {/* Resumo de Vendas */}
         <div className="mb-6 grid grid-cols-2 gap-3">
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-border">
+          <div className="bg-card dark:bg-card rounded-2xl p-4 shadow-sm border border-border">
             <div className="flex items-center gap-2 text-muted-foreground mb-1">
               <DollarSign className="h-4 w-4 text-emerald-500" />
               <span className="text-xs font-bold uppercase tracking-wider">Receita Concluída</span>
@@ -381,7 +381,7 @@ export default function Admin() {
             </p>
             <p className="text-xs text-muted-foreground mt-1">{counts.delivered} pedidos entregues</p>
           </div>
-          <div className="bg-white rounded-2xl p-4 shadow-sm border border-border">
+          <div className="bg-card dark:bg-card rounded-2xl p-4 shadow-sm border border-border">
             <div className="flex items-center gap-2 text-muted-foreground mb-1">
               <Clock className="h-4 w-4 text-amber-500" />
               <span className="text-xs font-bold uppercase tracking-wider">A Receber</span>
@@ -396,7 +396,7 @@ export default function Admin() {
         </div>
 
         {/* Configurações de Exclusão */}
-        <div className="mb-6 bg-white rounded-2xl p-4 shadow-sm border border-border">
+        <div className="mb-6 bg-card dark:bg-card rounded-2xl p-4 shadow-sm border border-border">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
               <Trash2 className="h-4 w-4 text-red-500" />
@@ -408,7 +408,7 @@ export default function Admin() {
             <button
               onClick={() => setAllowDeleteDelivered(!allowDeleteDelivered)}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                allowDeleteDelivered ? "bg-emerald-500" : "bg-slate-300"
+                allowDeleteDelivered ? "bg-emerald-500" : "bg-slate-300 dark:bg-slate-700"
               }`}
             >
               <span
@@ -461,18 +461,18 @@ export default function Admin() {
                       </div>
                     ) : (
                       columnOrders.map(order => (
-                        <div key={order.id} className="bg-white rounded-xl shadow-sm border border-slate-200/60 p-3 hover:shadow-md transition-shadow">
+                        <div key={order.id} className="bg-card dark:bg-card rounded-xl shadow-sm border border-border p-3 hover:shadow-md transition-shadow">
                           {/* Nome e ID */}
                           <div className="flex items-start justify-between gap-2 mb-2">
                             <div className="flex-1 min-w-0">
-                              <p className="font-extrabold text-sm text-slate-800 leading-tight truncate">{order.customer_name}</p>
-                              <p className="text-[10px] text-slate-400 font-mono mt-0.5">#{order.id.split('-')[0]}</p>
+                              <p className="font-extrabold text-sm text-foreground leading-tight truncate">{order.customer_name}</p>
+                              <p className="text-[10px] text-muted-foreground font-mono mt-0.5">#{order.id.split('-')[0]}</p>
                             </div>
                             <p className="font-black text-primary text-sm whitespace-nowrap shrink-0">R$ {order.total?.toFixed(2)}</p>
                           </div>
                           
                           {/* Endereço Breve */}
-                          <div className="flex items-start gap-1.5 text-xs text-slate-500 mb-3 bg-slate-50 p-2 rounded-lg border border-slate-100">
+                          <div className="flex items-start gap-1.5 text-xs text-muted-foreground mb-3 bg-muted/50 dark:bg-muted/30 p-2 rounded-lg border border-border">
                             <MapPin className="h-3.5 w-3.5 shrink-0 mt-0.5" />
                             <span className="line-clamp-2 leading-tight break-words">{order.address}</span>
                           </div>

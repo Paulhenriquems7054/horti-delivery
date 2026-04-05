@@ -95,71 +95,71 @@ export default function Landing() {
 
         {/* Informações Rápidas (Cards) */}
         <section className="mt-24 md:mt-32 pb-20 grid grid-cols-1 sm:grid-cols-3 gap-6 relative z-10">
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-4 hover:-translate-y-1.5 transition-all duration-300 hover:shadow-md cursor-default group">
-            <div className="h-14 w-14 rounded-2xl bg-emerald-50 text-emerald-500 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+          <div className="bg-card dark:bg-card p-6 rounded-3xl border border-border shadow-sm flex flex-col gap-4 hover:-translate-y-1.5 transition-all duration-300 hover:shadow-md cursor-default group">
+            <div className="h-14 w-14 rounded-2xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-500 dark:text-emerald-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <Leaf className="h-7 w-7" />
             </div>
             <div>
-              <h3 className="font-extrabold text-slate-800 text-lg mb-1.5">100% Selecionados</h3>
-              <p className="text-sm text-slate-500 font-medium leading-relaxed">Apenas o que há de mais fresco e bonito vai na sua sacola ecológica.</p>
+              <h3 className="font-extrabold text-foreground text-lg mb-1.5">100% Selecionados</h3>
+              <p className="text-sm text-muted-foreground font-medium leading-relaxed">Apenas o que há de mais fresco e bonito vai na sua sacola ecológica.</p>
             </div>
           </div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-4 hover:-translate-y-1.5 transition-all duration-300 hover:shadow-md cursor-default group">
-            <div className="h-14 w-14 rounded-2xl bg-amber-50 text-amber-500 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+          <div className="bg-card dark:bg-card p-6 rounded-3xl border border-border shadow-sm flex flex-col gap-4 hover:-translate-y-1.5 transition-all duration-300 hover:shadow-md cursor-default group">
+            <div className="h-14 w-14 rounded-2xl bg-amber-50 dark:bg-amber-900/30 text-amber-500 dark:text-amber-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <Truck className="h-7 w-7" />
             </div>
             <div>
-              <h3 className="font-extrabold text-slate-800 text-lg mb-1.5">Entrega Ágil</h3>
-              <p className="text-sm text-slate-500 font-medium leading-relaxed">Chega na porta de casa com segurança, acondicionado para não amassar nada.</p>
+              <h3 className="font-extrabold text-foreground text-lg mb-1.5">Entrega Ágil</h3>
+              <p className="text-sm text-muted-foreground font-medium leading-relaxed">Chega na porta de casa com segurança, acondicionado para não amassar nada.</p>
             </div>
           </div>
-          <div className="bg-white p-6 rounded-3xl border border-slate-100 shadow-sm flex flex-col gap-4 hover:-translate-y-1.5 transition-all duration-300 hover:shadow-md cursor-default group">
-            <div className="h-14 w-14 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+          <div className="bg-card dark:bg-card p-6 rounded-3xl border border-border shadow-sm flex flex-col gap-4 hover:-translate-y-1.5 transition-all duration-300 hover:shadow-md cursor-default group">
+            <div className="h-14 w-14 rounded-2xl bg-blue-50 dark:bg-blue-900/30 text-blue-500 dark:text-blue-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
               <ShieldCheck className="h-7 w-7" />
             </div>
             <div>
-              <h3 className="font-extrabold text-slate-800 text-lg mb-1.5">Pagamento na Porta</h3>
-              <p className="text-sm text-slate-500 font-medium leading-relaxed">Sem dor de cabeça com cartão online. Você só paga na hora da entrega feliz.</p>
+              <h3 className="font-extrabold text-foreground text-lg mb-1.5">Pagamento na Porta</h3>
+              <p className="text-sm text-muted-foreground font-medium leading-relaxed">Sem dor de cabeça com cartão online. Você só paga na hora da entrega feliz.</p>
             </div>
           </div>
         </section>
         
         {/* Como Funciona (Step by Step) */}
-        <section className="mt-16 md:mt-24 pb-20 relative z-10 w-full bg-white/50 backdrop-blur-sm rounded-[3rem] p-10 md:p-14 border border-white shadow-sm">
+        <section className="mt-16 md:mt-24 pb-20 relative z-10 w-full bg-card/50 dark:bg-card/30 backdrop-blur-sm rounded-[3rem] p-10 md:p-14 border border-border shadow-sm">
           <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-4">Como funciona?</h2>
-            <p className="text-slate-500 font-medium max-w-xl mx-auto">Três passos simples para a verdadeira feira de bairro chegar até você!</p>
+            <h2 className="text-3xl md:text-5xl font-black text-foreground mb-4">Como funciona?</h2>
+            <p className="text-muted-foreground font-medium max-w-xl mx-auto">Três passos simples para a verdadeira feira de bairro chegar até você!</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 text-center relative">
             {/* Linha conectora (visível apenas no desktop) */}
-            <div className="hidden md:block absolute top-[43px] left-[16%] right-[16%] h-1.5 bg-emerald-100 rounded-full" />
+            <div className="hidden md:block absolute top-[43px] left-[16%] right-[16%] h-1.5 bg-emerald-100 dark:bg-emerald-900/50 rounded-full" />
 
             {/* Passo 1 */}
             <div className="flex flex-col items-center relative z-10 group">
-              <div className="w-24 h-24 rounded-full bg-white border-[6px] border-emerald-50 shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-24 h-24 rounded-full bg-card dark:bg-card border-[6px] border-emerald-50 dark:border-emerald-900/50 shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
                 📱
               </div>
-              <h3 className="font-extrabold text-xl text-slate-800 mb-2">1. Escolha Diferenciada</h3>
-              <p className="text-slate-500 text-sm leading-relaxed px-2">Selecione legumes, verduras e frutas fresquinhas no nosso catálogo digital toda semana.</p>
+              <h3 className="font-extrabold text-xl text-foreground mb-2">1. Escolha Diferenciada</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed px-2">Selecione legumes, verduras e frutas fresquinhas no nosso catálogo digital toda semana.</p>
             </div>
 
             {/* Passo 2 */}
             <div className="flex flex-col items-center relative z-10 group">
-              <div className="w-24 h-24 rounded-full bg-white border-[6px] border-emerald-50 shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-24 h-24 rounded-full bg-card dark:bg-card border-[6px] border-emerald-50 dark:border-emerald-900/50 shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
                 🛒
               </div>
-              <h3 className="font-extrabold text-xl text-slate-800 mb-2">2. Monte sua Cesta</h3>
-              <p className="text-slate-500 text-sm leading-relaxed px-2">Adicione os itens desejados, insira seu endereço e confirme o pedido de forma muito rápida.</p>
+              <h3 className="font-extrabold text-xl text-foreground mb-2">2. Monte sua Cesta</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed px-2">Adicione os itens desejados, insira seu endereço e confirme o pedido de forma muito rápida.</p>
             </div>
 
             {/* Passo 3 */}
             <div className="flex flex-col items-center relative z-10 group">
-              <div className="w-24 h-24 rounded-full bg-white border-[6px] border-emerald-50 shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-24 h-24 rounded-full bg-card dark:bg-card border-[6px] border-emerald-50 dark:border-emerald-900/50 shadow-md flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform duration-300">
                 🛵
               </div>
-              <h3 className="font-extrabold text-xl text-slate-800 mb-2">3. Receba e Pague</h3>
-              <p className="text-slate-500 text-sm leading-relaxed px-2">Receba no conforto de casa com qualidade garantida. Pague só quando a mercadoria chegar!</p>
+              <h3 className="font-extrabold text-xl text-foreground mb-2">3. Receba e Pague</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed px-2">Receba no conforto de casa com qualidade garantida. Pague só quando a mercadoria chegar!</p>
             </div>
           </div>
         </section>
@@ -190,7 +190,7 @@ export default function Landing() {
         
       </main>
       
-      <footer className="w-full text-center py-8 pb-12 text-slate-400 text-sm font-medium">
+      <footer className="w-full text-center py-8 pb-12 text-muted-foreground text-sm font-medium">
         <p>© {new Date().getFullYear()} HortiDelivery. Todos os direitos reservados.</p>
       </footer>
     </div>
