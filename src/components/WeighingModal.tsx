@@ -382,40 +382,6 @@ export function WeighingModal({ order, onClose, onUpdate }: WeighingModalProps) 
             </p>
           )}
         </div>
-              R$ {estimatedTotal.toFixed(2).replace(".", ",")}
-            </span>
-          </div>
-          <div className="flex gap-3">
-            <button
-              onClick={onClose}
-              className="flex-1 h-11 rounded-xl border-2 border-slate-300 text-slate-700 font-bold hover:bg-slate-100 transition-colors"
-            >
-              Cancelar
-            </button>
-            <button
-              onClick={handleSave}
-              disabled={!canSave || saving}
-              className="flex-1 h-11 rounded-xl bg-emerald-500 text-white font-bold hover:bg-emerald-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
-            >
-              {saving ? (
-                <>
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent"></div>
-                  Salvando...
-                </>
-              ) : (
-                <>
-                  <Save className="h-4 w-4" />
-                  Salvar Pesagem
-                </>
-              )}
-            </button>
-          </div>
-          {!canSave && itemsNeedingWeighing.length > 0 && (
-            <p className="text-xs text-amber-600 text-center mt-2">
-              ⚠️ Preencha o peso de todos os itens para salvar
-            </p>
-          )}
-        </div>
       </div>
     </div>
   );
