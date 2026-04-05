@@ -301,7 +301,7 @@ export default function AdminBasket() {
   }
 
   return (
-    <div className="min-h-screen bg-[hsl(120,12%,95%)] flex flex-col">
+    <div className="min-h-screen bg-background flex flex-col">
       <header className="gradient-hero px-4 py-5 shadow-md sticky top-0 z-20">
         <div className="mx-auto max-w-2xl flex items-center gap-3">
           <button onClick={() => navigate("/admin")} className="h-10 w-10 bg-white/20 rounded-xl flex items-center justify-center text-white hover:bg-white/30 transition-colors">
@@ -317,7 +317,7 @@ export default function AdminBasket() {
       <main className="mx-auto max-w-2xl w-full px-4 py-6 flex-1 space-y-6">
         
         {/* Configurações Gerais da Cesta */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-border">
+        <div className="bg-card p-5 rounded-2xl shadow-sm border border-border">
           <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
             <Leaf className="h-4 w-4 text-primary" /> Configurações do Catálogo
           </h2>
@@ -352,7 +352,7 @@ export default function AdminBasket() {
         </div>
 
         {/* Zonas de Entrega */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-border">
+        <div className="bg-card p-5 rounded-2xl shadow-sm border border-border">
           <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
             <Truck className="h-4 w-4 text-primary" /> Taxas de Entrega / Bairros
           </h2>
@@ -390,7 +390,7 @@ export default function AdminBasket() {
         </div>
 
         {/* Adicionar Produto */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-border">
+        <div className="bg-card p-5 rounded-2xl shadow-sm border border-border">
           <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground mb-4 flex items-center gap-2">
             <Plus className="h-4 w-4 text-emerald-500" /> Adicionar Mercadoria
           </h2>
@@ -409,7 +409,7 @@ export default function AdminBasket() {
               <select 
                 value={newProductUnit}
                 onChange={(e) => setNewProductUnit(e.target.value)}
-                className="w-full mt-1 h-11 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-white" 
+                className="w-full mt-1 h-11 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-card" 
               >
                 <option value="un">Unidade(s)</option>
                 <option value="kg">Quilo(s)</option>
@@ -531,7 +531,7 @@ export default function AdminBasket() {
               const isEditing = editingItem?.id === item.id;
 
               return (
-                <div key={item.id} className={`bg-white p-3 rounded-xl shadow-sm border border-border transition-all ${isEditing ? 'ring-2 ring-primary/30 border-primary/50' : ''}`}>
+                <div key={item.id} className={`bg-card p-3 rounded-xl shadow-sm border border-border transition-all ${isEditing ? 'ring-2 ring-primary/30 border-primary/50' : ''}`}>
                   {isEditing ? (
                     <div className="space-y-3">
                       <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -549,7 +549,7 @@ export default function AdminBasket() {
                           <select 
                             value={editingItem.unit} 
                             onChange={(e) => setEditingItem({ ...editingItem, unit: e.target.value })}
-                            className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-white"
+                            className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card"
                           >
                             <option value="un">UN</option>
                             <option value="kg">KG</option>
@@ -656,7 +656,7 @@ export default function AdminBasket() {
                             unit: item.products.unit || "un",
                             image_url: item.products.image_url
                           })}
-                          className="h-9 w-9 bg-slate-50 text-slate-500 rounded-lg flex items-center justify-center hover:bg-slate-100 transition-colors"
+                          className="h-9 w-9 bg-muted text-foreground rounded-lg flex items-center justify-center hover:bg-muted/80 transition-colors"
                           title="Editar item"
                         >
                           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
@@ -670,7 +670,7 @@ export default function AdminBasket() {
                             }
                           }}
                           disabled={removeItemMutation.isPending}
-                          className="h-9 w-9 bg-red-50 text-red-500 rounded-lg flex items-center justify-center hover:bg-red-100 transition-colors"
+                          className="h-9 w-9 bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 rounded-lg flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-950/50 transition-colors"
                           title="Excluir item"
                         >
                           <Trash2 className="h-4 w-4" />
@@ -685,7 +685,7 @@ export default function AdminBasket() {
         </div>
 
         {/* Todos os Produtos da Loja */}
-        <div className="bg-white p-5 rounded-2xl shadow-sm border border-border">
+        <div className="bg-card p-5 rounded-2xl shadow-sm border border-border">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
               <Package className="h-4 w-4 text-primary" /> Todos os Produtos da Loja
