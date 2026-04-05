@@ -210,7 +210,13 @@ export default function Index() {
       <div className="flex min-h-screen flex-col bg-background">
         <header className="gradient-hero px-4 py-5">
           <div className="mx-auto max-w-lg flex items-center gap-2">
-            <Leaf className="h-7 w-7 text-white/90" />
+            <div className="h-7 w-7 rounded-lg bg-white/20 flex items-center justify-center overflow-hidden p-1">
+              <img 
+                src="/play_store_512.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain"
+              />
+            </div>
             <span className="text-base font-extrabold text-white">{store.name}</span>
           </div>
         </header>
@@ -318,8 +324,12 @@ export default function Index() {
       {/* Header */}
       <header className="gradient-hero px-4 py-5 shadow-md">
         <div className="mx-auto max-w-lg flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center">
-            <Leaf className="h-6 w-6 text-white" />
+          <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
+            <img 
+              src="/play_store_512.png" 
+              alt="Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <h1 className="text-base font-extrabold text-white leading-tight">

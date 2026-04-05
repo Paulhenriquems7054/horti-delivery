@@ -35,8 +35,12 @@ export default function Landing() {
       {/* Navbar Minimalista */}
       <nav className="w-full px-6 py-5 flex items-center justify-between sticky top-0 bg-[hsl(120,12%,95%)]/80 backdrop-blur-md z-50">
         <div className="flex items-center gap-2.5">
-          <div className="h-10 w-10 min-w-[40px] rounded-xl gradient-hero flex items-center justify-center text-white shadow-button">
-            <Leaf className="h-6 w-6" />
+          <div className="h-10 w-10 min-w-[40px] rounded-xl gradient-hero flex items-center justify-center text-white shadow-button overflow-hidden p-1.5">
+            <img 
+              src="/play_store_512.png" 
+              alt="HortiDelivery" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <span className="font-extrabold text-xl text-slate-800 tracking-tight hidden sm:block">horti<span className="text-emerald-600">delivery</span></span>
         </div>
@@ -50,8 +54,12 @@ export default function Landing() {
         
         {/* Hero Section */}
         <section className="text-center mt-16 md:mt-24 relative z-10 animate-slide-up">
-          <div className="mx-auto mb-8 flex h-28 w-28 items-center justify-center rounded-[2rem] bg-white border border-slate-100 shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-500 ease-out">
-            <span className="text-[4rem] drop-shadow-sm transition-transform hover:scale-110 duration-300">🌿</span>
+          <div className="mx-auto mb-8 flex h-28 w-28 items-center justify-center rounded-[2rem] bg-white border border-slate-100 shadow-xl transform rotate-3 hover:rotate-0 transition-transform duration-500 ease-out overflow-hidden">
+            <img 
+              src="/play_store_512.png" 
+              alt="HortiDelivery Logo" 
+              className="w-full h-full object-contain p-2 transition-transform hover:scale-110 duration-300"
+            />
           </div>
           
           <h1 className="text-5xl md:text-7xl font-black text-slate-900 leading-[1.05] tracking-tight mb-6">

@@ -297,8 +297,12 @@ export default function CustomerTracking() {
           <button onClick={() => navigate(`/${slug}`)} className="text-white hover:opacity-80 transition-opacity">
             <ArrowLeft className="h-6 w-6" />
           </button>
-          <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center">
-            <Leaf className="h-6 w-6 text-white" />
+          <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
+            <img 
+              src="/play_store_512.png" 
+              alt="Logo" 
+              className="w-full h-full object-contain"
+            />
           </div>
           <div>
             <h1 className="text-base font-extrabold text-white leading-tight">

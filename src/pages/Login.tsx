@@ -184,8 +184,12 @@ export default function Login() {
             
             <div className="w-full max-w-sm space-y-6 relative z-10">
                 <div className="text-center space-y-2">
-                    <div className="h-14 w-14 rounded-2xl gradient-hero flex items-center justify-center text-white shadow-md mx-auto mb-4">
-                        <Leaf className="h-7 w-7" />
+                    <div className="h-14 w-14 rounded-2xl gradient-hero flex items-center justify-center text-white shadow-md mx-auto mb-4 overflow-hidden p-2">
+                        <img 
+                          src="/play_store_512.png" 
+                          alt="Logo" 
+                          className="w-full h-full object-contain"
+                        />
                     </div>
                     <h1 className="text-3xl font-black text-slate-800">Área do Empreendedor</h1>
                     <p className="text-slate-500 font-medium tracking-tight">Cofre seguro HortiDelivery</p>

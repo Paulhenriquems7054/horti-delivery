@@ -141,8 +141,12 @@ export default function OrderTracking() {
           <div className="flex items-center gap-3 mb-2">
             {store && (
               <>
-                <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center">
-                  <Leaf className="h-6 w-6 text-white" />
+                <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
+                  <img 
+                    src="/play_store_512.png" 
+                    alt="Logo" 
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div>
                   <h1 className="text-base font-extrabold text-white leading-tight">

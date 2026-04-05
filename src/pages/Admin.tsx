@@ -162,8 +162,12 @@ export default function Admin() {
       <header className="gradient-hero px-4 py-5 shadow-md sticky top-0 z-20">
         <div className="mx-auto max-w-2xl flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center">
-              <Leaf className="h-6 w-6 text-white" />
+            <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
+              <img 
+                src="/play_store_512.png" 
+                alt="Logo" 
+                className="w-full h-full object-contain"
+              />
             </div>
             <div>
               <h1 className="text-base font-extrabold text-white leading-tight">
