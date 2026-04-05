@@ -54,6 +54,10 @@ const STATUS_CONFIG: Record<string, { label: string; color: string; bg: string; 
 function PinScreen({ onUnlock }: { onUnlock: () => void }) {
   const [input, setInput] = useState("");
   const [error, setError] = useState(false);
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [resetEmail, setResetEmail] = useState("");
+  const [resetLoading, setResetLoading] = useState(false);
+  const [resetSent, setResetSent] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -65,6 +69,96 @@ function PinScreen({ onUnlock }: { onUnlock: () => void }) {
       setTimeout(() => setError(false), 2000);
     }
   };
+
+  const handleForgotPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!resetEmail.trim()) {
+      toast.error("Digite seu email");
+      return;
+    }
+
+    setResetLoading(true);
+    
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(resetEmail, {
+        redirectTo: `${window.location.origin}/superadmin`,
+      });
+
+      if (error) throw error;
+
+      setResetSent(true);
+      toast.success("Email de recuperação enviado! Verifique sua caixa de entrada.");
+      
+      setTimeout(() => {
+        setShowForgotPassword(false);
+        setResetSent(false);
+        setResetEmail("");
+      }, 3000);
+    } catch (error: any) {
+      toast.error(error.message || "Erro ao enviar email de recuperação");
+    } finally {
+      setResetLoading(false);
+    }
+  };
+
+  if (showForgotPassword) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6">
+        <div className="mb-8 flex flex-col items-center gap-3">
+          <div className="h-16 w-16 rounded-2xl bg-violet-600 flex items-center justify-center shadow-lg">
+            <Shield className="h-9 w-9 text-white" />
+          </div>
+          <h1 className="text-2xl font-extrabold text-white">Recuperar Senha</h1>
+          <p className="text-slate-400 text-sm text-center max-w-sm">
+            Digite seu email para receber um link de recuperação de senha
+          </p>
+        </div>
+
+        {resetSent ? (
+          <div className="w-full max-w-xs space-y-4 text-center">
+            <div className="h-16 w-16 rounded-full bg-emerald-500/20 flex items-center justify-center mx-auto">
+              <CheckCircle2 className="h-8 w-8 text-emerald-400" />
+            </div>
+            <p className="text-emerald-400 font-semibold">Email enviado com sucesso!</p>
+            <p className="text-slate-400 text-sm">Verifique sua caixa de entrada e spam</p>
+          </div>
+        ) : (
+          <form onSubmit={handleForgotPassword} className="w-full max-w-xs space-y-3">
+            <input
+              type="email"
+              placeholder="seu@email.com"
+              value={resetEmail}
+              onChange={e => setResetEmail(e.target.value)}
+              autoFocus
+              className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700 focus:outline-none focus:border-violet-500"
+            />
+            <button 
+              type="submit" 
+              disabled={resetLoading}
+              className="w-full h-12 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-bold transition-colors disabled:opacity-50 flex items-center justify-center gap-2"
+            >
+              {resetLoading ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  Enviando...
+                </>
+              ) : (
+                "Enviar Link de Recuperação"
+              )}
+            </button>
+            <button
+              type="button"
+              onClick={() => setShowForgotPassword(false)}
+              className="w-full h-12 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold transition-colors"
+            >
+              Voltar ao Login
+            </button>
+          </form>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-6">
@@ -88,6 +182,13 @@ function PinScreen({ onUnlock }: { onUnlock: () => void }) {
         {error && <p className="text-red-400 text-sm text-center">Senha incorreta</p>}
         <button type="submit" className="w-full h-12 rounded-xl bg-violet-600 hover:bg-violet-700 text-white font-bold transition-colors">
           Entrar
+        </button>
+        <button
+          type="button"
+          onClick={() => setShowForgotPassword(true)}
+          className="w-full text-violet-400 hover:text-violet-300 text-sm font-semibold transition-colors"
+        >
+          Esqueci minha senha
         </button>
       </form>
     </div>
