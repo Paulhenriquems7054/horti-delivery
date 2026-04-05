@@ -25,6 +25,58 @@ export default function AdminBasket() {
   const { addZone, deleteZone } = useManageDeliveryZone();
 
   const [editingItem, setEditingItem] = useState<any>(null);
+  const [showAllProducts, setShowAllProducts] = useState(false);
+
+  // Query para buscar TODOS os produtos da loja (não apenas os da cesta)
+  const { data: allProducts } = useQuery({
+    queryKey: ["all-products", basket?.id],
+    queryFn: async () => {
+      if (!basket) return [];
+      
+      // Busca o store_id da cesta
+      const { data: basketData } = await supabase
+        .from("baskets")
+        .select("store_id")
+        .eq("id", basket.id)
+        .single();
+
+      if (!basketData?.store_id) return [];
+
+      // Busca TODOS os produtos da loja
+      const { data, error } = await supabase
+        .from("products")
+        .select("*")
+        .eq("store_id", basketData.store_id)
+        .order("name");
+
+      if (error) throw error;
+      return data || [];
+    },
+    enabled: !!basket && showAllProducts,
+  });
+
+  // Produtos que NÃO estão na cesta
+  const productsNotInBasket = allProducts?.filter(
+    (product: any) => !basket?.items.some((item: any) => item.products.id === product.id)
+  ) || [];
+
+  const addToBasketMutation = useMutation({
+    mutationFn: async (productId: string) => {
+      if (!basket) throw new Error("Cesta não encontrada");
+      
+      const { error } = await supabase
+        .from("basket_items")
+        .insert([{ basket_id: basket.id, product_id: productId, quantity: 1 }]);
+
+      if (error) throw error;
+    },
+    onSuccess: () => {
+      toast.success("Produto adicionado à cesta!");
+      queryClient.invalidateQueries({ queryKey: ["admin-active-basket"] });
+      queryClient.invalidateQueries({ queryKey: ["all-products"] });
+    },
+    onError: (err: any) => toast.error(err.message)
+  });
 
   const { data: basket, isLoading } = useQuery({
     queryKey: ["admin-active-basket"],
@@ -630,6 +682,113 @@ export default function AdminBasket() {
               );
             })}
           </div>
+        </div>
+
+        {/* Todos os Produtos da Loja */}
+        <div className="bg-white p-5 rounded-2xl shadow-sm border border-border">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
+              <Package className="h-4 w-4 text-primary" /> Todos os Produtos da Loja
+            </h2>
+            <button
+              onClick={() => setShowAllProducts(!showAllProducts)}
+              className="text-xs font-bold text-primary hover:underline"
+            >
+              {showAllProducts ? "Ocultar" : "Mostrar Todos"}
+            </button>
+          </div>
+
+          {showAllProducts && (
+            <div className="space-y-3">
+              {!allProducts && (
+                <div className="text-center py-4">
+                  <Loader2 className="h-6 w-6 text-primary animate-spin mx-auto" />
+                  <p className="text-xs text-muted-foreground mt-2">Carregando produtos...</p>
+                </div>
+              )}
+
+              {allProducts && allProducts.length === 0 && (
+                <p className="text-center text-sm py-4 text-muted-foreground">
+                  Nenhum produto cadastrado na loja ainda.
+                </p>
+              )}
+
+              {allProducts && allProducts.length > 0 && (
+                <>
+                  {/* Produtos JÁ na cesta */}
+                  {basket.items.length > 0 && (
+                    <div className="mb-4">
+                      <p className="text-xs font-bold text-emerald-600 mb-2">✓ Na Cesta ({basket.items.length})</p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {basket.items.map((item: any) => (
+                          <div key={item.id} className="bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 dark:border-emerald-800 rounded-lg p-2 flex items-center gap-2">
+                            <div className="h-8 w-8 shrink-0 bg-white dark:bg-card rounded-lg flex items-center justify-center overflow-hidden">
+                              {item.products.image_url ? (
+                                <img src={item.products.image_url} alt="" className="w-full h-full object-cover" />
+                              ) : (
+                                <span className="text-sm">🥬</span>
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-bold text-xs text-foreground truncate">{item.products.name}</p>
+                              <p className="text-[10px] text-muted-foreground">R$ {item.products.price?.toFixed(2)}</p>
+                            </div>
+                            <span className="text-xs text-emerald-600 dark:text-emerald-400 font-bold">✓</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Produtos NÃO na cesta */}
+                  {productsNotInBasket.length > 0 && (
+                    <div>
+                      <p className="text-xs font-bold text-amber-600 dark:text-amber-400 mb-2">
+                        ⚠ Fora da Cesta ({productsNotInBasket.length})
+                      </p>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {productsNotInBasket.map((product: any) => (
+                          <div key={product.id} className="bg-card border border-border rounded-lg p-2 flex items-center gap-2">
+                            <div className="h-8 w-8 shrink-0 bg-muted rounded-lg flex items-center justify-center overflow-hidden">
+                              {product.image_url ? (
+                                <img src={product.image_url} alt="" className="w-full h-full object-cover" />
+                              ) : (
+                                <span className="text-sm">🥬</span>
+                              )}
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="font-bold text-xs text-foreground truncate">{product.name}</p>
+                              <p className="text-[10px] text-muted-foreground">
+                                R$ {product.price?.toFixed(2)} / {product.unit}
+                              </p>
+                            </div>
+                            <button
+                              onClick={() => addToBasketMutation.mutate(product.id)}
+                              disabled={addToBasketMutation.isPending}
+                              className="h-7 w-7 shrink-0 bg-primary text-white rounded-lg flex items-center justify-center hover:bg-primary/90 transition-colors disabled:opacity-50"
+                              title="Adicionar à cesta"
+                            >
+                              {addToBasketMutation.isPending ? (
+                                <Loader2 className="h-3 w-3 animate-spin" />
+                              ) : (
+                                <Plus className="h-3 w-3" />
+                              )}
+                            </button>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {productsNotInBasket.length === 0 && basket.items.length > 0 && (
+                    <p className="text-center text-xs text-emerald-600 dark:text-emerald-400 py-2">
+                      ✓ Todos os produtos da loja estão na cesta!
+                    </p>
+                  )}
+                </>
+              )}
+            </div>
+          )}
         </div>
 
       </main>
