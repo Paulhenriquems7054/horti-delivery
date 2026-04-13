@@ -54,15 +54,32 @@ export function useRealtimeOrders(storeId?: string) {
       
       setLoading(false);
 
-      // Realtime filtrado por loja
+      // Realtime - escuta TODOS os eventos da tabela (filtro no JS para DELETE funcionar)
       console.log('🔄 [useRealtimeOrders] Setting up realtime for store:', storeId);
       channel = supabase
         .channel(`orders-realtime-${storeId}`)
         .on(
           "postgres_changes",
-          { event: "*", schema: "public", table: "orders", filter: `store_id=eq.${storeId}` },
+          { event: "*", schema: "public", table: "orders" },
           (payload) => { 
             console.log('🔔 [useRealtimeOrders] Realtime event:', payload.eventType, payload);
+            
+            // Para DELETE, verifica se o pedido deletado pertencia a esta loja
+            if (payload.eventType === "DELETE") {
+              const deletedOrder = payload.old as Order;
+              if (deletedOrder?.store_id === storeId) {
+                console.log('🗑️ [useRealtimeOrders] Order deleted from this store:', deletedOrder.id);
+                setOrders((prev) => prev.filter((o) => o.id !== deletedOrder.id));
+              }
+              return;
+            }
+            
+            // Para INSERT/UPDATE, verifica store_id antes de processar
+            const orderData = payload.new as Order;
+            if (orderData?.store_id !== storeId) {
+              return; // Ignora pedidos de outras lojas
+            }
+            
             handleRealtimeEvent(payload); 
           }
         )
@@ -80,10 +97,8 @@ export function useRealtimeOrders(storeId?: string) {
         setOrders((prev) =>
           prev.map((o) => o.id === (payload.new as Order).id ? (payload.new as Order) : o)
         );
-      } else if (payload.eventType === "DELETE") {
-        console.log('🗑️ [useRealtimeOrders] Order deleted:', payload.old);
-        setOrders((prev) => prev.filter((o) => o.id !== (payload.old as Order).id));
       }
+      // DELETE é tratado diretamente no listener acima
     };
 
     setupOrders();
