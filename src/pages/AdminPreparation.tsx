@@ -8,6 +8,7 @@ import { WeighingModal } from "@/components/WeighingModal";
 import { OrderDetailsModal } from "@/components/OrderDetailsModal";
 import { ReceiptCameraModal } from "@/components/ReceiptCameraModal";
 import { ReceiptValueModal } from "@/components/ReceiptValueModal";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 type RoleTab = "separator" | "scale";
 
@@ -60,6 +61,7 @@ export default function AdminPreparation() {
               {activeTab === "separator" ? "Separar produtos dos pedidos" : "Pesar e registrar no caixa"}
             </p>
           </div>
+          <ThemeToggle variant="compact" className="bg-white/20 text-white hover:bg-white/30" />
         </div>
       </header>
 
