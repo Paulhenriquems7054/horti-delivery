@@ -343,7 +343,7 @@ export default function Index() {
             </h1>
             <p className="text-xs text-white/75">{store.description || "Hortifruti fresquinho na sua porta 🌿"}</p>
           </div>
-          <ThemeToggle variant="compact" />
+          <ThemeToggle />
         </div>
       </header>
 

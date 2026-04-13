@@ -45,7 +45,7 @@ export default function Landing() {
           </div>
           <span className="font-extrabold text-xl text-foreground tracking-tight hidden sm:block">horti<span className="text-primary">delivery</span></span>
         </div>
-        <ThemeToggle variant="compact" className="bg-muted text-foreground" />
+        <ThemeToggle className="bg-muted text-foreground" />
       </nav>
 
       <main className="flex-1 flex flex-col px-4 mx-auto w-full max-w-5xl animate-fade-in relative">

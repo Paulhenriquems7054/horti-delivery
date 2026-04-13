@@ -332,7 +332,7 @@ export default function Delivery() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <ThemeToggle variant="compact" className="bg-slate-700 text-slate-300 hover:bg-slate-600" />
+            <ThemeToggle className="bg-slate-700 text-slate-300 hover:bg-slate-600" />
             <button
               onClick={() => refetch()}
               className="h-9 w-9 rounded-xl bg-slate-700 flex items-center justify-center text-slate-300 hover:bg-slate-600 transition-colors"

@@ -202,7 +202,7 @@ export default function Admin() {
               <span className="h-2 w-2 rounded-full bg-emerald-300 animate-pulse-dot" />
               <span className="text-xs font-bold text-white hidden sm:inline">Ao vivo</span>
             </div>
-            <ThemeToggle variant="compact" />
+            <ThemeToggle />
             <button
               onClick={handleLogout}
               className="h-8 w-8 rounded-full bg-white/10 dark:bg-slate-800/50 flex items-center justify-center text-white hover:bg-white/20 dark:hover:bg-slate-700/50 transition-colors"
