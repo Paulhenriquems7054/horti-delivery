@@ -31,10 +31,10 @@ import { useTenant } from "@/contexts/TenantContext";
 type StatusFilter = "all" | "pending" | "preparing" | "delivered";
 
 export default function Admin() {
-  const { orders, loading } = useRealtimeOrders();
+  const { store: tenantStore } = useTenant();
+  const { orders, loading } = useRealtimeOrders(tenantStore?.id);
   const [filter, setFilter] = useState<StatusFilter>("all");
   const [updating, setUpdating] = useState<string | null>(null);
-  const { store: tenantStore } = useTenant();
   const [storeSlug, setStoreSlug] = useState<string>("default");
   const [storeId, setStoreId] = useState<string>("");
   const [storeName, setStoreName] = useState<string>("");

@@ -15,7 +15,7 @@ export interface Order {
   notes?: string;
 }
 
-export function useRealtimeOrders() {
+export function useRealtimeOrders(storeId?: string) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,45 +23,26 @@ export function useRealtimeOrders() {
     let channel: any = null;
 
     const setupOrders = async () => {
-      const { data: authData } = await supabase.auth.getUser();
-      
-      console.log('🔍 [useRealtimeOrders] Auth data:', authData.user?.id);
-      
-      if (!authData.user) {
-        console.log('❌ [useRealtimeOrders] No user authenticated');
-        setLoading(false);
-        return;
-      }
-
-      // Busca a loja do usuário logado via user_id
-      const { data: store, error: storeError } = await supabase
-        .from("stores")
-        .select("id, name, slug")
-        .eq("user_id", authData.user.id)
-        .maybeSingle();
-
-      console.log('🏪 [useRealtimeOrders] Store query result:', { store, storeError });
-
-      if (!store) {
-        console.log('❌ [useRealtimeOrders] No store linked to user');
+      if (!storeId) {
+        console.log('❌ [useRealtimeOrders] No tenant store id available');
         setOrders([]);
         setLoading(false);
         return;
       }
 
-      console.log('✅ [useRealtimeOrders] Found store:', store.id, store.name);
+      console.log('✅ [useRealtimeOrders] Using tenant store:', storeId);
 
       // Busca pedidos apenas dessa loja
       const { data, error } = await supabase
         .from("orders")
         .select("*")
-        .eq("store_id", store.id)
+        .eq("store_id", storeId)
         .order("created_at", { ascending: false });
 
       console.log('📦 [useRealtimeOrders] Orders query result:', { 
         count: data?.length || 0, 
         error,
-        storeId: store.id 
+        storeId 
       });
 
       if (!error) {
@@ -74,12 +55,12 @@ export function useRealtimeOrders() {
       setLoading(false);
 
       // Realtime filtrado por loja
-      console.log('🔄 [useRealtimeOrders] Setting up realtime for store:', store.id);
+      console.log('🔄 [useRealtimeOrders] Setting up realtime for store:', storeId);
       channel = supabase
-        .channel("orders-realtime")
+        .channel(`orders-realtime-${storeId}`)
         .on(
           "postgres_changes",
-          { event: "*", schema: "public", table: "orders", filter: `store_id=eq.${store.id}` },
+          { event: "*", schema: "public", table: "orders", filter: `store_id=eq.${storeId}` },
           (payload) => { 
             console.log('🔔 [useRealtimeOrders] Realtime event:', payload.eventType, payload);
             handleRealtimeEvent(payload); 
@@ -112,7 +93,7 @@ export function useRealtimeOrders() {
         supabase.removeChannel(channel); 
       }
     };
-  }, []);
+  }, [storeId]);
 
   return { orders, loading };
 }
