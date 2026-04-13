@@ -125,7 +125,12 @@ function PinScreen({ storeName, onUnlock }: { storeName: string; onUnlock: (pin:
 
   // Allow parent to signal error
   return (
-    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-6">
+    <div className="min-h-screen bg-slate-900 flex flex-col items-center justify-center p-6 relative">
+      {/* Theme Toggle - Canto superior direito */}
+      <div className="absolute top-6 right-6 z-20">
+        <ThemeToggle className="bg-slate-800 text-slate-300 hover:bg-slate-700" />
+      </div>
+
       <div className="mb-8 flex flex-col items-center gap-3">
         <div className="h-16 w-16 rounded-2xl bg-emerald-500 flex items-center justify-center shadow-lg">
           <Bike className="h-9 w-9 text-white" />
