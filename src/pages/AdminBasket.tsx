@@ -65,7 +65,7 @@ export default function AdminBasket() {
 
       const { data: items, error: iErr } = await supabase
         .from("basket_items")
-        .select("id, quantity, products(id, name, price, unit, in_stock, image_url, price_per_kg, average_weight, weight_variance, sell_by)")
+        .select("id, quantity, products(id, name, price, unit, active, in_stock, image_url, price_per_kg, average_weight, weight_variance, sell_by)")
         .eq("basket_id", bData.id)
         .order("id");
 
