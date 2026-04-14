@@ -78,53 +78,13 @@ export default function AdminBasket() {
     },
   });
 
-  // Query para buscar TODOS os produtos da loja (não apenas os da cesta)
-  const { data: allProducts } = useQuery({
-    queryKey: ["all-products", basket?.id, tenantStoreId],
-    queryFn: async () => {
-      if (!basket) return [];
-      
-      // Busca o store_id da cesta (fallback para tenant)
-      const { data: basketData } = await supabase
-        .from("baskets")
-        .select("store_id")
-        .eq("id", basket.id)
-        .single();
+  const allProducts = useMemo(
+    () => (basket?.items?.map((item: any) => item.products) || [])
+      .filter((product: any) => product && product.active !== false),
+    [basket?.items]
+  );
 
-      const effectiveStoreId = basketData?.store_id ?? tenantStoreId;
-      if (!effectiveStoreId) return [];
-
-      if (basketData?.store_id !== effectiveStoreId) {
-        await supabase.from("baskets").update({ store_id: effectiveStoreId }).eq("id", basket.id);
-      }
-
-      // Busca TODOS os produtos da loja
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .eq("store_id", effectiveStoreId)
-        .eq("active", true)
-        .order("name");
-
-      if (error) throw error;
-      return data || [];
-    },
-    enabled: !!basket && showAllProducts && !!tenantStoreId,
-  });
-
-  // Produtos que NÃO estão na cesta
-  const productsNotInBasket = allProducts?.filter(
-    (product: any) => !basket?.items.some((item: any) => item.products.id === product.id)
-  ) || [];
-
-  const mergedProducts = [
-    ...(allProducts || []),
-    ...(basket?.items?.map((item: any) => item.products) || []),
-  ]
-    .filter((product) => product && product.active !== false)
-    .filter((product, index, self) => self.findIndex((p) => p.id === product.id) === index);
-
-  const filteredProducts = mergedProducts.filter((product: any) =>
+  const filteredProducts = allProducts.filter((product: any) =>
     product.name?.toLowerCase().includes(productFilter.toLowerCase())
   );
 
@@ -958,26 +918,19 @@ export default function AdminBasket() {
                   className="w-full h-10 pl-9 pr-3 border border-border rounded-lg text-sm bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
                 />
               </div>
-              {!allProducts && (
-                <div className="text-center py-4">
-                  <Loader2 className="h-6 w-6 text-primary animate-spin mx-auto" />
-                  <p className="text-xs text-muted-foreground mt-2">Carregando produtos...</p>
-                </div>
-              )}
-
-              {allProducts && allProducts.length === 0 && (
+              {allProducts.length === 0 && (
                 <p className="text-center text-sm py-4 text-muted-foreground">
                   Nenhum produto cadastrado na loja ainda.
                 </p>
               )}
 
-              {allProducts && allProducts.length > 0 && filteredProducts.length === 0 && (
+              {allProducts.length > 0 && filteredProducts.length === 0 && (
                 <p className="text-center text-sm py-4 text-muted-foreground">
                   Nenhum produto encontrado para esse filtro.
                 </p>
               )}
 
-              {allProducts && allProducts.length > 0 && (
+              {allProducts.length > 0 && (
                 <div className="space-y-2">
                   {filteredProducts.map((product: any) => {
                     const isEditingThisProduct = editingProduct?.id === product.id;
