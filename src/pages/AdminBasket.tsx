@@ -103,6 +103,7 @@ export default function AdminBasket() {
         .from("products")
         .select("*")
         .eq("store_id", effectiveStoreId)
+        .eq("active", true)
         .order("name");
 
       if (error) throw error;
@@ -119,7 +120,9 @@ export default function AdminBasket() {
   const mergedProducts = [
     ...(allProducts || []),
     ...(basket?.items?.map((item: any) => item.products) || []),
-  ].filter((product, index, self) => product && self.findIndex((p) => p.id === product.id) === index);
+  ]
+    .filter((product) => product && product.active !== false)
+    .filter((product, index, self) => self.findIndex((p) => p.id === product.id) === index);
 
   const filteredProducts = mergedProducts.filter((product: any) =>
     product.name?.toLowerCase().includes(productFilter.toLowerCase())
@@ -431,6 +434,10 @@ export default function AdminBasket() {
       queryClient.invalidateQueries({ queryKey: ["admin-active-basket"] });
       if (basket?.id) {
         queryClient.invalidateQueries({ queryKey: ["all-products", basket.id, tenantStoreId] });
+        queryClient.setQueryData(["all-products", basket.id, tenantStoreId], (prev: any) => {
+          if (!Array.isArray(prev)) return prev;
+          return prev.filter((p: any) => p.id !== productId);
+        });
       }
     },
     onError: (err: any) => toast.error("Erro ao excluir: " + err.message)
