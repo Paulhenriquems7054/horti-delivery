@@ -102,6 +102,8 @@ export function useActiveBasket(storeId?: string) {
         products,
       };
     },
-    staleTime: 30_000,
+    staleTime: 0,
+    refetchOnWindowFocus: true,
+    refetchOnMount: true,
   });
 }
