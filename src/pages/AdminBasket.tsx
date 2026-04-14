@@ -413,11 +413,17 @@ export default function AdminBasket() {
 
   const deleteProductMutation = useMutation({
     mutationFn: async (productId: string) => {
-      // Primeiro remove da cesta se estiver lá
-      await supabase.from("basket_items").delete().match({ product_id: productId });
-      
-      // Depois deleta o produto
-      const { error } = await supabase.from("products").delete().eq("id", productId);
+      // Remove da cesta (soft cleanup)
+      await supabase
+        .from("basket_items")
+        .delete()
+        .match({ product_id: productId, store_id: tenantStoreId });
+
+      // Soft-delete: marca como inativo para não aparecer no app
+      const { error } = await supabase
+        .from("products")
+        .update({ active: false, in_stock: false })
+        .eq("id", productId);
       if (error) throw error;
     },
     onSuccess: () => {
