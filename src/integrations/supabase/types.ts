@@ -143,24 +143,33 @@ export type Database = {
       products: {
         Row: {
           active: boolean
+          has_weekday_promo: boolean | null
           id: string
           image_url: string | null
           name: string
           price: number
+          price_mon_wed: number | null
+          price_thu_sun: number | null
         }
         Insert: {
           active?: boolean
+          has_weekday_promo?: boolean | null
           id?: string
           image_url?: string | null
           name: string
           price: number
+          price_mon_wed?: number | null
+          price_thu_sun?: number | null
         }
         Update: {
           active?: boolean
+          has_weekday_promo?: boolean | null
           id?: string
           image_url?: string | null
           name?: string
           price?: number
+          price_mon_wed?: number | null
+          price_thu_sun?: number | null
         }
         Relationships: []
       }

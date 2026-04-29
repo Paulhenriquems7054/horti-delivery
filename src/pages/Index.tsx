@@ -14,6 +14,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
 import { calculateCartEstimate, calculateUnitPriceEstimate, formatCurrency, sellsByUnitFixedPrice } from "@/utils/priceEstimation";
+import { getEffectivePricePerKg, getEffectiveProductPrice } from "@/utils/productPricing";
 
 type Step = "basket" | "checkout" | "confirmation";
 
@@ -121,14 +122,14 @@ export default function Index() {
 
       if (mode === "weight") {
         const kg = weightCart[product.id] || 0;
-        return sum + kg * (product.price_per_kg ?? product.price);
+        return sum + kg * getEffectivePricePerKg(product);
       }
 
       const qty = cart[product.id] || 0;
       if (qty <= 0) return sum;
 
       if (sellsByUnitFixedPrice(product)) {
-        return sum + qty * product.price;
+        return sum + qty * getEffectiveProductPrice(product);
       }
 
       return sum;
@@ -316,7 +317,7 @@ export default function Index() {
                                     {item.weight_kg < 1
                                       ? `${Math.round(item.weight_kg * 1000)}g`
                                       : formatWeight(item.weight_kg)}
-                                    {" "}x R$ {(item.price_per_kg ?? item.price).toFixed(2).replace(".", ",")}
+                                    {" "}x R$ {getEffectivePricePerKg(item).toFixed(2).replace(".", ",")}
                                   </>
                                 ) : (
                                   <>
@@ -502,7 +503,7 @@ export default function Index() {
                           {p.name} ({weightCart[p.id] < 1 ? `${Math.round(weightCart[p.id] * 1000)}g` : `${weightCart[p.id]}kg`})
                         </span>
                         <span className="font-bold text-emerald-600">
-                          R$ {(weightCart[p.id] * (p.price_per_kg ?? p.price)).toFixed(2).replace(".", ",")}
+                          R$ {(weightCart[p.id] * getEffectivePricePerKg(p)).toFixed(2).replace(".", ",")}
                         </span>
                       </div>
                     ))}
@@ -515,7 +516,7 @@ export default function Index() {
                     }).map(p => {
                       const isFixedUnit = sellsByUnitFixedPrice(p);
                       const estimate = calculateUnitPriceEstimate(p, cart[p.id] || 0);
-                      const fixedLine = (cart[p.id] || 0) * p.price;
+                      const fixedLine = (cart[p.id] || 0) * getEffectiveProductPrice(p);
                       return (
                         <div key={p.id} className="flex justify-between text-xs">
                           <span className="text-foreground">
@@ -631,11 +632,11 @@ export default function Index() {
                         ...p, 
                         quantity: 1, 
                         weight_kg: weightCart[p.id], 
-                        price: (p.price_per_kg ?? p.price) * weightCart[p.id],
+                        price: getEffectivePricePerKg(p) * weightCart[p.id],
                         sold_by: 'weight'
                       };
                     } else {
-                      const pricePerUnit = p.price;
+                      const pricePerUnit = getEffectiveProductPrice(p);
                       return { 
                         ...p, 
                         quantity: cart[p.id],

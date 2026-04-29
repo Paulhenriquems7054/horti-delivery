@@ -1,6 +1,7 @@
 import { Scale, Info } from "lucide-react";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
 import { calculateUnitPriceEstimate, formatCurrency, formatPriceRange, sellsByUnitFixedPrice } from "@/utils/priceEstimation";
+import { getEffectivePricePerKg, getEffectiveProductPrice } from "@/utils/productPricing";
 
 const EMOJI_MAP: Record<string, string> = {
   banana: "🍌", tomate: "🍅", alface: "🥬", batata: "🥔",
@@ -55,8 +56,9 @@ export function ProductCard({
   const isWeight = currentMode === 'weight';
   const isAvailable = product.in_stock !== false;
   
-  const pricePerKg = product.price_per_kg ?? product.price;
-  const pricePerUnit = product.price;
+  const effectivePrice = getEffectiveProductPrice(product);
+  const pricePerKg = getEffectivePricePerKg(product);
+  const pricePerUnit = effectivePrice;
   const inCart = isWeight ? (cartWeight ?? 0) > 0 : cartQty > 0;
   const isFixedUnitPrice = fixedUnitFromCatalog;
 

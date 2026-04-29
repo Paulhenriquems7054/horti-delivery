@@ -5,6 +5,9 @@ export interface Product {
   id: string;
   name: string;
   price: number;
+  has_weekday_promo?: boolean;
+  price_mon_wed?: number | null;
+  price_thu_sun?: number | null;
   image_url: string | null;
   active: boolean;
   store_id?: string;

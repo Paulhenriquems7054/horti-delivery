@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Minus, Plus, Scale } from "lucide-react";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
+import { getEffectivePricePerKg } from "@/utils/productPricing";
 
 interface Props {
   product: BasketProduct | null;
@@ -15,7 +16,7 @@ export function WeightPickerModal({ product, onClose, onConfirm }: Props) {
   const [weight, setWeight] = useState(product?.min_weight ?? 0.25);
   const [customWeight, setCustomWeight] = useState("");
   const step = product?.step_weight ?? 0.25;
-  const pricePerKg = product?.price_per_kg ?? product?.price ?? 0;
+  const pricePerKg = product ? getEffectivePricePerKg(product) : 0;
   const total = weight * pricePerKg;
   const formatWeight = (valueKg: number) =>
     valueKg < 1

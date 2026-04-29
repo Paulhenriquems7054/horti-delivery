@@ -1,4 +1,5 @@
 import type { BasketProduct } from "@/hooks/useActiveBasket";
+import { getEffectivePricePerKg, getEffectiveProductPrice } from "@/utils/productPricing";
 
 /** Venda com preço unitário fechado (R$ do cadastro), não por kg+peso estimado. */
 export function sellsByUnitFixedPrice(
@@ -29,7 +30,7 @@ export function calculateUnitPriceEstimate(
     };
   }
 
-  const pricePerKg = product.price_per_kg ?? product.price;
+  const pricePerKg = getEffectivePricePerKg(product);
   const averageWeight = product.average_weight;
   const variance = product.weight_variance ?? 0.15;
 
@@ -85,12 +86,13 @@ export function calculateCartEstimate(
 
     if (mode === "weight") {
       const kg = weightCart[p.id] || 0;
-      weightItemsTotal += kg * (p.price_per_kg ?? p.price);
+      const pricePerKg = getEffectivePricePerKg(p);
+      weightItemsTotal += kg * pricePerKg;
     } else {
       const qty = cart[p.id] || 0;
       if (qty > 0) {
         if (sellsByUnitFixedPrice(p)) {
-          const unitPrice = p.price;
+          const unitPrice = getEffectiveProductPrice(p);
           const line = qty * unitPrice;
           unitItemsEstimate += line;
           unitItemsMin += line;

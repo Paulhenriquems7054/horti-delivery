@@ -5,6 +5,9 @@ export interface BasketProduct {
   id: string;
   name: string;
   price: number;
+  has_weekday_promo?: boolean;
+  price_mon_wed?: number | null;
+  price_thu_sun?: number | null;
   image_url: string | null;
   unit: string;
   quantity: number;
@@ -69,7 +72,7 @@ export function useActiveBasket(storeId?: string) {
       // 2. Busca todos os produtos ativos da loja
       const { data: productsData, error: pErr } = await supabase
         .from("products")
-        .select("id, name, price, image_url, unit, description, category_id, active, in_stock, sell_by, price_per_kg, min_weight, step_weight, average_weight, weight_variance, price_per_unit")
+        .select("id, name, price, has_weekday_promo, price_mon_wed, price_thu_sun, image_url, unit, description, category_id, active, in_stock, sell_by, price_per_kg, min_weight, step_weight, average_weight, weight_variance, price_per_unit")
         .eq("store_id", effectiveStoreId)
         .eq("active", true)
         .order("name");
@@ -80,6 +83,9 @@ export function useActiveBasket(storeId?: string) {
         id: product.id,
         name: product.name,
         price: product.price,
+        has_weekday_promo: product.has_weekday_promo,
+        price_mon_wed: product.price_mon_wed,
+        price_thu_sun: product.price_thu_sun,
         image_url: product.image_url,
         unit: product.unit || "un",
         quantity: 1,

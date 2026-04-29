@@ -21,6 +21,9 @@ export default function AdminBasket() {
   const [newProductQuantity, setNewProductQuantity] = useState("1");
   const [newProductUnit, setNewProductUnit] = useState("un");
   const [newProductSellBy, setNewProductSellBy] = useState<"unit" | "weight" | "both">("unit");
+  const [newProductPromoEnabled, setNewProductPromoEnabled] = useState(false);
+  const [newProductPriceMonWed, setNewProductPriceMonWed] = useState("");
+  const [newProductPriceThuSun, setNewProductPriceThuSun] = useState("");
   const [newProductImageUrl, setNewProductImageUrl] = useState("");
   const [newProductImageFile, setNewProductImageFile] = useState<File | null>(null);
   const [basketName, setBasketName] = useState("");
@@ -34,7 +37,7 @@ export default function AdminBasket() {
 
   const [editingItem, setEditingItem] = useState<any>(null);
   const [editingProduct, setEditingProduct] = useState<any>(null);
-  const [showAllProducts, setShowAllProducts] = useState(false);
+  const [showAllProducts, setShowAllProducts] = useState(true);
   const [productFilter, setProductFilter] = useState("");
   const [editingWeightProductId, setEditingWeightProductId] = useState<string | null>(null);
 
@@ -172,10 +175,15 @@ export default function AdminBasket() {
       if (!tenantStoreId) throw new Error("Loja não carregada");
       
       const priceVal = parseFloat(newProductPrice.replace(",", "."));
+      const promoMonWedVal = parseFloat(newProductPriceMonWed.replace(",", "."));
+      const promoThuSunVal = parseFloat(newProductPriceThuSun.replace(",", "."));
       const qtyVal = parseInt(newProductQuantity, 10);
       
       if (!newProductName || isNaN(priceVal) || isNaN(qtyVal)) {
         throw new Error("Preencha todos os campos corretamente");
+      }
+      if (newProductPromoEnabled && (isNaN(promoMonWedVal) || isNaN(promoThuSunVal))) {
+        throw new Error("Informe os preços promocionais para os dois períodos");
       }
 
       // Pega o store_id da cesta ativa e garante alinhamento com o tenant
@@ -209,6 +217,9 @@ export default function AdminBasket() {
           average_weight: sellBy === "unit" ? null : defaultAverageWeight,
           weight_variance: defaultWeightVariance,
           price_per_kg: normalizedPricePerKg,
+          has_weekday_promo: newProductPromoEnabled,
+          price_mon_wed: newProductPromoEnabled ? promoMonWedVal : null,
+          price_thu_sun: newProductPromoEnabled ? promoThuSunVal : null,
         }])
         .select()
         .single();
@@ -246,6 +257,9 @@ export default function AdminBasket() {
       setNewProductQuantity("1");
       setNewProductUnit("un");
       setNewProductSellBy("unit");
+      setNewProductPromoEnabled(false);
+      setNewProductPriceMonWed("");
+      setNewProductPriceThuSun("");
       setNewProductImageUrl("");
       setNewProductImageFile(null);
       setProductFilter("");
@@ -414,7 +428,7 @@ export default function AdminBasket() {
   });
 
   const editProductMutation = useMutation({
-    mutationFn: async (data: { productId: string; name: string; price: number; unit: string; sellBy?: string; image_url: string; image_file?: File | null }) => {
+    mutationFn: async (data: { productId: string; name: string; price: number; unit: string; sellBy?: string; image_url: string; image_file?: File | null; has_weekday_promo?: boolean; price_mon_wed?: number | null; price_thu_sun?: number | null }) => {
       let imageUrl = data.image_url;
       if (data.image_file) {
         imageUrl = await uploadProductImageFile(data.productId, data.image_file);
@@ -430,6 +444,9 @@ export default function AdminBasket() {
           image_url: imageUrl,
           sell_by: sellBy,
           price_per_kg: sellBy === "unit" ? null : data.price,
+          has_weekday_promo: data.has_weekday_promo ?? false,
+          price_mon_wed: data.has_weekday_promo ? (data.price_mon_wed ?? null) : null,
+          price_thu_sun: data.has_weekday_promo ? (data.price_thu_sun ?? null) : null,
           ...(sellBy === "unit" ? { average_weight: null } : {}),
         })
         .eq("id", data.productId);
@@ -652,6 +669,40 @@ export default function AdminBasket() {
                 placeholder="4.50"
                 className="w-full mt-1 h-11 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-card text-foreground" 
               />
+            </div>
+            <div className="sm:col-span-4 rounded-xl border border-border p-3 space-y-3">
+              <label className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
+                <input
+                  type="checkbox"
+                  checked={newProductPromoEnabled}
+                  onChange={(e) => setNewProductPromoEnabled(e.target.checked)}
+                />
+                Ativar preço promocional por dia da semana
+              </label>
+              {newProductPromoEnabled && (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="text-xs font-bold text-muted-foreground">Preço Seg-Qua (R$)</label>
+                    <input
+                      type="text"
+                      value={newProductPriceMonWed}
+                      onChange={(e) => setNewProductPriceMonWed(e.target.value)}
+                      placeholder="Ex: 3.99"
+                      className="w-full mt-1 h-10 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-card text-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="text-xs font-bold text-muted-foreground">Preço Qui-Dom (R$)</label>
+                    <input
+                      type="text"
+                      value={newProductPriceThuSun}
+                      onChange={(e) => setNewProductPriceThuSun(e.target.value)}
+                      placeholder="Ex: 4.99"
+                      className="w-full mt-1 h-10 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-card text-foreground"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
             <div className="sm:col-span-4">
               <label className="text-xs font-bold text-muted-foreground">Link da Foto (Internet)</label>
@@ -1006,6 +1057,9 @@ export default function AdminBasket() {
               {showAllProducts ? "Ocultar" : "Mostrar Todos"}
             </button>
           </div>
+          <p className="text-xs text-muted-foreground mb-3">
+            Edite um produto para definir os preços de <strong>Seg-Qua</strong> e <strong>Qui-Dom</strong>.
+          </p>
 
           {showAllProducts && (
             <div className="space-y-3">
@@ -1099,6 +1153,58 @@ export default function AdminBasket() {
                                   className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
                                 />
                               </div>
+                              <div className="col-span-2 sm:col-span-3 rounded-lg border border-border p-2 space-y-2">
+                                <label className="flex items-center gap-2 text-xs font-bold text-muted-foreground">
+                                  <input
+                                    type="checkbox"
+                                    checked={!!editingProduct.has_weekday_promo}
+                                    onChange={(e) =>
+                                      setEditingProduct({
+                                        ...editingProduct,
+                                        has_weekday_promo: e.target.checked,
+                                        ...(e.target.checked
+                                          ? {}
+                                          : { price_mon_wed: null, price_thu_sun: null }),
+                                      })
+                                    }
+                                  />
+                                  Preço promocional por período
+                                </label>
+                                {editingProduct.has_weekday_promo && (
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                                    <div>
+                                      <label className="text-xs font-bold text-muted-foreground">Seg-Qua (R$)</label>
+                                      <input
+                                        type="number"
+                                        step="0.01"
+                                        value={editingProduct.price_mon_wed ?? ""}
+                                        onChange={(e) =>
+                                          setEditingProduct({
+                                            ...editingProduct,
+                                            price_mon_wed: parseFloat(e.target.value) || null,
+                                          })
+                                        }
+                                        className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
+                                      />
+                                    </div>
+                                    <div>
+                                      <label className="text-xs font-bold text-muted-foreground">Qui-Dom (R$)</label>
+                                      <input
+                                        type="number"
+                                        step="0.01"
+                                        value={editingProduct.price_thu_sun ?? ""}
+                                        onChange={(e) =>
+                                          setEditingProduct({
+                                            ...editingProduct,
+                                            price_thu_sun: parseFloat(e.target.value) || null,
+                                          })
+                                        }
+                                        className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
+                                      />
+                                    </div>
+                                  </div>
+                                )}
+                              </div>
                               <div className="col-span-2 sm:col-span-3 flex items-center gap-2">
                                 <div className="h-9 w-9 shrink-0 bg-muted border border-border rounded-lg flex items-center justify-center overflow-hidden">
                                   {editingProduct.image_file ? (
@@ -1145,6 +1251,9 @@ export default function AdminBasket() {
                                   price: editingProduct.price,
                                   unit: editingProduct.unit,
                                   sellBy: editingProduct.sell_by,
+                                  has_weekday_promo: !!editingProduct.has_weekday_promo,
+                                  price_mon_wed: editingProduct.has_weekday_promo ? (editingProduct.price_mon_wed ?? null) : null,
+                                  price_thu_sun: editingProduct.has_weekday_promo ? (editingProduct.price_thu_sun ?? null) : null,
                                   image_url: editingProduct.image_url,
                                   image_file: editingProduct.image_file
                                 })}
@@ -1191,6 +1300,11 @@ export default function AdminBasket() {
                                 <p className="text-[10px] text-muted-foreground">
                                   R$ {product.price?.toFixed(2)} / {product.unit}
                                 </p>
+                                {product.has_weekday_promo && (
+                                  <p className="text-[10px] text-amber-600 font-semibold">
+                                    Seg-Qua: R$ {(product.price_mon_wed ?? product.price)?.toFixed(2)} | Qui-Dom: R$ {(product.price_thu_sun ?? product.price)?.toFixed(2)}
+                                  </p>
+                                )}
                                 <button
                                   onClick={() => toggleStockMutation.mutate({ productId: product.id, inStock: !product.in_stock })}
                                   className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-md transition-colors ${
@@ -1209,6 +1323,9 @@ export default function AdminBasket() {
                                   price: product.price,
                                   unit: product.unit || "un",
                                   sell_by: product.sell_by || (product.unit === "kg" ? "weight" : "unit"),
+                                  has_weekday_promo: product.has_weekday_promo || false,
+                                  price_mon_wed: product.price_mon_wed ?? null,
+                                  price_thu_sun: product.price_thu_sun ?? null,
                                   image_url: product.image_url
                                 })}
                                 className="h-7 w-7 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-950/50 transition-colors border border-blue-200 dark:border-blue-800"
