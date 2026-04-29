@@ -183,8 +183,20 @@ function OrderCard({ order, onPlayArrivalSound }: { order: Order; onPlayArrivalS
   const startDelivery = useStartDelivery();
   const isReady = order.status === "ready_for_delivery";
 
-  const handleArrivalSignal = () => {
+  const handleArrivalSignal = async () => {
     onPlayArrivalSound();
+    try {
+      const { error } = await (supabase as any).from("order_tracking").insert({
+        order_id: order.id,
+        status: order.status,
+        notes: "[DELIVERY_ARRIVED_ALERT] Entregador chegou ao local da entrega.",
+      });
+      if (error) throw error;
+    } catch (error) {
+      console.error(error);
+      toast.error("Aviso ao cliente não pôde ser enviado agora.");
+    }
+
     setArrivalNotified(true);
     setTimeout(() => {
       setArrivalNotified(false);

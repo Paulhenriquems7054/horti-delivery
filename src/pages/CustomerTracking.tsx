@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Package, MapPin, Clock, CheckCircle2, ChefHat, Bike, Leaf, ArrowLeft, Send } from "lucide-react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -128,6 +128,7 @@ function StatusTimeline({ status }: { status: string }) {
 function useRealtimeOrder(orderId: string, phone: string) {
   const [order, setOrder] = useState<Order | null>(null);
   const [chatMessages, setChatMessages] = useState<ChatMessage[]>([]);
+  const [arrivalAlertTick, setArrivalAlertTick] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -290,7 +291,11 @@ function useRealtimeOrder(orderId: string, phone: string) {
           table: "order_tracking",
           filter: `order_id=eq.${orderId}`,
         },
-        () => {
+        (payload: any) => {
+          const insertedNotes = String(payload?.new?.notes || "");
+          if (insertedNotes.startsWith("[DELIVERY_ARRIVED_ALERT]")) {
+            setArrivalAlertTick((prev) => prev + 1);
+          }
           loadChatMessages();
         }
       )
@@ -299,7 +304,7 @@ function useRealtimeOrder(orderId: string, phone: string) {
     return () => { supabase.removeChannel(channel); };
   }, [orderId, phone]);
 
-  return { order, loading, chatMessages };
+  return { order, loading, chatMessages, arrivalAlertTick };
 }
 
 export default function CustomerTracking() {
@@ -311,13 +316,38 @@ export default function CustomerTracking() {
   const searchParams = new URLSearchParams(window.location.search);
   const phone = searchParams.get('phone') || '';
   
-  const { order, loading, chatMessages } = useRealtimeOrder(orderId || '', phone);
+  const { order, loading, chatMessages, arrivalAlertTick } = useRealtimeOrder(orderId || '', phone);
   const [clientChatMessage, setClientChatMessage] = useState("");
   const [sendingClientChat, setSendingClientChat] = useState(false);
+  const arrivalAudioRef = useRef<HTMLAudioElement | null>(null);
   const formatWeight = (weightKg: number) =>
     weightKg < 1
       ? `${Math.round(weightKg * 1000)}g`
       : `${weightKg.toFixed(2).replace(".", ",")}kg`;
+
+  useEffect(() => {
+    if (!arrivalAlertTick) return;
+
+    const playArrivalAlert = async () => {
+      try {
+        const audio = arrivalAudioRef.current;
+        if (audio) {
+          audio.currentTime = 0;
+          await audio.play();
+        }
+      } catch (error) {
+        console.error("Erro ao reproduzir aviso de chegada:", error);
+      }
+
+      if ("vibrate" in navigator) {
+        navigator.vibrate([200, 120, 200]);
+      }
+
+      toast.success("Entregador chegou ao local! 🚚");
+    };
+
+    playArrivalAlert();
+  }, [arrivalAlertTick]);
 
   if (loading) {
     return (
@@ -421,6 +451,12 @@ export default function CustomerTracking() {
       </header>
 
       <main className="mx-auto max-w-lg px-4 py-6 pb-10">
+        <audio
+          ref={arrivalAudioRef}
+          src="/sounds/hortideliverysuaenregachegou.mp3"
+          preload="auto"
+        />
+
         {/* Indicador de atualização em tempo real */}
         <div className="mb-4 flex items-center justify-center gap-2 text-xs text-emerald-600 font-semibold">
           <span className="relative flex h-2.5 w-2.5">
