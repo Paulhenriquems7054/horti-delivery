@@ -3,7 +3,6 @@ import { OrderStatusBadge } from "@/components/OrderStatusBadge";
 import { ReceiptCameraModal } from "@/components/ReceiptCameraModal";
 import { ReceiptValueModal } from "@/components/ReceiptValueModal";
 import { OrderDetailsModal } from "@/components/OrderDetailsModal";
-import { AdjustRealValueModal } from "@/components/AdjustRealValueModal";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
   Leaf,
@@ -60,7 +59,6 @@ export default function Admin() {
   const [receiptOrder, setReceiptOrder] = useState<any | null>(null);
   const [receiptValueOrder, setReceiptValueOrder] = useState<any | null>(null);
   const [detailsOrder, setDetailsOrder] = useState<any | null>(null);
-  const [adjustOrder, setAdjustOrder] = useState<any | null>(null);
   const [chatOrder, setChatOrder] = useState<any | null>(null);
   const [chatMessage, setChatMessage] = useState("");
   const [sendingChat, setSendingChat] = useState(false);
@@ -632,14 +630,7 @@ export default function Admin() {
                                 </button>
                                 
                                 {/* Linha 2: Ações secundárias */}
-                                <div className="grid grid-cols-5 gap-2">
-                                  <button
-                                    onClick={() => setAdjustOrder(order)}
-                                    className="h-8 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 transition-colors flex items-center justify-center"
-                                    title="Ajustar valor real"
-                                  >
-                                    <PencilLine className="h-3.5 w-3.5" />
-                                  </button>
+                                <div className="grid grid-cols-4 gap-2">
                                   <button
                                     onClick={() => setReceiptValueOrder(order)}
                                     className="h-8 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors flex items-center justify-center"
@@ -694,14 +685,7 @@ export default function Admin() {
                                 </button>
                                 
                                 {/* Linha 2: Ações secundárias */}
-                                <div className="grid grid-cols-5 gap-2">
-                                  <button
-                                    onClick={() => setAdjustOrder(order)}
-                                    className="h-8 rounded-lg bg-amber-50 text-amber-700 border border-amber-200 hover:bg-amber-100 transition-colors flex items-center justify-center"
-                                    title="Ajustar valor real"
-                                  >
-                                    <PencilLine className="h-3.5 w-3.5" />
-                                  </button>
+                                <div className="grid grid-cols-4 gap-2">
                                   <button
                                     onClick={() => setReceiptValueOrder(order)}
                                     className="h-8 rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 hover:bg-emerald-100 transition-colors flex items-center justify-center"
@@ -896,16 +880,6 @@ export default function Admin() {
       <OrderDetailsModal
         order={detailsOrder}
         onClose={() => setDetailsOrder(null)}
-      />
-
-      {/* Modal de ajuste de valor real */}
-      <AdjustRealValueModal
-        order={adjustOrder}
-        onClose={() => setAdjustOrder(null)}
-        onSuccess={() => {
-          setAdjustOrder(null);
-          window.location.reload();
-        }}
       />
 
       {/* Modal de chat rápido interno */}

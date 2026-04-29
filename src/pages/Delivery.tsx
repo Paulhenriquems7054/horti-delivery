@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useParams, Navigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -172,8 +172,9 @@ function PinScreen({ storeName, onUnlock }: { storeName: string; onUnlock: (pin:
 }
 
 // ─── Order Card ───────────────────────────────────────────────────────────────
-function OrderCard({ order }: { order: Order }) {
+function OrderCard({ order, onPlayArrivalSound }: { order: Order; onPlayArrivalSound: () => void }) {
   const [confirming, setConfirming] = useState(false);
+  const [arrivalNotified, setArrivalNotified] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [messageToCustomer, setMessageToCustomer] = useState("");
   const [messageToAdmin, setMessageToAdmin] = useState("");
@@ -181,6 +182,14 @@ function OrderCard({ order }: { order: Order }) {
   const markDelivered = useMarkDelivered();
   const startDelivery = useStartDelivery();
   const isReady = order.status === "ready_for_delivery";
+
+  const handleArrivalSignal = () => {
+    onPlayArrivalSound();
+    setArrivalNotified(true);
+    setTimeout(() => {
+      setArrivalNotified(false);
+    }, 5000);
+  };
 
   const sendMessage = async (target: "customer" | "admin") => {
     const rawMessage = target === "customer" ? messageToCustomer : messageToAdmin;
@@ -275,12 +284,21 @@ function OrderCard({ order }: { order: Order }) {
             Iniciar Entrega
           </button>
         ) : !confirming ? (
-          <button
-            onClick={() => setConfirming(true)}
-            className="w-full h-14 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-base flex items-center justify-center gap-2 transition-colors shadow-md active:scale-[0.98]"
-          >
-            <CheckCircle2 className="h-5 w-5" /> Confirmar Entrega
-          </button>
+          <div className="space-y-2">
+            <button
+              onClick={handleArrivalSignal}
+              disabled={arrivalNotified}
+              className="w-full h-11 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-sm flex items-center justify-center gap-2 transition-colors shadow-md active:scale-[0.98] disabled:opacity-60"
+            >
+              {arrivalNotified ? "Aviso enviado" : "Cheguei no local"}
+            </button>
+            <button
+              onClick={() => setConfirming(true)}
+              className="w-full h-14 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-extrabold text-base flex items-center justify-center gap-2 transition-colors shadow-md active:scale-[0.98]"
+            >
+              <CheckCircle2 className="h-5 w-5" /> Confirmar Entrega
+            </button>
+          </div>
         ) : (
           <div className="space-y-2">
             <p className="text-center text-sm font-bold text-muted-foreground dark:text-slate-600">Confirmar que entregou?</p>
@@ -371,6 +389,7 @@ export default function Delivery() {
   const slug = params.slug;
   const [unlocked, setUnlocked] = useState(false);
   const [pinError, setPinError] = useState(false);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const { data: store, isLoading: storeLoading } = useStoreBySlug(slug ?? "");
   const { data: orders = [], isLoading: ordersLoading, refetch } = useDeliveryOrders(
@@ -413,6 +432,24 @@ export default function Delivery() {
     );
   }
 
+  const playHortDeliverySound = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.currentTime = 0;
+    try {
+      await audio.play();
+      console.log("Som reproduzido com sucesso");
+    } catch (error) {
+      console.error("Erro ao reproduzir som:", error);
+      toast.error("Não foi possível tocar o aviso sonoro neste dispositivo.");
+    }
+
+    if ("vibrate" in navigator) {
+      navigator.vibrate(400);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background dark:bg-slate-100">
       <header className="bg-slate-900 dark:bg-slate-900 px-4 py-4 sticky top-0 z-10 shadow-md">
@@ -447,6 +484,13 @@ export default function Delivery() {
       </header>
 
       <main className="max-w-lg mx-auto px-4 py-5 space-y-4 pb-12">
+        <audio
+          id="hortdeliverySound"
+          ref={audioRef}
+          src="/sounds/hortideliverysuaenregachegou.mp3"
+          preload="auto"
+        />
+
         {ordersLoading && (
           <div className="flex items-center justify-center py-16 gap-3">
             <Loader2 className="h-6 w-6 text-emerald-500 animate-spin" />
@@ -465,7 +509,7 @@ export default function Delivery() {
         )}
 
         {orders.map(order => (
-          <OrderCard key={order.id} order={order} />
+          <OrderCard key={order.id} order={order} onPlayArrivalSound={playHortDeliverySound} />
         ))}
       </main>
     </div>
