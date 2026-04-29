@@ -36,6 +36,11 @@ export function OrderDetailsModal({ order, onClose }: Props) {
   const [items, setItems] = useState<OrderDetailsItem[]>([]);
   const [loading, setLoading] = useState(false);
 
+  const formatWeight = (weightKg: number): string => {
+    if (weightKg < 1) return `${Math.round(weightKg * 1000)}g`;
+    return `${weightKg.toFixed(2).replace(".", ",")}kg`;
+  };
+
   const getItemLineTotal = (item: OrderDetailsItem): number => {
     if (item.sold_by === "weight") {
       return item.final_price ?? item.price ?? 0;
@@ -155,7 +160,7 @@ export function OrderDetailsModal({ order, onClose }: Props) {
                       <p className="font-semibold text-foreground">{item.product_name}</p>
                       <p className="text-xs text-muted-foreground">
                         {item.sold_by === "weight"
-                          ? `${item.weight_kg || 0}kg x R$ ${(item.price / (item.weight_kg || 1)).toFixed(2)}`
+                          ? `${formatWeight(item.weight_kg || 0)} x R$ ${(item.price / (item.weight_kg || 1)).toFixed(2).replace(".", ",")}`
                           : shouldShowNeedsWeighing
                             ? `${item.quantity} unidade(s) (a pesar)`
                             : `${item.quantity} unidade(s)`}
