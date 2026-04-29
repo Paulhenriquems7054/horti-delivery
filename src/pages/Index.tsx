@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useActiveBasket } from "@/hooks/useActiveBasket";
 import { useCreateOrder } from "@/hooks/useCreateOrder";
 import { ProductCard } from "@/components/ProductCard";
@@ -42,6 +42,27 @@ export default function Index() {
   const [confirmedPhone, setConfirmedPhone] = useState<string>(""); // telefone do pedido confirmado
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [lastTracking, setLastTracking] = useState<{ orderId: string; phone: string } | null>(null);
+  const trackingStorageKey = `horti:last-tracking:${slug || "default"}`;
+
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(trackingStorageKey);
+      if (!raw) {
+        setLastTracking(null);
+        return;
+      }
+
+      const parsed = JSON.parse(raw) as { orderId?: string; phone?: string };
+      if (parsed?.orderId && parsed?.phone) {
+        setLastTracking({ orderId: parsed.orderId, phone: parsed.phone });
+      } else {
+        setLastTracking(null);
+      }
+    } catch {
+      setLastTracking(null);
+    }
+  }, [trackingStorageKey]);
 
   const handleAdd = (id: string) => setCart(p => ({ ...p, [id]: (p[id] || 0) + 1 }));
   const handleRemove = (id: string) => {
@@ -569,6 +590,14 @@ export default function Index() {
               <p className="text-center text-xs text-muted-foreground">
                 🔒 Sem cartão • Pagamento na entrega
               </p>
+              {lastTracking && (
+                <button
+                  onClick={() => navigate(`/${slug}/pedido/${lastTracking.orderId}?phone=${lastTracking.phone}`)}
+                  className="w-full h-11 rounded-2xl border border-primary/30 text-primary text-sm font-extrabold hover:bg-primary/5 transition-colors"
+                >
+                  Acompanhar último pedido em tempo real
+                </button>
+              )}
             </div>
           </div>
         )}
@@ -635,6 +664,13 @@ export default function Index() {
                       setConfirmedItems(selectedProducts); // Salvar itens confirmados
                       setConfirmedOrderId(order.id); // Salvar ID do pedido
                       setConfirmedPhone(data.phone); // Salvar telefone
+                      const trackingPayload = {
+                        orderId: order.id,
+                        phone: data.phone,
+                        savedAt: new Date().toISOString(),
+                      };
+                      localStorage.setItem(trackingStorageKey, JSON.stringify(trackingPayload));
+                      setLastTracking({ orderId: order.id, phone: data.phone });
                       setCart({});
                       setWeightCart({});
                       setProductMode({});
