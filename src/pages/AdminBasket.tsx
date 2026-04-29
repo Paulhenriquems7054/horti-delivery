@@ -44,6 +44,12 @@ export default function AdminBasket() {
     return "weight";
   };
 
+  const formatWeightForUi = (weightKg?: number | null) => {
+    if (!weightKg || weightKg <= 0) return "0g";
+    if (weightKg < 1) return `${Math.round(weightKg * 1000)}g`;
+    return `${weightKg.toFixed(2).replace(".", ",")}kg`;
+  };
+
   const uploadProductImageFile = async (productId: string, file: File) => {
     const fileExt = file.name.split(".").pop() || "jpg";
     const filePath = `${Date.now()}_${productId}.${fileExt}`;
@@ -930,7 +936,7 @@ export default function AdminBasket() {
                                 ? 'bg-amber-100 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 border-amber-200 dark:border-amber-800 hover:bg-amber-200 dark:hover:bg-amber-950/50'
                                 : 'bg-gray-50 dark:bg-gray-950/30 text-gray-400 dark:text-gray-500 border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-950/50'
                           }`}
-                          title={item.products.average_weight ? `Peso médio: ${item.products.average_weight}kg` : "Configurar peso médio"}
+                          title={item.products.average_weight ? `Peso médio: ${formatWeightForUi(item.products.average_weight)}` : "Configurar peso médio"}
                         >
                           <Scale className="h-4 w-4" />
                         </button>

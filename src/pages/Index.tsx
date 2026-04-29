@@ -18,6 +18,11 @@ import { calculateCartEstimate, calculateUnitPriceEstimate, formatCurrency, sell
 type Step = "basket" | "checkout" | "confirmation";
 
 export default function Index() {
+  const formatWeight = (weightKg: number) =>
+    weightKg < 1
+      ? `${Math.round(weightKg * 1000)}g`
+      : `${weightKg.toFixed(2).replace(".", ",")}kg`;
+
   const { slug } = useParams();
   const navigate = useNavigate();
   const { data: store, isLoading: isStoreLoading, isError: isStoreError } = useStoreInfo(slug);
@@ -289,7 +294,7 @@ export default function Index() {
                                   <>
                                     {item.weight_kg < 1
                                       ? `${Math.round(item.weight_kg * 1000)}g`
-                                      : `${item.weight_kg.toFixed(2)}kg`}
+                                      : formatWeight(item.weight_kg)}
                                     {" "}x R$ {(item.price_per_kg ?? item.price).toFixed(2).replace(".", ",")}
                                   </>
                                 ) : (

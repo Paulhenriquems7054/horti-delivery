@@ -114,6 +114,12 @@ export function WeighingModal({ order, onClose, onUpdate }: WeighingModalProps) 
     return weightKg * pricePerKg;
   };
 
+  const formatWeight = (weightKg?: number | null) => {
+    if (!weightKg || weightKg <= 0) return "0g";
+    if (weightKg < 1) return `${Math.round(weightKg * 1000)}g`;
+    return `${weightKg.toFixed(2).replace(".", ",")}kg`;
+  };
+
   const handleSave = async () => {
     setSaving(true);
     try {
@@ -304,7 +310,7 @@ export function WeighingModal({ order, onClose, onUpdate }: WeighingModalProps) 
                         <div>
                           <p className="font-semibold text-sm text-foreground">{item.product_name}</p>
                           <p className="text-xs text-muted-foreground">
-                            {item.quantity} un • {item.actual_weight_kg?.toFixed(3)}kg
+                            {item.quantity} un • {formatWeight(item.actual_weight_kg)}
                           </p>
                         </div>
                         <p className="font-bold text-emerald-600 dark:text-emerald-400">
@@ -326,9 +332,7 @@ export function WeighingModal({ order, onClose, onUpdate }: WeighingModalProps) 
                         <div>
                           <p className="font-semibold text-sm text-foreground">{item.product_name}</p>
                           <p className="text-xs text-muted-foreground">
-                            {item.weight_kg && item.weight_kg < 1 
-                              ? `${Math.round(item.weight_kg * 1000)}g` 
-                              : `${item.weight_kg?.toFixed(2)}kg`}
+                            {formatWeight(item.weight_kg)}
                           </p>
                         </div>
                         <p className="font-bold text-blue-600 dark:text-blue-400">

@@ -36,6 +36,11 @@ export function ProductWeightSettings({
   const minPrice = avgWeightNum * (1 - varianceNum) * pricePerKg;
   const maxPrice = avgWeightNum * (1 + varianceNum) * pricePerKg;
 
+  const formatWeight = (weightKg: number) => {
+    if (weightKg < 1) return `${Math.round(weightKg * 1000)}g`;
+    return `${weightKg.toFixed(2).replace(".", ",")}kg`;
+  };
+
   const updateWeightMutation = useMutation({
     mutationFn: async () => {
       const { error } = await supabase
@@ -91,7 +96,7 @@ export function ProductWeightSettings({
           />
           {avgWeightNum > 0 && (
             <p className="text-[10px] text-amber-600 dark:text-amber-400 mt-1">
-              = {avgWeightNum < 1 ? `${Math.round(avgWeightNum * 1000)}g` : `${avgWeightNum}kg`} por unidade
+              = {formatWeight(avgWeightNum)} por unidade
             </p>
           )}
         </div>

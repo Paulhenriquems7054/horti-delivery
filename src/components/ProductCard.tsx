@@ -40,6 +40,11 @@ export function ProductCard({
   selectedMode,
   onToggleMode 
 }: Props) {
+  const formatWeight = (weightKg: number) =>
+    weightKg < 1
+      ? `${Math.round(weightKg * 1000)}g`
+      : `${weightKg.toFixed(2).replace(".", ",")}kg`;
+
   const emoji = getEmoji(product.name);
   const sellBy = (product.sell_by || 'unit') as 'unit' | 'weight' | 'both';
   const fixedUnitFromCatalog = sellsByUnitFixedPrice(product);
@@ -99,7 +104,7 @@ export function ProductCard({
                 Estimativa: {formatPriceRange(unitEstimate.min, unitEstimate.max)}
                 {product.average_weight && (
                   <span className="text-muted-foreground font-normal">
-                    (~{product.average_weight < 1 ? `${Math.round(product.average_weight * 1000)}g` : `${product.average_weight}kg`}/un)
+                    (~{formatWeight(product.average_weight)}/un)
                   </span>
                 )}
               </p>
@@ -143,7 +148,7 @@ export function ProductCard({
         {/* Informação do carrinho - modo peso */}
         {isWeight && inCart && cartWeight && (
           <p className="text-xs text-emerald-600 dark:text-emerald-400 font-semibold mt-0.5">
-            {cartWeight < 1 ? `${Math.round(cartWeight * 1000)}g` : `${cartWeight.toFixed(2)}kg`}
+            {formatWeight(cartWeight)}
             {" "}≈ {formatCurrency(cartWeight * pricePerKg)}
           </p>
         )}

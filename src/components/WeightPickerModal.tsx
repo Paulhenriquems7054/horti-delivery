@@ -17,6 +17,10 @@ export function WeightPickerModal({ product, onClose, onConfirm }: Props) {
   const step = product?.step_weight ?? 0.25;
   const pricePerKg = product?.price_per_kg ?? product?.price ?? 0;
   const total = weight * pricePerKg;
+  const formatWeight = (valueKg: number) =>
+    valueKg < 1
+      ? `${Math.round(valueKg * 1000)}g`
+      : `${valueKg.toFixed(2).replace(".", ",")}kg`;
 
   useEffect(() => {
     if (!product) return;
@@ -69,9 +73,7 @@ export function WeightPickerModal({ product, onClose, onConfirm }: Props) {
 
             <div className="text-center min-w-[100px]">
               <p className="text-4xl font-extrabold text-foreground">
-                {weight < 1
-                  ? `${Math.round(weight * 1000)}g`
-                  : `${weight.toFixed(2).replace(".", ",")} kg`}
+                {formatWeight(weight)}
               </p>
               <p className="text-xs text-muted-foreground mt-1">peso estimado</p>
             </div>
@@ -96,7 +98,7 @@ export function WeightPickerModal({ product, onClose, onConfirm }: Props) {
                     : "bg-white text-slate-600 border-slate-200 hover:border-primary hover:text-primary"
                 }`}
               >
-                {w < 1 ? `${w * 1000}g` : `${w}kg`}
+                {formatWeight(w)}
               </button>
             ))}
           </div>

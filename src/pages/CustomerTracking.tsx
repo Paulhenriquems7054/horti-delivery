@@ -314,6 +314,10 @@ export default function CustomerTracking() {
   const { order, loading, chatMessages } = useRealtimeOrder(orderId || '', phone);
   const [clientChatMessage, setClientChatMessage] = useState("");
   const [sendingClientChat, setSendingClientChat] = useState(false);
+  const formatWeight = (weightKg: number) =>
+    weightKg < 1
+      ? `${Math.round(weightKg * 1000)}g`
+      : `${weightKg.toFixed(2).replace(".", ",")}kg`;
 
   if (loading) {
     return (
@@ -478,11 +482,11 @@ export default function CustomerTracking() {
                             {item.actual_weight_kg ? (
                               <>Peso real: {item.actual_weight_kg < 1 
                                 ? `${Math.round(item.actual_weight_kg * 1000)}g` 
-                                : `${item.actual_weight_kg.toFixed(2)}kg`}</>
+                                : formatWeight(item.actual_weight_kg)}</>
                             ) : (
                               <>Peso estimado: {item.weight_kg && item.weight_kg < 1 
                                 ? `${Math.round(item.weight_kg * 1000)}g` 
-                                : `${item.weight_kg?.toFixed(2)}kg`}</>
+                                : formatWeight(item.weight_kg || 0)}</>
                             )}
                           </>
                         ) : (
