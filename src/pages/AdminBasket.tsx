@@ -20,6 +20,7 @@ export default function AdminBasket() {
   const [newProductPrice, setNewProductPrice] = useState("");
   const [newProductQuantity, setNewProductQuantity] = useState("1");
   const [newProductUnit, setNewProductUnit] = useState("un");
+  const [newProductSellBy, setNewProductSellBy] = useState<"unit" | "weight" | "both">("unit");
   const [newProductImageUrl, setNewProductImageUrl] = useState("");
   const [newProductImageFile, setNewProductImageFile] = useState<File | null>(null);
   const [basketName, setBasketName] = useState("");
@@ -36,6 +37,12 @@ export default function AdminBasket() {
   const [showAllProducts, setShowAllProducts] = useState(false);
   const [productFilter, setProductFilter] = useState("");
   const [editingWeightProductId, setEditingWeightProductId] = useState<string | null>(null);
+
+  const resolveSellBy = (unit: string, sellBy?: string) => {
+    if (unit === "un") return "unit";
+    if (sellBy === "both" || sellBy === "weight") return sellBy;
+    return "weight";
+  };
 
   const uploadProductImageFile = async (productId: string, file: File) => {
     const fileExt = file.name.split(".").pop() || "jpg";
@@ -180,7 +187,7 @@ export default function AdminBasket() {
 
       const defaultAverageWeight = 0.3;
       const defaultWeightVariance = 0.15;
-      const sellBy = newProductUnit === "un" ? "unit" : "weight";
+      const sellBy = resolveSellBy(newProductUnit, newProductSellBy);
       const normalizedPricePerKg = sellBy === "unit" ? null : priceVal;
 
       const { data: prodData, error: prodErr } = await supabase
@@ -232,6 +239,7 @@ export default function AdminBasket() {
       setNewProductPrice("");
       setNewProductQuantity("1");
       setNewProductUnit("un");
+      setNewProductSellBy("unit");
       setNewProductImageUrl("");
       setNewProductImageFile(null);
       setProductFilter("");
@@ -320,14 +328,14 @@ export default function AdminBasket() {
   });
 
   const editItemMutation = useMutation({
-    mutationFn: async (data: { itemId: string; productId: string; name: string; quantity: number; price: number; unit: string; image_url: string; image_file?: File | null }) => {
+    mutationFn: async (data: { itemId: string; productId: string; name: string; quantity: number; price: number; unit: string; sellBy?: string; image_url: string; image_file?: File | null }) => {
       let imageUrl = data.image_url;
       if (data.image_file) {
         imageUrl = await uploadProductImageFile(data.productId, data.image_file);
       }
 
       // 1. Atualizar produto
-      const sellBy = data.unit === "un" ? "unit" : "weight";
+      const sellBy = resolveSellBy(data.unit, data.sellBy);
       const { error: prodErr } = await supabase
         .from("products")
         .update({
@@ -400,13 +408,13 @@ export default function AdminBasket() {
   });
 
   const editProductMutation = useMutation({
-    mutationFn: async (data: { productId: string; name: string; price: number; unit: string; image_url: string; image_file?: File | null }) => {
+    mutationFn: async (data: { productId: string; name: string; price: number; unit: string; sellBy?: string; image_url: string; image_file?: File | null }) => {
       let imageUrl = data.image_url;
       if (data.image_file) {
         imageUrl = await uploadProductImageFile(data.productId, data.image_file);
       }
 
-      const sellBy = data.unit === "un" ? "unit" : "weight";
+      const sellBy = resolveSellBy(data.unit, data.sellBy);
       const { data: updated, error } = await supabase
         .from("products")
         .update({
@@ -605,11 +613,28 @@ export default function AdminBasket() {
               <label className="text-xs font-bold text-muted-foreground">Medida</label>
               <select 
                 value={newProductUnit}
-                onChange={(e) => setNewProductUnit(e.target.value)}
+                onChange={(e) => {
+                  const nextUnit = e.target.value;
+                  setNewProductUnit(nextUnit);
+                  if (nextUnit === "un") setNewProductSellBy("unit");
+                }}
                 className="w-full mt-1 h-11 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-card text-foreground" 
               >
                 <option value="un">Unidade(s)</option>
                 <option value="kg">Quilo(s)</option>
+              </select>
+            </div>
+            <div>
+              <label className="text-xs font-bold text-muted-foreground">Forma de venda</label>
+              <select
+                value={newProductUnit === "un" ? "unit" : newProductSellBy}
+                onChange={(e) => setNewProductSellBy(e.target.value as "unit" | "weight" | "both")}
+                disabled={newProductUnit === "un"}
+                className="w-full mt-1 h-11 px-3 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-primary/50 bg-card text-foreground disabled:opacity-60"
+              >
+                <option value="unit">Somente unidade</option>
+                <option value="weight">Somente peso</option>
+                <option value="both">Unidade e peso</option>
               </select>
             </div>
             <div>
@@ -761,14 +786,34 @@ export default function AdminBasket() {
                           <label className="text-xs font-bold text-muted-foreground">Medida</label>
                           <select 
                             value={editingItem.unit} 
-                            onChange={(e) => setEditingItem({ ...editingItem, unit: e.target.value })}
+                            onChange={(e) => {
+                              const nextUnit = e.target.value;
+                              setEditingItem({
+                                ...editingItem,
+                                unit: nextUnit,
+                                sell_by: nextUnit === "un" ? "unit" : resolveSellBy(nextUnit, editingItem.sell_by),
+                              });
+                            }}
                             className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
                           >
                             <option value="un">UN</option>
                             <option value="kg">KG</option>
                           </select>
                         </div>
-                        <div className="col-span-1 sm:col-span-2">
+                        <div>
+                          <label className="text-xs font-bold text-muted-foreground">Forma de venda</label>
+                          <select
+                            value={editingItem.unit === "un" ? "unit" : (editingItem.sell_by || "weight")}
+                            onChange={(e) => setEditingItem({ ...editingItem, sell_by: e.target.value })}
+                            disabled={editingItem.unit === "un"}
+                            className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground disabled:opacity-60"
+                          >
+                            <option value="unit">Somente unidade</option>
+                            <option value="weight">Somente peso</option>
+                            <option value="both">Unidade e peso</option>
+                          </select>
+                        </div>
+                        <div className="col-span-1 sm:col-span-1">
                           <label className="text-xs font-bold text-muted-foreground">Preço (R$)</label>
                           <input 
                             type="number" 
@@ -825,6 +870,7 @@ export default function AdminBasket() {
                             quantity: editingItem.quantity || 1,
                             price: editingItem.price,
                             unit: editingItem.unit,
+                            sellBy: editingItem.sell_by,
                             image_url: editingItem.image_url,
                             image_file: editingItem.image_file
                           })}
@@ -895,6 +941,7 @@ export default function AdminBasket() {
                             quantity: item.quantity, 
                             price: item.products.price,
                             unit: item.products.unit || "un",
+                            sell_by: item.products.sell_by || (item.products.unit === "kg" ? "weight" : "unit"),
                             image_url: item.products.image_url
                           })}
                           className="h-9 w-9 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-950/50 transition-colors border border-blue-200 dark:border-blue-800"
@@ -1009,14 +1056,34 @@ export default function AdminBasket() {
                                 <label className="text-xs font-bold text-muted-foreground">Medida</label>
                                 <select 
                                   value={editingProduct.unit} 
-                                  onChange={(e) => setEditingProduct({ ...editingProduct, unit: e.target.value })}
+                                  onChange={(e) => {
+                                    const nextUnit = e.target.value;
+                                    setEditingProduct({
+                                      ...editingProduct,
+                                      unit: nextUnit,
+                                      sell_by: nextUnit === "un" ? "unit" : resolveSellBy(nextUnit, editingProduct.sell_by),
+                                    });
+                                  }}
                                   className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
                                 >
                                   <option value="un">UN</option>
                                   <option value="kg">KG</option>
                                 </select>
                               </div>
-                              <div className="col-span-1 sm:col-span-2">
+                              <div>
+                                <label className="text-xs font-bold text-muted-foreground">Forma de venda</label>
+                                <select
+                                  value={editingProduct.unit === "un" ? "unit" : (editingProduct.sell_by || "weight")}
+                                  onChange={(e) => setEditingProduct({ ...editingProduct, sell_by: e.target.value })}
+                                  disabled={editingProduct.unit === "un"}
+                                  className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground disabled:opacity-60"
+                                >
+                                  <option value="unit">Somente unidade</option>
+                                  <option value="weight">Somente peso</option>
+                                  <option value="both">Unidade e peso</option>
+                                </select>
+                              </div>
+                              <div className="col-span-1 sm:col-span-1">
                                 <label className="text-xs font-bold text-muted-foreground">Preço (R$)</label>
                                 <input 
                                   type="number" 
@@ -1071,6 +1138,7 @@ export default function AdminBasket() {
                                   name: editingProduct.name,
                                   price: editingProduct.price,
                                   unit: editingProduct.unit,
+                                  sellBy: editingProduct.sell_by,
                                   image_url: editingProduct.image_url,
                                   image_file: editingProduct.image_file
                                 })}
@@ -1134,6 +1202,7 @@ export default function AdminBasket() {
                                   name: product.name, 
                                   price: product.price,
                                   unit: product.unit || "un",
+                                  sell_by: product.sell_by || (product.unit === "kg" ? "weight" : "unit"),
                                   image_url: product.image_url
                                 })}
                                 className="h-7 w-7 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-950/50 transition-colors border border-blue-200 dark:border-blue-800"
