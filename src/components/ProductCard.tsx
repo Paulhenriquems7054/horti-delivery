@@ -66,7 +66,8 @@ export function ProductCard({
     !isWeight && !isFixedUnitPrice ? calculateUnitPriceEstimate(product, cartQty || 1) : null;
 
   return (
-    <div className={`flex items-center gap-3 rounded-2xl bg-card p-3 shadow-card border transition-all ${inCart ? "border-primary/40 bg-emerald-50/30 dark:bg-emerald-950/20" : "border-border/60"} ${!isAvailable ? "opacity-60" : ""}`}>
+    <div className={`flex flex-col gap-3 rounded-2xl bg-card p-3 shadow-card border transition-all sm:flex-row sm:items-center ${inCart ? "border-primary/40 bg-emerald-50/30 dark:bg-emerald-950/20" : "border-border/60"} ${!isAvailable ? "opacity-60" : ""}`}>
+      <div className="flex items-start gap-3 sm:flex-1 sm:min-w-0">
       {/* Imagem / Emoji */}
       <div className="flex-shrink-0 h-14 w-14 rounded-xl gradient-card flex items-center justify-center overflow-hidden">
         {product.image_url ? (
@@ -77,7 +78,7 @@ export function ProductCard({
       </div>
 
       {/* Infos */}
-      <div className="flex-1 min-w-0">
+      <div className="min-w-0 flex-1">
         <div className="flex items-center gap-2 flex-wrap">
           <p className="font-bold text-foreground truncate">{product.name}</p>
           {!isAvailable && (
@@ -101,7 +102,7 @@ export function ProductCard({
         {!isWeight && !isFixedUnitPrice && unitEstimate && (
           <div className="mt-0.5">
             {unitEstimate.hasEstimate ? (
-              <p className="text-xs text-amber-600 dark:text-amber-400 font-medium flex items-center gap-1">
+              <p className="text-xs text-amber-600 dark:text-amber-400 font-medium flex items-center gap-1 flex-wrap">
                 <Scale className="h-3 w-3" />
                 Estimativa: {formatPriceRange(unitEstimate.min, unitEstimate.max)}
                 {product.average_weight && (
@@ -121,7 +122,7 @@ export function ProductCard({
         
         {/* Toggle de modo (quando sell_by = 'both') */}
         {isBoth && onToggleMode && (
-          <div className="flex gap-1 mt-1">
+          <div className="flex gap-1 mt-1 flex-wrap">
             <button
               onClick={onToggleMode}
               disabled={!isAvailable}
@@ -172,15 +173,16 @@ export function ProductCard({
           </p>
         )}
       </div>
+      </div>
 
       {/* Controles */}
-      <div className="flex-shrink-0">
+      <div className="w-full sm:w-auto sm:flex-shrink-0">
         {isWeight ? (
           /* Modo peso — sempre mostra botão que abre modal */
           <button
             onClick={onSelectWeight}
             disabled={!isAvailable}
-            className={`h-9 px-3 rounded-full text-sm font-extrabold flex items-center gap-1.5 transition-colors ${
+            className={`h-9 w-full sm:w-auto px-3 rounded-full text-sm font-extrabold flex items-center justify-center gap-1.5 transition-colors ${
               inCart
                 ? "bg-primary text-white hover:bg-primary/90"
                 : "bg-emerald-50 text-emerald-600 border border-emerald-200 hover:bg-emerald-100"
@@ -192,13 +194,13 @@ export function ProductCard({
         ) : (
           /* Modo unitário */
           cartQty > 0 ? (
-            <div className="flex items-center gap-3 bg-accent rounded-full p-1 border border-primary/20">
+            <div className="flex w-full sm:w-auto items-center justify-center gap-3 bg-accent rounded-full p-1 border border-primary/20">
               <button onClick={onRemove} disabled={!isAvailable} className="h-7 w-7 rounded-full bg-card text-primary font-bold flex items-center justify-center shadow-sm hover:bg-muted">-</button>
               <span className="text-sm font-extrabold text-primary w-3 text-center">{cartQty}</span>
               <button onClick={onAdd} disabled={!isAvailable} className="h-7 w-7 rounded-full bg-primary text-white font-bold flex items-center justify-center shadow-sm hover:bg-primary/90">+</button>
             </div>
           ) : (
-            <button onClick={onAdd} disabled={!isAvailable} className="h-9 px-4 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 text-sm font-extrabold hover:bg-emerald-100 dark:hover:bg-emerald-950/50 transition-colors">
+            <button onClick={onAdd} disabled={!isAvailable} className="h-9 w-full sm:w-auto px-4 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800 text-sm font-extrabold hover:bg-emerald-100 dark:hover:bg-emerald-950/50 transition-colors">
               {isAvailable ? "Adicionar" : "Indisponível"}
             </button>
           )
