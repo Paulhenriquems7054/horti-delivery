@@ -440,7 +440,7 @@ END;
 $$;
 
 -- increment_coupon_usage: apenas interno (revoke public)
-CREATE OR REPLACE FUNCTION public.increment_coupon_usage(p_coupon_id UUID)
+CREATE OR REPLACE FUNCTION public.increment_coupon_usage(coupon_id UUID)
 RETURNS VOID
 LANGUAGE plpgsql
 SECURITY DEFINER
@@ -449,7 +449,7 @@ AS $$
 BEGIN
   UPDATE public.coupons
   SET used_count = used_count + 1
-  WHERE id = p_coupon_id;
+  WHERE id = coupon_id;
 END;
 $$;
 

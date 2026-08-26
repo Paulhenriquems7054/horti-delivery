@@ -20,7 +20,9 @@ import AdminDirectDelivery from "./pages/AdminDirectDelivery";
 import DirectDeliveryTracking from "./pages/DirectDeliveryTracking";
 import SuperAdmin from "./pages/SuperAdmin";
 import ResetPassword from "./pages/ResetPassword";
+import AccessDenied from "./pages/AccessDenied";
 import { ProtectedRoute } from "./components/ProtectedRoute";
+import { PlatformProtectedRoute } from "./components/PlatformProtectedRoute";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,7 +44,8 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/track" element={<OrderTracking />} />
           <Route path="/delivery-tracking" element={<DirectDeliveryTracking />} />
-          <Route path="/superadmin" element={<SuperAdmin />} />
+          <Route path="/superadmin" element={<PlatformProtectedRoute><SuperAdmin /></PlatformProtectedRoute>} />
+          <Route path="/acesso-negado" element={<AccessDenied />} />
           <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="/delivery" element={<Delivery />} />
           <Route path="/delivery/:slug" element={<Delivery />} />

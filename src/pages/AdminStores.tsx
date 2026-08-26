@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useMyStore, useCreateStore, useUpdateStore, useDeleteStore, Store } from "@/hooks/useStores";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,9 +9,16 @@ import { Plus, Pencil, Trash2, Store as StoreIcon, ArrowLeft } from "lucide-reac
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
+import { AccountSecurity } from "@/components/admin/AccountSecurity";
 
 export default function AdminStores() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (window.location.hash === "#minha-conta") {
+      document.getElementById("minha-conta")?.scrollIntoView({ behavior: "smooth" });
+    }
+  }, []);
   const { data: myStore, isLoading } = useMyStore();
   const createStore = useCreateStore();
   const updateStore = useUpdateStore();
@@ -243,6 +250,8 @@ export default function AdminStores() {
             </div>
           ))}
         </div>
+
+        <AccountSecurity />
       </main>
     </div>
   );

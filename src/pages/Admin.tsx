@@ -245,15 +245,15 @@ export default function Admin() {
           </button>
 
           <button
-            onClick={() => navigate("/admin/stores")}
+            onClick={() => navigate("/admin/stores#minha-conta")}
             className="bg-card dark:bg-card border-2 border-blue-200 dark:border-blue-800 p-4 rounded-2xl flex items-center gap-3 shadow-sm hover:border-blue-400 dark:hover:border-blue-600 hover:bg-blue-50/30 dark:hover:bg-blue-900/20 transition-all group"
           >
             <div className="h-12 w-12 rounded-xl bg-blue-100 dark:bg-blue-900/50 shadow-card flex items-center justify-center text-2xl shrink-0">
               🏪
             </div>
             <div className="text-left flex-1 min-w-0">
-              <h2 className="font-extrabold text-foreground text-base leading-tight">Lojas</h2>
-              <p className="text-muted-foreground text-xs mt-0.5">Multi-tenant</p>
+              <h2 className="font-extrabold text-foreground text-base leading-tight">Loja e conta</h2>
+              <p className="text-muted-foreground text-xs mt-0.5">Dados da loja, e-mail e senha</p>
             </div>
           </button>
 
