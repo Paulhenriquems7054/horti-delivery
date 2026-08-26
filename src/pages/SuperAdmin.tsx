@@ -456,17 +456,32 @@ function OperatorLogin({
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
     setBusy(true);
-    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    const { error } = await supabase.auth.signInWithPassword({
+      email: email.trim().toLowerCase(),
+      password,
+    });
     if (error) {
       setBusy(false);
-      toast.error("E-mail ou senha inválidos.");
+      const msg = (error.message || "").toLowerCase();
+      if (msg.includes("invalid") || msg.includes("invalid login")) {
+        toast.error("E-mail ou senha inválidos. Confirme se o usuário existe no Auth deste projeto.");
+      } else if (msg.includes("confirm")) {
+        toast.error("E-mail ainda não confirmado no Auth.");
+      } else {
+        toast.error(error.message);
+      }
       return;
     }
     const { data: isAdmin, error: rpcErr } = await supabase.rpc("is_platform_admin" as never);
     setBusy(false);
-    if (rpcErr || isAdmin !== true) {
+    if (rpcErr) {
       await supabase.auth.signOut();
-      toast.error("Esta conta não é operador da plataforma.");
+      toast.error("Login ok, mas is_platform_admin falhou. A migration da Super Admin pode não estar neste projeto.");
+      return;
+    }
+    if (isAdmin !== true) {
+      await supabase.auth.signOut();
+      toast.error("Senha correta, mas este e-mail não está em platform_admins.");
       return;
     }
     onSuccess();
@@ -544,23 +559,14 @@ function OperatorLogin({
           </>
         ) : (
           <>
-            <div className="relative">
-              <button
-                type="button"
-                onClick={() => void forgotPassword()}
-                className="absolute -top-5 right-0 text-[10px] text-violet-300 font-bold hover:underline"
-              >
-                Esqueci minha senha
-              </button>
-              <input
-                required
-                type="email"
-                placeholder="E-mail do operador"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
-              />
-            </div>
+            <input
+              required
+              type="email"
+              placeholder="E-mail do operador"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
+            />
             <input
               required
               type="password"
@@ -569,6 +575,13 @@ function OperatorLogin({
               onChange={(e) => setPassword(e.target.value)}
               className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
             />
+            <button
+              type="button"
+              onClick={() => void forgotPassword()}
+              className="w-full text-right text-[10px] text-violet-300 font-bold hover:underline"
+            >
+              Esqueci minha senha
+            </button>
             <button type="submit" disabled={busy} className="w-full h-12 rounded-xl bg-violet-600 text-white font-bold disabled:opacity-60">
               {busy ? "Entrando…" : "Entrar"}
             </button>
