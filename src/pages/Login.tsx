@@ -27,7 +27,12 @@ export default function Login() {
             navigate(next === "/superadmin" ? "/superadmin" : "/superadmin");
             return;
         }
-        navigate("/admin");
+        const { data: store } = await (supabase as any)
+            .from("stores")
+            .select("slug")
+            .eq("user_id", (await supabase.auth.getUser()).data.user?.id)
+            .maybeSingle();
+        navigate(store?.slug ? `/${store.slug}/admin` : "/admin");
     };
 
     useEffect(() => {

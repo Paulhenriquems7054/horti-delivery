@@ -60,6 +60,9 @@ const App = () => (
           <Route path="/admin/preparation" element={<ProtectedRoute><AdminPreparation /></ProtectedRoute>} />
           <Route path="/admin/direct-delivery" element={<ProtectedRoute><AdminDirectDelivery /></ProtectedRoute>} />
 
+          {/* ── Painel do lojista por slug (atalho; a sessão ainda resolve a loja por user_id) ── */}
+          <Route path="/:slug/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
+
           {/* ── Entregador por loja ── */}
           <Route path="/:slug/delivery" element={<Delivery />} />
           
