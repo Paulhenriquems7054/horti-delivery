@@ -535,6 +535,7 @@ export default function Index() {
               basketName={basket.name}
               basketPrice={cartTotal}
               storeId={store.id}
+              storeSlug={store.slug}
               estimatedTotal={cartEstimates.totalEstimate}
               hasUnitItems={itemsByUnit > 0}
               itemsWithoutEstimate={cartEstimates.unitItemsWithoutEstimate}
@@ -571,15 +572,16 @@ export default function Index() {
 
                 createOrder.mutate(
                   {
-                    ...data,
-                    total: data.total_with_fee || cartTotal,
+                    customer_name: data.customer_name,
+                    phone: data.phone,
+                    address: data.address,
                     products: selectedProducts,
-                    storeId: store.id,
+                    storeSlug: store.slug,
                     delivery_zone_id: data.neighborhood_id,
-                    coupon_id: data.coupon_id,
-                    delivery_fee: data.delivery_fee,
-                    discount: data.discount,
+                    coupon_code: data.coupon_code,
                     payment_method: data.payment_method,
+                    notes: data.notes,
+                    email: data.email,
                   },
                   {
                     onSuccess: (order) => {

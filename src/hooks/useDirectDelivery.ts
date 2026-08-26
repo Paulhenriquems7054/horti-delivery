@@ -67,11 +67,7 @@ export function useCustomerDirectDelivery(phone: string) {
     setLoading(true);
 
     (supabase as any)
-      .from("direct_deliveries")
-      .select("*")
-      .eq("phone", phone)
-      .order("created_at", { ascending: false })
-      .limit(5)
+      .rpc("get_direct_deliveries_by_phone", { p_phone: phone })
       .then(({ data }: any) => {
         if (data) setDeliveries(data);
         setLoading(false);
@@ -142,14 +138,12 @@ export function useUpdateDirectDeliveryStatus() {
 // Cliente: aprovar ou recusar taxa
 export function useRespondToFee() {
   return useMutation({
-    mutationFn: async ({ id, approved }: { id: string; approved: boolean }) => {
-      const { error } = await (supabase as any)
-        .from("direct_deliveries")
-        .update({
-          status: approved ? "approved" : "cancelled",
-          ...(approved ? { approved_at: new Date().toISOString() } : {}),
-        })
-        .eq("id", id);
+    mutationFn: async ({ id, phone, approved }: { id: string; phone: string; approved: boolean }) => {
+      const { error } = await (supabase as any).rpc("respond_direct_delivery_fee", {
+        p_id: id,
+        p_phone: phone,
+        p_approved: approved,
+      });
       if (error) throw error;
     },
   });

@@ -45,35 +45,41 @@ export function useCoupons(storeId?: string) {
 
 export function useValidateCoupon() {
   return useMutation({
-    mutationFn: async ({ code, storeId, orderTotal }: { code: string; storeId?: string; orderTotal: number }) => {
-      let query = supabase
-        .from("coupons")
-        .select("*")
-        .eq("code", code.toUpperCase())
-        .eq("active", true)
-        .single();
-      
-      const { data, error } = await query;
-      if (error) throw new Error("Cupom inválido");
-      
-      const coupon = data as Coupon;
-      
-      // Validations
-      const expiryDate = getCouponExpiryDate(coupon.expires_at);
-      if (expiryDate && expiryDate.getTime() < Date.now()) {
-        throw new Error("Cupom expirado");
-      }
-      if (coupon.max_uses && coupon.used_count >= coupon.max_uses) {
-        throw new Error("Cupom esgotado");
-      }
-      if (coupon.min_order > orderTotal) {
-        throw new Error(`Pedido mínimo de R$ ${coupon.min_order.toFixed(2)}`);
-      }
-      if (storeId && coupon.store_id && coupon.store_id !== storeId) {
-        throw new Error("Cupom não válido para esta loja");
-      }
-      
-      return coupon;
+    mutationFn: async ({
+      code,
+      storeSlug,
+      storeId,
+      orderTotal,
+    }: {
+      code: string;
+      storeSlug?: string;
+      storeId?: string;
+      orderTotal: number;
+    }) => {
+      const slug = storeSlug;
+      if (!slug) throw new Error("Loja não identificada");
+      const { data, error } = await supabase.rpc("preview_coupon", {
+        p_store_slug: slug,
+        p_code: code,
+        p_subtotal: orderTotal,
+      });
+      if (error) throw new Error(error.message || "Cupom inválido");
+      const preview = data as {
+        id: string;
+        code: string;
+        discount_type: "percentage" | "fixed";
+        discount_value: number;
+        discount: number;
+      };
+      return {
+        id: preview.id,
+        code: preview.code,
+        discount_type: preview.discount_type,
+        discount_value: preview.discount_value,
+        min_order: 0,
+        used_count: 0,
+        active: true,
+      } as Coupon;
     },
   });
 }

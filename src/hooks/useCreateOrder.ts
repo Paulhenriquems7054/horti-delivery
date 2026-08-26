@@ -6,85 +6,48 @@ export interface CreateOrderInput {
   customer_name: string;
   phone: string;
   address: string;
-  total: number;
   products: BasketProduct[];
-  storeId?: string;
+  storeSlug: string;
   delivery_zone_id?: string;
-  coupon_id?: string;
-  delivery_fee?: number;
-  discount?: number;
+  coupon_code?: string;
   notes?: string;
   email?: string;
-  payment_method?: 'credit' | 'debit' | 'cash';
+  payment_method?: "credit" | "debit" | "cash";
 }
 
 export function useCreateOrder() {
   return useMutation({
     mutationFn: async (input: CreateOrderInput) => {
-      // 1. Cria o pedido
-      // Normaliza o telefone para garantir consistência na busca
-      const normalizedPhone = input.phone.replace(/\D/g, "");
-      
-      const { data: order, error: oErr } = await supabase
-        .from("orders")
-        .insert({
-          customer_name: input.customer_name,
-          phone: normalizedPhone,
-          address: input.address,
-          total: input.total,
-          status: "pending",
-          store_id: input.storeId,
-          delivery_zone_id: input.delivery_zone_id,
-          coupon_id: input.coupon_id,
-          delivery_fee: input.delivery_fee || 0,
-          discount: input.discount || 0,
-          notes: input.notes,
-          email: input.email,
-          payment_method: input.payment_method || 'cash',
-        })
-        .select()
-        .single();
-
-      if (oErr) throw oErr;
-
-      // 2. Cria os itens do pedido
-      const orderItems = input.products.map((p) => {
-        const item: any = {
-          order_id: order.id,
-          product_id: p.id,
-          quantity: p.quantity || 1,
-          price: p.price,
-        };
-        
-        // Adiciona campos específicos baseado no tipo de venda
-        if (p.sold_by === 'weight') {
-          item.weight_kg = p.weight_kg;
-          item.sold_by = 'weight';
-        } else {
-          item.sold_by = 'unit';
-          item.needs_weighing = true; // Itens por unidade precisam ser pesados
+      const items = input.products.map((p) => {
+        if (p.sold_by === "weight") {
+          return {
+            product_id: p.id,
+            sold_by: "weight",
+            weight_kg: p.weight_kg,
+          };
         }
-        
-        return item;
+        return {
+          product_id: p.id,
+          sold_by: "unit",
+          quantity: p.quantity || 1,
+        };
       });
 
-      const { error: iErr } = await supabase.from("order_items").insert(orderItems);
-
-      if (iErr) throw iErr;
-
-      // 3. Atualiza contador de uso do cupom se aplicado
-      if (input.coupon_id) {
-        await supabase.rpc("increment_coupon_usage", { coupon_id: input.coupon_id });
-      }
-
-      // 4. Cria tracking inicial
-      await supabase.from("order_tracking").insert({
-        order_id: order.id,
-        status: "pending",
-        notes: "Pedido recebido",
+      const { data, error } = await supabase.rpc("create_customer_order", {
+        p_store_slug: input.storeSlug,
+        p_customer_name: input.customer_name,
+        p_phone: input.phone,
+        p_address: input.address,
+        p_items: items,
+        p_coupon_code: input.coupon_code ?? null,
+        p_delivery_zone_id: input.delivery_zone_id ?? null,
+        p_payment_method: input.payment_method || "cash",
+        p_notes: input.notes ?? null,
+        p_email: input.email ?? null,
       });
 
-      return order;
+      if (error) throw error;
+      return data as { id: string; total: number; discount: number; delivery_fee: number; store_id: string };
     },
   });
 }

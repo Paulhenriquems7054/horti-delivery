@@ -122,108 +122,29 @@ function useRealtimeOrder(orderId: string, phone: string) {
       return;
     }
 
-    // Normaliza o telefone para garantir compatibilidade
     const normalizedPhone = phone.replace(/\D/g, "");
 
-    // Busca inicial com itens
-    supabase
-      .from("orders")
-      .select(`
-        *,
-        order_items (
-          id,
-          quantity,
-          weight_kg,
-          price,
-          sold_by,
-          needs_weighing,
-          actual_weight_kg,
-          final_price,
-          product:products (
-            name
-          )
-        )
-      `)
-      .eq("id", orderId)
-      .eq("phone", normalizedPhone)
-      .single()
-      .then(({ data, error }) => {
-        if (!error && data) {
-          // Transforma os dados para o formato esperado
-          const transformedData = {
-            ...data,
-            order_items: data.order_items?.map((item: any) => ({
-              ...item,
-              product_name: item.product?.name || 'Produto'
-            }))
-          };
-          setOrder(transformedData as Order);
-        }
-        setLoading(false);
+    const load = async () => {
+      const { data, error } = await supabase.rpc("get_order_for_customer", {
+        p_order_id: orderId,
+        p_phone: normalizedPhone,
       });
+      if (!error && data) {
+        const row = data as any;
+        setOrder({
+          ...row,
+          order_items: (row.order_items ?? []).map((item: any) => ({
+            ...item,
+            product_name: item.product_name || item.product?.name || "Produto",
+          })),
+        } as Order);
+      }
+      setLoading(false);
+    };
 
-    // Realtime - atualiza status em tempo real
-    const channel = supabase
-      .channel(`customer-order-${orderId}`)
-      .on(
-        "postgres_changes",
-        { 
-          event: "UPDATE", 
-          schema: "public", 
-          table: "orders", 
-          filter: `id=eq.${orderId}` 
-        },
-        (payload) => {
-          setOrder(prev => prev ? { ...prev, ...(payload.new as Order) } : null);
-        }
-      )
-      .on(
-        "postgres_changes",
-        { 
-          event: "*", 
-          schema: "public", 
-          table: "order_items", 
-          filter: `order_id=eq.${orderId}` 
-        },
-        () => {
-          // Recarrega itens quando houver mudança (pesagem)
-          supabase
-            .from("orders")
-            .select(`
-              *,
-              order_items (
-                id,
-                quantity,
-                weight_kg,
-                price,
-                sold_by,
-                needs_weighing,
-                actual_weight_kg,
-                final_price,
-                product:products (
-                  name
-                )
-              )
-            `)
-            .eq("id", orderId)
-            .single()
-            .then(({ data }) => {
-              if (data) {
-                const transformedData = {
-                  ...data,
-                  order_items: data.order_items?.map((item: any) => ({
-                    ...item,
-                    product_name: item.product?.name || 'Produto'
-                  }))
-                };
-                setOrder(transformedData as Order);
-              }
-            });
-        }
-      )
-      .subscribe();
-
-    return () => { supabase.removeChannel(channel); };
+    load();
+    const interval = setInterval(load, 10000);
+    return () => clearInterval(interval);
   }, [orderId, phone]);
 
   return { order, loading };

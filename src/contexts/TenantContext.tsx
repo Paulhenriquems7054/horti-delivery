@@ -92,7 +92,7 @@ export function CustomerTenantProvider({
     let cancelled = false;
 
     (supabase as any)
-      .from("stores")
+      .from("stores_public")
       .select("id, slug, name, subscription_status, active")
       .eq("slug", slug)
       .maybeSingle()

@@ -20,8 +20,8 @@ export function useStoreInfo(slug: string | undefined) {
       if (!slug) throw new Error("Slug não fornecido");
 
       const { data, error } = await (supabase as any)
-        .from("stores")
-        .select("id, name, slug, description, logo_url, phone, active, subscription_status, blocked_reason")
+        .from("stores_public")
+        .select("id, name, slug, description, logo_url, phone, active, subscription_status")
         .eq("slug", slug)
         .maybeSingle();
 

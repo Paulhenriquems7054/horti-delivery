@@ -10,6 +10,7 @@ interface Props {
   basketName: string;
   basketPrice: number;
   storeId?: string;
+  storeSlug?: string;
   estimatedTotal?: number;
   hasUnitItems?: boolean;
   itemsWithoutEstimate?: number;
@@ -20,9 +21,12 @@ interface Props {
     total_with_fee: number; 
     neighborhood_id?: string;
     coupon_id?: string;
+    coupon_code?: string;
     discount?: number;
     delivery_fee?: number;
     payment_method: 'credit' | 'debit' | 'cash';
+    notes?: string;
+    email?: string;
   }) => void;
   onBack: () => void;
 }
@@ -38,7 +42,8 @@ export function CheckoutForm({
   loading, 
   basketName, 
   basketPrice, 
-  storeId, 
+  storeId,
+  storeSlug, 
   estimatedTotal,
   hasUnitItems = false,
   itemsWithoutEstimate = 0,
@@ -112,6 +117,7 @@ export function CheckoutForm({
     try {
       const coupon = await validateCoupon.mutateAsync({
         code: couponCode,
+        storeSlug,
         storeId,
         orderTotal: couponValidationTotal,
       });
@@ -156,11 +162,12 @@ export function CheckoutForm({
       address: fullAddress,
       total_with_fee: finalTotal,
       neighborhood_id: selectedZone || undefined,
-      coupon_id: appliedCoupon?.id,
-      discount,
-      delivery_fee: deliveryFee,
-      payment_method: paymentMethod,
-    });
+    coupon_id: appliedCoupon?.id,
+    coupon_code: appliedCoupon?.code,
+    discount,
+    delivery_fee: deliveryFee,
+    payment_method: paymentMethod,
+  });
   };
 
   return (

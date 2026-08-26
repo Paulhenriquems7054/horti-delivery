@@ -31,7 +31,7 @@ export default function DirectDeliveryTracking() {
 
   const handleRespond = async (id: string, approved: boolean) => {
     try {
-      await respond.mutateAsync({ id, approved });
+      await respond.mutateAsync({ id, phone: searchPhone, approved });
       toast.success(approved ? "Taxa aprovada! Entrega confirmada 🛵" : "Entrega cancelada.");
     } catch { toast.error("Erro ao responder"); }
   };

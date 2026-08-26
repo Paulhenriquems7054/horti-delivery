@@ -13,7 +13,7 @@ export default function Landing() {
     setIsLoading(true);
     try {
       const { data: store, error } = await (supabase as any)
-        .from("stores")
+        .from("stores_public")
         .select("slug")
         .limit(1)
         .maybeSingle();

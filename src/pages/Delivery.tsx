@@ -20,7 +20,6 @@ type StoreInfo = {
   id: string;
   name: string;
   slug: string;
-  delivery_pin: string;
 };
 
 function useStoreBySlug(slug: string) {
@@ -28,86 +27,56 @@ function useStoreBySlug(slug: string) {
     queryKey: ["delivery-store", slug],
     queryFn: async () => {
       const { data, error } = await (supabase as any)
-        .from("stores")
-        .select("id, name, slug, delivery_pin")
+        .from("stores_public")
+        .select("id, name, slug")
         .eq("slug", slug)
-        .eq("active", true)
         .maybeSingle();
       if (error) throw error;
       return data as StoreInfo | null;
     },
+    enabled: !!slug,
   });
 }
 
-function useDeliveryOrders(storeId?: string) {
+function useDeliveryOrders(slug?: string, pin?: string) {
   return useQuery({
-    queryKey: ["delivery-orders", storeId],
+    queryKey: ["delivery-orders", slug, pin ? "auth" : "locked"],
     queryFn: async () => {
-      if (!storeId) return [];
-      const { data, error } = await (supabase as any)
-        .from("orders")
-        .select("*")
-        .eq("store_id", storeId)
-        .in("status", ["ready_for_delivery", "delivering"])
-        .order("created_at", { ascending: true });
+      if (!slug || !pin) return [];
+      const { data, error } = await supabase.rpc("list_delivery_orders", {
+        p_store_slug: slug,
+        p_pin: pin,
+      });
       if (error) throw error;
-      return data as Order[];
+      return (data ?? []) as Order[];
     },
-    enabled: !!storeId,
+    enabled: !!slug && !!pin,
     refetchInterval: 15_000,
   });
 }
 
-function useStartDelivery() {
+function useDeliveryStatus(slug?: string, pin?: string) {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (orderId: string) => {
-      const { error } = await supabase
-        .from("orders")
-        .update({ status: "delivering" })
-        .eq("id", orderId);
-      if (error) throw error;
-      await (supabase as any).from("order_tracking").insert({
-        order_id: orderId,
-        status: "delivering",
-        notes: "Pedido saiu para entrega",
+    mutationFn: async ({ orderId, status }: { orderId: string; status: "delivering" | "delivered" }) => {
+      if (!slug || !pin) throw new Error("unauthorized");
+      const { error } = await supabase.rpc("update_delivery_order_status", {
+        p_store_slug: slug,
+        p_pin: pin,
+        p_order_id: orderId,
+        p_status: status,
       });
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["delivery-orders"] });
-      toast.success("Rota iniciada! 🛵");
-    },
-    onError: () => toast.error("Erro ao iniciar rota"),
-  });
-}
-
-function useMarkDelivered() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async (orderId: string) => {
-      const { error } = await supabase
-        .from("orders")
-        .update({ status: "delivered" })
-        .eq("id", orderId);
       if (error) throw error;
-      await (supabase as any).from("order_tracking").insert({
-        order_id: orderId,
-        status: "delivered",
-        notes: "Entrega confirmada pelo entregador",
-      });
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["delivery-orders"] });
-      toast.success("Entrega confirmada! ✅");
-    },
-    onError: () => toast.error("Erro ao confirmar entrega"),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ["delivery-orders"] }),
   });
 }
 
 // ─── PIN Screen ───────────────────────────────────────────────────────────────
-function PinScreen({ storeName, onUnlock }: { storeName: string; onUnlock: (pin: string) => void }) {
+function PinScreen({ storeName, onUnlock, error: pinInvalid }: { storeName: string; onUnlock: (pin: string) => void; error?: boolean }) {
   const [pin, setPin] = useState("");
   const [error, setError] = useState(false);
+  const showError = error || pinInvalid;
 
   const handleDigit = (d: string) => {
     if (pin.length >= 4) return;
@@ -143,7 +112,7 @@ function PinScreen({ storeName, onUnlock }: { storeName: string; onUnlock: (pin:
       <div className="flex gap-4 mb-8">
         {[0, 1, 2, 3].map(i => (
           <div key={i} className={`h-4 w-4 rounded-full transition-all duration-150 ${
-            i < pin.length ? (error ? "bg-red-500" : "bg-emerald-400") : "bg-muted-foreground/30 dark:bg-slate-600"
+            i < pin.length ? (showError ? "bg-red-500" : "bg-emerald-400") : "bg-muted-foreground/30 dark:bg-slate-600"
           }`} />
         ))}
       </div>
@@ -165,16 +134,15 @@ function PinScreen({ storeName, onUnlock }: { storeName: string; onUnlock: (pin:
         ))}
       </div>
 
-      {error && <p className="mt-6 text-red-500 dark:text-red-400 font-bold text-sm animate-pulse">PIN incorreto</p>}
+      {showError && <p className="mt-6 text-red-500 dark:text-red-400 font-bold text-sm animate-pulse">PIN incorreto</p>}
     </div>
   );
 }
 
 // ─── Order Card ───────────────────────────────────────────────────────────────
-function OrderCard({ order }: { order: Order }) {
+function OrderCard({ order, slug, pin }: { order: Order; slug: string; pin: string }) {
   const [confirming, setConfirming] = useState(false);
-  const markDelivered = useMarkDelivered();
-  const startDelivery = useStartDelivery();
+  const updateStatus = useDeliveryStatus(slug, pin);
   const isReady = order.status === "ready_for_delivery";
 
   return (
@@ -228,11 +196,11 @@ function OrderCard({ order }: { order: Order }) {
 
         {isReady ? (
           <button
-            onClick={() => startDelivery.mutate(order.id)}
-            disabled={startDelivery.isPending}
+            onClick={() => updateStatus.mutate({ orderId: order.id, status: "delivering" })}
+            disabled={updateStatus.isPending}
             className="w-full h-14 rounded-2xl bg-blue-500 hover:bg-blue-600 text-white font-extrabold text-base flex items-center justify-center gap-2 transition-colors shadow-md active:scale-[0.98] disabled:opacity-60"
           >
-            {startDelivery.isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : <Bike className="h-5 w-5" />}
+            {updateStatus.isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : <Bike className="h-5 w-5" />}
             Iniciar Entrega
           </button>
         ) : !confirming ? (
@@ -253,11 +221,11 @@ function OrderCard({ order }: { order: Order }) {
                 Cancelar
               </button>
               <button
-                onClick={() => markDelivered.mutate(order.id)}
-                disabled={markDelivered.isPending}
+                onClick={() => updateStatus.mutate({ orderId: order.id, status: "delivered" })}
+                disabled={updateStatus.isPending}
                 className="flex-1 h-12 rounded-xl bg-emerald-500 text-white font-extrabold text-sm flex items-center justify-center gap-2 hover:bg-emerald-600 disabled:opacity-60"
               >
-                {markDelivered.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : "✅ Sim, entregue!"}
+                {updateStatus.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : "✅ Sim, entregue!"}
               </button>
             </div>
           </div>
@@ -273,11 +241,13 @@ export default function Delivery() {
   // suporta tanto /:slug/delivery quanto /delivery/:slug
   const slug = params.slug;
   const [unlocked, setUnlocked] = useState(false);
+  const [pin, setPin] = useState("");
   const [pinError, setPinError] = useState(false);
 
   const { data: store, isLoading: storeLoading } = useStoreBySlug(slug ?? "");
   const { data: orders = [], isLoading: ordersLoading, refetch } = useDeliveryOrders(
-    unlocked ? store?.id : undefined
+    unlocked ? slug : undefined,
+    unlocked ? pin : undefined,
   );
 
   if (!slug) return <Navigate to="/" replace />;
@@ -304,13 +274,19 @@ export default function Delivery() {
     return (
       <PinScreen
         storeName={store.name}
-        onUnlock={(enteredPin: string) => {
-          if (enteredPin === store.delivery_pin) {
-            setUnlocked(true);
-          } else {
+        error={pinError}
+        onUnlock={async (enteredPin: string) => {
+          const { error } = await supabase.rpc("verify_delivery_pin", {
+            p_store_slug: slug,
+            p_pin: enteredPin,
+          });
+          if (error) {
             setPinError(true);
             setTimeout(() => setPinError(false), 1000);
+            return;
           }
+          setPin(enteredPin);
+          setUnlocked(true);
         }}
       />
     );
@@ -368,7 +344,7 @@ export default function Delivery() {
         )}
 
         {orders.map(order => (
-          <OrderCard key={order.id} order={order} />
+          <OrderCard key={order.id} order={order} slug={slug} pin={pin} />
         ))}
       </main>
     </div>

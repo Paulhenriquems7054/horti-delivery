@@ -55,8 +55,7 @@ export function useManageDeliveryZone() {
         payload.store_id = zone.store_id;
       } else {
         // fallback: link to first store
-        const { data: store } = await supabase.from("stores").select("id").limit(1).maybeSingle();
-        if (store) payload.store_id = store.id;
+        throw new Error("store_id is required");
       }
 
       const { error } = await supabase.from("delivery_zones").insert(payload);

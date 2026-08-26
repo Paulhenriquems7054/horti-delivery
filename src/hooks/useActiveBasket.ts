@@ -48,19 +48,6 @@ export function useActiveBasket(storeId?: string) {
         basket = data;
       }
 
-      // Fallback: pega qualquer cesta ativa (sem filtro de loja)
-      if (!basket) {
-        const { data, error } = await supabase
-          .from("baskets")
-          .select("*")
-          .eq("active", true)
-          .limit(1)
-          .maybeSingle();
-
-        if (error) throw error;
-        basket = data;
-      }
-
       if (!basket) return null;
 
       const effectiveStoreId = storeId || (basket as any).store_id;
