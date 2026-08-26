@@ -48,9 +48,7 @@ export function useActiveBasket(storeId?: string) {
         basket = data;
       }
 
-      if (!basket) return null;
-
-      const effectiveStoreId = storeId || (basket as any).store_id;
+      const effectiveStoreId = storeId || (basket as any)?.store_id;
       if (!effectiveStoreId) return null;
 
       // 2. Busca todos os produtos ativos da loja
@@ -83,9 +81,9 @@ export function useActiveBasket(storeId?: string) {
       }));
 
       return {
-        id: basket.id,
-        name: basket.name,
-        price: basket.price,
+        id: basket?.id ?? effectiveStoreId,
+        name: basket?.name ?? "Catálogo",
+        price: basket?.price ?? 0,
         products,
       };
     },

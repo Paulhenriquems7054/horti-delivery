@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { useNavigate } from "react-router-dom";
 import {
   Shield, RefreshCw, LogOut, Search, Loader2,
   Lock, Unlock, Plus, X, Clock, CheckCircle2, XCircle, Ban,
@@ -439,8 +438,74 @@ function NewClientModal({ onClose, onDone }: { onClose: () => void; onDone: () =
   );
 }
 
+function OperatorLogin({
+  onSuccess,
+  notice,
+}: {
+  onSuccess: () => void;
+  notice?: string | null;
+}) {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [busy, setBusy] = useState(false);
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBusy(true);
+    const { error } = await supabase.auth.signInWithPassword({ email, password });
+    if (error) {
+      setBusy(false);
+      toast.error("E-mail ou senha inválidos.");
+      return;
+    }
+    const { data: isAdmin, error: rpcErr } = await supabase.rpc("is_platform_admin" as never);
+    setBusy(false);
+    if (rpcErr || isAdmin !== true) {
+      await supabase.auth.signOut();
+      toast.error("Esta conta não é operador da plataforma.");
+      return;
+    }
+    onSuccess();
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6">
+      <form onSubmit={submit} className="w-full max-w-sm space-y-4">
+        <div className="text-center space-y-2">
+          <div className="h-14 w-14 rounded-2xl bg-violet-600 flex items-center justify-center mx-auto">
+            <Shield className="h-7 w-7 text-white" />
+          </div>
+          <h1 className="text-2xl font-extrabold text-white">Super Admin</h1>
+          <p className="text-sm text-slate-400">Acesso exclusivo do operador da plataforma.</p>
+        </div>
+        {notice && <p className="text-sm text-amber-300 text-center">{notice}</p>}
+        <input
+          required
+          type="email"
+          placeholder="E-mail do operador"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
+        />
+        <input
+          required
+          type="password"
+          placeholder="Senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
+        />
+        <button type="submit" disabled={busy} className="w-full h-12 rounded-xl bg-violet-600 text-white font-bold disabled:opacity-60">
+          {busy ? "Entrando…" : "Entrar"}
+        </button>
+      </form>
+    </div>
+  );
+}
+
 export default function SuperAdmin() {
-  const navigate = useNavigate();
+  const [gate, setGate] = useState<"loading" | "login" | "ok">("loading");
+  const [gateNotice, setGateNotice] = useState<string | null>(null);
   const [stores, setStores] = useState<Tenant[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -448,6 +513,32 @@ export default function SuperAdmin() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [planFilter, setPlanFilter] = useState("all");
   const [newOpen, setNewOpen] = useState(false);
+
+  const resolveGate = async () => {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (!session) {
+      setGate("login");
+      setGateNotice(null);
+      return;
+    }
+    const { data: isAdmin, error } = await supabase.rpc("is_platform_admin" as never);
+    if (error) {
+      setGate("login");
+      setGateNotice("Não foi possível verificar a permissão de operador. Confirme se a migration da Super Admin está aplicada.");
+      return;
+    }
+    if (isAdmin === true) {
+      setGate("ok");
+      return;
+    }
+    await supabase.auth.signOut();
+    setGate("login");
+    setGateNotice("Esta sessão não é de operador. Entre com uma conta cadastrada em platform_admins.");
+  };
+
+  useEffect(() => {
+    void resolveGate();
+  }, []);
 
   const loadStores = async () => {
     setLoading(true);
@@ -463,8 +554,8 @@ export default function SuperAdmin() {
   };
 
   useEffect(() => {
-    void loadStores();
-  }, []);
+    if (gate === "ok") void loadStores();
+  }, [gate]);
 
   const counts = useMemo(() => ({
     all: stores.length,
@@ -490,7 +581,9 @@ export default function SuperAdmin() {
 
   const handleLogout = async () => {
     await supabase.auth.signOut();
-    navigate("/login", { replace: true });
+    setGate("login");
+    setGateNotice(null);
+    setStores([]);
   };
 
   const kpis = [
@@ -500,6 +593,18 @@ export default function SuperAdmin() {
     { key: "blocked", label: "Bloqueados", count: counts.blocked, icon: Ban },
     { key: "cancelled", label: "Cancelados", count: counts.cancelled, icon: XCircle },
   ];
+
+  if (gate === "loading") {
+    return (
+      <div className="min-h-screen bg-slate-950 flex items-center justify-center">
+        <Loader2 className="h-8 w-8 animate-spin text-violet-400" />
+      </div>
+    );
+  }
+
+  if (gate !== "ok") {
+    return <OperatorLogin onSuccess={() => { setGate("ok"); setGateNotice(null); }} notice={gateNotice} />;
+  }
 
   return (
     <div className="min-h-screen bg-slate-100">
