@@ -1,9 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
+import { getSupabaseEnv, requireRemoteWritesAllowed } from "./loadEnv.mjs";
 
-const SUPABASE_URL = "https://ggtdnczmmoxagmbzopsf.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImdndGRuY3ptbW94YWdtYnpvcHNmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQxMzgxMTIsImV4cCI6MjA4OTcxNDExMn0.oqrMVrztvsLXtdaZoB6hdxB_IWsaWhjf4IZUbS_nQR0";
-
-const supabase = createClient(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY);
+requireRemoteWritesAllowed();
+const { url, key } = getSupabaseEnv();
+const supabase = createClient(url, key);
 
 async function testInsert() {
   console.log("Trying to insert order...");
@@ -11,10 +11,10 @@ async function testInsert() {
     .from("orders")
     .insert({
       customer_name: "Test Runner",
-      phone: "123456789",
+      phone: "00000000000",
       address: "Test Address",
       total: 10.5,
-      status: "pending"
+      status: "pending",
     })
     .select();
 
