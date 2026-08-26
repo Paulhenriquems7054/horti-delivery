@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   Shield, RefreshCw, LogOut, Search, Loader2,
-  Lock, Unlock, Plus, X, Clock, CheckCircle2, XCircle, Ban,
+  Lock, Unlock, Plus, X, Clock, CheckCircle2, XCircle, Ban, Pencil,
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -38,11 +38,15 @@ const PLAN_LABELS: Record<string, string> = {
 };
 
 const STATUS_META: Record<string, { label: string; className: string }> = {
-  active: { label: "Ativo", className: "bg-emerald-100 text-emerald-800" },
-  trial: { label: "Trial", className: "bg-blue-100 text-blue-800" },
-  blocked: { label: "Bloqueado", className: "bg-red-100 text-red-800" },
-  cancelled: { label: "Cancelado", className: "bg-slate-200 text-slate-700" },
+  active: { label: "ATIVO", className: "bg-emerald-100 text-emerald-800" },
+  trial: { label: "TRIAL", className: "bg-blue-100 text-blue-800" },
+  blocked: { label: "BLOQUEADO", className: "bg-red-100 text-red-800" },
+  cancelled: { label: "CANCELADO", className: "bg-slate-200 text-slate-700" },
 };
+
+function slugOk(value: string) {
+  return /^[a-z0-9]([a-z0-9-]{0,38}[a-z0-9])?$/.test(value);
+}
 
 function publicError(message?: string) {
   const m = (message ?? "").toLowerCase();
@@ -105,6 +109,13 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
   const [planOpen, setPlanOpen] = useState(false);
   const [blockOpen, setBlockOpen] = useState(false);
   const [unblockOpen, setUnblockOpen] = useState(false);
+  const [editOpen, setEditOpen] = useState(false);
+  const [editName, setEditName] = useState(store.name);
+  const [editSlug, setEditSlug] = useState(store.slug);
+  const [editEmail, setEditEmail] = useState(store.email ?? "");
+  const [editPhone, setEditPhone] = useState(store.phone ?? "");
+  const [editDescription, setEditDescription] = useState(store.description ?? "");
+  const [editError, setEditError] = useState<string | null>(null);
   const [plan, setPlan] = useState(store.subscription_plan || "basic");
   const [expiresAt, setExpiresAt] = useState(
     store.subscription_expires_at ? store.subscription_expires_at.split("T")[0] : "",
@@ -113,7 +124,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
 
   const status = STATUS_META[store.subscription_status] ?? STATUS_META.active;
   const blocked = store.subscription_status === "blocked";
-  const expired = isExpired(store.subscription_expires_at);
+  const expired = isExpired(store.subscription_expires_at) || isExpired(store.trial_ends_at);
 
   const loadEvents = async () => {
     setEventsLoading(true);
@@ -193,48 +204,114 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
     onRefresh();
   };
 
+  const openEdit = () => {
+    setEditName(store.name);
+    setEditSlug(store.slug);
+    setEditEmail(store.email ?? "");
+    setEditPhone(store.phone ?? "");
+    setEditDescription(store.description ?? "");
+    setEditError(null);
+    setEditOpen(true);
+  };
+
+  const saveEdit = async () => {
+    const name = editName.trim();
+    const slug = editSlug.trim().toLowerCase();
+    if (name.length < 2) {
+      setEditError("Informe o nome da loja.");
+      return;
+    }
+    if (!slugOk(slug)) {
+      setEditError("Slug inválido. Use letras minúsculas, números e hífen.");
+      return;
+    }
+    if (slug !== store.slug) {
+      const ok = window.confirm(
+        `Alterar o slug de /${store.slug} para /${slug} quebra o link público antigo. Continuar?`,
+      );
+      if (!ok) return;
+    }
+    setBusy(true);
+    setEditError(null);
+    const { error } = await supabase.rpc("update_tenant" as never, {
+      p_store_id: store.id,
+      p_name: name,
+      p_slug: slug,
+      p_email: editEmail.trim() || null,
+      p_phone: editPhone.trim() || null,
+      p_description: editDescription.trim() || null,
+    } as never);
+    setBusy(false);
+    if (error) {
+      const msg = (error.message || "").toLowerCase().includes("could not find")
+        || (error.message || "").toLowerCase().includes("does not exist")
+        || (error.message || "").toLowerCase().includes("schema cache")
+        ? "A RPC update_tenant ainda não está aplicada no Hosted."
+        : publicError(error.message);
+      setEditError(msg);
+      toast.error(msg);
+      return;
+    }
+    toast.success("Cliente atualizado.");
+    setEditOpen(false);
+    onRefresh();
+  };
+
   return (
     <article className={`rounded-2xl border bg-white shadow-sm ${blocked ? "border-red-200" : "border-slate-200"}`}>
       <div className="p-5 space-y-4">
-        <div className="flex items-start justify-between gap-3">
-          <div>
-            <div className="flex items-center gap-2 flex-wrap">
-              <h3 className="text-lg font-extrabold text-slate-900">{store.name}</h3>
-              <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${status.className}`}>{status.label}</span>
-              {expired && (
-                <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">EXPIRADO</span>
-              )}
-            </div>
-            <p className="text-sm text-slate-500 mt-0.5">/{store.slug}</p>
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-wide text-slate-400">Identificação</p>
+          <div className="flex items-center gap-2 flex-wrap mt-1">
+            <h3 className="text-lg font-extrabold text-slate-900">{store.name}</h3>
+            <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${status.className}`}>{status.label}</span>
+            {expired && (
+              <span className="text-[11px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">EXPIRADO</span>
+            )}
           </div>
+          <p className="text-sm text-slate-500 mt-0.5">/{store.slug}</p>
         </div>
 
-        <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm">
-          <div>
-            <dt className="text-slate-500">E-mail</dt>
-            <dd className="font-medium text-slate-800 break-all">{store.email || "—"}</dd>
-          </div>
-          <div>
-            <dt className="text-slate-500">Telefone</dt>
-            <dd className="font-medium text-slate-800">{store.phone || "—"}</dd>
-          </div>
-          <div>
-            <dt className="text-slate-500">Plano</dt>
-            <dd className="font-medium text-slate-800">{PLAN_LABELS[store.subscription_plan] || store.subscription_plan}</dd>
-          </div>
-          <div>
-            <dt className="text-slate-500">Status da assinatura</dt>
-            <dd className="font-medium text-slate-800">{status.label}</dd>
-          </div>
-          <div>
-            <dt className="text-slate-500">Fim do trial</dt>
-            <dd className="font-medium text-slate-800">{formatDate(store.trial_ends_at)}</dd>
-          </div>
-          <div>
-            <dt className="text-slate-500">Expira em</dt>
-            <dd className="font-medium text-slate-800">{formatDate(store.subscription_expires_at)}</dd>
-          </div>
-        </dl>
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-wide text-slate-400">Contato da loja</p>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm mt-1">
+            <div>
+              <dt className="text-slate-500">E-mail de contato</dt>
+              <dd className="font-medium text-slate-800 break-all">{store.email || "Não informado"}</dd>
+            </div>
+            <div>
+              <dt className="text-slate-500">Telefone</dt>
+              <dd className="font-medium text-slate-800">{store.phone || "Não informado"}</dd>
+            </div>
+          </dl>
+        </div>
+
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-wide text-slate-400">Assinatura</p>
+          <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm mt-1">
+            <div>
+              <dt className="text-slate-500">Plano</dt>
+              <dd className="font-medium text-slate-800">{PLAN_LABELS[store.subscription_plan] || store.subscription_plan}</dd>
+            </div>
+            <div>
+              <dt className="text-slate-500">Status da assinatura</dt>
+              <dd className="font-medium text-slate-800">{status.label}</dd>
+            </div>
+            <div>
+              <dt className="text-slate-500">Fim do trial</dt>
+              <dd className="font-medium text-slate-800">
+                {formatDate(store.trial_ends_at)}
+                {isExpired(store.trial_ends_at) && store.trial_ends_at && (
+                  <span className="ml-2 text-[11px] font-bold text-amber-700">EXPIRADO</span>
+                )}
+              </dd>
+            </div>
+            <div>
+              <dt className="text-slate-500">Expira em</dt>
+              <dd className="font-medium text-slate-800">{formatDate(store.subscription_expires_at)}</dd>
+            </div>
+          </dl>
+        </div>
 
         {blocked && store.blocked_reason && (
           <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-xl px-3 py-2">
@@ -243,10 +320,20 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
         )}
 
         {store.user_id && (
-          <p className="text-[11px] text-slate-400 font-mono break-all">user_id: {store.user_id}</p>
+          <div>
+            <p className="text-[11px] font-bold uppercase tracking-wide text-slate-400">Identificação técnica</p>
+            <p className="text-[11px] text-slate-400 font-mono break-all mt-1">user_id: {store.user_id}</p>
+          </div>
         )}
 
         <div className="flex flex-wrap gap-2">
+          <button
+            type="button"
+            onClick={openEdit}
+            className="h-9 px-3 rounded-lg bg-slate-800 text-white text-xs font-bold hover:bg-slate-700 inline-flex items-center gap-1.5"
+          >
+            <Pencil className="h-3.5 w-3.5" /> Editar
+          </button>
           <button
             type="button"
             onClick={() => setPlanOpen(true)}
@@ -303,6 +390,41 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
           )}
         </div>
       </div>
+
+      {editOpen && (
+        <Modal title="Editar cliente" onClose={() => setEditOpen(false)}>
+          <div className="space-y-3">
+            <label className="block text-sm font-medium text-slate-700">
+              Nome da loja
+              <input value={editName} onChange={(e) => setEditName(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+            </label>
+            <label className="block text-sm font-medium text-slate-700">
+              Slug
+              <input value={editSlug} onChange={(e) => setEditSlug(e.target.value.toLowerCase())} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+            </label>
+            <label className="block text-sm font-medium text-slate-700">
+              E-mail de contato da loja
+              <input type="email" value={editEmail} onChange={(e) => setEditEmail(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+            </label>
+            <p className="text-xs text-slate-500">Este e-mail é de contato da loja. Não altera o e-mail de login do administrador.</p>
+            <label className="block text-sm font-medium text-slate-700">
+              Telefone
+              <input value={editPhone} onChange={(e) => setEditPhone(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+            </label>
+            <label className="block text-sm font-medium text-slate-700">
+              Descrição
+              <textarea value={editDescription} onChange={(e) => setEditDescription(e.target.value)} className="mt-1 w-full min-h-[72px] px-3 py-2 border rounded-lg" />
+            </label>
+            {editError && <p className="text-sm text-red-600">{editError}</p>}
+            <div className="flex justify-end gap-2 pt-2">
+              <button type="button" onClick={() => setEditOpen(false)} className="h-10 px-4 rounded-lg text-sm font-bold text-slate-600">Cancelar</button>
+              <button type="button" disabled={busy} onClick={() => void saveEdit()} className="h-10 px-4 rounded-lg bg-slate-900 text-white text-sm font-bold disabled:opacity-60">
+                {busy ? "Salvando…" : "Salvar alterações"}
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
 
       {planOpen && (
         <Modal title="Alterar plano" onClose={() => setPlanOpen(false)}>
