@@ -447,7 +447,11 @@ function OperatorLogin({
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [newPassword, setNewPassword] = useState("");
   const [busy, setBusy] = useState(false);
+  const [resetting, setResetting] = useState(
+    () => typeof window !== "undefined" && window.location.hash.includes("type=recovery"),
+  );
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -468,36 +472,108 @@ function OperatorLogin({
     onSuccess();
   };
 
+  const forgotPassword = async () => {
+    if (!email.trim()) {
+      toast.error("Digite o e-mail primeiro para enviarmos o link de recuperação.");
+      return;
+    }
+    setBusy(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email.trim(), {
+      redirectTo: `${window.location.origin}/superadmin`,
+    });
+    setBusy(false);
+    if (error) toast.error(error.message || "Não foi possível enviar o e-mail.");
+    else toast.success("E-mail de recuperação enviado. Verifique sua caixa de entrada.");
+  };
+
+  const saveNewPassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (newPassword.length < 6) {
+      toast.error("A nova senha deve ter pelo menos 6 caracteres.");
+      return;
+    }
+    setBusy(true);
+    const { error } = await supabase.auth.updateUser({ password: newPassword });
+    setBusy(false);
+    if (error) {
+      toast.error(error.message || "Não foi possível atualizar a senha.");
+      return;
+    }
+    toast.success("Senha atualizada. Entre com a nova senha.");
+    setResetting(false);
+    setPassword("");
+    setNewPassword("");
+    await supabase.auth.signOut();
+  };
+
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center p-6">
-      <form onSubmit={submit} className="w-full max-w-sm space-y-4">
+      <form onSubmit={resetting ? saveNewPassword : submit} className="w-full max-w-sm space-y-4">
         <div className="text-center space-y-2">
           <div className="h-14 w-14 rounded-2xl bg-violet-600 flex items-center justify-center mx-auto">
             <Shield className="h-7 w-7 text-white" />
           </div>
           <h1 className="text-2xl font-extrabold text-white">Super Admin</h1>
-          <p className="text-sm text-slate-400">Acesso exclusivo do operador da plataforma.</p>
+          <p className="text-sm text-slate-400">
+            {resetting ? "Defina a nova senha de acesso." : "Acesso exclusivo do operador da plataforma."}
+          </p>
         </div>
-        {notice && <p className="text-sm text-amber-300 text-center">{notice}</p>}
-        <input
-          required
-          type="email"
-          placeholder="E-mail do operador"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
-        />
-        <input
-          required
-          type="password"
-          placeholder="Senha"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
-        />
-        <button type="submit" disabled={busy} className="w-full h-12 rounded-xl bg-violet-600 text-white font-bold disabled:opacity-60">
-          {busy ? "Entrando…" : "Entrar"}
-        </button>
+        {notice && !resetting && <p className="text-sm text-amber-300 text-center">{notice}</p>}
+
+        {resetting ? (
+          <>
+            <input
+              required
+              minLength={6}
+              type="password"
+              placeholder="Nova senha"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
+            />
+            <button type="submit" disabled={busy} className="w-full h-12 rounded-xl bg-violet-600 text-white font-bold disabled:opacity-60">
+              {busy ? "Salvando…" : "Salvar nova senha"}
+            </button>
+            <button
+              type="button"
+              onClick={() => setResetting(false)}
+              className="w-full text-xs text-slate-400 hover:text-white font-bold"
+            >
+              Cancelar e voltar
+            </button>
+          </>
+        ) : (
+          <>
+            <div className="relative">
+              <button
+                type="button"
+                onClick={() => void forgotPassword()}
+                className="absolute -top-5 right-0 text-[10px] text-violet-300 font-bold hover:underline"
+              >
+                Esqueci minha senha
+              </button>
+              <input
+                required
+                type="email"
+                placeholder="E-mail do operador"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
+              />
+            </div>
+            <input
+              required
+              type="password"
+              placeholder="Senha"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className="w-full h-12 px-4 rounded-xl bg-slate-800 text-white border border-slate-700"
+            />
+            <button type="submit" disabled={busy} className="w-full h-12 rounded-xl bg-violet-600 text-white font-bold disabled:opacity-60">
+              {busy ? "Entrando…" : "Entrar"}
+            </button>
+          </>
+        )}
       </form>
     </div>
   );
@@ -515,6 +591,11 @@ export default function SuperAdmin() {
   const [newOpen, setNewOpen] = useState(false);
 
   const resolveGate = async () => {
+    if (typeof window !== "undefined" && window.location.hash.includes("type=recovery")) {
+      setGate("login");
+      setGateNotice(null);
+      return;
+    }
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
       setGate("login");
