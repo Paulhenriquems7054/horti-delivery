@@ -54,6 +54,7 @@ function publicError(message?: string) {
   if (m.includes("slug")) return "Slug inválido ou já em uso.";
   if (m.includes("reason required")) return "Informe o motivo do bloqueio.";
   if (m.includes("invalid plan")) return "Plano inválido.";
+  if (m.includes("expiry must be in the future")) return "Para converter o trial, informe uma data futura da assinatura.";
   if (m.includes("store not found")) return "Loja não encontrada.";
   if (m.includes("email already") || m.includes("already registered")) return "Este e-mail já está cadastrado.";
   if (m.includes("failed to send") || m.includes("not found") || m.includes("functions")) {
@@ -74,6 +75,13 @@ function formatDateTime(value?: string | null) {
 
 function isExpired(iso?: string | null) {
   return Boolean(iso && new Date(iso) < new Date());
+}
+
+/** EXPIRADO segue a data do estado comercial, não mistura trial com assinatura paga. */
+function isTermExpired(store: Tenant) {
+  if (store.subscription_status === "trial") return isExpired(store.trial_ends_at);
+  if (store.subscription_status === "active") return isExpired(store.subscription_expires_at);
+  return false;
 }
 
 function Modal({
@@ -117,14 +125,25 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
   const [editDescription, setEditDescription] = useState(store.description ?? "");
   const [editError, setEditError] = useState<string | null>(null);
   const [plan, setPlan] = useState(store.subscription_plan || "basic");
-  const [expiresAt, setExpiresAt] = useState(
-    store.subscription_expires_at ? store.subscription_expires_at.split("T")[0] : "",
-  );
+  const [expiresAt, setExpiresAt] = useState("");
   const [blockReason, setBlockReason] = useState("");
+
+  const openPlanModal = () => {
+    setPlan(store.subscription_plan || "basic");
+    setExpiresAt(
+      store.subscription_status === "trial"
+        ? ""
+        : store.subscription_expires_at
+          ? store.subscription_expires_at.split("T")[0]
+          : "",
+    );
+    setPlanOpen(true);
+  };
 
   const status = STATUS_META[store.subscription_status] ?? STATUS_META.active;
   const blocked = store.subscription_status === "blocked";
-  const expired = isExpired(store.subscription_expires_at) || isExpired(store.trial_ends_at);
+  const operationalBlocked = blocked || store.active === false;
+  const expired = isTermExpired(store);
 
   const loadEvents = async () => {
     setEventsLoading(true);
@@ -148,19 +167,31 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
   };
 
   const savePlan = async () => {
+    if (!["basic", "pro", "enterprise"].includes(plan)) {
+      toast.error("Plano inválido.");
+      return;
+    }
+    const expires = expiresAt ? new Date(`${expiresAt}T00:00:00`) : null;
+    if (expires && Number.isNaN(expires.getTime())) {
+      toast.error("Data de expiração inválida.");
+      return;
+    }
+    if (store.subscription_status === "trial" && expires && expires <= new Date()) {
+      toast.error("Para converter o trial, informe uma data futura da assinatura.");
+      return;
+    }
     setBusy(true);
-    const expires = expiresAt ? new Date(`${expiresAt}T00:00:00`).toISOString() : null;
     const { error } = await supabase.rpc("set_tenant_plan" as never, {
       p_store_id: store.id,
       p_plan: plan,
-      p_expires_at: expires,
+      p_expires_at: expires ? expires.toISOString() : null,
     } as never);
     setBusy(false);
     if (error) {
       toast.error(publicError(error.message));
       return;
     }
-    toast.success("Plano atualizado.");
+    toast.success("Plano atualizado com sucesso.");
     setPlanOpen(false);
     onRefresh();
   };
@@ -298,18 +329,31 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
               <dd className="font-medium text-slate-800">{status.label}</dd>
             </div>
             <div>
-              <dt className="text-slate-500">Fim do trial</dt>
-              <dd className="font-medium text-slate-800">
-                {formatDate(store.trial_ends_at)}
-                {isExpired(store.trial_ends_at) && store.trial_ends_at && (
-                  <span className="ml-2 text-[11px] font-bold text-amber-700">EXPIRADO</span>
-                )}
-              </dd>
+              <dt className="text-slate-500">Estado operacional</dt>
+              <dd className="font-medium text-slate-800">{operationalBlocked ? "BLOQUEADO" : "ATIVO"}</dd>
             </div>
-            <div>
-              <dt className="text-slate-500">Expira em</dt>
-              <dd className="font-medium text-slate-800">{formatDate(store.subscription_expires_at)}</dd>
-            </div>
+            {store.subscription_status === "trial" && (
+              <div>
+                <dt className="text-slate-500">Fim do trial</dt>
+                <dd className="font-medium text-slate-800">
+                  {formatDate(store.trial_ends_at)}
+                  {isExpired(store.trial_ends_at) && (
+                    <span className="ml-2 text-[11px] font-bold text-amber-700">EXPIRADO</span>
+                  )}
+                </dd>
+              </div>
+            )}
+            {store.subscription_status === "active" && (
+              <div>
+                <dt className="text-slate-500">Assinatura expira em</dt>
+                <dd className="font-medium text-slate-800">
+                  {formatDate(store.subscription_expires_at)}
+                  {isExpired(store.subscription_expires_at) && (
+                    <span className="ml-2 text-[11px] font-bold text-amber-700">EXPIRADO</span>
+                  )}
+                </dd>
+              </div>
+            )}
           </dl>
         </div>
 
@@ -336,7 +380,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
           </button>
           <button
             type="button"
-            onClick={() => setPlanOpen(true)}
+            onClick={openPlanModal}
             className="h-9 px-3 rounded-lg bg-violet-600 text-white text-xs font-bold hover:bg-violet-700"
           >
             Alterar plano
@@ -429,8 +473,16 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
       {planOpen && (
         <Modal title="Alterar plano" onClose={() => setPlanOpen(false)}>
           <div className="space-y-3">
+            <div className="text-sm bg-slate-50 rounded-xl p-3 space-y-1">
+              <p><span className="text-slate-500">Loja:</span> <strong>{store.name}</strong></p>
+              <p><span className="text-slate-500">Plano atual:</span> {PLAN_LABELS[store.subscription_plan] || store.subscription_plan}</p>
+              <p><span className="text-slate-500">Status atual:</span> {status.label}</p>
+              {store.subscription_status === "trial" && (
+                <p><span className="text-slate-500">Fim do trial:</span> {formatDate(store.trial_ends_at)}</p>
+              )}
+            </div>
             <label className="block text-sm font-medium text-slate-700">
-              Plano
+              Novo plano
               <select value={plan} onChange={(e) => setPlan(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg">
                 <option value="basic">Basic</option>
                 <option value="pro">Pro</option>
@@ -438,9 +490,14 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
               </select>
             </label>
             <label className="block text-sm font-medium text-slate-700">
-              Data de expiração
+              Data de expiração da assinatura
               <input type="date" value={expiresAt} onChange={(e) => setExpiresAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
             </label>
+            {store.subscription_status === "trial" && (
+              <p className="text-xs text-slate-500">
+                Deixe a data vazia para manter o trial (só troca o plano). Informe uma data futura para converter em assinatura paga. O fim do trial não é apagado. Data residual antiga não converte o cliente.
+              </p>
+            )}
             <div className="flex justify-end gap-2 pt-2">
               <button type="button" onClick={() => setPlanOpen(false)} className="h-10 px-4 rounded-lg text-sm font-bold text-slate-600">Cancelar</button>
               <button type="button" disabled={busy} onClick={savePlan} className="h-10 px-4 rounded-lg bg-violet-600 text-white text-sm font-bold disabled:opacity-60">
