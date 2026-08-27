@@ -16,7 +16,7 @@ RETURNS TABLE (
   user_id UUID,
   name TEXT,
   slug TEXT,
-  email TEXT,
+  email TEXT, 
   phone TEXT,
   description TEXT,
   active BOOLEAN,
