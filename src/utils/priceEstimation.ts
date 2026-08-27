@@ -43,6 +43,8 @@ export function calculateCartEstimate(
   productMode: Record<string, "unit" | "weight">
 ): {
   weightItemsTotal: number;
+  unitItemsSubtotal: number;
+  itemsSubtotal: number;
   unitItemsEstimate: number;
   unitItemsMin: number;
   unitItemsMax: number;
@@ -53,6 +55,7 @@ export function calculateCartEstimate(
   unitItemsWithoutEstimate: number;
 } {
   let weightItemsTotal = 0;
+  let unitItemsSubtotal = 0;
   let unitItemsEstimate = 0;
   let unitItemsMin = 0;
   let unitItemsMax = 0;
@@ -68,6 +71,7 @@ export function calculateCartEstimate(
     } else {
       const qty = cart[p.id] || 0;
       if (qty > 0) {
+        unitItemsSubtotal += qty * (p.price_per_unit ?? p.price);
         const estimate = calculateUnitPriceEstimate(p, qty);
         if (estimate.hasEstimate) {
           unitItemsEstimate += estimate.estimated;
@@ -82,6 +86,8 @@ export function calculateCartEstimate(
 
   return {
     weightItemsTotal,
+    unitItemsSubtotal,
+    itemsSubtotal: weightItemsTotal + unitItemsSubtotal,
     unitItemsEstimate,
     unitItemsMin,
     unitItemsMax,
@@ -91,6 +97,16 @@ export function calculateCartEstimate(
     hasUnitEstimates: unitItemsEstimate > 0,
     unitItemsWithoutEstimate,
   };
+}
+
+export function cartLineSubtotal(
+  product: BasketProduct,
+  mode: "unit" | "weight",
+  quantity: number,
+  weightKg: number,
+): number {
+  if (mode === "weight") return weightKg * (product.price_per_kg ?? product.price);
+  return quantity * (product.price_per_unit ?? product.price);
 }
 
 export function formatCurrency(value: number): string {

@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { Loader2, ArrowLeft, User, Phone, MapPin, Truck, Ticket, X, CreditCard, Banknote, Wallet, Scale, AlertTriangle } from "lucide-react";
+import { Loader2, ArrowLeft, User, Phone, MapPin, Truck, Ticket, X, CreditCard, Banknote, Wallet, Scale, AlertTriangle, QrCode } from "lucide-react";
+import { paymentLabel } from "@/lib/paymentMethods";
 import { useDeliveryZones, type DeliveryZone } from "@/hooks/useDeliveryZones";
 import { useValidateCoupon } from "@/hooks/useCoupons";
 import { toast } from "sonner";
@@ -14,6 +15,8 @@ interface Props {
   estimatedTotal?: number;
   hasUnitItems?: boolean;
   itemsWithoutEstimate?: number;
+  cartLines?: { name: string; detail: string; subtotal: number }[];
+  itemCount?: number;
   onSubmit: (data: { 
     customer_name: string; 
     phone: string; 
@@ -24,7 +27,7 @@ interface Props {
     coupon_code?: string;
     discount?: number;
     delivery_fee?: number;
-    payment_method: 'credit' | 'debit' | 'cash';
+    payment_method: "cash" | "card" | "pix";
     notes?: string;
     email?: string;
   }) => void;
@@ -47,6 +50,8 @@ export function CheckoutForm({
   estimatedTotal,
   hasUnitItems = false,
   itemsWithoutEstimate = 0,
+  cartLines = [],
+  itemCount = 0,
   onSubmit, 
   onBack 
 }: Props) {
@@ -60,7 +65,9 @@ export function CheckoutForm({
   const [neighborhood, setNeighborhood] = useState("");
   const [reference, setReference] = useState("");
   const [selectedZone, setSelectedZone] = useState<string>("");
-  const [paymentMethod, setPaymentMethod] = useState<'credit' | 'debit' | 'cash'>('cash');
+  const [paymentMethod, setPaymentMethod] = useState<"cash" | "card" | "pix">("cash");
+  const [changeFor, setChangeFor] = useState("");
+  const [reviewing, setReviewing] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
   const [touched, setTouched] = useState({
@@ -156,6 +163,15 @@ export function CheckoutForm({
       zone: selectedZone,
     }));
 
+    const notes = paymentMethod === "cash" && changeFor.trim()
+      ? `Troco para R$ ${changeFor.trim()}`
+      : undefined;
+
+    if (!reviewing) {
+      setReviewing(true);
+      return;
+    }
+
     onSubmit({
       customer_name: name.trim(),
       phone,
@@ -167,6 +183,7 @@ export function CheckoutForm({
     discount,
     delivery_fee: deliveryFee,
     payment_method: paymentMethod,
+    notes,
   });
   };
 
@@ -346,49 +363,60 @@ export function CheckoutForm({
         {/* Forma de Pagamento */}
         <div className="space-y-2">
           <label className="text-sm font-bold text-foreground flex items-center gap-1.5">
-            <Wallet className="h-4 w-4 text-primary" /> Forma de Pagamento
+            <Wallet className="h-4 w-4 text-primary" /> Pagamento
           </label>
+          <p className="text-sm font-medium text-foreground">Escolha como deseja pagar.</p>
+          <p className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2">
+            O pagamento será realizado somente no momento da entrega.
+          </p>
           <div className="grid grid-cols-3 gap-2">
             <button
               type="button"
-              onClick={() => setPaymentMethod('credit')}
+              onClick={() => setPaymentMethod("cash")}
               className={`h-20 rounded-xl border-2 flex flex-col items-center justify-center gap-1.5 transition-all ${
-                paymentMethod === 'credit' 
-                  ? 'border-primary bg-primary/5 text-primary' 
-                  : 'border-border bg-card text-muted-foreground hover:border-primary/50'
-              }`}
-            >
-              <CreditCard className="h-6 w-6" />
-              <span className="text-xs font-bold">Crédito</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setPaymentMethod('debit')}
-              className={`h-20 rounded-xl border-2 flex flex-col items-center justify-center gap-1.5 transition-all ${
-                paymentMethod === 'debit' 
-                  ? 'border-primary bg-primary/5 text-primary' 
-                  : 'border-border bg-card text-muted-foreground hover:border-primary/50'
-              }`}
-            >
-              <CreditCard className="h-6 w-6" />
-              <span className="text-xs font-bold">Débito</span>
-            </button>
-            <button
-              type="button"
-              onClick={() => setPaymentMethod('cash')}
-              className={`h-20 rounded-xl border-2 flex flex-col items-center justify-center gap-1.5 transition-all ${
-                paymentMethod === 'cash' 
-                  ? 'border-primary bg-primary/5 text-primary' 
-                  : 'border-border bg-card text-muted-foreground hover:border-primary/50'
+                paymentMethod === "cash"
+                  ? "border-primary bg-primary/5 text-primary"
+                  : "border-border bg-card text-muted-foreground hover:border-primary/50"
               }`}
             >
               <Banknote className="h-6 w-6" />
               <span className="text-xs font-bold">Dinheiro</span>
             </button>
+            <button
+              type="button"
+              onClick={() => setPaymentMethod("card")}
+              className={`h-20 rounded-xl border-2 flex flex-col items-center justify-center gap-1.5 transition-all ${
+                paymentMethod === "card"
+                  ? "border-primary bg-primary/5 text-primary"
+                  : "border-border bg-card text-muted-foreground hover:border-primary/50"
+              }`}
+            >
+              <CreditCard className="h-6 w-6" />
+              <span className="text-xs font-bold">Cartão</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => setPaymentMethod("pix")}
+              className={`h-20 rounded-xl border-2 flex flex-col items-center justify-center gap-1.5 transition-all ${
+                paymentMethod === "pix"
+                  ? "border-primary bg-primary/5 text-primary"
+                  : "border-border bg-card text-muted-foreground hover:border-primary/50"
+              }`}
+            >
+              <QrCode className="h-6 w-6" />
+              <span className="text-xs font-bold">PIX</span>
+            </button>
           </div>
-          <p className="text-xs text-muted-foreground text-center">
-            💳 Pagamento na entrega
-          </p>
+          {paymentMethod === "cash" && (
+            <input
+              type="text"
+              inputMode="decimal"
+              placeholder="Precisa de troco? Informe para quanto"
+              value={changeFor}
+              onChange={(e) => setChangeFor(e.target.value)}
+              className="w-full h-12 rounded-xl border border-border px-4 text-sm font-semibold bg-card"
+            />
+          )}
         </div>
 
         {/* Campos de Endereço */}
@@ -436,6 +464,35 @@ export function CheckoutForm({
           </div>
         </div>
 
+        {reviewing && (
+          <div className="rounded-2xl border border-primary/20 bg-card p-4 space-y-2">
+            <p className="text-sm font-extrabold text-foreground">Resumo do pedido</p>
+            {cartLines.map((line) => (
+              <div key={`${line.name}-${line.detail}`} className="flex justify-between text-sm">
+                <span>{line.name} ({line.detail})</span>
+                <span className="font-bold">R$ {line.subtotal.toFixed(2).replace(".", ",")}</span>
+              </div>
+            ))}
+            <p className="text-sm text-muted-foreground">Quantidade de itens: {itemCount}</p>
+            {discount > 0 && (
+              <div className="flex justify-between text-sm text-emerald-700">
+                <span>Desconto</span>
+                <span>- R$ {discount.toFixed(2).replace(".", ",")}</span>
+              </div>
+            )}
+            <div className="flex justify-between text-sm">
+              <span>Entrega</span>
+              <span>R$ {deliveryFee.toFixed(2).replace(".", ",")}</span>
+            </div>
+            <div className="flex justify-between text-lg font-extrabold text-primary pt-2 border-t">
+              <span>Total do pedido</span>
+              <span>R$ {(estimatedTotal ? Math.max(0, estimatedTotal - discount + deliveryFee) : finalTotal).toFixed(2).replace(".", ",")}</span>
+            </div>
+            <p className="text-sm">Forma de pagamento: {paymentLabel(paymentMethod)}</p>
+            <p className="text-sm text-emerald-700">Pagamento: somente no momento da entrega.</p>
+          </div>
+        )}
+
         {/* Botão submit */}
         <button
           type="submit"
@@ -443,11 +500,22 @@ export function CheckoutForm({
           className="w-full h-14 rounded-2xl gradient-hero text-white text-lg font-extrabold shadow-button flex items-center justify-center gap-2 transition-opacity active:opacity-90 disabled:opacity-60 mt-4"
         >
           {loading ? (
-             <Loader2 className="h-5 w-5 animate-spin-slow" />
+             <Loader2 className="h-5 w-5 animate-spin" />
+          ) : reviewing ? (
+            "Confirmar pedido"
           ) : (
-            "✅ Confirmar Pedido"
+            "Revisar e confirmar"
           )}
         </button>
+        {reviewing && (
+          <button
+            type="button"
+            onClick={() => setReviewing(false)}
+            className="w-full text-sm font-bold text-slate-600"
+          >
+            Voltar e editar
+          </button>
+        )}
       </form>
     </div>
   );

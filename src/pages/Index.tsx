@@ -8,14 +8,15 @@ import { CategoryFilter } from "@/components/CategoryFilter";
 import { WeightPickerModal } from "@/components/WeightPickerModal";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { CartEstimateWarning } from "@/components/CartEstimateWarning";
-import { ShoppingCart, CheckCircle2, Leaf, Package, Store } from "lucide-react";
+import { ShoppingCart, CheckCircle2, Leaf, Package, Store, ClipboardList } from "lucide-react";
 import { toast } from "sonner";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
-import { calculateCartEstimate, calculateUnitPriceEstimate, formatCurrency } from "@/utils/priceEstimation";
+import { calculateCartEstimate, formatCurrency } from "@/utils/priceEstimation";
 import { isStorePubliclyBlocked } from "@/lib/storeAccess";
 import { StoreUnavailable } from "@/components/StoreUnavailable";
+import { paymentLabel, toStoredPaymentMethod } from "@/lib/paymentMethods";
 
 type Step = "basket" | "checkout" | "confirmation";
 
@@ -37,7 +38,8 @@ export default function Index() {
   const [confirmedTotal, setConfirmedTotal] = useState(0);
   const [confirmedItems, setConfirmedItems] = useState<any[]>([]); // itens do pedido confirmado
   const [confirmedOrderId, setConfirmedOrderId] = useState<string>(""); // ID do pedido confirmado
-  const [confirmedPhone, setConfirmedPhone] = useState<string>(""); // telefone do pedido confirmado
+  const [confirmedPhone, setConfirmedPhone] = useState<string>("");
+  const [confirmedPayment, setConfirmedPayment] = useState<string>(""); // telefone do pedido confirmado
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -73,6 +75,8 @@ export default function Index() {
     if (!basket?.products) {
       return {
         weightItemsTotal: 0,
+        unitItemsSubtotal: 0,
+        itemsSubtotal: 0,
         unitItemsEstimate: 0,
         unitItemsMin: 0,
         unitItemsMax: 0,
@@ -86,8 +90,30 @@ export default function Index() {
     return calculateCartEstimate(basket.products, cart, weightCart, productMode);
   }, [basket?.products, cart, weightCart, productMode]);
 
-  // Total confirmado (apenas itens por peso) - para compatibilidade
-  const cartTotal = cartEstimates.weightItemsTotal;
+  const cartTotal = cartEstimates.itemsSubtotal;
+  const cartLines = useMemo(() => {
+    if (!basket?.products) return [];
+    return basket.products.flatMap((p) => {
+      const sellBy = p.sell_by || "unit";
+      const mode = sellBy === "both" ? (productMode[p.id] || "unit") : sellBy;
+      if (mode === "weight") {
+        const kg = weightCart[p.id] || 0;
+        if (kg <= 0) return [];
+        return [{
+          name: p.name,
+          detail: kg < 1 ? `${Math.round(kg * 1000)}g` : `${kg}kg`,
+          subtotal: kg * (p.price_per_kg ?? p.price),
+        }];
+      }
+      const qty = cart[p.id] || 0;
+      if (qty <= 0) return [];
+      return [{
+        name: p.name,
+        detail: `${qty} un`,
+        subtotal: qty * (p.price_per_unit ?? p.price),
+      }];
+    });
+  }, [basket?.products, cart, weightCart, productMode]);
 
   // Contar itens por peso e por unidade separadamente
   const itemsByWeight = Object.keys(weightCart).length;
@@ -265,17 +291,15 @@ export default function Index() {
                             </>
                           ) : (
                             <>
-                              {item.quantity} unidade{item.quantity > 1 ? 's' : ''} (a pesar)
+                              {item.quantity} unidade{item.quantity > 1 ? "s" : ""} × R$ {(item.price_per_unit ?? item.price).toFixed(2).replace(".", ",")}
                             </>
                           )}
                         </p>
                       </div>
                       <p className="font-bold text-primary ml-2">
-                        {item.sold_by === 'weight' ? (
-                          `R$ ${item.price.toFixed(2).replace(".", ",")}`
-                        ) : (
-                          <span className="text-amber-600 text-xs">A pesar</span>
-                        )}
+                        {item.sold_by === "weight"
+                          ? `R$ ${item.price.toFixed(2).replace(".", ",")}`
+                          : `R$ ${((item.price_per_unit ?? item.price) * (item.quantity || 1)).toFixed(2).replace(".", ",")}`}
                       </p>
                     </div>
                   ))}
@@ -285,14 +309,19 @@ export default function Index() {
               {/* Total */}
               <div className="border-t border-primary/10 pt-3 mt-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-sm font-semibold text-muted-foreground">Total (itens por peso):</span>
+                  <span className="text-sm font-semibold text-muted-foreground">Total do pedido</span>
                   <span className="text-3xl font-extrabold text-primary">
                     R$ {confirmedTotal.toFixed(2).replace(".", ",")}
                   </span>
                 </div>
-                {confirmedItems.some(item => item.sold_by === 'unit') && (
+                {confirmedPayment && (
+                  <p className="text-xs text-muted-foreground mt-2">
+                    Pagamento: {paymentLabel(confirmedPayment)} — somente na entrega.
+                  </p>
+                )}
+                {confirmedItems.some((item) => item.sold_by === "unit") && (
                   <p className="text-xs text-amber-600 mt-2">
-                    ⚖️ Itens por unidade serão pesados e o valor será atualizado
+                    Itens por unidade podem ser conferidos na pesagem da entrega.
                   </p>
                 )}
               </div>
@@ -312,11 +341,19 @@ export default function Index() {
             </p>
 
             <button
+              onClick={() => navigate(`/${slug}/rastrear`)}
+              className="mt-3 w-full h-13 py-3.5 rounded-2xl border-2 border-emerald-600 text-emerald-700 font-extrabold text-base hover:bg-emerald-50 transition-colors"
+            >
+              Meus pedidos
+            </button>
+
+            <button
               onClick={() => {
                 setStep("basket");
                 setConfirmedItems([]);
                 setConfirmedOrderId("");
                 setConfirmedPhone("");
+                setConfirmedPayment("");
               }}
               className="mt-4 w-full h-13 py-3.5 rounded-2xl border-2 border-primary text-primary font-extrabold text-base hover:bg-accent transition-colors"
             >
@@ -347,6 +384,14 @@ export default function Index() {
             </h1>
             <p className="text-xs text-white/75">{store.description || "Hortifruti fresquinho na sua porta 🌿"}</p>
           </div>
+          <button
+            type="button"
+            onClick={() => navigate(`/${slug}/rastrear`)}
+            className="h-10 px-3 rounded-xl bg-white/20 text-white text-xs font-bold inline-flex items-center gap-1.5 hover:bg-white/30"
+          >
+            <ClipboardList className="h-4 w-4" />
+            Meus pedidos
+          </button>
           <ThemeToggle />
         </div>
       </header>
@@ -365,21 +410,15 @@ export default function Index() {
                   <h2 className="text-2xl font-extrabold text-foreground mt-1">Monte sua Cesta</h2>
                   
                   {/* Total Estimado */}
-                  {cartEstimates.totalEstimate > 0 ? (
+                  {cartTotal > 0 ? (
                     <div className="mt-2">
                       <p className="text-4xl font-extrabold text-primary">
-                        {formatCurrency(cartEstimates.totalEstimate)}
+                        {formatCurrency(cartTotal)}
                       </p>
-                      {cartEstimates.hasUnitEstimates && (
-                        <p className="text-xs text-muted-foreground mt-0.5">
-                          Total estimado
-                        </p>
-                      )}
+                      <p className="text-xs text-muted-foreground mt-0.5">
+                        Total da cesta
+                      </p>
                     </div>
-                  ) : cartTotal > 0 ? (
-                    <p className="text-4xl font-extrabold text-primary mt-2">
-                      {formatCurrency(cartTotal)}
-                    </p>
                   ) : (
                     <p className="text-4xl font-extrabold text-slate-400 mt-2">
                       R$ 0,00
@@ -401,14 +440,8 @@ export default function Index() {
                     
                     {/* Itens por unidade (com estimativa) */}
                     {itemsByUnit > 0 && (
-                      <p className="text-xs text-amber-600 font-semibold">
-                        ⚖️ {itemsByUnit} por unidade: {
-                          cartEstimates.hasUnitEstimates 
-                            ? `Estimativa ${formatCurrency(cartEstimates.unitItemsEstimate)}`
-                            : cartEstimates.unitItemsWithoutEstimate > 0
-                              ? "Valor após pesagem"
-                              : "A pesar"
-                        }
+                      <p className="text-xs text-amber-700 font-semibold">
+                        {itemsByUnit} por unidade: {formatCurrency(cartEstimates.unitItemsSubtotal)}
                       </p>
                     )}
                   </div>
@@ -454,17 +487,13 @@ export default function Index() {
                       const mode = sellBy === 'both' ? (productMode[p.id] || 'unit') : sellBy;
                       return mode === 'unit' && (cart[p.id] || 0) > 0;
                     }).map(p => {
-                      const estimate = calculateUnitPriceEstimate(p, cart[p.id]);
                       return (
                         <div key={p.id} className="flex justify-between text-xs">
                           <span className="text-foreground">
                             {p.name} ({cart[p.id]} un)
                           </span>
-                          <span className="font-bold text-amber-600">
-                            {estimate.hasEstimate 
-                              ? `≈ ${formatCurrency(estimate.estimated)}`
-                              : "A pesar"
-                            }
+                          <span className="font-bold text-foreground">
+                            {formatCurrency((p.price_per_unit ?? p.price) * cart[p.id])}
                           </span>
                         </div>
                       );
@@ -525,7 +554,7 @@ export default function Index() {
                 Ir p/ Checkout ({totalItems})
               </button>
               <p className="text-center text-xs text-muted-foreground">
-                🔒 Sem cartão • Pagamento na entrega
+                Pagamento realizado somente no momento da entrega.
               </p>
             </div>
           </div>
@@ -543,6 +572,8 @@ export default function Index() {
               estimatedTotal={cartEstimates.totalEstimate}
               hasUnitItems={itemsByUnit > 0}
               itemsWithoutEstimate={cartEstimates.unitItemsWithoutEstimate}
+              cartLines={cartLines}
+              itemCount={totalItems}
               onBack={() => setStep("basket")}
               onSubmit={(data) => {
                 const selectedProducts = basket.products
@@ -583,24 +614,34 @@ export default function Index() {
                     storeSlug: store.slug,
                     delivery_zone_id: data.neighborhood_id,
                     coupon_code: data.coupon_code,
-                    payment_method: data.payment_method,
+                    payment_method: toStoredPaymentMethod(data.payment_method),
                     notes: data.notes,
                     email: data.email,
                   },
                   {
                     onSuccess: (order) => {
-                      toast.success("Pedido enviado com sucesso! 🎉");
-                      setConfirmedTotal(data.total_with_fee || cartTotal);
-                      setConfirmedItems(selectedProducts); // Salvar itens confirmados
-                      setConfirmedOrderId(order.id); // Salvar ID do pedido
-                      setConfirmedPhone(data.phone); // Salvar telefone
+                      toast.success("Pedido enviado com sucesso!");
+                      setConfirmedTotal(Number(order.total ?? data.total_with_fee ?? cartTotal));
+                      setConfirmedItems(selectedProducts);
+                      setConfirmedOrderId(order.id);
+                      setConfirmedPhone(data.phone);
+                      setConfirmedPayment(data.payment_method);
+                      try {
+                        localStorage.setItem("horti_last_order_phone", data.phone.replace(/\D/g, ""));
+                      } catch {
+                        /* ignore */
+                      }
                       setCart({});
                       setWeightCart({});
                       setProductMode({});
                       setStep("confirmation");
                     },
                     onError: (err: any) => {
-                      console.error(err);
+                      const msg = String(err?.message || "");
+                      if (msg.toLowerCase().includes("active order exists")) {
+                        toast.error("Você já possui um pedido em andamento. Aguarde a entrega ou a finalização do pedido antes de realizar uma nova compra.");
+                        return;
+                      }
                       toast.error("Erro ao enviar pedido. Verifique sua conexão.");
                     },
                   }

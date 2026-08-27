@@ -12,7 +12,7 @@ export interface CreateOrderInput {
   coupon_code?: string;
   notes?: string;
   email?: string;
-  payment_method?: "credit" | "debit" | "cash";
+  payment_method?: "credit" | "debit" | "cash" | "pix";
 }
 
 export function useCreateOrder() {

@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
+import { paymentLabel } from "@/lib/paymentMethods";
 
 type Order = {
   id: string;
@@ -16,7 +17,10 @@ type Order = {
   total: number;
   created_at: string;
   notes?: string;
+  payment_method?: string;
 };
+
+const ACTIVE_STATUSES = ["pending", "preparing", "ready_for_delivery", "delivering"];
 
 const STATUS_STEPS = [
   { key: "pending",    label: "Recebido",   icon: Package,       color: "text-muted-foreground dark:text-muted-foreground",  bg: "bg-muted dark:bg-muted"  },
@@ -116,6 +120,18 @@ export default function OrderTracking() {
   const [searchPhone, setSearchPhone] = useState("");
   const { orders, loading } = useRealtimeCustomerOrders(searchPhone, slug);
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem("horti_last_order_phone");
+      if (saved && saved.replace(/\D/g, "").length >= 10) {
+        setPhone(saved);
+        setSearchPhone(saved.replace(/\D/g, ""));
+      }
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
   const handleSearch = () => {
     const clean = phone.replace(/\D/g, "");
     if (clean.length < 10) { 
@@ -196,6 +212,13 @@ export default function OrderTracking() {
           </div>
         )}
 
+        <div className="bg-amber-50 border border-amber-200 rounded-2xl p-4 mb-6">
+          <p className="text-xs font-extrabold uppercase tracking-wide text-amber-800 mb-1">Importante</p>
+          <p className="text-sm text-amber-900 leading-relaxed">
+            Após confirmar um pedido, comprometa-se a aguardar a entrega no endereço informado. Pedimos respeito e consideração com o entregador, evitando pedidos sem intenção de recebimento.
+          </p>
+        </div>
+
         {/* Lista de pedidos */}
         {orders.length > 0 && (
           <div className="space-y-4">
@@ -213,16 +236,26 @@ export default function OrderTracking() {
             </div>
 
             {orders.map((order) => (
-              <div key={order.id} className="bg-card rounded-2xl p-5 shadow-sm border border-border animate-slide-up">
+              <div
+                key={order.id}
+                className={`bg-card rounded-2xl p-5 shadow-sm border animate-slide-up ${
+                  ACTIVE_STATUSES.includes(order.status) ? "border-emerald-400 ring-1 ring-emerald-200" : "border-border"
+                }`}
+              >
                 {/* Header */}
                 <div className="flex items-start justify-between mb-3">
                   <div>
                     <p className="text-xs text-muted-foreground font-mono">#{order.id.split("-")[0]}</p>
                     <p className="font-bold text-lg text-foreground mt-0.5">{order.customer_name}</p>
                   </div>
-                  <span className="text-2xl font-extrabold text-primary">
-                    R$ {order.total.toFixed(2).replace(".", ",")}
-                  </span>
+                  <div className="text-right">
+                    {ACTIVE_STATUSES.includes(order.status) && (
+                      <p className="text-[10px] font-extrabold text-emerald-700 uppercase">Pedido atual</p>
+                    )}
+                    <span className="text-2xl font-extrabold text-primary">
+                      R$ {Number(order.total).toFixed(2).replace(".", ",")}
+                    </span>
+                  </div>
                 </div>
 
                 {/* Endereço e data */}
@@ -235,6 +268,9 @@ export default function OrderTracking() {
                     <Clock className="h-4 w-4 shrink-0" />
                     <span>{new Date(order.created_at).toLocaleString("pt-BR")}</span>
                   </div>
+                  {order.payment_method && (
+                    <p className="text-sm">Pagamento: {paymentLabel(order.payment_method)} (somente na entrega)</p>
+                  )}
                 </div>
 
                 {/* Timeline de status */}
