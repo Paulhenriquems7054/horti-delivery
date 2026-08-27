@@ -53,6 +53,8 @@ function publicError(message?: string) {
   if (m.includes("reason required")) return "Informe o motivo do bloqueio.";
   if (m.includes("invalid plan")) return "Plano inválido.";
   if (m.includes("expiry must be in the future")) return "A data de expiração deve ser futura.";
+  if (m.includes("expiry must be after start")) return "A expiração deve ser posterior ao início.";
+  if (m.includes("expiry required")) return "Informe a data de expiração.";
   if (m.includes("store is not in trial")) return "Só lojas em trial podem ser convertidas.";
   if (m.includes("store is not on a paid subscription")) return "Só lojas com assinatura paga podem ser renovadas.";
   if (m.includes("subscription expired")) return "Assinatura vencida. Renove antes de desbloquear.";
@@ -132,6 +134,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
   const [editError, setEditError] = useState<string | null>(null);
   const [plan, setPlan] = useState(store.subscription_plan || "basic");
   const [expiresAt, setExpiresAt] = useState("");
+  const [startedAt, setStartedAt] = useState("");
   const [blockReason, setBlockReason] = useState("");
 
   const openPlanModal = () => {
@@ -141,6 +144,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
 
   const openConvertModal = () => {
     setPlan(store.subscription_plan || "basic");
+    setStartedAt(new Date().toISOString().slice(0, 10));
     setExpiresAt("");
     setConvertOpen(true);
   };
@@ -214,13 +218,30 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
       toast.error("Plano inválido.");
       return;
     }
-    const expiresIso = futureExpiryIso();
-    if (!expiresIso) return;
+    if (!startedAt) {
+      toast.error("Informe o início da assinatura.");
+      return;
+    }
+    if (!expiresAt) {
+      toast.error("Informe a data de expiração.");
+      return;
+    }
+    const started = new Date(`${startedAt}T00:00:00`);
+    const expires = new Date(`${expiresAt}T23:59:59`);
+    if (Number.isNaN(started.getTime()) || Number.isNaN(expires.getTime())) {
+      toast.error("Datas inválidas.");
+      return;
+    }
+    if (expires <= started) {
+      toast.error("A expiração deve ser posterior ao início.");
+      return;
+    }
     setBusy(true);
     const { error } = await supabase.rpc("convert_trial_to_paid" as never, {
       p_store_id: store.id,
       p_plan: plan,
-      p_expires_at: expiresIso,
+      p_expires_at: expires.toISOString(),
+      p_started_at: started.toISOString(),
     } as never);
     setBusy(false);
     if (error) {
@@ -601,13 +622,17 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
                 ))}
               </select>
             </label>
-            <p className="text-sm text-slate-600">
-              Início da assinatura: <strong>agora (na confirmação)</strong>
-            </p>
+            <label className="block text-sm font-medium text-slate-700">
+              Início da assinatura
+              <input type="date" value={startedAt} onChange={(e) => setStartedAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+            </label>
             <label className="block text-sm font-medium text-slate-700">
               Expiração
               <input type="date" value={expiresAt} onChange={(e) => setExpiresAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
             </label>
+            <p className="text-xs text-slate-500">
+              Para testar o bloqueio automático, use um início no passado e uma expiração já vencida. Depois rode o job de vencimento.
+            </p>
             <p className="text-sm text-slate-700">
               Valor: {formatPlanPrice(DEFAULT_SUBSCRIPTION_PLANS.find((p) => p.code === plan)?.price ?? 0)} / mês
             </p>

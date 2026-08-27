@@ -103,10 +103,14 @@ END;
 $$;
 
 -- Conversão explícita trial → assinatura paga.
+-- Início é informado pela Super Admin (permite simular vencimento).
+DROP FUNCTION IF EXISTS public.convert_trial_to_paid(UUID, TEXT, TIMESTAMPTZ);
+
 CREATE OR REPLACE FUNCTION public.convert_trial_to_paid(
   p_store_id UUID,
   p_plan TEXT,
-  p_expires_at TIMESTAMPTZ
+  p_expires_at TIMESTAMPTZ,
+  p_started_at TIMESTAMPTZ DEFAULT NULL
 )
 RETURNS VOID
 LANGUAGE plpgsql
@@ -115,6 +119,7 @@ SET search_path = public
 AS $$
 DECLARE
   v_status TEXT;
+  v_started TIMESTAMPTZ;
 BEGIN
   PERFORM public.assert_platform_admin();
 
@@ -124,8 +129,13 @@ BEGIN
   IF p_plan IS NULL OR p_plan NOT IN ('basic', 'pro', 'enterprise') THEN
     RAISE EXCEPTION 'invalid plan';
   END IF;
-  IF p_expires_at IS NULL OR p_expires_at <= now() THEN
-    RAISE EXCEPTION 'expiry must be in the future';
+
+  v_started := COALESCE(p_started_at, now());
+  IF p_expires_at IS NULL THEN
+    RAISE EXCEPTION 'expiry required';
+  END IF;
+  IF p_expires_at <= v_started THEN
+    RAISE EXCEPTION 'expiry must be after start';
   END IF;
 
   SELECT subscription_status INTO v_status
@@ -143,7 +153,7 @@ BEGIN
   SET
     subscription_plan = p_plan,
     subscription_status = 'active',
-    subscription_started_at = now(),
+    subscription_started_at = v_started,
     subscription_expires_at = p_expires_at,
     active = true
   WHERE id = p_store_id;
@@ -159,7 +169,7 @@ BEGIN
   PERFORM public._log_platform_action(
     p_store_id,
     'platform.convert_trial_to_paid',
-    jsonb_build_object('plan', p_plan, 'expires_at', p_expires_at)
+    jsonb_build_object('plan', p_plan, 'started_at', v_started, 'expires_at', p_expires_at)
   );
 END;
 $$;
@@ -334,8 +344,8 @@ BEGIN
 END;
 $$;
 
-REVOKE ALL ON FUNCTION public.convert_trial_to_paid(UUID, TEXT, TIMESTAMPTZ) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.convert_trial_to_paid(UUID, TEXT, TIMESTAMPTZ) TO authenticated;
+REVOKE ALL ON FUNCTION public.convert_trial_to_paid(UUID, TEXT, TIMESTAMPTZ, TIMESTAMPTZ) FROM PUBLIC, anon;
+GRANT EXECUTE ON FUNCTION public.convert_trial_to_paid(UUID, TEXT, TIMESTAMPTZ, TIMESTAMPTZ) TO authenticated;
 
 REVOKE ALL ON FUNCTION public.renew_paid_subscription(UUID, TIMESTAMPTZ) FROM PUBLIC, anon;
 GRANT EXECUTE ON FUNCTION public.renew_paid_subscription(UUID, TIMESTAMPTZ) TO authenticated;

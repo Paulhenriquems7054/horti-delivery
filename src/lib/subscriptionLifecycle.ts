@@ -44,6 +44,15 @@ export function isExpiryInTheFuture(expiresAt: Date | string, now = new Date()):
   return expires.getTime() > now.getTime();
 }
 
+export function isExpiryAfterStart(
+  startedAt: Date | string,
+  expiresAt: Date | string,
+): boolean {
+  const started = typeof startedAt === "string" ? new Date(startedAt) : startedAt;
+  const expires = typeof expiresAt === "string" ? new Date(expiresAt) : expiresAt;
+  return expires.getTime() > started.getTime();
+}
+
 export function canRenewPaid(store: SubscriptionSnapshot): boolean {
   return store.subscription_status === "active";
 }

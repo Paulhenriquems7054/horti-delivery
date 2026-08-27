@@ -4,6 +4,7 @@ import {
   canRenewPaid,
   canUnblockToActive,
   displayPaidStart,
+  isExpiryAfterStart,
   isExpiryInTheFuture,
   planChangeTouchesPaidDates,
   renewalPreservesStartedAt,
@@ -30,7 +31,7 @@ describe("ciclo de vida da assinatura", () => {
     expect(after.subscription_started_at).toBeNull();
   });
 
-  it("TESTE 2: conversão explícita exige expiração futura", () => {
+  it("TESTE 2: conversão explícita usa início manual e expiração depois do início", () => {
     const store = {
       subscription_status: "trial",
       subscription_plan: "basic",
@@ -38,8 +39,9 @@ describe("ciclo de vida da assinatura", () => {
       subscription_expires_at: null,
     };
     expect(canConvertTrial(store)).toBe(true);
-    expect(isExpiryInTheFuture("2026-09-30T00:00:00.000Z", now)).toBe(true);
-    expect(isExpiryInTheFuture("2026-08-01T00:00:00.000Z", now)).toBe(false);
+    expect(isExpiryAfterStart("2026-08-01T00:00:00.000Z", "2026-08-15T00:00:00.000Z")).toBe(true);
+    expect(isExpiryAfterStart("2026-08-15T00:00:00.000Z", "2026-08-01T00:00:00.000Z")).toBe(false);
+    expect(isExpiryInTheFuture("2026-08-15T00:00:00.000Z", now)).toBe(false);
   });
 
   it("TESTE 3: trial + expires residual NÃO vira active", () => {
