@@ -2,3 +2,6 @@ project_id = "czomlxvekvfjczdabvvx"
 
 [functions.provision-tenant]
 verify_jwt = true
+
+[functions.expire-paid-subscriptions]
+verify_jwt = false

@@ -5,8 +5,9 @@ import {
   Lock, Unlock, Plus, X, Clock, CheckCircle2, XCircle, Ban, Pencil, CreditCard, Store,
 } from "lucide-react";
 import { toast } from "sonner";
-import { PLAN_CODES, isPlanCode, planLabel } from "@/lib/subscriptionPlans";
+import { DEFAULT_SUBSCRIPTION_PLANS, PLAN_CODES, formatPlanPrice, isPlanCode, planLabel } from "@/lib/subscriptionPlans";
 import { PlansManager } from "@/components/superadmin/PlansManager";
+import { MANUAL_BLOCK_PREFIX } from "@/lib/subscriptionLifecycle";
 
 interface Tenant {
   id: string;
@@ -21,6 +22,7 @@ interface Tenant {
   subscription_plan: string;
   subscription_expires_at?: string | null;
   trial_ends_at?: string | null;
+  subscription_started_at?: string | null;
   blocked_reason?: string | null;
   blocked_at?: string | null;
   created_at: string;
@@ -50,7 +52,10 @@ function publicError(message?: string) {
   if (m.includes("slug")) return "Slug inválido ou já em uso.";
   if (m.includes("reason required")) return "Informe o motivo do bloqueio.";
   if (m.includes("invalid plan")) return "Plano inválido.";
-  if (m.includes("expiry must be in the future")) return "Para converter o trial, informe uma data futura da assinatura.";
+  if (m.includes("expiry must be in the future")) return "A data de expiração deve ser futura.";
+  if (m.includes("store is not in trial")) return "Só lojas em trial podem ser convertidas.";
+  if (m.includes("store is not on a paid subscription")) return "Só lojas com assinatura paga podem ser renovadas.";
+  if (m.includes("subscription expired")) return "Assinatura vencida. Renove antes de desbloquear.";
   if (m.includes("store not found")) return "Loja não encontrada.";
   if (m.includes("email already") || m.includes("already registered")) return "Este e-mail já está cadastrado.";
   if (m.includes("could not find") && m.includes("function")) {
@@ -114,6 +119,8 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
   const [eventsError, setEventsError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
   const [planOpen, setPlanOpen] = useState(false);
+  const [convertOpen, setConvertOpen] = useState(false);
+  const [renewOpen, setRenewOpen] = useState(false);
   const [blockOpen, setBlockOpen] = useState(false);
   const [unblockOpen, setUnblockOpen] = useState(false);
   const [editOpen, setEditOpen] = useState(false);
@@ -129,14 +136,18 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
 
   const openPlanModal = () => {
     setPlan(store.subscription_plan || "basic");
-    setExpiresAt(
-      store.subscription_status === "trial"
-        ? ""
-        : store.subscription_expires_at
-          ? store.subscription_expires_at.split("T")[0]
-          : "",
-    );
     setPlanOpen(true);
+  };
+
+  const openConvertModal = () => {
+    setPlan(store.subscription_plan || "basic");
+    setExpiresAt("");
+    setConvertOpen(true);
+  };
+
+  const openRenewModal = () => {
+    setExpiresAt(store.subscription_expires_at ? store.subscription_expires_at.split("T")[0] : "");
+    setRenewOpen(true);
   };
 
   const status = STATUS_META[store.subscription_status] ?? STATUS_META.active;
@@ -170,20 +181,10 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
       toast.error("Plano inválido.");
       return;
     }
-    const expires = expiresAt ? new Date(`${expiresAt}T00:00:00`) : null;
-    if (expires && Number.isNaN(expires.getTime())) {
-      toast.error("Data de expiração inválida.");
-      return;
-    }
-    if (store.subscription_status === "trial" && expires && expires <= new Date()) {
-      toast.error("Para converter o trial, informe uma data futura da assinatura.");
-      return;
-    }
     setBusy(true);
     const { error } = await supabase.rpc("set_tenant_plan" as never, {
       p_store_id: store.id,
       p_plan: plan,
-      p_expires_at: expires ? expires.toISOString() : null,
     } as never);
     setBusy(false);
     if (error) {
@@ -192,6 +193,60 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
     }
     toast.success("Plano atualizado com sucesso.");
     setPlanOpen(false);
+    onRefresh();
+  };
+
+  const futureExpiryIso = () => {
+    if (!expiresAt) {
+      toast.error("Informe a data de expiração.");
+      return null;
+    }
+    const expires = new Date(`${expiresAt}T23:59:59`);
+    if (Number.isNaN(expires.getTime()) || expires <= new Date()) {
+      toast.error("A data de expiração deve ser futura.");
+      return null;
+    }
+    return expires.toISOString();
+  };
+
+  const confirmConvert = async () => {
+    if (!isPlanCode(plan)) {
+      toast.error("Plano inválido.");
+      return;
+    }
+    const expiresIso = futureExpiryIso();
+    if (!expiresIso) return;
+    setBusy(true);
+    const { error } = await supabase.rpc("convert_trial_to_paid" as never, {
+      p_store_id: store.id,
+      p_plan: plan,
+      p_expires_at: expiresIso,
+    } as never);
+    setBusy(false);
+    if (error) {
+      toast.error(publicError(error.message));
+      return;
+    }
+    toast.success("Trial convertido em assinatura paga.");
+    setConvertOpen(false);
+    onRefresh();
+  };
+
+  const confirmRenew = async () => {
+    const expiresIso = futureExpiryIso();
+    if (!expiresIso) return;
+    setBusy(true);
+    const { error } = await supabase.rpc("renew_paid_subscription" as never, {
+      p_store_id: store.id,
+      p_expires_at: expiresIso,
+    } as never);
+    setBusy(false);
+    if (error) {
+      toast.error(publicError(error.message));
+      return;
+    }
+    toast.success("Assinatura renovada.");
+    setRenewOpen(false);
     onRefresh();
   };
 
@@ -204,7 +259,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
     const { error } = await supabase.rpc("set_tenant_status" as never, {
       p_store_id: store.id,
       p_active: false,
-      p_reason: blockReason.trim(),
+      p_reason: `${MANUAL_BLOCK_PREFIX}: ${blockReason.trim()}`,
     } as never);
     setBusy(false);
     if (error) {
@@ -330,16 +385,30 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
               <dt className="text-slate-500">Estado operacional</dt>
               <dd className="font-medium text-slate-800">{operationalBlocked ? "BLOQUEADO" : "ATIVO"}</dd>
             </div>
+            <div>
+              <dt className="text-slate-500">Início da assinatura</dt>
+              <dd className="font-medium text-slate-800">
+                {store.subscription_status === "trial" || !store.subscription_started_at
+                  ? "Ainda não iniciada"
+                  : formatDate(store.subscription_started_at)}
+              </dd>
+            </div>
             {store.subscription_status === "trial" && (
-              <div>
-                <dt className="text-slate-500">Fim do trial</dt>
-                <dd className="font-medium text-slate-800">
-                  {formatDate(store.trial_ends_at)}
-                  {isExpired(store.trial_ends_at) && (
-                    <span className="ml-2 text-[11px] font-bold text-amber-700">EXPIRADO</span>
-                  )}
-                </dd>
-              </div>
+              <>
+                <div>
+                  <dt className="text-slate-500">Trial termina em</dt>
+                  <dd className="font-medium text-slate-800">
+                    {formatDate(store.trial_ends_at)}
+                    {isExpired(store.trial_ends_at) && (
+                      <span className="ml-2 text-[11px] font-bold text-amber-700">EXPIRADO</span>
+                    )}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-slate-500">Assinatura paga</dt>
+                  <dd className="font-medium text-slate-800">Não iniciada</dd>
+                </div>
+              </>
             )}
             {store.subscription_status === "active" && (
               <div>
@@ -383,6 +452,24 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
           >
             Alterar plano
           </button>
+          {store.subscription_status === "trial" && (
+            <button
+              type="button"
+              onClick={openConvertModal}
+              className="h-9 px-3 rounded-lg bg-emerald-700 text-white text-xs font-bold hover:bg-emerald-800"
+            >
+              Converter para assinatura paga
+            </button>
+          )}
+          {store.subscription_status === "active" && (
+            <button
+              type="button"
+              onClick={openRenewModal}
+              className="h-9 px-3 rounded-lg bg-emerald-700 text-white text-xs font-bold hover:bg-emerald-800"
+            >
+              Renovar assinatura
+            </button>
+          )}
           {blocked ? (
             <button
               type="button"
@@ -487,19 +574,67 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
                 ))}
               </select>
             </label>
-            <label className="block text-sm font-medium text-slate-700">
-              Data de expiração da assinatura
-              <input type="date" value={expiresAt} onChange={(e) => setExpiresAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
-            </label>
-            {store.subscription_status === "trial" && (
-              <p className="text-xs text-slate-500">
-                Deixe a data vazia para manter o trial (só troca o plano). Informe uma data futura para converter em assinatura paga. O fim do trial não é apagado. Data residual antiga não converte o cliente.
-              </p>
-            )}
+            <p className="text-xs text-slate-500">
+              Trocar o plano não inicia assinatura paga e não altera trial, datas nem status.
+            </p>
             <div className="flex justify-end gap-2 pt-2">
               <button type="button" onClick={() => setPlanOpen(false)} className="h-10 px-4 rounded-lg text-sm font-bold text-slate-600">Cancelar</button>
               <button type="button" disabled={busy} onClick={savePlan} className="h-10 px-4 rounded-lg bg-violet-600 text-white text-sm font-bold disabled:opacity-60">
                 {busy ? "Salvando…" : "Salvar"}
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {convertOpen && (
+        <Modal title="Converter loja para assinatura paga" onClose={() => setConvertOpen(false)}>
+          <div className="space-y-3">
+            <p className="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2">
+              Esta ação converte o trial em assinatura paga.
+            </p>
+            <label className="block text-sm font-medium text-slate-700">
+              Plano
+              <select value={plan} onChange={(e) => setPlan(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg">
+                {PLAN_CODES.map((code) => (
+                  <option key={code} value={code}>{planLabel(code)}</option>
+                ))}
+              </select>
+            </label>
+            <p className="text-sm text-slate-600">
+              Início da assinatura: <strong>agora (na confirmação)</strong>
+            </p>
+            <label className="block text-sm font-medium text-slate-700">
+              Expiração
+              <input type="date" value={expiresAt} onChange={(e) => setExpiresAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+            </label>
+            <p className="text-sm text-slate-700">
+              Valor: {formatPlanPrice(DEFAULT_SUBSCRIPTION_PLANS.find((p) => p.code === plan)?.price ?? 0)} / mês
+            </p>
+            <div className="flex justify-end gap-2 pt-2">
+              <button type="button" onClick={() => setConvertOpen(false)} className="h-10 px-4 rounded-lg text-sm font-bold text-slate-600">Cancelar</button>
+              <button type="button" disabled={busy} onClick={() => void confirmConvert()} className="h-10 px-4 rounded-lg bg-emerald-700 text-white text-sm font-bold disabled:opacity-60">
+                {busy ? "Convertendo…" : "Confirmar conversão"}
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
+
+      {renewOpen && (
+        <Modal title="Renovar assinatura" onClose={() => setRenewOpen(false)}>
+          <div className="space-y-3">
+            <p className="text-sm text-slate-600">
+              O início da assinatura ({formatDate(store.subscription_started_at)}) será preservado.
+            </p>
+            <label className="block text-sm font-medium text-slate-700">
+              Nova expiração
+              <input type="date" value={expiresAt} onChange={(e) => setExpiresAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+            </label>
+            <div className="flex justify-end gap-2 pt-2">
+              <button type="button" onClick={() => setRenewOpen(false)} className="h-10 px-4 rounded-lg text-sm font-bold text-slate-600">Cancelar</button>
+              <button type="button" disabled={busy} onClick={() => void confirmRenew()} className="h-10 px-4 rounded-lg bg-emerald-700 text-white text-sm font-bold disabled:opacity-60">
+                {busy ? "Renovando…" : "Confirmar renovação"}
               </button>
             </div>
           </div>
