@@ -2,9 +2,11 @@ import { useEffect, useMemo, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import {
   Shield, RefreshCw, LogOut, Search, Loader2,
-  Lock, Unlock, Plus, X, Clock, CheckCircle2, XCircle, Ban, Pencil,
+  Lock, Unlock, Plus, X, Clock, CheckCircle2, XCircle, Ban, Pencil, CreditCard, Store,
 } from "lucide-react";
 import { toast } from "sonner";
+import { PLAN_CODES, isPlanCode, planLabel } from "@/lib/subscriptionPlans";
+import { PlansManager } from "@/components/superadmin/PlansManager";
 
 interface Tenant {
   id: string;
@@ -30,12 +32,6 @@ interface TenantEvent {
   notes?: string | null;
   created_at: string;
 }
-
-const PLAN_LABELS: Record<string, string> = {
-  basic: "Basic",
-  pro: "Pro",
-  enterprise: "Enterprise",
-};
 
 const STATUS_META: Record<string, { label: string; className: string }> = {
   active: { label: "ATIVO", className: "bg-emerald-100 text-emerald-800" },
@@ -170,7 +166,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
   };
 
   const savePlan = async () => {
-    if (!["basic", "pro", "enterprise"].includes(plan)) {
+    if (!isPlanCode(plan)) {
       toast.error("Plano inválido.");
       return;
     }
@@ -324,7 +320,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
           <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm mt-1">
             <div>
               <dt className="text-slate-500">Plano</dt>
-              <dd className="font-medium text-slate-800">{PLAN_LABELS[store.subscription_plan] || store.subscription_plan}</dd>
+              <dd className="font-medium text-slate-800">{planLabel(store.subscription_plan)}</dd>
             </div>
             <div>
               <dt className="text-slate-500">Status da assinatura</dt>
@@ -477,7 +473,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
           <div className="space-y-3">
             <div className="text-sm bg-slate-50 rounded-xl p-3 space-y-1">
               <p><span className="text-slate-500">Loja:</span> <strong>{store.name}</strong></p>
-              <p><span className="text-slate-500">Plano atual:</span> {PLAN_LABELS[store.subscription_plan] || store.subscription_plan}</p>
+              <p><span className="text-slate-500">Plano atual:</span> {planLabel(store.subscription_plan)}</p>
               <p><span className="text-slate-500">Status atual:</span> {status.label}</p>
               {store.subscription_status === "trial" && (
                 <p><span className="text-slate-500">Fim do trial:</span> {formatDate(store.trial_ends_at)}</p>
@@ -486,9 +482,9 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
             <label className="block text-sm font-medium text-slate-700">
               Novo plano
               <select value={plan} onChange={(e) => setPlan(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg">
-                <option value="basic">Basic</option>
-                <option value="pro">Pro</option>
-                <option value="enterprise">Enterprise</option>
+                {PLAN_CODES.map((code) => (
+                  <option key={code} value={code}>{planLabel(code)}</option>
+                ))}
               </select>
             </label>
             <label className="block text-sm font-medium text-slate-700">
@@ -517,7 +513,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
               <p><span className="text-slate-500">Loja:</span> <strong>{store.name}</strong></p>
               <p><span className="text-slate-500">Slug:</span> /{store.slug}</p>
               <p><span className="text-slate-500">Status:</span> {status.label}</p>
-              <p><span className="text-slate-500">Plano:</span> {PLAN_LABELS[store.subscription_plan] || store.subscription_plan}</p>
+              <p><span className="text-slate-500">Plano:</span> {planLabel(store.subscription_plan)}</p>
             </div>
             <label className="block text-sm font-medium text-slate-700">
               Motivo do bloqueio
@@ -602,9 +598,9 @@ function NewClientModal({ onClose, onDone }: { onClose: () => void; onDone: () =
         <input placeholder="Telefone" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full h-10 px-3 border rounded-lg text-sm" />
         <input required placeholder="Slug" value={slug} onChange={(e) => setSlug(e.target.value.toLowerCase())} className="w-full h-10 px-3 border rounded-lg text-sm" />
         <select value={plan} onChange={(e) => setPlan(e.target.value)} className="w-full h-10 px-3 border rounded-lg text-sm">
-          <option value="basic">Basic</option>
-          <option value="pro">Pro</option>
-          <option value="enterprise">Enterprise</option>
+          {PLAN_CODES.map((code) => (
+            <option key={code} value={code}>{planLabel(code)}</option>
+          ))}
         </select>
         <input required minLength={6} type="password" placeholder="Senha inicial" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full h-10 px-3 border rounded-lg text-sm" />
         <p className="text-xs text-slate-500">A senha não será exibida novamente após a criação.</p>
@@ -783,6 +779,7 @@ export default function SuperAdmin() {
   const [statusFilter, setStatusFilter] = useState("all");
   const [planFilter, setPlanFilter] = useState("all");
   const [newOpen, setNewOpen] = useState(false);
+  const [section, setSection] = useState<"stores" | "plans">("stores");
 
   const resolveGate = async () => {
     if (typeof window !== "undefined" && window.location.hash.includes("type=recovery")) {
@@ -901,6 +898,27 @@ export default function SuperAdmin() {
       </header>
 
       <main className="max-w-5xl mx-auto px-4 py-6 space-y-5">
+        <div className="flex gap-2">
+          <button
+            type="button"
+            onClick={() => setSection("stores")}
+            className={`h-10 px-4 rounded-xl text-sm font-bold inline-flex items-center gap-2 ${section === "stores" ? "bg-slate-900 text-white" : "bg-white border text-slate-700"}`}
+          >
+            <Store className="h-4 w-4" /> Lojas
+          </button>
+          <button
+            type="button"
+            onClick={() => setSection("plans")}
+            className={`h-10 px-4 rounded-xl text-sm font-bold inline-flex items-center gap-2 ${section === "plans" ? "bg-slate-900 text-white" : "bg-white border text-slate-700"}`}
+          >
+            <CreditCard className="h-4 w-4" /> Gerenciar planos
+          </button>
+        </div>
+
+        {section === "plans" && <PlansManager />}
+
+        {section === "stores" && (
+        <>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
           {kpis.map((k) => (
             <button
@@ -935,9 +953,9 @@ export default function SuperAdmin() {
           </select>
           <select value={planFilter} onChange={(e) => setPlanFilter(e.target.value)} className="h-11 px-3 rounded-xl border border-slate-200 bg-white text-sm">
             <option value="all">Plano: Todos</option>
-            <option value="basic">Basic</option>
-            <option value="pro">Pro</option>
-            <option value="enterprise">Enterprise</option>
+            {PLAN_CODES.map((code) => (
+              <option key={code} value={code}>{planLabel(code)}</option>
+            ))}
           </select>
           <button type="button" onClick={() => setNewOpen(true)} className="h-11 px-4 rounded-xl bg-violet-700 text-white text-sm font-bold inline-flex items-center justify-center gap-2">
             <Plus className="h-4 w-4" /> Novo cliente
@@ -973,6 +991,8 @@ export default function SuperAdmin() {
               <TenantCard key={store.id} store={store} onRefresh={loadStores} />
             ))}
           </div>
+        )}
+        </>
         )}
       </main>
 
