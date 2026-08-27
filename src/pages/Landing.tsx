@@ -15,6 +15,8 @@ export default function Landing() {
       const { data: store, error } = await (supabase as any)
         .from("stores_public")
         .select("slug")
+        .eq("active", true)
+        .neq("subscription_status", "blocked")
         .limit(1)
         .maybeSingle();
 

@@ -4,6 +4,8 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { MapPin, CheckCircle2, Phone, Package, Loader2, LogOut, Bike, RefreshCw } from "lucide-react";
 import { toast } from "sonner";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { isStorePubliclyBlocked } from "@/lib/storeAccess";
+import { StoreUnavailable } from "@/components/StoreUnavailable";
 
 type Order = {
   id: string;
@@ -20,6 +22,8 @@ type StoreInfo = {
   id: string;
   name: string;
   slug: string;
+  active?: boolean;
+  subscription_status?: string;
 };
 
 function useStoreBySlug(slug: string) {
@@ -28,7 +32,7 @@ function useStoreBySlug(slug: string) {
     queryFn: async () => {
       const { data, error } = await (supabase as any)
         .from("stores_public")
-        .select("id, name, slug")
+        .select("id, name, slug, active, subscription_status")
         .eq("slug", slug)
         .maybeSingle();
       if (error) throw error;
@@ -268,6 +272,10 @@ export default function Delivery() {
         <p className="text-muted-foreground dark:text-slate-500 text-sm">Verifique o link com o seu gestor</p>
       </div>
     );
+  }
+
+  if (isStorePubliclyBlocked(store)) {
+    return <StoreUnavailable storeName={store.name} />;
   }
 
   if (!unlocked) {

@@ -57,7 +57,10 @@ function publicError(message?: string) {
   if (m.includes("expiry must be in the future")) return "Para converter o trial, informe uma data futura da assinatura.";
   if (m.includes("store not found")) return "Loja não encontrada.";
   if (m.includes("email already") || m.includes("already registered")) return "Este e-mail já está cadastrado.";
-  if (m.includes("failed to send") || m.includes("not found") || m.includes("functions")) {
+  if (m.includes("could not find") && m.includes("function")) {
+    return "Função de status não encontrada no banco.";
+  }
+  if (m.includes("failed to send") || m.includes("functions/v1") || m.includes("edge function")) {
     return "Não foi possível provisionar. A função ainda pode não estar publicada.";
   }
   return "Não foi possível concluir a operação.";
@@ -223,7 +226,6 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
     const { error } = await supabase.rpc("set_tenant_status" as never, {
       p_store_id: store.id,
       p_active: true,
-      p_reason: null,
     } as never);
     setBusy(false);
     if (error) {

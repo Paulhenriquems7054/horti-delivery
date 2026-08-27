@@ -10,6 +10,8 @@
  */
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { isStorePubliclyBlocked } from "@/lib/storeAccess";
+import { StoreUnavailable } from "@/components/StoreUnavailable";
 
 export interface TenantStore {
   id: string;
@@ -65,6 +67,10 @@ export function AdminTenantProvider({ children }: { children: ReactNode }) {
     resolve();
     return () => { cancelled = true; };
   }, [tick]);
+
+  if (!isLoading && store && isStorePubliclyBlocked(store)) {
+    return <StoreUnavailable storeName={store.name} />;
+  }
 
   return (
     <TenantContext.Provider value={{ store, isLoading, refresh: () => setTick(t => t + 1) }}>

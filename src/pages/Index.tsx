@@ -14,6 +14,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
 import { calculateCartEstimate, calculateUnitPriceEstimate, formatCurrency } from "@/utils/priceEstimation";
+import { isStorePubliclyBlocked } from "@/lib/storeAccess";
+import { StoreUnavailable } from "@/components/StoreUnavailable";
 
 type Step = "basket" | "checkout" | "confirmation";
 
@@ -21,9 +23,10 @@ export default function Index() {
   const { slug } = useParams();
   const navigate = useNavigate();
   const { data: store, isLoading: isStoreLoading, isError: isStoreError } = useStoreInfo(slug);
-  
-  // Agora os hooks carregam usando o store.id dessa loja!
-  const { data: basket, isLoading: isBasketLoading, isError: isBasketError } = useActiveBasket(store?.id);
+  const blocked = isStorePubliclyBlocked(store);
+  const { data: basket, isLoading: isBasketLoading, isError: isBasketError } = useActiveBasket(
+    blocked ? undefined : store?.id,
+  );
   const createOrder = useCreateOrder();
   
   const [step, setStep] = useState<Step>("basket");
@@ -127,8 +130,7 @@ export default function Index() {
     return filtered;
   }, [basket?.products, searchQuery, selectedCategory]);
 
-  /* ─── Loading Global ─── */
-  if (isStoreLoading || isBasketLoading) {
+  if (isStoreLoading) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-background gap-4">
         <div className="flex flex-col items-center gap-3">
@@ -144,7 +146,6 @@ export default function Index() {
     );
   }
 
-  /* ─── Loja Não Encontrada ─── */
   if (!store || isStoreError) {
     return (
       <div className="flex min-h-screen flex-col items-center justify-center bg-background p-6">
@@ -156,17 +157,20 @@ export default function Index() {
     );
   }
 
-  /* ─── Loja Bloqueada ─── */
-  if ((store as any).subscription_status === "blocked" || !store.active) {
+  if (blocked) {
+    return <StoreUnavailable storeName={store.name} />;
+  }
+
+  if (isBasketLoading) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-background p-6">
-        <div className="text-center max-w-sm">
-          <div className="mx-auto h-24 w-24 rounded-full bg-red-100 flex items-center justify-center mb-5">
-            <span className="text-5xl">🔒</span>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-background gap-4">
+        <div className="flex flex-col items-center gap-3">
+          <div className="relative h-16 w-16">
+            <div className="absolute inset-0 rounded-full border-4 border-primary/20" />
+            <div className="absolute inset-0 rounded-full border-4 border-transparent border-t-primary animate-spin-slow" />
           </div>
-          <h1 className="text-2xl font-extrabold text-foreground mb-2">Loja temporariamente indisponível</h1>
-          <p className="text-muted-foreground leading-relaxed">
-            Esta loja está temporariamente fora do ar. Entre em contato com o estabelecimento para mais informações.
+          <p className="text-muted-foreground font-semibold animate-pulse">
+            Buscando cesta da semana...
           </p>
         </div>
       </div>

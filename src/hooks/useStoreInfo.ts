@@ -29,5 +29,7 @@ export function useStoreInfo(slug: string | undefined) {
       return data as StoreInfo | null;
     },
     enabled: !!slug,
+    staleTime: 0,
+    refetchOnMount: "always",
   });
 }
