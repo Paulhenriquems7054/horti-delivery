@@ -7,7 +7,7 @@ import {
 import { toast } from "sonner";
 import { DEFAULT_SUBSCRIPTION_PLANS, PLAN_CODES, formatPlanPrice, isPlanCode, planLabel } from "@/lib/subscriptionPlans";
 import { PlansManager } from "@/components/superadmin/PlansManager";
-import { MANUAL_BLOCK_PREFIX } from "@/lib/subscriptionLifecycle";
+import { MANUAL_BLOCK_PREFIX, addOneMonth } from "@/lib/subscriptionLifecycle";
 
 interface Tenant {
   id: string;
@@ -144,8 +144,9 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
 
   const openConvertModal = () => {
     setPlan(store.subscription_plan || "basic");
-    setStartedAt(new Date().toISOString().slice(0, 10));
-    setExpiresAt("");
+    const today = new Date().toISOString().slice(0, 10);
+    setStartedAt(today);
+    setExpiresAt(addOneMonth(today));
     setConvertOpen(true);
   };
 
@@ -443,6 +444,12 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
               </div>
             )}
           </dl>
+          {store.subscription_status === "trial" && (
+            <p className="text-xs text-slate-500 mt-3 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2">
+              O cliente está em <strong>15 dias de teste</strong>. A assinatura paga de 1 mês só começa quando você clicar em
+              <strong> Converter para assinatura paga</strong> (em geral no fim do trial).
+            </p>
+          )}
         </div>
 
         {blocked && store.blocked_reason && (
@@ -612,7 +619,7 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
         <Modal title="Converter loja para assinatura paga" onClose={() => setConvertOpen(false)}>
           <div className="space-y-3">
             <p className="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2">
-              Esta ação converte o trial em assinatura paga.
+              Use isto no fim dos 15 dias de teste. Início = dia em que a assinatura paga começa. Expiração padrão = 1 mês.
             </p>
             <label className="block text-sm font-medium text-slate-700">
               Plano
@@ -624,14 +631,23 @@ function TenantCard({ store, onRefresh }: { store: Tenant; onRefresh: () => void
             </label>
             <label className="block text-sm font-medium text-slate-700">
               Início da assinatura
-              <input type="date" value={startedAt} onChange={(e) => setStartedAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+              <input
+                type="date"
+                value={startedAt}
+                onChange={(e) => {
+                  const next = e.target.value;
+                  setStartedAt(next);
+                  if (next) setExpiresAt(addOneMonth(next));
+                }}
+                className="mt-1 w-full h-10 px-3 border rounded-lg"
+              />
             </label>
             <label className="block text-sm font-medium text-slate-700">
               Expiração
               <input type="date" value={expiresAt} onChange={(e) => setExpiresAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
             </label>
             <p className="text-xs text-slate-500">
-              Para testar o bloqueio automático, use um início no passado e uma expiração já vencida. Depois rode o job de vencimento.
+              Para testar o admin da loja: plano Basic e expiração futura. Para testar o bloqueio automático: expiração já vencida e depois o job de vencimento.
             </p>
             <p className="text-sm text-slate-700">
               Valor: {formatPlanPrice(DEFAULT_SUBSCRIPTION_PLANS.find((p) => p.code === plan)?.price ?? 0)} / mês
@@ -721,9 +737,24 @@ function NewClientModal({ onClose, onDone }: { onClose: () => void; onDone: () =
   const [slug, setSlug] = useState("");
   const [plan, setPlan] = useState("basic");
   const [password, setPassword] = useState("");
+  const [startPaidNow, setStartPaidNow] = useState(false);
+  const [startedAt, setStartedAt] = useState(() => new Date().toISOString().slice(0, 10));
+  const [expiresAt, setExpiresAt] = useState(() => addOneMonth(new Date().toISOString().slice(0, 10)));
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (startPaidNow) {
+      if (!startedAt || !expiresAt) {
+        toast.error("Informe início e expiração da assinatura.");
+        return;
+      }
+      const started = new Date(`${startedAt}T00:00:00`);
+      const expires = new Date(`${expiresAt}T23:59:59`);
+      if (expires <= started) {
+        toast.error("A expiração deve ser posterior ao início.");
+        return;
+      }
+    }
     setBusy(true);
     const { data, error } = await supabase.functions.invoke("provision-tenant", {
       body: {
@@ -735,16 +766,46 @@ function NewClientModal({ onClose, onDone }: { onClose: () => void; onDone: () =
         plan,
       },
     });
-    setBusy(false);
     if (error) {
+      setBusy(false);
       toast.error(publicError(error.message));
       return;
     }
     if (data && typeof data === "object" && "error" in data && data.error) {
+      setBusy(false);
       toast.error(publicError(String((data as { error: string }).error)));
       return;
     }
-    toast.success("Cliente criado.");
+    if (startPaidNow) {
+      const storeId = (data as { store?: { id?: string }; id?: string })?.store?.id
+        ?? (data as { id?: string })?.id;
+      if (!storeId) {
+        setBusy(false);
+        toast.error("Cliente criado em trial, mas não foi possível iniciar a assinatura paga.");
+        onClose();
+        onDone();
+        return;
+      }
+      const { error: convertErr } = await supabase.rpc("convert_trial_to_paid" as never, {
+        p_store_id: storeId,
+        p_plan: plan,
+        p_expires_at: new Date(`${expiresAt}T23:59:59`).toISOString(),
+        p_started_at: new Date(`${startedAt}T00:00:00`).toISOString(),
+      } as never);
+      setBusy(false);
+      if (convertErr) {
+        toast.error(publicError(convertErr.message));
+        onClose();
+        onDone();
+        return;
+      }
+      toast.success("Cliente criado com assinatura paga. O admin da loja já pode entrar.");
+      onClose();
+      onDone();
+      return;
+    }
+    setBusy(false);
+    toast.success("Cliente criado em trial.");
     onClose();
     onDone();
   };
@@ -762,8 +823,40 @@ function NewClientModal({ onClose, onDone }: { onClose: () => void; onDone: () =
             <option key={code} value={code}>{planLabel(code)}</option>
           ))}
         </select>
+        <label className="flex items-start gap-2 text-sm text-slate-700">
+          <input
+            type="checkbox"
+            className="mt-1"
+            checked={startPaidNow}
+            onChange={(e) => setStartPaidNow(e.target.checked)}
+          />
+          <span>Iniciar assinatura paga agora (para testar o admin da loja). Sem isso, o cliente fica só em trial.</span>
+        </label>
+        {startPaidNow && (
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <label className="block text-sm font-medium text-slate-700">
+              Início
+              <input
+                type="date"
+                value={startedAt}
+                onChange={(e) => {
+                  const next = e.target.value;
+                  setStartedAt(next);
+                  if (next) setExpiresAt(addOneMonth(next));
+                }}
+                className="mt-1 w-full h-10 px-3 border rounded-lg"
+              />
+            </label>
+            <label className="block text-sm font-medium text-slate-700">
+              Expiração
+              <input type="date" value={expiresAt} onChange={(e) => setExpiresAt(e.target.value)} className="mt-1 w-full h-10 px-3 border rounded-lg" />
+            </label>
+          </div>
+        )}
         <input required minLength={6} type="password" placeholder="Senha inicial" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full h-10 px-3 border rounded-lg text-sm" />
-        <p className="text-xs text-slate-500">A senha não será exibida novamente após a criação.</p>
+        <p className="text-xs text-slate-500">
+          A senha não será exibida novamente. Para o cliente teste, marque a assinatura paga, plano Basic e uma expiração futura para o admin entrar em /slug/admin.
+        </p>
         <div className="flex justify-end gap-2 pt-1">
           <button type="button" onClick={onClose} className="h-10 px-4 rounded-lg text-sm font-bold text-slate-600">Cancelar</button>
           <button type="submit" disabled={busy} className="h-10 px-4 rounded-lg bg-violet-600 text-white text-sm font-bold disabled:opacity-60">

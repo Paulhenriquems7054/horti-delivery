@@ -44,6 +44,15 @@ export function isExpiryInTheFuture(expiresAt: Date | string, now = new Date()):
   return expires.getTime() > now.getTime();
 }
 
+export function addOneMonth(isoDate: string): string {
+  const d = new Date(`${isoDate}T00:00:00`);
+  d.setMonth(d.getMonth() + 1);
+  const y = d.getFullYear();
+  const m = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${y}-${m}-${day}`;
+}
+
 export function isExpiryAfterStart(
   startedAt: Date | string,
   expiresAt: Date | string,

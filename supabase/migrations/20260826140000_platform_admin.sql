@@ -340,7 +340,7 @@ BEGIN
     true,
     'trial',
     p_plan,
-    now() + interval '14 days'
+    now() + interval '15 days'
   )
   RETURNING * INTO v_store;
 

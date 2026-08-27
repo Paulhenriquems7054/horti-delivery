@@ -352,3 +352,8 @@ GRANT EXECUTE ON FUNCTION public.renew_paid_subscription(UUID, TIMESTAMPTZ) TO a
 
 REVOKE ALL ON FUNCTION public.block_expired_paid_subscriptions() FROM PUBLIC, anon, authenticated;
 GRANT EXECUTE ON FUNCTION public.block_expired_paid_subscriptions() TO service_role;
+
+-- Novos inserts que omitam trial_ends_at passam a 15 dias.
+-- provision_tenant_for_user ainda grava 14 dias até essa RPC ser reaplicada com o intervalo novo.
+ALTER TABLE public.stores
+  ALTER COLUMN trial_ends_at SET DEFAULT (now() + INTERVAL '15 days');
