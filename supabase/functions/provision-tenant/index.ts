@@ -1,13 +1,9 @@
 // Cria usuário Auth (Admin API) e chama provision_tenant_for_user.
 // SERVICE_ROLE só neste runtime Deno — nunca no frontend / VITE_.
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.49.1";
+import { buildCorsHeaders } from "../_shared/cors.ts";
 
-const cors = {
-  "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-};
-
-function json(body: unknown, status = 200) {
+function json(body: unknown, status: number, cors: Record<string, string>) {
   return new Response(JSON.stringify(body), {
     status,
     headers: { ...cors, "Content-Type": "application/json" },
@@ -15,11 +11,13 @@ function json(body: unknown, status = 200) {
 }
 
 Deno.serve(async (req) => {
+  const cors = buildCorsHeaders(req);
+
   if (req.method === "OPTIONS") {
     return new Response("ok", { headers: cors });
   }
   if (req.method !== "POST") {
-    return json({ error: "method not allowed" }, 405);
+    return json({ error: "method not allowed" }, 405, cors);
   }
 
   const supabaseUrl = Deno.env.get("SUPABASE_URL") ?? "";
@@ -28,10 +26,10 @@ Deno.serve(async (req) => {
   const authHeader = req.headers.get("Authorization") ?? "";
 
   if (!supabaseUrl || !anonKey || !serviceKey) {
-    return json({ error: "server misconfigured" }, 500);
+    return json({ error: "server misconfigured" }, 500, cors);
   }
   if (!authHeader.toLowerCase().startsWith("bearer ")) {
-    return json({ error: "not authenticated" }, 401);
+    return json({ error: "not authenticated" }, 401, cors);
   }
 
   const userClient = createClient(supabaseUrl, anonKey, {
@@ -40,7 +38,7 @@ Deno.serve(async (req) => {
 
   const { data: isAdmin, error: adminErr } = await userClient.rpc("is_platform_admin");
   if (adminErr || isAdmin !== true) {
-    return json({ error: "not authorized" }, 403);
+    return json({ error: "not authorized" }, 403, cors);
   }
 
   let payload: {
@@ -54,7 +52,7 @@ Deno.serve(async (req) => {
   try {
     payload = await req.json();
   } catch {
-    return json({ error: "invalid payload" }, 400);
+    return json({ error: "invalid payload" }, 400, cors);
   }
 
   const email = (payload.email ?? "").trim().toLowerCase();
@@ -64,8 +62,8 @@ Deno.serve(async (req) => {
   const phone = (payload.phone ?? "").trim() || null;
   const plan = payload.plan ?? "basic";
 
-  if (!email || password.length < 6 || name.length < 2 || !slug) {
-    return json({ error: "invalid payload" }, 400);
+  if (!email || password.length < 8 || name.length < 2 || !slug) {
+    return json({ error: "invalid payload" }, 400, cors);
   }
 
   const admin = createClient(supabaseUrl, serviceKey, {
@@ -84,9 +82,9 @@ Deno.serve(async (req) => {
   if (created.error || !created.data.user) {
     const msg = (created.error?.message ?? "").toLowerCase();
     if (msg.includes("already") || msg.includes("registered") || msg.includes("exists")) {
-      return json({ error: "email already registered" }, 409);
+      return json({ error: "email already registered" }, 409, cors);
     }
-    return json({ error: "could not create user" }, 400);
+    return json({ error: "could not create user" }, 400, cors);
   }
 
   userId = created.data.user.id;
@@ -106,10 +104,10 @@ Deno.serve(async (req) => {
       await admin.auth.admin.deleteUser(userId);
     }
     const hint = (rpcErr.message ?? "").toLowerCase();
-    if (hint.includes("slug")) return json({ error: "slug in use" }, 409);
-    if (hint.includes("not authorized")) return json({ error: "not authorized" }, 403);
-    return json({ error: "could not provision store" }, 400);
+    if (hint.includes("slug")) return json({ error: "slug in use" }, 409, cors);
+    if (hint.includes("not authorized")) return json({ error: "not authorized" }, 403, cors);
+    return json({ error: "could not provision store" }, 400, cors);
   }
 
-  return json({ store, user_id: userId });
+  return json({ store, user_id: userId }, 200, cors);
 });

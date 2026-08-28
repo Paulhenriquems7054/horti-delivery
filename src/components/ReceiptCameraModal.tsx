@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 
 interface ReceiptCameraModalProps {
   orderId: string;
+  storeId: string;
   customerName: string;
   orderTotal: number;
   onClose: () => void;
@@ -13,6 +14,7 @@ interface ReceiptCameraModalProps {
 
 export function ReceiptCameraModal({ 
   orderId, 
+  storeId,
   customerName, 
   orderTotal,
   onClose, 
@@ -124,10 +126,9 @@ export function ReceiptCameraModal({
       
       // Nome único para o arquivo
       const fileName = `receipt_${orderId}_${Date.now()}.jpg`;
-      const filePath = `receipts/${fileName}`;
+      const filePath = `receipts/${storeId}/${fileName}`;
 
-      // Upload para Supabase Storage
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const { error: uploadError } = await supabase.storage
         .from('order-receipts')
         .upload(filePath, blob, {
           contentType: 'image/jpeg',
@@ -136,19 +137,13 @@ export function ReceiptCameraModal({
 
       if (uploadError) throw uploadError;
 
-      // Obtém URL pública
-      const { data: urlData } = supabase.storage
-        .from('order-receipts')
-        .getPublicUrl(filePath);
-
-      // Atualiza o pedido com a URL da foto E o valor total do cupom
       const { error: updateError } = await supabase
         .from('orders')
         .update({
-          receipt_photo_url: urlData.publicUrl,
+          receipt_photo_url: filePath,
           receipt_uploaded_at: new Date().toISOString(),
           receipt_total: receiptValue,
-          total: receiptValue // ATUALIZA O TOTAL DO PEDIDO COM O VALOR DO CUPOM
+          total: receiptValue
         })
         .eq('id', orderId);
 

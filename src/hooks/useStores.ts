@@ -11,24 +11,8 @@ export interface Store {
   email?: string;
   address?: string;
   active: boolean;
-  delivery_pin?: string;
   created_at: string;
   user_id?: string;
-}
-
-/** Busca TODAS as lojas - use apenas para SuperAdmin */
-export function useStores() {
-  return useQuery({
-    queryKey: ["stores"],
-    queryFn: async () => {
-      const { data, error } = await supabase
-        .from("stores")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
-      return data as Store[];
-    },
-  });
 }
 
 /** Busca apenas a loja do usuário autenticado - use para Admin de loja */
@@ -47,20 +31,6 @@ export function useMyStore() {
       
       if (error) throw error;
       return data as Store | null;
-    },
-  });
-}
-
-export function useCreateStore() {
-  const queryClient = useQueryClient();
-  return useMutation({
-    mutationFn: async (store: Omit<Store, "id" | "created_at" | "updated_at">) => {
-      const { data, error } = await supabase.from("stores").insert(store).select().single();
-      if (error) throw error;
-      return data;
-    },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ["stores"] });
     },
   });
 }

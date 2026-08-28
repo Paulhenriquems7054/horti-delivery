@@ -17,6 +17,7 @@ import { calculateCartEstimate, formatCurrency } from "@/utils/priceEstimation";
 import { isStorePubliclyBlocked } from "@/lib/storeAccess";
 import { StoreUnavailable } from "@/components/StoreUnavailable";
 import { paymentLabel, toStoredPaymentMethod } from "@/lib/paymentMethods";
+import { saveLastOrderPhone, saveTrackingPhone } from "@/lib/customerSession";
 
 type Step = "basket" | "checkout" | "confirmation";
 
@@ -329,7 +330,7 @@ export default function Index() {
 
             {/* Botão de acompanhamento em tempo real */}
             <button
-              onClick={() => navigate(`/${slug}/pedido/${confirmedOrderId}?phone=${confirmedPhone}`)}
+              onClick={() => navigate(`/${slug}/pedido/${confirmedOrderId}`)}
               className="mt-6 w-full h-13 py-3.5 rounded-2xl gradient-hero text-white font-extrabold text-base shadow-button flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
             >
               <Package className="h-5 w-5" />
@@ -617,6 +618,7 @@ export default function Index() {
                     payment_method: toStoredPaymentMethod(data.payment_method),
                     notes: data.notes,
                     email: data.email,
+                    privacy_acknowledged: data.privacy_acknowledged,
                   },
                   {
                     onSuccess: (order) => {
@@ -626,11 +628,8 @@ export default function Index() {
                       setConfirmedOrderId(order.id);
                       setConfirmedPhone(data.phone);
                       setConfirmedPayment(data.payment_method);
-                      try {
-                        localStorage.setItem("horti_last_order_phone", data.phone.replace(/\D/g, ""));
-                      } catch {
-                        /* ignore */
-                      }
+                      saveTrackingPhone(order.id, data.phone);
+                      saveLastOrderPhone(data.phone);
                       setCart({});
                       setWeightCart({});
                       setProductMode({});

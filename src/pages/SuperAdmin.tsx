@@ -853,7 +853,7 @@ function NewClientModal({ onClose, onDone }: { onClose: () => void; onDone: () =
             </label>
           </div>
         )}
-        <input required minLength={6} type="password" placeholder="Senha inicial" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full h-10 px-3 border rounded-lg text-sm" />
+        <input required minLength={8} type="password" placeholder="Senha inicial (mín. 8)" value={password} onChange={(e) => setPassword(e.target.value)} className="w-full h-10 px-3 border rounded-lg text-sm" />
         <p className="text-xs text-slate-500">
           A senha não será exibida novamente. Para o cliente teste, marque a assinatura paga, plano Basic e uma expiração futura para o admin entrar em /slug/admin.
         </p>
@@ -933,7 +933,7 @@ function OperatorLogin({
 
   const saveNewPassword = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (newPassword.length < 6) {
+    if (newPassword.length < 8) {
       toast.error("A nova senha deve ter pelo menos 6 caracteres.");
       return;
     }
@@ -969,7 +969,7 @@ function OperatorLogin({
           <>
             <input
               required
-              minLength={6}
+              minLength={8}
               type="password"
               placeholder="Nova senha"
               value={newPassword}

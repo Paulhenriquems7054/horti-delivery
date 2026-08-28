@@ -13,6 +13,7 @@ export interface CreateOrderInput {
   notes?: string;
   email?: string;
   payment_method?: "credit" | "debit" | "cash" | "pix";
+  privacy_acknowledged?: boolean;
 }
 
 export function useCreateOrder() {
@@ -44,6 +45,7 @@ export function useCreateOrder() {
         p_payment_method: input.payment_method || "cash",
         p_notes: input.notes ?? null,
         p_email: input.email ?? null,
+        p_privacy_acknowledged: input.privacy_acknowledged ?? false,
       });
 
       if (error) throw error;

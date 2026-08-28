@@ -40,7 +40,7 @@ export default function Admin() {
   const [storeSlug, setStoreSlug] = useState<string>("default");
   const [storeId, setStoreId] = useState<string>("");
   const [storeName, setStoreName] = useState<string>("");
-  const [deliveryPin, setDeliveryPin] = useState<string>("1234");
+  const [pinConfigured, setPinConfigured] = useState(true);
   const [editingPin, setEditingPin] = useState(false);
   const [newPin, setNewPin] = useState("");
   const [savingPin, setSavingPin] = useState(false);
@@ -59,25 +59,24 @@ export default function Admin() {
       setStoreId(tenantStore.id);
       setStoreSlug(tenantStore.slug);
       setStoreName(tenantStore.name);
-      setDeliveryPin(tenantStore.delivery_pin || "1234");
+      setPinConfigured(true);
     }
   }, [tenantStore]);
 
   const handleSavePin = async () => {
-    if (newPin.length !== 4 || !/^\d{4}$/.test(newPin)) {
-      toast.error("O PIN deve ter exatamente 4 dígitos numéricos");
+    if (newPin.length < 6 || newPin.length > 8 || !/^\d+$/.test(newPin)) {
+      toast.error("O PIN deve ter 6 a 8 dígitos numéricos");
       return;
     }
     setSavingPin(true);
-    const { error } = await (supabase as any)
-      .from("stores")
-      .update({ delivery_pin: newPin })
-      .eq("id", storeId);
+    const { error } = await supabase.rpc("update_store_delivery_pin" as never, {
+      p_pin: newPin,
+    } as never);
     setSavingPin(false);
     if (error) {
       toast.error("Erro ao salvar PIN");
     } else {
-      setDeliveryPin(newPin);
+      setPinConfigured(true);
       setEditingPin(false);
       setNewPin("");
       toast.success("PIN atualizado com sucesso!");
@@ -354,12 +353,12 @@ export default function Admin() {
                 {!editingPin ? (
                   <div className="flex items-center gap-2 mt-2">
                     <KeyRound className="h-4 w-4 text-orange-500 shrink-0" />
-                    <span className="text-sm text-muted-foreground">PIN:</span>
+                    <span className="text-sm text-muted-foreground">PIN do entregador:</span>
                     <span className="font-mono font-extrabold text-foreground tracking-widest text-base">
-                      {deliveryPin}
+                      {pinConfigured ? "••••••" : "Não definido"}
                     </span>
                     <button
-                      onClick={() => { setEditingPin(true); setNewPin(deliveryPin); }}
+                      onClick={() => { setEditingPin(true); setNewPin(""); }}
                       className="ml-1 text-xs text-primary font-bold hover:underline"
                     >
                       Alterar
@@ -371,16 +370,16 @@ export default function Admin() {
                     <input
                       type="text"
                       inputMode="numeric"
-                      maxLength={4}
-                      placeholder="4 dígitos"
+                      maxLength={8}
+                      placeholder="6–8 dígitos"
                       value={newPin}
-                      onChange={(e) => setNewPin(e.target.value.replace(/\D/g, "").slice(0, 4))}
-                      className="w-24 h-8 px-3 border border-border rounded-lg text-sm font-mono font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-primary/50"
+                      onChange={(e) => setNewPin(e.target.value.replace(/\D/g, "").slice(0, 8))}
+                      className="w-28 h-8 px-3 border border-border rounded-lg text-sm font-mono font-bold tracking-widest focus:outline-none focus:ring-2 focus:ring-primary/50"
                       autoFocus
                     />
                     <button
                       onClick={handleSavePin}
-                      disabled={savingPin || newPin.length !== 4}
+                      disabled={savingPin || newPin.length < 6}
                       className="h-8 px-3 rounded-lg bg-primary text-white text-xs font-bold disabled:opacity-50 hover:bg-primary/90"
                     >
                       {savingPin ? "..." : "Salvar"}
@@ -756,6 +755,7 @@ export default function Admin() {
       {receiptOrder && (
         <ReceiptCameraModal
           orderId={receiptOrder.id}
+          storeId={storeId}
           customerName={receiptOrder.customer_name}
           orderTotal={receiptOrder.total}
           onClose={() => setReceiptOrder(null)}

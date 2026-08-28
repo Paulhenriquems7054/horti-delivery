@@ -77,20 +77,19 @@ function StatusTimeline({ status }: { status: string }) {
   );
 }
 
-function useRealtimeCustomerOrders(phone: string, storeSlug?: string) {
+function useRealtimeCustomerOrders(phone: string, storeSlug: string | undefined) {
   const [orders, setOrders] = useState<Order[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!phone) { setOrders([]); return; }
+    if (!phone || !storeSlug) { setOrders([]); setLoading(false); return; }
 
     setLoading(true);
 
-    // Busca inicial — filtra por loja se disponível
     (async () => {
       const { data, error } = await supabase.rpc("get_orders_by_phone", {
         p_phone: phone,
-        p_store_slug: storeSlug ?? null,
+        p_store_slug: storeSlug,
       });
       if (!error && data) setOrders(data as Order[]);
       else if (error) console.error("Erro ao buscar pedidos:", error);
@@ -100,7 +99,7 @@ function useRealtimeCustomerOrders(phone: string, storeSlug?: string) {
     const interval = setInterval(async () => {
       const { data } = await supabase.rpc("get_orders_by_phone", {
         p_phone: phone,
-        p_store_slug: storeSlug ?? null,
+        p_store_slug: storeSlug,
       });
       if (data) setOrders(data as Order[]);
     }, 10000);
@@ -133,6 +132,10 @@ export default function OrderTracking() {
   }, []);
 
   const handleSearch = () => {
+    if (!slug) {
+      toast.error("Acesse o rastreamento pela página da loja (ex: /sua-loja/rastrear)");
+      return;
+    }
     const clean = phone.replace(/\D/g, "");
     if (clean.length < 10) { 
       toast.error("Digite um telefone válido"); 
@@ -178,6 +181,13 @@ export default function OrderTracking() {
       </header>
 
       <main className="mx-auto max-w-2xl px-4 py-6 pb-20">
+        {!slug && (
+          <div className="bg-amber-50 border border-amber-200 rounded-2xl p-5 mb-6 text-sm text-amber-900">
+            <p className="font-bold mb-1">Rastreamento por loja</p>
+            <p>Para proteger seus dados, o rastreamento só funciona dentro da loja onde você comprou. Acesse a vitrine da loja e use &quot;Meus pedidos&quot; ou a URL <span className="font-mono">/nome-da-loja/rastrear</span>.</p>
+          </div>
+        )}
+
         {/* Busca */}
         <div className="bg-card rounded-2xl p-5 shadow-sm border border-border mb-6">
           <p className="text-sm font-bold text-foreground mb-3">Digite o telefone usado no pedido</p>
@@ -188,8 +198,9 @@ export default function OrderTracking() {
               onChange={(e) => setPhone(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               autoComplete="tel"
+              disabled={!slug}
             />
-            <Button onClick={handleSearch} disabled={loading}>
+            <Button onClick={handleSearch} disabled={loading || !slug}>
               {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <Search className="h-4 w-4" />}
             </Button>
           </div>

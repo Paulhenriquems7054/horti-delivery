@@ -98,6 +98,10 @@ export default function Login() {
 
     const handleUpdatePassword = async (e: React.FormEvent) => {
         e.preventDefault();
+        if (newPassword.length < 8) {
+            toast.error("A senha deve ter pelo menos 8 caracteres.");
+            return;
+        }
         setLoading(true);
         const { error } = await supabase.auth.updateUser({
             password: newPassword,
@@ -148,10 +152,11 @@ export default function Login() {
                                     <div className="relative">
                                         <Input
                                             type={showNewPassword ? "text" : "password"}
-                                            placeholder="Mínimo 6 caracteres"
+                                            placeholder="Mínimo 8 caracteres"
                                             value={newPassword}
                                             onChange={(e) => setNewPassword(e.target.value)}
                                             required
+                                            minLength={8}
                                             autoComplete="new-password"
                                             className="h-12 rounded-xl pr-11"
                                         />

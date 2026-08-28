@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Package, MapPin, Clock, CheckCircle2, ChefHat, Bike, Leaf, ArrowLeft } from "lucide-react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
+import { getTrackingPhone } from "@/lib/customerSession";
 
 type OrderItem = {
   id: string;
@@ -153,11 +154,13 @@ function useRealtimeOrder(orderId: string, phone: string) {
 export default function CustomerTracking() {
   const { slug, orderId } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { data: store } = useStoreInfo(slug);
-  
-  // Pega o telefone da URL (passado como query param)
-  const searchParams = new URLSearchParams(window.location.search);
-  const phone = searchParams.get('phone') || '';
+
+  const phone =
+    getTrackingPhone(orderId || "") ||
+    searchParams.get("phone") ||
+    "";
   
   const { order, loading } = useRealtimeOrder(orderId || '', phone);
 
@@ -337,34 +340,13 @@ export default function CustomerTracking() {
             </div>
           )}
 
-          {/* Cupom Fiscal */}
-          {(order as any).receipt_photo_url && (
-            <div className="mb-4">
-              <p className="text-xs font-bold text-muted-foreground mb-3">📸 CUPOM FISCAL</p>
-              <div className="bg-white dark:bg-slate-800 rounded-xl border-2 border-emerald-200 dark:border-emerald-700 overflow-hidden">
-                <img 
-                  src={(order as any).receipt_photo_url} 
-                  alt="Cupom Fiscal" 
-                  className="w-full h-auto cursor-pointer hover:opacity-90 transition-opacity"
-                  onClick={() => window.open((order as any).receipt_photo_url, '_blank')}
-                />
-                <div className="p-3 bg-emerald-50 dark:bg-emerald-900/30 border-t border-emerald-200 dark:border-emerald-700">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-xs font-semibold text-emerald-800 dark:text-emerald-300">
-                      Registrado em: {new Date((order as any).receipt_uploaded_at).toLocaleString("pt-BR")}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center p-2 bg-white dark:bg-slate-800 rounded-lg">
-                    <span className="text-sm font-bold text-slate-700 dark:text-slate-300">Valor Total:</span>
-                    <span className="text-xl font-extrabold text-emerald-700 dark:text-emerald-400">
-                      R$ {((order as any).receipt_total || order.total).toFixed(2).replace(".", ",")}
-                    </span>
-                  </div>
-                  <p className="text-xs text-emerald-600 dark:text-emerald-400 mt-2 text-center">
-                    ✓ Clique na imagem para ampliar
-                  </p>
-                </div>
-              </div>
+          {/* Cupom fiscal registrado (imagem disponível apenas ao lojista) */}
+          {(order as any).has_receipt && (
+            <div className="mb-4 p-3 bg-emerald-50 rounded-lg border border-emerald-100">
+              <p className="text-xs font-semibold text-emerald-900 mb-1">📸 Cupom fiscal</p>
+              <p className="text-sm text-emerald-800">
+                A loja registrou o cupom fiscal deste pedido. O valor final pode ser conferido no total acima.
+              </p>
             </div>
           )}
 

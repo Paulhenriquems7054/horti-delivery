@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useMyStore, useCreateStore, useUpdateStore, useDeleteStore, Store } from "@/hooks/useStores";
+import { useMyStore, useUpdateStore, useDeleteStore, Store } from "@/hooks/useStores";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Switch } from "@/components/ui/switch";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { Plus, Pencil, Trash2, Store as StoreIcon, ArrowLeft } from "lucide-react";
+import { Pencil, Trash2, Store as StoreIcon, ArrowLeft } from "lucide-react";
 import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
@@ -20,15 +20,14 @@ export default function AdminStores() {
     }
   }, []);
   const { data: myStore, isLoading } = useMyStore();
-  const createStore = useCreateStore();
   const updateStore = useUpdateStore();
   const deleteStore = useDeleteStore();
-  
-  // Converte a loja única em array para compatibilidade com a UI existente
+
   const stores: Store[] = myStore ? [myStore] : [];
 
   const [open, setOpen] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
+  const [newDeliveryPin, setNewDeliveryPin] = useState("");
   const [form, setForm] = useState({
     name: "",
     slug: "",
@@ -38,20 +37,15 @@ export default function AdminStores() {
     email: "",
     address: "",
     active: true,
-    delivery_pin: "1234",
   });
 
   const resetForm = () => {
-    setForm({ name: "", slug: "", description: "", logo_url: "", phone: "", email: "", address: "", active: true, delivery_pin: "1234" });
+    setForm({ name: "", slug: "", description: "", logo_url: "", phone: "", email: "", address: "", active: true });
+    setNewDeliveryPin("");
     setEditId(null);
   };
 
-  const openNew = () => {
-    resetForm();
-    setOpen(true);
-  };
-
-  const openEdit = (store: any) => {
+  const openEdit = (store: Store) => {
     setEditId(store.id);
     setForm({
       name: store.name,
@@ -62,8 +56,8 @@ export default function AdminStores() {
       email: store.email || "",
       address: store.address || "",
       active: store.active,
-      delivery_pin: store.delivery_pin || "1234",
     });
+    setNewDeliveryPin("");
     setOpen(true);
   };
 
@@ -72,30 +66,30 @@ export default function AdminStores() {
       toast.error("Preencha nome e slug");
       return;
     }
+    if (!editId) {
+      toast.error("Novas lojas são criadas pelo administrador da plataforma.");
+      return;
+    }
     try {
-      // Obtém o usuário atual para associar à loja
-      const { data: { user } } = await supabase.auth.getUser();
-      if (!user) {
-        toast.error("Usuário não autenticado");
-        return;
-      }
-
-      if (editId) {
-        await updateStore.mutateAsync({ id: editId, ...form });
-        toast.success("Loja atualizada!");
-      } else {
-        // Verifica se já existe uma loja para este usuário
-        if (myStore) {
-          toast.error("Você já possui uma loja cadastrada");
+      if (newDeliveryPin.trim()) {
+        if (newDeliveryPin.length < 6 || newDeliveryPin.length > 8 || !/^\d+$/.test(newDeliveryPin)) {
+          toast.error("PIN do entregador: use 6 a 8 dígitos numéricos");
           return;
         }
-        await createStore.mutateAsync({ ...form, user_id: user.id });
-        toast.success("Loja criada!");
+        const { error: pinErr } = await supabase.rpc("update_store_delivery_pin" as never, {
+          p_pin: newDeliveryPin,
+        } as never);
+        if (pinErr) throw pinErr;
       }
+
+      await updateStore.mutateAsync({ id: editId, ...form });
+
+      toast.success("Loja atualizada!");
       setOpen(false);
       resetForm();
-    } catch (err: any) {
-      toast.error(err.message || "Erro ao salvar loja");
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : "Erro ao salvar loja";
+      toast.error(message);
     }
   };
 
@@ -124,81 +118,15 @@ export default function AdminStores() {
       <main className="mx-auto max-w-2xl px-4 py-6">
         <div className="flex items-center justify-between mb-4">
           <p className="text-sm text-muted-foreground">
-            {myStore ? "Sua loja" : "Você ainda não tem uma loja cadastrada"}
+            {myStore ? "Sua loja" : "Sua loja será provisionada pelo administrador da plataforma"}
           </p>
-          <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) resetForm(); }}>
-            <DialogTrigger asChild>
-              {/* Só mostra botão Nova Loja se não tiver loja */}
-              {!myStore && (
-                <Button onClick={openNew}>
-                  <Plus className="mr-2 h-4 w-4" /> Nova Loja
-                </Button>
-              )}
-            </DialogTrigger>
-            <DialogContent className="max-h-[90vh] overflow-y-auto">
-              <DialogHeader>
-                <DialogTitle>{editId ? "Editar Loja" : "Nova Loja"}</DialogTitle>
-              </DialogHeader>
-              <div className="space-y-3 mt-2">
-                <Input
-                  placeholder="Nome da loja"
-                  value={form.name}
-                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                />
-                <Input
-                  placeholder="Slug (URL amigável, ex: minha-loja)"
-                  value={form.slug}
-                  onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value.toLowerCase().replace(/\s+/g, "-") }))}
-                />
-                <Textarea
-                  placeholder="Descrição"
-                  value={form.description}
-                  onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
-                />
-                <Input
-                  placeholder="URL do logo"
-                  value={form.logo_url}
-                  onChange={(e) => setForm((f) => ({ ...f, logo_url: e.target.value }))}
-                />
-                <Input
-                  placeholder="Telefone"
-                  value={form.phone}
-                  onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                />
-                <Input
-                  placeholder="Email"
-                  type="email"
-                  value={form.email}
-                  onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                />
-                <Textarea
-                  placeholder="Endereço"
-                  value={form.address}
-                  onChange={(e) => setForm((f) => ({ ...f, address: e.target.value }))}
-                />
-                <div className="flex items-center gap-2">
-                  <Switch checked={form.active} onCheckedChange={(v) => setForm((f) => ({ ...f, active: v }))} />
-                  <span className="text-sm text-muted-foreground">Loja ativa</span>
-                </div>
-                <div className="space-y-1">
-                  <label className="text-sm font-bold text-foreground">PIN do Entregador</label>
-                  <Input
-                    placeholder="4 dígitos (ex: 1234)"
-                    maxLength={4}
-                    value={form.delivery_pin}
-                    onChange={(e) => setForm((f) => ({ ...f, delivery_pin: e.target.value.replace(/\D/g, "").slice(0, 4) }))}
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    Link do entregador: <span className="font-mono text-primary">/delivery/{form.slug || "slug"}</span>
-                  </p>
-                </div>
-                <Button onClick={handleSave} className="w-full" disabled={createStore.isPending || updateStore.isPending}>
-                  {editId ? "Salvar" : "Criar"}
-                </Button>
-              </div>
-            </DialogContent>
-          </Dialog>
         </div>
+
+        {!myStore && !isLoading && (
+          <div className="rounded-xl border bg-muted/40 p-4 text-sm text-muted-foreground mb-4">
+            O cadastro de novas lojas é feito exclusivamente pelo Super Admin. Entre em contato com o suporte da plataforma se ainda não possui uma loja.
+          </div>
+        )}
 
         {isLoading && <p className="text-muted-foreground animate-pulse">Carregando...</p>}
 
@@ -235,13 +163,47 @@ export default function AdminStores() {
                     >
                       /{store.slug}/delivery
                     </a>
-                    {" "}• PIN: <span className="font-mono font-bold">{store.delivery_pin || "1234"}</span>
+                    {" "}• PIN: configurado no painel (não exibido por segurança)
                   </p>
                 </div>
                 <div className="flex gap-1">
-                  <Button variant="ghost" size="icon" onClick={() => openEdit(store)}>
-                    <Pencil className="h-4 w-4" />
-                  </Button>
+                  <Dialog open={open} onOpenChange={(v) => { setOpen(v); if (!v) resetForm(); }}>
+                    <DialogTrigger asChild>
+                      <Button variant="ghost" size="icon" onClick={() => openEdit(store)}>
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="max-h-[90vh] overflow-y-auto">
+                      <DialogHeader>
+                        <DialogTitle>Editar Loja</DialogTitle>
+                      </DialogHeader>
+                      <div className="space-y-3 mt-2">
+                        <Input placeholder="Nome da loja" value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
+                        <Input placeholder="Slug" value={form.slug} onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value.toLowerCase().replace(/\s+/g, "-") }))} />
+                        <Textarea placeholder="Descrição" value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} />
+                        <Input placeholder="URL do logo" value={form.logo_url} onChange={(e) => setForm((f) => ({ ...f, logo_url: e.target.value }))} />
+                        <Input placeholder="Telefone" value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
+                        <Input placeholder="Email" type="email" value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
+                        <Textarea placeholder="Endereço" value={form.address} onChange={(e) => setForm((f) => ({ ...f, address: e.target.value }))} />
+                        <div className="flex items-center gap-2">
+                          <Switch checked={form.active} onCheckedChange={(v) => setForm((f) => ({ ...f, active: v }))} />
+                          <span className="text-sm text-muted-foreground">Loja ativa</span>
+                        </div>
+                        <div className="space-y-1">
+                          <label className="text-sm font-bold text-foreground">Novo PIN do entregador (opcional)</label>
+                          <Input
+                            placeholder="6–8 dígitos"
+                            maxLength={8}
+                            value={newDeliveryPin}
+                            onChange={(e) => setNewDeliveryPin(e.target.value.replace(/\D/g, "").slice(0, 8))}
+                          />
+                        </div>
+                        <Button onClick={handleSave} className="w-full" disabled={updateStore.isPending}>
+                          Salvar
+                        </Button>
+                      </div>
+                    </DialogContent>
+                  </Dialog>
                   <Button variant="ghost" size="icon" onClick={() => handleDelete(store.id)}>
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </Button>

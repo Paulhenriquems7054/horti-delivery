@@ -76,6 +76,8 @@ function useDeliveryStatus(slug?: string, pin?: string) {
   });
 }
 
+const DELIVERY_PIN_LENGTH = 6;
+
 // ─── PIN Screen ───────────────────────────────────────────────────────────────
 function PinScreen({ storeName, onUnlock, error: pinInvalid }: { storeName: string; onUnlock: (pin: string) => void; error?: boolean }) {
   const [pin, setPin] = useState("");
@@ -83,13 +85,12 @@ function PinScreen({ storeName, onUnlock, error: pinInvalid }: { storeName: stri
   const showError = error || pinInvalid;
 
   const handleDigit = (d: string) => {
-    if (pin.length >= 4) return;
+    if (pin.length >= DELIVERY_PIN_LENGTH) return;
     const next = pin + d;
     setPin(next);
     setError(false);
-    if (next.length === 4) {
+    if (next.length === DELIVERY_PIN_LENGTH) {
       onUnlock(next);
-      // reset after short delay to allow parent to decide
       setTimeout(() => setPin(""), 300);
     }
   };
@@ -110,11 +111,11 @@ function PinScreen({ storeName, onUnlock, error: pinInvalid }: { storeName: stri
         </div>
         <h1 className="text-2xl font-extrabold text-foreground dark:text-white">Área do Entregador</h1>
         <p className="text-muted-foreground dark:text-slate-400 text-sm text-center">{storeName}</p>
-        <p className="text-muted-foreground/70 dark:text-slate-500 text-xs">Digite o PIN de acesso</p>
+        <p className="text-muted-foreground/70 dark:text-slate-500 text-xs">Digite o PIN de 6 dígitos</p>
       </div>
 
-      <div className="flex gap-4 mb-8">
-        {[0, 1, 2, 3].map(i => (
+      <div className="flex gap-3 mb-8">
+        {Array.from({ length: DELIVERY_PIN_LENGTH }).map((_, i) => (
           <div key={i} className={`h-4 w-4 rounded-full transition-all duration-150 ${
             i < pin.length ? (showError ? "bg-red-500" : "bg-emerald-400") : "bg-muted-foreground/30 dark:bg-slate-600"
           }`} />
@@ -139,6 +140,15 @@ function PinScreen({ storeName, onUnlock, error: pinInvalid }: { storeName: stri
       </div>
 
       {showError && <p className="mt-6 text-red-500 dark:text-red-400 font-bold text-sm animate-pulse">PIN incorreto</p>}
+
+      <button
+        type="button"
+        disabled={pin.length < 4}
+        onClick={() => onUnlock(pin)}
+        className="mt-6 h-12 w-full max-w-xs rounded-2xl bg-emerald-500 text-white font-bold disabled:opacity-40"
+      >
+        Entrar
+      </button>
     </div>
   );
 }

@@ -1,10 +1,24 @@
-import { useState, useEffect } from "react";
-import { Loader2, ArrowLeft, User, Phone, MapPin, Truck, Ticket, X, CreditCard, Banknote, Wallet, Scale, AlertTriangle, QrCode } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import HCaptcha from "@hcaptcha/react-hcaptcha";
+import { Loader2, ArrowLeft, User, Phone, MapPin, Truck, Ticket, X, CreditCard, Banknote, Wallet, Scale, QrCode } from "lucide-react";
 import { paymentLabel } from "@/lib/paymentMethods";
-import { useDeliveryZones, type DeliveryZone } from "@/hooks/useDeliveryZones";
+import { useDeliveryZones } from "@/hooks/useDeliveryZones";
 import { useValidateCoupon } from "@/hooks/useCoupons";
 import { toast } from "sonner";
 import { CartEstimateWarning } from "@/components/CartEstimateWarning";
+import {
+  clearLegacyCustomerProfile,
+  getCheckoutAddress,
+  getCustomerName,
+  getLastOrderPhone,
+  saveCheckoutAddress,
+  saveCustomerName,
+  saveLastOrderPhone,
+} from "@/lib/customerSession";
+
+const HCAPTCHA_SITE_KEY =
+  import.meta.env.VITE_HCAPTCHA_SITE_KEY || "10000000-ffff-ffff-ffff-000000000001";
+const HCAPTCHA_REQUIRED = Boolean(import.meta.env.VITE_HCAPTCHA_SITE_KEY);
 
 interface Props {
   loading: boolean;
@@ -30,6 +44,7 @@ interface Props {
     payment_method: "cash" | "card" | "pix";
     notes?: string;
     email?: string;
+    privacy_acknowledged: boolean;
   }) => void;
   onBack: () => void;
 }
@@ -57,7 +72,8 @@ export function CheckoutForm({
 }: Props) {
   const { data: zones } = useDeliveryZones(storeId);
   const validateCoupon = useValidateCoupon();
-  
+  const captchaRef = useRef<HCaptcha>(null);
+
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [street, setStreet] = useState("");
@@ -70,22 +86,25 @@ export function CheckoutForm({
   const [reviewing, setReviewing] = useState(false);
   const [couponCode, setCouponCode] = useState("");
   const [appliedCoupon, setAppliedCoupon] = useState<any>(null);
+  const [privacyAccepted, setPrivacyAccepted] = useState(false);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
   const [touched, setTouched] = useState({
     name: false, phone: false, street: false, number: false, neighborhood: false, zone: false,
   });
 
-  // Carregar histórico local do cliente
   useEffect(() => {
-    const savedCustomer = localStorage.getItem("horti_customer_profile");
-    if (savedCustomer) {
-      const parsed = JSON.parse(savedCustomer);
-      if (parsed.name) setName(parsed.name);
-      if (parsed.phone) setPhone(parsed.phone);
-      if (parsed.street) setStreet(parsed.street);
-      if (parsed.number) setNumber(parsed.number);
-      if (parsed.neighborhood) setNeighborhood(parsed.neighborhood);
-      if (parsed.reference) setReference(parsed.reference);
-      if (parsed.zone) setSelectedZone(parsed.zone);
+    clearLegacyCustomerProfile();
+    const savedName = getCustomerName();
+    const savedPhone = getLastOrderPhone();
+    const savedAddress = getCheckoutAddress();
+    if (savedName) setName(savedName);
+    if (savedPhone) setPhone(formatPhone(savedPhone));
+    if (savedAddress) {
+      setStreet(savedAddress.street);
+      setNumber(savedAddress.number);
+      setNeighborhood(savedAddress.neighborhood);
+      setReference(savedAddress.reference);
+      setSelectedZone(savedAddress.zone);
     }
   }, []);
 
@@ -114,7 +133,15 @@ export function CheckoutForm({
     zone: zones?.length && !selectedZone ? "Selecione seu bairro" : "",
   };
 
-  const isValid = !errors.name && !errors.phone && !errors.street && !errors.number && !errors.neighborhood && !errors.zone;
+  const isValid =
+    !errors.name &&
+    !errors.phone &&
+    !errors.street &&
+    !errors.number &&
+    !errors.neighborhood &&
+    !errors.zone &&
+    privacyAccepted &&
+    (!HCAPTCHA_REQUIRED || Boolean(captchaToken));
 
   const handleApplyCoupon = async () => {
     if (!couponCode.trim()) {
@@ -155,13 +182,15 @@ export function CheckoutForm({
       reference.trim() ? `Ref: ${reference.trim()}` : "",
     ].filter(Boolean).join(" - ");
 
-    // Salvar no localStorage para a próxima compra
-    localStorage.setItem("horti_customer_profile", JSON.stringify({
-      name: name.trim(), phone,
-      street: street.trim(), number: number.trim(),
-      neighborhood: neighborhood.trim(), reference: reference.trim(),
+    saveCustomerName(name.trim());
+    saveLastOrderPhone(phone);
+    saveCheckoutAddress({
+      street: street.trim(),
+      number: number.trim(),
+      neighborhood: neighborhood.trim(),
+      reference: reference.trim(),
       zone: selectedZone,
-    }));
+    });
 
     const notes = paymentMethod === "cash" && changeFor.trim()
       ? `Troco para R$ ${changeFor.trim()}`
@@ -184,6 +213,7 @@ export function CheckoutForm({
     delivery_fee: deliveryFee,
     payment_method: paymentMethod,
     notes,
+    privacy_acknowledged: privacyAccepted,
   });
   };
 
@@ -463,6 +493,30 @@ export function CheckoutForm({
             />
           </div>
         </div>
+
+        <label className="flex items-start gap-3 rounded-xl border border-border bg-muted/30 p-4 cursor-pointer">
+          <input
+            type="checkbox"
+            checked={privacyAccepted}
+            onChange={(e) => setPrivacyAccepted(e.target.checked)}
+            className="mt-1 h-4 w-4 rounded border-border"
+          />
+          <span className="text-sm text-foreground leading-snug">
+            Li e concordo com o tratamento dos meus dados (nome, telefone e endereço) para processar
+            este pedido e entrega, conforme a LGPD. Os dados são usados apenas pela loja responsável.
+          </span>
+        </label>
+
+        {HCAPTCHA_REQUIRED && (
+          <div className="flex justify-center">
+            <HCaptcha
+              ref={captchaRef}
+              sitekey={HCAPTCHA_SITE_KEY}
+              onVerify={(token) => setCaptchaToken(token)}
+              onExpire={() => setCaptchaToken(null)}
+            />
+          </div>
+        )}
 
         {reviewing && (
           <div className="rounded-2xl border border-primary/20 bg-card p-4 space-y-2">

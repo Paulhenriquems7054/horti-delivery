@@ -260,6 +260,7 @@ export default function AdminPreparation() {
       {receiptOrder && (
         <ReceiptCameraModal
           orderId={receiptOrder.id}
+          storeId={store?.id ?? ""}
           customerName={receiptOrder.customer_name}
           orderTotal={receiptOrder.total}
           onClose={() => setReceiptOrder(null)}
