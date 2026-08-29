@@ -2,11 +2,15 @@ import { useMutation } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { BasketProduct } from "./useActiveBasket";
 
+export interface CreateOrderLine extends BasketProduct {
+  item_notes?: string;
+}
+
 export interface CreateOrderInput {
   customer_name: string;
   phone: string;
   address: string;
-  products: BasketProduct[];
+  products: CreateOrderLine[];
   storeSlug: string;
   delivery_zone_id?: string;
   coupon_code?: string;
@@ -20,15 +24,19 @@ export function useCreateOrder() {
   return useMutation({
     mutationFn: async (input: CreateOrderInput) => {
       const items = input.products.map((p) => {
+        const base = {
+          product_id: p.id,
+          item_notes: p.item_notes?.trim() || null,
+        };
         if (p.sold_by === "weight") {
           return {
-            product_id: p.id,
+            ...base,
             sold_by: "weight",
             weight_kg: p.weight_kg,
           };
         }
         return {
-          product_id: p.id,
+          ...base,
           sold_by: "unit",
           quantity: p.quantity || 1,
         };
@@ -50,6 +58,18 @@ export function useCreateOrder() {
 
       if (error) throw error;
       return data as { id: string; total: number; discount: number; delivery_fee: number; store_id: string };
+    },
+  });
+}
+
+export function useReprintOrder() {
+  return useMutation({
+    mutationFn: async (orderId: string) => {
+      const { data, error } = await supabase.rpc("reprint_order", {
+        p_order_id: orderId,
+      });
+      if (error) throw error;
+      return data as string | null;
     },
   });
 }

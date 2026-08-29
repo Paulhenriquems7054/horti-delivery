@@ -17,6 +17,7 @@ export interface TenantStore {
   id: string;
   slug: string;
   name: string;
+  logo_path?: string | null;
   subscription_status?: string;
   active?: boolean;
 }
@@ -53,7 +54,7 @@ export function AdminTenantProvider({ children }: { children: ReactNode }) {
 
       const { data } = await (supabase as any)
         .from("stores")
-        .select("id, slug, name, subscription_status, active")
+        .select("id, slug, name, logo_path, subscription_status, active")
         .eq("user_id", user.id)
         .maybeSingle();
 
@@ -98,7 +99,7 @@ export function CustomerTenantProvider({
 
     (supabase as any)
       .from("stores_public")
-      .select("id, slug, name, subscription_status, active")
+      .select("id, slug, name, logo_path, subscription_status, active")
       .eq("slug", slug)
       .maybeSingle()
       .then(({ data }: any) => {

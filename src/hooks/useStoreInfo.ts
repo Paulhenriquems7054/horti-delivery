@@ -7,6 +7,7 @@ export interface StoreInfo {
   slug: string;
   description?: string;
   logo_url?: string;
+  logo_path?: string | null;
   phone?: string;
   active: boolean;
   subscription_status: string;
@@ -21,7 +22,7 @@ export function useStoreInfo(slug: string | undefined) {
 
       const { data, error } = await (supabase as any)
         .from("stores_public")
-        .select("id, name, slug, description, logo_url, phone, active, subscription_status")
+        .select("id, name, slug, description, logo_url, logo_path, phone, active, subscription_status")
         .eq("slug", slug)
         .maybeSingle();
 

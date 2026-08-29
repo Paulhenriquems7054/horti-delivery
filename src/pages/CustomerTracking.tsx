@@ -4,6 +4,7 @@ import { Package, MapPin, Clock, CheckCircle2, ChefHat, Bike, Leaf, ArrowLeft } 
 import { useParams, useNavigate, useSearchParams } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
 import { getTrackingPhone } from "@/lib/customerSession";
+import { StoreLogo } from "@/components/StoreLogo";
 
 type OrderItem = {
   id: string;
@@ -225,10 +226,10 @@ export default function CustomerTracking() {
             <ArrowLeft className="h-6 w-6" />
           </button>
           <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
-            <img 
-              src="/play_store_512.png" 
-              alt="Logo" 
-              className="w-full h-full object-contain"
+            <StoreLogo
+              logoPath={store?.logo_path}
+              alt={store?.name || "Logo"}
+              className="h-full w-full"
             />
           </div>
           <div>

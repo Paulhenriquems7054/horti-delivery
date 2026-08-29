@@ -10,6 +10,9 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { AccountSecurity } from "@/components/admin/AccountSecurity";
+import { StoreLogo } from "@/components/StoreLogo";
+import { StoreLogoUpload } from "@/components/StoreLogoUpload";
+import { useTenant } from "@/contexts/TenantContext";
 
 export default function AdminStores() {
   const navigate = useNavigate();
@@ -19,7 +22,8 @@ export default function AdminStores() {
       document.getElementById("minha-conta")?.scrollIntoView({ behavior: "smooth" });
     }
   }, []);
-  const { data: myStore, isLoading } = useMyStore();
+  const { data: myStore, isLoading, refetch } = useMyStore();
+  const { refresh: refreshTenant } = useTenant();
   const updateStore = useUpdateStore();
   const deleteStore = useDeleteStore();
 
@@ -130,17 +134,27 @@ export default function AdminStores() {
 
         {isLoading && <p className="text-muted-foreground animate-pulse">Carregando...</p>}
 
-        <div className="space-y-3">
+        {myStore && (
+          <StoreLogoUpload
+            storeId={myStore.id}
+            storeName={myStore.name}
+            logoPath={myStore.logo_path}
+            onUpdated={() => {
+              void refetch();
+              refreshTenant();
+            }}
+          />
+        )}
+
+        <div className="space-y-3 mt-4">
           {stores?.map((store) => (
             <div key={store.id} className="rounded-xl border bg-card p-4 shadow-sm">
               <div className="flex items-start gap-3">
-                {store.logo_url ? (
-                  <img src={store.logo_url} alt={store.name} className="h-12 w-12 rounded-lg object-cover" />
-                ) : (
-                  <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center">
-                    <StoreIcon className="h-6 w-6 text-primary" />
-                  </div>
-                )}
+                <StoreLogo
+                  logoPath={store.logo_path}
+                  alt={store.name}
+                  className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden p-1 shrink-0"
+                />
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <h3 className="font-bold text-card-foreground">{store.name}</h3>
@@ -181,7 +195,6 @@ export default function AdminStores() {
                         <Input placeholder="Nome da loja" value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} />
                         <Input placeholder="Slug" value={form.slug} onChange={(e) => setForm((f) => ({ ...f, slug: e.target.value.toLowerCase().replace(/\s+/g, "-") }))} />
                         <Textarea placeholder="Descrição" value={form.description} onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))} />
-                        <Input placeholder="URL do logo" value={form.logo_url} onChange={(e) => setForm((f) => ({ ...f, logo_url: e.target.value }))} />
                         <Input placeholder="Telefone" value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
                         <Input placeholder="Email" type="email" value={form.email} onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))} />
                         <Textarea placeholder="Endereço" value={form.address} onChange={(e) => setForm((f) => ({ ...f, address: e.target.value }))} />

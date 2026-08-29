@@ -20,7 +20,7 @@ import {
   AlertTriangle,
   Scale,
   Camera,
-  Eye,
+  Printer,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
@@ -29,6 +29,7 @@ import { useNavigate } from "react-router-dom";
 import { LogOut, DollarSign } from "lucide-react";
 import { logAuditEvent } from "@/hooks/useAuditLog";
 import { useTenant } from "@/contexts/TenantContext";
+import { StoreLogo } from "@/components/StoreLogo";
 
 type StatusFilter = "all" | "pending" | "preparing" | "ready_for_delivery" | "delivering" | "delivered";
 
@@ -51,6 +52,8 @@ export default function Admin() {
   const [weighingOrder, setWeighingOrder] = useState<any | null>(null);
   const [receiptOrder, setReceiptOrder] = useState<any | null>(null);
   const [detailsOrder, setDetailsOrder] = useState<any | null>(null);
+  const [printToken, setPrintToken] = useState("");
+  const [savingPrintToken, setSavingPrintToken] = useState(false);
   const navigate = useNavigate();
 
   // Use TenantContext — no more manual store resolution
@@ -62,6 +65,24 @@ export default function Admin() {
       setPinConfigured(true);
     }
   }, [tenantStore]);
+
+  const handleSavePrintToken = async () => {
+    if (printToken.length < 8) {
+      toast.error("O token do agente deve ter pelo menos 8 caracteres");
+      return;
+    }
+    setSavingPrintToken(true);
+    const { error } = await supabase.rpc("update_store_print_agent_token" as never, {
+      p_token: printToken,
+    } as never);
+    setSavingPrintToken(false);
+    if (error) {
+      toast.error("Erro ao salvar token de impressão");
+    } else {
+      toast.success("Token do agente de impressão atualizado");
+      setPrintToken("");
+    }
+  };
 
   const handleSavePin = async () => {
     if (newPin.length < 6 || newPin.length > 8 || !/^\d+$/.test(newPin)) {
@@ -182,10 +203,10 @@ export default function Admin() {
         <div className="mx-auto max-w-6xl flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
             <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
-              <img 
-                src="/play_store_512.png" 
-                alt="Logo" 
-                className="w-full h-full object-contain"
+              <StoreLogo
+                logoPath={tenantStore?.logo_path}
+                alt={storeName || "Logo"}
+                className="h-full w-full"
               />
             </div>
             <div>
@@ -392,6 +413,31 @@ export default function Admin() {
                     </button>
                   </div>
                 )}
+                <div className="mt-3 pt-3 border-t border-orange-100 dark:border-orange-900/40">
+                  <div className="flex items-center gap-2">
+                    <Printer className="h-4 w-4 text-orange-500 shrink-0" />
+                    <span className="text-sm font-bold text-foreground">Agente de impressão</span>
+                  </div>
+                  <p className="text-[11px] text-muted-foreground mt-1">
+                    Defina o token usado pelo computador da loja (`tools/print-agent`).
+                  </p>
+                  <div className="flex items-center gap-2 mt-2">
+                    <input
+                      type="password"
+                      placeholder="Token (mín. 8 caracteres)"
+                      value={printToken}
+                      onChange={(e) => setPrintToken(e.target.value)}
+                      className="flex-1 h-8 px-3 border border-border rounded-lg text-sm"
+                    />
+                    <button
+                      onClick={handleSavePrintToken}
+                      disabled={savingPrintToken || printToken.length < 8}
+                      className="h-8 px-3 rounded-lg bg-orange-600 text-white text-xs font-bold disabled:opacity-50"
+                    >
+                      {savingPrintToken ? "..." : "Salvar token"}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

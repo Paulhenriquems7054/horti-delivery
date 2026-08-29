@@ -109,6 +109,51 @@ export function cartLineSubtotal(
   return quantity * (product.price_per_unit ?? product.price);
 }
 
+export function calculateCartLinesEstimate(resolvedLines: {
+  soldBy: "unit" | "weight";
+  quantity: number;
+  weightKg: number;
+  product: BasketProduct;
+  lineSubtotal: number;
+}[]) {
+  let weightItemsTotal = 0;
+  let unitItemsSubtotal = 0;
+  let unitItemsEstimate = 0;
+  let unitItemsMin = 0;
+  let unitItemsMax = 0;
+  let unitItemsWithoutEstimate = 0;
+
+  for (const line of resolvedLines) {
+    if (line.soldBy === "weight") {
+      weightItemsTotal += line.lineSubtotal;
+    } else {
+      unitItemsSubtotal += line.lineSubtotal;
+      const estimate = calculateUnitPriceEstimate(line.product, line.quantity);
+      if (estimate.hasEstimate) {
+        unitItemsEstimate += estimate.estimated;
+        unitItemsMin += estimate.min;
+        unitItemsMax += estimate.max;
+      } else {
+        unitItemsWithoutEstimate += line.quantity;
+      }
+    }
+  }
+
+  return {
+    weightItemsTotal,
+    unitItemsSubtotal,
+    itemsSubtotal: weightItemsTotal + unitItemsSubtotal,
+    unitItemsEstimate,
+    unitItemsMin,
+    unitItemsMax,
+    totalEstimate: weightItemsTotal + unitItemsEstimate,
+    totalMin: weightItemsTotal + unitItemsMin,
+    totalMax: weightItemsTotal + unitItemsMax,
+    hasUnitEstimates: unitItemsEstimate > 0,
+    unitItemsWithoutEstimate,
+  };
+}
+
 export function formatCurrency(value: number): string {
   return `R$ ${value.toFixed(2).replace(".", ",")}`;
 }

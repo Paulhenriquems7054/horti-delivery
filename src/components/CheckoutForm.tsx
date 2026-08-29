@@ -15,6 +15,7 @@ import {
   saveCustomerName,
   saveLastOrderPhone,
 } from "@/lib/customerSession";
+import type { StoreOperationalSettings } from "@/hooks/useStoreOperationalSettings";
 
 const HCAPTCHA_SITE_KEY =
   import.meta.env.VITE_HCAPTCHA_SITE_KEY || "10000000-ffff-ffff-ffff-000000000001";
@@ -29,9 +30,11 @@ interface Props {
   estimatedTotal?: number;
   hasUnitItems?: boolean;
   itemsWithoutEstimate?: number;
-  cartLines?: { name: string; detail: string; subtotal: number }[];
+  cartLines?: { name: string; detail: string; subtotal: number; itemNotes?: string }[];
   itemCount?: number;
-  onSubmit: (data: { 
+  operationalSettings?: StoreOperationalSettings;
+  outsideDeliveryHours?: boolean;
+  onSubmit: (data: {
     customer_name: string; 
     phone: string; 
     address: string; 
@@ -67,8 +70,10 @@ export function CheckoutForm({
   itemsWithoutEstimate = 0,
   cartLines = [],
   itemCount = 0,
-  onSubmit, 
-  onBack 
+  operationalSettings,
+  outsideDeliveryHours = false,
+  onSubmit,
+  onBack
 }: Props) {
   const { data: zones } = useDeliveryZones(storeId);
   const validateCoupon = useValidateCoupon();
@@ -399,6 +404,21 @@ export function CheckoutForm({
           <p className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-100 rounded-xl px-3 py-2">
             O pagamento será realizado somente no momento da entrega.
           </p>
+          {operationalSettings?.return_policy_text && (
+            <p className="text-sm text-amber-800 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2">
+              ⚠️ {operationalSettings.return_policy_text}
+            </p>
+          )}
+          {operationalSettings?.deliveryHoursMessage && (
+            <p className="text-sm text-slate-700 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2">
+              {operationalSettings.deliveryHoursMessage}
+            </p>
+          )}
+          {outsideDeliveryHours && operationalSettings?.outsideHoursMessage && (
+            <p className="text-sm text-amber-900 bg-amber-100 border border-amber-300 rounded-xl px-3 py-2">
+              {operationalSettings.outsideHoursMessage}
+            </p>
+          )}
           <div className="grid grid-cols-3 gap-2">
             <button
               type="button"
@@ -522,9 +542,14 @@ export function CheckoutForm({
           <div className="rounded-2xl border border-primary/20 bg-card p-4 space-y-2">
             <p className="text-sm font-extrabold text-foreground">Resumo do pedido</p>
             {cartLines.map((line) => (
-              <div key={`${line.name}-${line.detail}`} className="flex justify-between text-sm">
-                <span>{line.name} ({line.detail})</span>
-                <span className="font-bold">R$ {line.subtotal.toFixed(2).replace(".", ",")}</span>
+              <div key={`${line.name}-${line.detail}-${line.itemNotes ?? ""}`} className="flex justify-between text-sm gap-2">
+                <div>
+                  <span>{line.name} ({line.detail})</span>
+                  {line.itemNotes?.trim() && (
+                    <p className="text-xs text-amber-700">Obs: {line.itemNotes.trim()}</p>
+                  )}
+                </div>
+                <span className="font-bold shrink-0">R$ {line.subtotal.toFixed(2).replace(".", ",")}</span>
               </div>
             ))}
             <p className="text-sm text-muted-foreground">Quantidade de itens: {itemCount}</p>

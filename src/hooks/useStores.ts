@@ -7,6 +7,7 @@ export interface Store {
   slug: string;
   description?: string;
   logo_url?: string;
+  logo_path?: string | null;
   phone?: string;
   email?: string;
   address?: string;
@@ -50,6 +51,7 @@ export function useUpdateStore() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["stores"] });
+      queryClient.invalidateQueries({ queryKey: ["my-store"] });
     },
   });
 }

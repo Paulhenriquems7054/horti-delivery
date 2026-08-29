@@ -13,11 +13,17 @@ import { toast } from "sonner";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
-import { calculateCartEstimate, formatCurrency } from "@/utils/priceEstimation";
+import { calculateCartLinesEstimate, formatCurrency } from "@/utils/priceEstimation";
 import { isStorePubliclyBlocked } from "@/lib/storeAccess";
 import { StoreUnavailable } from "@/components/StoreUnavailable";
 import { paymentLabel, toStoredPaymentMethod } from "@/lib/paymentMethods";
 import { saveLastOrderPhone, saveTrackingPhone } from "@/lib/customerSession";
+import { CartLineNotesPanel } from "@/components/CartLineNotesPanel";
+import { StoreLogo } from "@/components/StoreLogo";
+import { useStoreOperationalSettings } from "@/hooks/useStoreOperationalSettings";
+import { isWithinDeliveryHours } from "@/lib/storeHours";
+import type { CartLineItem } from "@/types/cart";
+import { newCartLine, resolveCartLines } from "@/types/cart";
 
 type Step = "basket" | "checkout" | "confirmation";
 
@@ -30,11 +36,11 @@ export default function Index() {
     blocked ? undefined : store?.id,
   );
   const createOrder = useCreateOrder();
+  const { data: operationalSettings } = useStoreOperationalSettings(slug);
   
   const [step, setStep] = useState<Step>("basket");
-  const [cart, setCart] = useState<Record<string, number>>({});        // unit: qty
-  const [weightCart, setWeightCart] = useState<Record<string, number>>({}); // weight: kg
-  const [productMode, setProductMode] = useState<Record<string, 'unit' | 'weight'>>({}); // modo selecionado para produtos 'both'
+  const [cartLines, setCartLines] = useState<CartLineItem[]>([]);
+  const [productMode, setProductMode] = useState<Record<string, 'unit' | 'weight'>>({});
   const [weightModalProduct, setWeightModalProduct] = useState<BasketProduct | null>(null);
   const [confirmedTotal, setConfirmedTotal] = useState(0);
   const [confirmedItems, setConfirmedItems] = useState<any[]>([]); // itens do pedido confirmado
@@ -44,21 +50,45 @@ export default function Index() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const handleAdd = (id: string) => setCart(p => ({ ...p, [id]: (p[id] || 0) + 1 }));
-  const handleRemove = (id: string) => {
-    setCart(p => {
-      const next = { ...p };
-      if (next[id] > 1) next[id] -= 1;
-      else delete next[id];
-      return next;
+  const getProductMode = (product: BasketProduct): 'unit' | 'weight' => {
+    const sellBy = product.sell_by || 'unit';
+    return sellBy === 'both' ? (productMode[product.id] || 'unit') : sellBy;
+  };
+
+  const handleAdd = (product: BasketProduct) => {
+    const mode = getProductMode(product);
+    if (mode === 'weight') {
+      setWeightModalProduct(product);
+      return;
+    }
+    setCartLines((prev) => [...prev, newCartLine(product.id, 'unit')]);
+  };
+
+  const handleRemove = (product: BasketProduct) => {
+    const mode = getProductMode(product);
+    setCartLines((prev) => {
+      const idx = [...prev].reverse().findIndex(
+        (l) => l.productId === product.id && l.soldBy === mode
+      );
+      if (idx < 0) return prev;
+      const realIdx = prev.length - 1 - idx;
+      const line = prev[realIdx];
+      if (line.soldBy === 'unit' && line.quantity > 1) {
+        return prev.map((l, i) =>
+          i === realIdx ? { ...l, quantity: l.quantity - 1 } : l
+        );
+      }
+      return prev.filter((_, i) => i !== realIdx);
     });
   };
+
   const handleWeightConfirm = (productId: string, weight: number) => {
-    if (weight <= 0) {
-      setWeightCart(p => { const n = { ...p }; delete n[productId]; return n; });
-    } else {
-      setWeightCart(p => ({ ...p, [productId]: weight }));
-    }
+    if (weight <= 0) return;
+    setCartLines((prev) => [
+      ...prev,
+      newCartLine(productId, 'weight', { weightKg: weight }),
+    ]);
+    setWeightModalProduct(null);
   };
   
   const handleToggleMode = (productId: string) => {
@@ -66,73 +96,61 @@ export default function Index() {
       ...prev,
       [productId]: prev[productId] === 'weight' ? 'unit' : 'weight'
     }));
-    // Limpa o carrinho desse produto ao trocar de modo
-    setCart(p => { const n = { ...p }; delete n[productId]; return n; });
-    setWeightCart(p => { const n = { ...p }; delete n[productId]; return n; });
+    setCartLines((prev) => prev.filter((l) => l.productId !== productId));
   };
 
-  // Calcula totais com estimativas para itens por unidade
-  const cartEstimates = useMemo(() => {
-    if (!basket?.products) {
-      return {
-        weightItemsTotal: 0,
-        unitItemsSubtotal: 0,
-        itemsSubtotal: 0,
-        unitItemsEstimate: 0,
-        unitItemsMin: 0,
-        unitItemsMax: 0,
-        totalEstimate: 0,
-        totalMin: 0,
-        totalMax: 0,
-        hasUnitEstimates: false,
-        unitItemsWithoutEstimate: 0,
-      };
-    }
-    return calculateCartEstimate(basket.products, cart, weightCart, productMode);
-  }, [basket?.products, cart, weightCart, productMode]);
+  const updateLineNotes = (lineId: string, notes: string) => {
+    setCartLines((prev) =>
+      prev.map((l) => (l.lineId === lineId ? { ...l, itemNotes: notes } : l))
+    );
+  };
+
+  const removeCartLine = (lineId: string) => {
+    setCartLines((prev) => prev.filter((l) => l.lineId !== lineId));
+  };
+
+  const resolvedCartLines = useMemo(
+    () => (basket?.products ? resolveCartLines(cartLines, basket.products) : []),
+    [cartLines, basket?.products]
+  );
+
+  const cartEstimates = useMemo(
+    () => calculateCartLinesEstimate(resolvedCartLines),
+    [resolvedCartLines]
+  );
 
   const cartTotal = cartEstimates.itemsSubtotal;
-  const cartLines = useMemo(() => {
-    if (!basket?.products) return [];
-    return basket.products.flatMap((p) => {
-      const sellBy = p.sell_by || "unit";
-      const mode = sellBy === "both" ? (productMode[p.id] || "unit") : sellBy;
-      if (mode === "weight") {
-        const kg = weightCart[p.id] || 0;
-        if (kg <= 0) return [];
-        return [{
-          name: p.name,
-          detail: kg < 1 ? `${Math.round(kg * 1000)}g` : `${kg}kg`,
-          subtotal: kg * (p.price_per_kg ?? p.price),
-        }];
-      }
-      const qty = cart[p.id] || 0;
-      if (qty <= 0) return [];
-      return [{
-        name: p.name,
-        detail: `${qty} un`,
-        subtotal: qty * (p.price_per_unit ?? p.price),
-      }];
-    });
-  }, [basket?.products, cart, weightCart, productMode]);
 
-  // Contar itens por peso e por unidade separadamente
-  const itemsByWeight = Object.keys(weightCart).length;
-  const itemsByUnit = Object.values(cart).reduce((a, b) => a + b, 0);
-  const totalItems = itemsByWeight + itemsByUnit;
-  
-  // Itens que precisam ser pesados (comprados por unidade)
-  const itemsNeedingWeighing = useMemo(() => {
-    if (!basket?.products) return [];
-    return basket.products.filter(p => {
-      const sellBy = p.sell_by || 'unit';
-      const mode = sellBy === 'both' ? (productMode[p.id] || 'unit') : sellBy;
-      return mode === 'unit' && (cart[p.id] || 0) > 0;
-    }).map(p => ({
-      ...p,
-      quantity: cart[p.id]
-    }));
-  }, [basket?.products, cart, productMode]);
+  const cartLinesSummary = useMemo(
+    () =>
+      resolvedCartLines.map((line) => ({
+        name: line.product.name,
+        detail:
+          line.soldBy === 'weight'
+            ? line.weightKg < 1
+              ? `${Math.round(line.weightKg * 1000)}g`
+              : `${line.weightKg}kg`
+            : `${line.quantity} un`,
+        subtotal: line.lineSubtotal,
+        itemNotes: line.itemNotes,
+      })),
+    [resolvedCartLines]
+  );
+
+  const totalItems = resolvedCartLines.length;
+  const itemsByWeight = resolvedCartLines.filter((l) => l.soldBy === 'weight').length;
+  const itemsByUnit = resolvedCartLines
+    .filter((l) => l.soldBy === 'unit')
+    .reduce((sum, l) => sum + l.quantity, 0);
+
+  const itemsNeedingWeighing = useMemo(
+    () => resolvedCartLines.filter((l) => l.soldBy === 'unit'),
+    [resolvedCartLines]
+  );
+
+  const outsideDeliveryHours = operationalSettings
+    ? !isWithinDeliveryHours(operationalSettings)
+    : false;
 
   // Filter products based on search and category
   const filteredProducts = useMemo(() => {
@@ -248,10 +266,10 @@ export default function Index() {
         <header className="gradient-hero px-4 py-5">
           <div className="mx-auto max-w-lg flex items-center gap-2">
             <div className="h-7 w-7 rounded-lg bg-white/20 flex items-center justify-center overflow-hidden p-1">
-              <img 
-                src="/play_store_512.png" 
-                alt="Logo" 
-                className="w-full h-full object-contain"
+              <StoreLogo
+                logoPath={store.logo_path}
+                alt={store.name}
+                className="h-full w-full"
               />
             </div>
             <span className="text-base font-extrabold text-white">{store.name}</span>
@@ -296,6 +314,9 @@ export default function Index() {
                             </>
                           )}
                         </p>
+                        {item.item_notes?.trim() && (
+                          <p className="text-xs text-amber-700 mt-0.5">Obs: {item.item_notes.trim()}</p>
+                        )}
                       </div>
                       <p className="font-bold text-primary ml-2">
                         {item.sold_by === "weight"
@@ -373,10 +394,10 @@ export default function Index() {
       <header className="gradient-hero px-4 py-5 shadow-md">
         <div className="mx-auto max-w-lg flex items-center gap-3">
           <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
-            <img 
-              src="/play_store_512.png" 
-              alt="Logo" 
-              className="w-full h-full object-contain"
+            <StoreLogo
+              logoPath={store.logo_path}
+              alt={store.name}
+              className="h-full w-full"
             />
           </div>
           <div className="flex-1">
@@ -401,6 +422,16 @@ export default function Index() {
         {/* Etapa 1: Carrinho/Cesta */}
         {step === "basket" && (
           <div className="animate-slide-up">
+            {operationalSettings?.deliveryHoursMessage && (
+              <p className="mt-4 text-xs font-semibold text-slate-700 bg-slate-50 border border-slate-200 rounded-xl px-3 py-2">
+                {operationalSettings.deliveryHoursMessage}
+              </p>
+            )}
+            {outsideDeliveryHours && operationalSettings?.outsideHoursMessage && (
+              <p className="mt-2 text-xs font-semibold text-amber-900 bg-amber-50 border border-amber-200 rounded-xl px-3 py-2">
+                {operationalSettings.outsideHoursMessage}
+              </p>
+            )}
             {/* Hero da cesta */}
             <div className="mt-5 rounded-3xl gradient-card border border-primary/20 p-5 shadow-card">
               <div className="flex items-start justify-between gap-2">
@@ -464,42 +495,11 @@ export default function Index() {
               {/* Prévia dos itens selecionados */}
               {totalItems > 0 && (
                 <div className="mt-4 pt-4 border-t border-primary/10">
-                  <p className="text-xs font-bold text-muted-foreground mb-2">Prévia do Carrinho:</p>
-                  <div className="space-y-1.5 max-h-32 overflow-y-auto">
-                    {/* Itens por peso */}
-                    {basket.products.filter(p => {
-                      const sellBy = p.sell_by || 'unit';
-                      const mode = sellBy === 'both' ? (productMode[p.id] || 'unit') : sellBy;
-                      return mode === 'weight' && (weightCart[p.id] || 0) > 0;
-                    }).map(p => (
-                      <div key={p.id} className="flex justify-between text-xs">
-                        <span className="text-foreground">
-                          {p.name} ({weightCart[p.id] < 1 ? `${Math.round(weightCart[p.id] * 1000)}g` : `${weightCart[p.id]}kg`})
-                        </span>
-                        <span className="font-bold text-emerald-600">
-                          R$ {(weightCart[p.id] * (p.price_per_kg ?? p.price)).toFixed(2).replace(".", ",")}
-                        </span>
-                      </div>
-                    ))}
-                    
-                    {/* Itens por unidade com estimativa */}
-                    {basket.products.filter(p => {
-                      const sellBy = p.sell_by || 'unit';
-                      const mode = sellBy === 'both' ? (productMode[p.id] || 'unit') : sellBy;
-                      return mode === 'unit' && (cart[p.id] || 0) > 0;
-                    }).map(p => {
-                      return (
-                        <div key={p.id} className="flex justify-between text-xs">
-                          <span className="text-foreground">
-                            {p.name} ({cart[p.id]} un)
-                          </span>
-                          <span className="font-bold text-foreground">
-                            {formatCurrency((p.price_per_unit ?? p.price) * cart[p.id])}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
+                  <CartLineNotesPanel
+                    lines={resolvedCartLines}
+                    onUpdateNotes={updateLineNotes}
+                    onRemoveLine={removeCartLine}
+                  />
                 </div>
               )}
             </div>
@@ -527,20 +527,30 @@ export default function Index() {
                 </div>
               )}
 
-              {filteredProducts.map((p, i) => (
+              {filteredProducts.map((p, i) => {
+                const mode = getProductMode(p);
+                const productLines = resolvedCartLines.filter((l) => l.productId === p.id);
+                const cartQty = productLines
+                  .filter((l) => l.soldBy === 'unit')
+                  .reduce((s, l) => s + l.quantity, 0);
+                const cartWeight = productLines
+                  .filter((l) => l.soldBy === 'weight')
+                  .reduce((s, l) => s + l.weightKg, 0);
+
+                return (
                 <div key={p.id} className="animate-slide-up" style={{ animationDelay: `${i * 60}ms`, opacity: 0 }}>
                   <ProductCard
                     product={p}
-                    cartQty={cart[p.id] || 0}
-                    cartWeight={weightCart[p.id]}
-                    onAdd={() => handleAdd(p.id)}
-                    onRemove={() => handleRemove(p.id)}
+                    cartQty={mode === 'unit' ? cartQty : productLines.filter((l) => l.soldBy === 'weight').length}
+                    cartWeight={cartWeight > 0 ? cartWeight : undefined}
+                    onAdd={() => handleAdd(p)}
+                    onRemove={() => handleRemove(p)}
                     onSelectWeight={() => setWeightModalProduct(p)}
                     selectedMode={productMode[p.id]}
                     onToggleMode={() => handleToggleMode(p.id)}
                   />
                 </div>
-              ))}
+              );})}
             </div>
 
             {/* CTA */}
@@ -573,38 +583,32 @@ export default function Index() {
               estimatedTotal={cartEstimates.totalEstimate}
               hasUnitItems={itemsByUnit > 0}
               itemsWithoutEstimate={cartEstimates.unitItemsWithoutEstimate}
-              cartLines={cartLines}
+              cartLines={cartLinesSummary}
               itemCount={totalItems}
+              operationalSettings={operationalSettings ?? undefined}
+              outsideDeliveryHours={outsideDeliveryHours}
               onBack={() => setStep("basket")}
               onSubmit={(data) => {
-                const selectedProducts = basket.products
-                  .filter(p => {
-                    const sellBy = p.sell_by || 'unit';
-                    const mode = sellBy === 'both' ? (productMode[p.id] || 'unit') : sellBy;
-                    return mode === 'weight' ? (weightCart[p.id] || 0) > 0 : (cart[p.id] || 0) > 0;
-                  })
-                  .map(p => {
-                    const sellBy = p.sell_by || 'unit';
-                    const mode = sellBy === 'both' ? (productMode[p.id] || 'unit') : sellBy;
-                    
-                    if (mode === 'weight') {
-                      return { 
-                        ...p, 
-                        quantity: 1, 
-                        weight_kg: weightCart[p.id], 
-                        price: (p.price_per_kg ?? p.price) * weightCart[p.id],
-                        sold_by: 'weight'
-                      };
-                    } else {
-                      const pricePerUnit = (p as any).price_per_unit ?? p.price;
-                      return { 
-                        ...p, 
-                        quantity: cart[p.id],
-                        price: pricePerUnit,
-                        sold_by: 'unit'
-                      };
-                    }
-                  });
+                const selectedProducts = resolvedCartLines.map((line) => {
+                  const p = line.product;
+                  if (line.soldBy === 'weight') {
+                    return {
+                      ...p,
+                      quantity: 1,
+                      weight_kg: line.weightKg,
+                      price: line.lineSubtotal,
+                      sold_by: 'weight' as const,
+                      item_notes: line.itemNotes,
+                    };
+                  }
+                  return {
+                    ...p,
+                    quantity: line.quantity,
+                    price: p.price_per_unit ?? p.price,
+                    sold_by: 'unit' as const,
+                    item_notes: line.itemNotes,
+                  };
+                });
 
                 createOrder.mutate(
                   {
@@ -630,8 +634,7 @@ export default function Index() {
                       setConfirmedPayment(data.payment_method);
                       saveTrackingPhone(order.id, data.phone);
                       saveLastOrderPhone(data.phone);
-                      setCart({});
-                      setWeightCart({});
+                      setCartLines([]);
                       setProductMode({});
                       setStep("confirmation");
                     },

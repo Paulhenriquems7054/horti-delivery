@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useState } from "react";
-import { X, Package } from "lucide-react";
+import { X, Package, Printer } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useReprintOrder } from "@/hooks/useCreateOrder";
+import { toast } from "sonner";
 
 interface OrderDetailsItem {
   id: string;
@@ -12,6 +14,7 @@ interface OrderDetailsItem {
   final_price?: number | null;
   needs_weighing?: boolean | null;
   product_name: string;
+  item_notes?: string | null;
 }
 
 interface OrderDetailsOrder {
@@ -32,6 +35,7 @@ interface Props {
 export function OrderDetailsModal({ order, onClose }: Props) {
   const [items, setItems] = useState<OrderDetailsItem[]>([]);
   const [loading, setLoading] = useState(false);
+  const reprint = useReprintOrder();
 
   useEffect(() => {
     const loadItems = async () => {
@@ -49,6 +53,7 @@ export function OrderDetailsModal({ order, onClose }: Props) {
           actual_weight_kg,
           final_price,
           needs_weighing,
+          item_notes,
           product:products(name)
         `)
         .eq("order_id", order.id);
@@ -65,6 +70,7 @@ export function OrderDetailsModal({ order, onClose }: Props) {
             final_price: item.final_price,
             needs_weighing: item.needs_weighing,
             product_name: item.product?.name || "Produto",
+            item_notes: item.item_notes,
           }))
         );
       } else {
@@ -127,6 +133,11 @@ export function OrderDetailsModal({ order, onClose }: Props) {
                             ? `${item.quantity} unidade(s) (a pesar)`
                             : `${item.quantity} unidade(s)`}
                       </p>
+                      {item.item_notes?.trim() && (
+                        <p className="text-xs text-amber-700 mt-1">
+                          Obs: {item.item_notes.trim()}
+                        </p>
+                      )}
                     </div>
                     <p className="font-bold text-primary">R$ {(item.final_price || item.price || 0).toFixed(2)}</p>
                   </div>
@@ -136,7 +147,21 @@ export function OrderDetailsModal({ order, onClose }: Props) {
           </div>
         </div>
 
-        <div className="p-4 border-t border-border bg-muted/50 space-y-1">
+        <div className="p-4 border-t border-border bg-muted/50 space-y-2">
+          <button
+            type="button"
+            disabled={reprint.isPending}
+            onClick={() => {
+              reprint.mutate(order.id, {
+                onSuccess: () => toast.success("Pedido enviado para reimpressão."),
+                onError: () => toast.error("Não foi possível solicitar a reimpressão."),
+              });
+            }}
+            className="w-full h-10 rounded-xl border border-border bg-card text-sm font-bold flex items-center justify-center gap-2 hover:bg-muted disabled:opacity-60"
+          >
+            <Printer className="h-4 w-4" />
+            {reprint.isPending ? "Enviando…" : "Reimprimir pedido"}
+          </button>
           <div className="flex justify-between text-sm text-muted-foreground">
             <span>Subtotal itens</span>
             <span>R$ {itemsTotal.toFixed(2)}</span>

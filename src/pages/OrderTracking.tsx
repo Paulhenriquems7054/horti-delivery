@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
 import { paymentLabel } from "@/lib/paymentMethods";
+import { StoreLogo } from "@/components/StoreLogo";
 
 type Order = {
   id: string;
@@ -157,10 +158,10 @@ export default function OrderTracking() {
           {store && (
             <>
               <div className="h-10 w-10 rounded-xl bg-card/20 flex items-center justify-center overflow-hidden p-1.5">
-                <img 
-                  src="/play_store_512.png" 
-                  alt="Logo" 
-                  className="w-full h-full object-contain"
+                <StoreLogo
+                  logoPath={store.logo_path}
+                  alt={store.name}
+                  className="h-full w-full"
                 />
               </div>
               <div className="flex-1">
