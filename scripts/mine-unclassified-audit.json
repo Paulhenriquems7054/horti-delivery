@@ -1,0 +1,2557 @@
+{
+  "baseline": {
+    "CLASSIFIED": 15509,
+    "REVIEW_REQUIRED": 10,
+    "UNCLASSIFIED": 3749
+  },
+  "unclassified_count": 3759,
+  "first_word_top": [
+    {
+      "pattern": "POLPA",
+      "count": 23,
+      "examples": [
+        "POLPA BETANIA 90G",
+        "POLPA D LAVIE CAJA 100G",
+        "POLPA DE SIRIGUELA 100G POMAR",
+        "POLPA DE UMBU CAJA 100G",
+        "POLPA MOLICO LIGHT 150G",
+        "POLPA NESTON 600G."
+      ]
+    },
+    {
+      "pattern": "ANTI",
+      "count": 17,
+      "examples": [
+        "ANTI MOFO NOVICO LAVANDA 80G",
+        "ANTI MOFO NOVICO NATURAL 80G",
+        "ANTI MOFO NOVICO SOFT 80G",
+        "ANTI-CEPTICO BUCAL FLUORDENT MENTA 250ML",
+        "ANTI-SEP BUCAL MENTA ORAL-B L500 P300ML",
+        "ANTI-SEPT BUCAL HORT L500 P300ML ORAL-B"
+      ]
+    },
+    {
+      "pattern": "MAIS",
+      "count": 17,
+      "examples": [
+        "MAIS SABOR KITANO PARA SALADA 60G.",
+        "MAIS SABOR LEGUMES KITANO 60G",
+        "MAIS SABOR MASSAS 60G",
+        "MAIS SABOR NORDESTINO KITANO 60G",
+        "MAIS SABOR P/AVES KITANO 60G",
+        "MAIS SABOR P/CARNES KITANO 60G"
+      ]
+    },
+    {
+      "pattern": "GARNIER",
+      "count": 16,
+      "examples": [
+        "GARNIER BI-O ENERGY 50ML.",
+        "GARNIER BI-O SOFT50ML.",
+        "GARNIER FRUCTIS ANTICASPA 300ML.",
+        "GARNIER FRUCTIS CABELOS CACHEADOS 300ML.",
+        "GARNIER FRUCTIS CABELOS COLORIDOS 300ML.",
+        "GARNIER FRUCTIS CABELOS NORMAIS 300ML."
+      ]
+    },
+    {
+      "pattern": "PRATICE",
+      "count": 16,
+      "examples": [
+        "PRATICE 3 EM 1 BOM BRIL SUAVE 500ML",
+        "PRATICE ATRACTIVE 500ML",
+        "PRATICE BRIA SUAVE DREAMING 500ML.",
+        "PRATICE CITRUS 500ML",
+        "PRATICE FLORES SECAS 500ML",
+        "PRATICE HAPPY 500ML"
+      ]
+    },
+    {
+      "pattern": "LOLA",
+      "count": 15,
+      "examples": [
+        "LOLA COND MORTE SUBITA HIDRAT 250G",
+        "LOLA FINALIZADOR DANOS VORAZES 200ML",
+        "LOLA KIT BOSSA 1KG",
+        "LOLA KIT FEIRA CRONOLOLA 300G",
+        "LOLA MASC MORTE SUBITA SUPER HIDR 450G",
+        "LOLA MASCARA COND DREAM CREAM 200G"
+      ]
+    },
+    {
+      "pattern": "PASTILHA",
+      "count": 15,
+      "examples": [
+        "PASTILHA AD PATO LAV. C/3UN",
+        "PASTILHA ADES PATO CITRUS",
+        "PASTILHA ADES PATO FRESH 3UN",
+        "PASTILHA ADES PATO LAVANDA",
+        "PASTILHA ADES PATO LAVANDA 3UND",
+        "PASTILHA ADES.PRATIK FLOR.3UN"
+      ]
+    },
+    {
+      "pattern": "PIC",
+      "count": 15,
+      "examples": [
+        "PIC.",
+        "PIC. PARATI CHOCROCANTE PREMIUM 60G",
+        "PIC. PARATI CREM L CONDENSADO 60G",
+        "PIC. PARATI CREMOSO COCO 60G",
+        "PIC. PARATI CREMOSO NAPOLITANO 60G",
+        "PIC. PARATI CREMOSO TAPIOCA 60G"
+      ]
+    },
+    {
+      "pattern": "SACOS",
+      "count": 15,
+      "examples": [
+        "SACOS DE PAPEL PIPOCA JUNCO C/50",
+        "SACOS FREEZER NEISAN 100UN",
+        "SACOS P/GELADINHOS REGINA C/100UN",
+        "SACOS PARA LIXO IGUAL 100L FD C24",
+        "SACOS PARA LIXO IGUAL 15L FD C24",
+        "SACOS PARA LIXO IGUAL 30L FD C24"
+      ]
+    },
+    {
+      "pattern": "TAPETE",
+      "count": 15,
+      "examples": [
+        "TAPETE ALVEJADO P/PISO ANADRI 38X60CM",
+        "TAPETE ANTE DER. DOMINUS",
+        "TAPETE ANTI-DER. ANADRI 60X40",
+        "TAPETE ANTI-DERRAPANTE 1,2M X 40CM",
+        "TAPETE ARTESANAL 40X60",
+        "TAPETE CAPACHO 40CMX65CM."
+      ]
+    },
+    {
+      "pattern": "VODKA",
+      "count": 15,
+      "examples": [
+        "VODKA ABSOLUT 1L",
+        "VODKA CIROC CIROC 750ML",
+        "VODKA D OURO 965ML",
+        "VODKA ERISTOFF 1000ML",
+        "VODKA KADOV 900ML.",
+        "VODKA LSKYY 980ML"
+      ]
+    },
+    {
+      "pattern": "COOKIES",
+      "count": 14,
+      "examples": [
+        "COOKIES BAUDUCCO CHOC. 60G",
+        "COOKIES BAUDUCCO TRAD. 60G",
+        "COOKIES BAUNILHA COBERTO 53G",
+        "COOKIES BLACK CAPRICHE 40G",
+        "COOKIES BLACK FESTA FUTURINHOS 40G",
+        "COOKIES BLACK FESTA FUTURINHOS 60G"
+      ]
+    },
+    {
+      "pattern": "CUSCUZEIRO",
+      "count": 14,
+      "examples": [
+        "CUSCUZEIRO 03 EM UM POLIDO STIL DIAMETRO 160 MM VOLUME 1,2 LTS",
+        "CUSCUZEIRO BOJUDO ANT ADERENTE 180MM",
+        "CUSCUZEIRO BOJUDO REQUINTE N16",
+        "CUSCUZEIRO BOJUDO REQUINTE N18",
+        "CUSCUZEIRO BOJUDO REQUINTE N20",
+        "CUSCUZEIRO BOJUDO STILO 160MM"
+      ]
+    },
+    {
+      "pattern": "DESODOR",
+      "count": 14,
+      "examples": [
+        "DESODOR BRISA FLORAL 40G",
+        "DESODOR CASA LIMPA 35G C/CESTA",
+        "DESODOR EUCALIPTO FRESH 70G REFIL",
+        "DESODOR EUCALYPTO 35G C/CESTA",
+        "DESODOR FLORAL 35G C/CESTA",
+        "DESODOR LAV. BOUQUET CESTA E REFIL."
+      ]
+    },
+    {
+      "pattern": "FLOCOS",
+      "count": 14,
+      "examples": [
+        "FLOCOS DE COCO FLOCOCO 100G",
+        "FLOCOS DE MILHO CORINGA 1KG",
+        "FLOCOS DE MILHO CUSCUMIL 500G",
+        "FLOCOS DE MILHO JUBA 500G",
+        "FLOCOS DE MILHO KIMILHO YOKI 500G",
+        "FLOCOS DE MILHO MARATA 500G"
+      ]
+    },
+    {
+      "pattern": "INSET",
+      "count": 14,
+      "examples": [
+        "INSET AE BAYGON MULTI 300ML",
+        "INSET AER SBP MULTINSET 380ML",
+        "INSET ELET APAR MAT INSET+4PAST",
+        "INSET ELET. REFIL SBP 45N 1+1C50% GTS",
+        "INSET MOFO FLORES DO CAMPO 30G",
+        "INSET MOFO JASMIM 30G"
+      ]
+    },
+    {
+      "pattern": "LASANHA",
+      "count": 14,
+      "examples": [
+        "LASANHA 4QUEIIJOS 350G GOURM",
+        "LASANHA BOLOGNESE 350G GOURM",
+        "LASANHA BOLON AIRFRYER 300G",
+        "LASANHA DE FGO COM BACON PERD. 600G",
+        "LASANHA DE TILAPIA COPACOL 600G",
+        "LASANHA DONA BENTA ONDULADA 200G"
+      ]
+    },
+    {
+      "pattern": "REFRESCO",
+      "count": 14,
+      "examples": [
+        "REFRESCO MARATA ACEROLA 30G",
+        "REFRESCO MARATA CAJU 25G",
+        "REFRESCO MARATA CAJU 30G",
+        "REFRESCO MARATA GRAVIOLA 25G",
+        "REFRESCO MARATA MARACUJA 25G",
+        "REFRESCO MARATA TANGERINA 25G"
+      ]
+    },
+    {
+      "pattern": "SOPA",
+      "count": 14,
+      "examples": [
+        "SOPA CRESCIMENTO LEGUMES C MACARAO 90G.",
+        "SOPA DE CARNE 63G.",
+        "SOPA DE CARNE C/ MAC.KNORR 70G.",
+        "SOPA DE GALINHA COM CONCHINHAS KITANO 60",
+        "SOPA DE GALINHA COM FIDELINI 60G.",
+        "SOPA DE LEGUMES KNORR 70G."
+      ]
+    },
+    {
+      "pattern": "XICARA",
+      "count": 14,
+      "examples": [
+        "XICARA CHA C/P CRISTAL WHE 6X1",
+        "XICARA DE CHA AMBER 6 PARES",
+        "XICARA DE CHA OXFORD COM PIRES",
+        "XICARA DURALEX DIAMANTE C/ PIRES 240ML",
+        "XICARA DURALEX OCEANO 90ML",
+        "XICARA DURALEX."
+      ]
+    },
+    {
+      "pattern": "CHAMYTO",
+      "count": 13,
+      "examples": [
+        "CHAMYTO 1+1 115G COLORIDO",
+        "CHAMYTO 1+1 116+14G",
+        "CHAMYTO 1+1 BRASIL2006",
+        "CHAMYTO 80G",
+        "CHAMYTO BIG NESTLE 480G",
+        "CHAMYTO CITRUS 80G"
+      ]
+    },
+    {
+      "pattern": "HALLS",
+      "count": 13,
+      "examples": [
+        "HALLS CEREJA 28G",
+        "HALLS EXTRA FORTE 27,5G",
+        "HALLS MENTA 28G",
+        "HALLS MENTHO - LYPTUS 111G",
+        "HALLS MENTOL 28G",
+        "HALLS MENTOL 84G"
+      ]
+    },
+    {
+      "pattern": "MUCILON",
+      "count": 13,
+      "examples": [
+        "MUCILON MILHO 180G",
+        "MUCILON MILHO L250 P230G",
+        "MUCILON MILHO NESTLE 230G.",
+        "MUCILON MULTI CEREAIS 230G 30GRATIS",
+        "MUCILON MULTI CEREAIS 230G.SACHE",
+        "MUCILON MULTI CEREAIS 400G NESTLE"
+      ]
+    },
+    {
+      "pattern": "PEDRA",
+      "count": 13,
+      "examples": [
+        "PEDRA POME & LIXA",
+        "PEDRA POME NATURAL COM 1 UNIDADE.",
+        "PEDRA POME SM",
+        "PEDRA POMES",
+        "PEDRA POMES SEMPRE",
+        "PEDRA POMES UN"
+      ]
+    },
+    {
+      "pattern": "PRESTOBARBA",
+      "count": 13,
+      "examples": [
+        "PRESTOBARBA UN",
+        "PRESTOBARBA 3 C/2",
+        "PRESTOBARBA C/02UN",
+        "PRESTOBARBA C/2 AP.",
+        "PRESTOBARBA FEMININO UN",
+        "PRESTOBARBA MACH 3 SENSITIVE 1 APARELHO"
+      ]
+    },
+    {
+      "pattern": "SOPAO",
+      "count": 13,
+      "examples": [
+        "SOPAO COSTELA KITANO 196G",
+        "SOPAO GALINHA CAIP MAGGI 200G",
+        "SOPAO KITANO G. MINEIRO 196G",
+        "SOPAO KITANO GAL CAIPIRA APIM. 196G",
+        "SOPAO KITANO GOSTINHO GAUCHO 196G",
+        "SOPAO KITANO GOSTINHO NORDESTINO 196G"
+      ]
+    },
+    {
+      "pattern": "TESOURA",
+      "count": 13,
+      "examples": [
+        "TESOURA DE COSTURA TRAMONTINA 07",
+        "TESOURA DE UNHA MUNDIAL INOX.",
+        "TESOURA MULTI-USO AFFICE CIS",
+        "TESOURA P/ UNHA MUNDIAL CURVA BC 323",
+        "TESOURA P/ UNHA MUNDIAL RETA BC 322",
+        "TESOURA PARA UNHAS MERHEJE"
+      ]
+    },
+    {
+      "pattern": "TIGELA",
+      "count": 13,
+      "examples": [
+        "TIGELA 2300ML C TP DECOR",
+        "TIGELA AMERICANA C TAMPA PAULISTA 150ML",
+        "TIGELA BRASILEIRINHO CISPER",
+        "TIGELA CISPER FLORJE",
+        "TIGELA COM TAMPA REF 10736",
+        "TIGELA DECORADA C/ TAMPA N/4"
+      ]
+    },
+    {
+      "pattern": "TOALHAS",
+      "count": 13,
+      "examples": [
+        "TOALHAS CHIFON DECORADAS + RECEITA 2UN",
+        "TOALHAS CHIFON SCOTT DEC. C/2",
+        "TOALHAS DE PAPEL CAPICE COM 2 ROLOS",
+        "TOALHAS DE PAPEL CHIFFON C/02UN",
+        "TOALHAS DE PAPEL GOURMET C/02 ROLOS",
+        "TOALHAS DE PAPEL INTER. NOVO 1000UND."
+      ]
+    },
+    {
+      "pattern": "BOLA",
+      "count": 12,
+      "examples": [
+        "BOLA FUT-GOL",
+        "BOLA KI BORA",
+        "BOLA KI BORA AMARELA",
+        "BOLA LEVE LIDER.",
+        "BOLA MEDIA LIDER.",
+        "BOLA PESADA LIDER."
+      ]
+    },
+    {
+      "pattern": "BOM",
+      "count": 12,
+      "examples": [
+        "BOM AR AIR WICK 32ML REFIL C/2",
+        "BOM AR DIF ELET REFIL LAVANDA E GER 30 BOM AR 160ML CX/12",
+        "BOM AR DIFUSOR ELET 16ML + REFIL LAVANDA E GERAN RECKIT",
+        "BOM AR FLORES DE J. 20% DESC. 360ML",
+        "BOM AR JARDIM PEONIA RECKIT 360ML",
+        "BOM AR LAVANDA 400ML"
+      ]
+    },
+    {
+      "pattern": "CORPO",
+      "count": 12,
+      "examples": [
+        "CORPO A CORPO ENVOLV. 200ML",
+        "CORPO A CORPO ENVOLVENTE DAVENE 200ML",
+        "CORPO A CORPO MARCANTE DAVENE 200ML",
+        "CORPO A CORPO NAT. DAVENE 200ML",
+        "CORPO A CORPO SEDUCAO 200ML",
+        "CORPO A CORPO SENSIVEL 200ML"
+      ]
+    },
+    {
+      "pattern": "CR",
+      "count": 12,
+      "examples": [
+        "CR. HID. BIO NATURAN ABACATE 1KG",
+        "CR. HID. BIO NATURAN ABACATE 250ML",
+        "CR. HID. BIO NATURAN HORMONIO 1KG",
+        "CR. HID. BIO NATURAN TUTANO C/SIL. 250ML",
+        "CR. HID. BIO NATURAN TUTANO C/SILI 1KG",
+        "CR. RESTAUR. SULIELKA M.E LANOL. 930ML."
+      ]
+    },
+    {
+      "pattern": "ESP",
+      "count": 12,
+      "examples": [
+        "ESP BARB BOZZANO REFRESCANTE 193G",
+        "ESP CONDOR L PESADA 1531",
+        "ESP ESFREBOM 3X100X75X42MM",
+        "ESP L ACO ASS PCT 45G",
+        "ESP LIMPPANO S.UNHAS 95X69X40MM",
+        "ESP SINT ASS PERTUTO FIL 4UN"
+      ]
+    },
+    {
+      "pattern": "FEIJOADA",
+      "count": 12,
+      "examples": [
+        "FEIJOADA A BRAS. SWIFT 830G",
+        "FEIJOADA ANGLO 310GR",
+        "FEIJOADA ANGLO 430G.",
+        "FEIJOADA ANGULO 830G",
+        "FEIJOADA BORDON 430G",
+        "FEIJOADA BORDON 830G"
+      ]
+    },
+    {
+      "pattern": "KIT",
+      "count": 12,
+      "examples": [
+        "KIT CHOC.CHOKITO BR.NESTLE C/ 3 UND.",
+        "KIT FACIL ESCONDIDINHO YOKI 150G",
+        "KIT FACIL ESTROGONOFE YOKI 150G",
+        "KIT FORT ELETR.",
+        "KIT GB PROMOPAC 2 AERO 72H BLUE 150ML",
+        "KIT HIDR INTEN CORP 200ML+CREM 50G VULT"
+      ]
+    },
+    {
+      "pattern": "MARG",
+      "count": 12,
+      "examples": [
+        "MARG DELICIA SUP CS 500G",
+        "MARG DELICIA SUPREMA 250G",
+        "MARG PURO SABOR 500G",
+        "MARG. DELICIA 500G",
+        "MARG. DELICIA MILA C/S 500G",
+        "MARG. DELICIA SEM SAL 500G"
+      ]
+    },
+    {
+      "pattern": "PINHO",
+      "count": 12,
+      "examples": [
+        "PINHO BRIL ACCEPT CL AT 500ML",
+        "PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+        "PINHO BRIL ACCEPT FLOR DE LILLY 500ML",
+        "PINHO BRIL ACCEPT LAV 1 CESTA E 1 BL",
+        "PINHO BRIL ACCEPT LAV REFIL",
+        "PINHO BRIL ACCEPT TIRA LIMO 500ML"
+      ]
+    },
+    {
+      "pattern": "REP",
+      "count": 12,
+      "examples": [
+        "REP PONT NIELY GOLD 42ML L PLENO",
+        "REP PONT NIELY GOLD 42ML N MAGICA",
+        "REP PONT NIELY GOLD 42ML POS Q. PODEROSA",
+        "REP PONTAS GOLD ANTI-STRESS 50ML",
+        "REP PONTAS GOLD EXTRA BRILHO 50ML",
+        "REP PONTAS GOLD ORQUIDEA 50ML"
+      ]
+    },
+    {
+      "pattern": "TAMPICO",
+      "count": 12,
+      "examples": [
+        "TAMPICO F CITRICAS 330ML",
+        "TAMPICO FR. CITRICAS 200ML",
+        "TAMPICO FR. CITRICAS SLIM 200ML",
+        "TAMPICO FRUTAS CITRICAS 1L",
+        "TAMPICO FRUTAS CITRICAS 1L.",
+        "TAMPICO FRUTAS CITRICAS 200ML"
+      ]
+    },
+    {
+      "pattern": "TORNEIRA",
+      "count": 12,
+      "examples": [
+        "TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+        "TORNEIRA FILTRO ALAV BR/AZ GAMA",
+        "TORNEIRA FILTRO AUT. COD.1358",
+        "TORNEIRA FILTRO AUT.BC/AZ GAMA",
+        "TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN",
+        "TORNEIRA FILTRO BARRO AUT. BC HERC"
+      ]
+    },
+    {
+      "pattern": "BATON",
+      "count": 11,
+      "examples": [
+        "BATON BASTAO CHOC BRANCO 30X16G",
+        "BATON BIG UNIV.APOLO 07",
+        "BATON BIG UNIV.APOLO 08",
+        "BATON BIG UNIV.APOLO 09",
+        "BATON BIG UNIV.APOLO 11",
+        "BATON BIG UNIV.APOLO 12"
+      ]
+    },
+    {
+      "pattern": "COPOS",
+      "count": 11,
+      "examples": [
+        "COPOS DESC COPOBRAS 300ML",
+        "COPOS DESC. COPOBRAS 180ML.",
+        "COPOS DESC. COPOBRAS 300ML C/100",
+        "COPOS DESC.TRANSP. MARATA 100X200ML",
+        "COPOS DEVILA 180ML.",
+        "COPOS FLORIE CISPER"
+      ]
+    },
+    {
+      "pattern": "GRAFITE",
+      "count": 11,
+      "examples": [
+        "GRAFITE 0,7MM C/12MINAS",
+        "GRAFITE 07 PARA POLY MERCURE",
+        "GRAFITE AEROSSOL M500 200ML",
+        "GRAFITE EM PO EMAVI 25G",
+        "GRAFITE EM PO JUNTALIDER 25G.",
+        "GRAFITE PO P/FECH. GARRA 15G"
+      ]
+    },
+    {
+      "pattern": "GRANULADO",
+      "count": 11,
+      "examples": [
+        "GRANULADO COLORIDO DORI 120G",
+        "GRANULADO COLORIDO MIL CORES 150G",
+        "GRANULADO COLORIDO VISCONTI 130G",
+        "GRANULADO DORI 70G.",
+        "GRANULADO MICANGA DR. OETKER 80G",
+        "GRANULADO MIL CORES 150G"
+      ]
+    },
+    {
+      "pattern": "NINHO",
+      "count": 11,
+      "examples": [
+        "NINHO 1+ PB101 FASES LEPO SAC 800G",
+        "NINHO 1+ PBIO L800 P700G",
+        "NINHO 3+PBI03 FASES LEPO 400G NESTLE",
+        "NINHO AFFANI CABERNET SAUVIGNON 750ML",
+        "NINHO COMPTO LACT ZERO LACTOSE 380G",
+        "NINHO FORT+ LEVINHO LT 350G"
+      ]
+    },
+    {
+      "pattern": "NO",
+      "count": 11,
+      "examples": [
+        "NO AR ALEGRIA DE INFANCIA",
+        "NO AR AMOR DE MAE 360ML",
+        "NO AR ESTILO LUXO BOM BRIL 277G.",
+        "NO AR JARDIM E POMAR 360ML",
+        "NO AR JASMIM 360ML",
+        "NO AR LAVANDA 400ML"
+      ]
+    },
+    {
+      "pattern": "PENTE",
+      "count": 11,
+      "examples": [
+        "PENTE CONDOR K6 JOY UN",
+        "PENTE DARMA 177 CABO LARGO 2UN",
+        "PENTE FINO DARMA 125 SEM CABO PIOLHO 2UN",
+        "PENTE MARCO BONI",
+        "PENTE MARCO BONI KIT C 2 DE BOLSO",
+        "PENTE MARCO BONI MEN KIT COM 2 UNIDADES"
+      ]
+    },
+    {
+      "pattern": "PINGO",
+      "count": 11,
+      "examples": [
+        "PINGO D OURO 48G",
+        "PINGO D OURO ELMA CHIPS BACON 120G",
+        "PINGO D`OURO PICANHA GRELHADA 27G",
+        "PINGO D`OURO PICANHA GRELHADA 65G",
+        "PINGO D`OURO PIZZA 66G",
+        "PINGO DOIRO BACON 30G"
+      ]
+    },
+    {
+      "pattern": "SAPOLIO",
+      "count": 11,
+      "examples": [
+        "SAPOLIO RAD PO CLASSICO 300G",
+        "SAPOLIO RADIUM BOM BRIL CREM MULT 450ML",
+        "SAPOLIO RADIUM CLASSICO 250ML",
+        "SAPOLIO RADIUM CREM LAV. 250ML",
+        "SAPOLIO RADIUM CREM. 300ML",
+        "SAPOLIO RADIUM LIMPA ALUMINNIO 250ML"
+      ]
+    }
+  ],
+  "two_words_top": [
+    {
+      "pattern": "FLOCOS DE",
+      "count": 14,
+      "examples": [
+        "FLOCOS DE COCO FLOCOCO 100G",
+        "FLOCOS DE MILHO CORINGA 1KG",
+        "FLOCOS DE MILHO CUSCUMIL 500G",
+        "FLOCOS DE MILHO JUBA 500G",
+        "FLOCOS DE MILHO KIMILHO YOKI 500G",
+        "FLOCOS DE MILHO MARATA 500G"
+      ]
+    },
+    {
+      "pattern": "PIC PARATI",
+      "count": 14,
+      "examples": [
+        "PIC. PARATI CHOCROCANTE PREMIUM 60G",
+        "PIC. PARATI CREM L CONDENSADO 60G",
+        "PIC. PARATI CREMOSO COCO 60G",
+        "PIC. PARATI CREMOSO NAPOLITANO 60G",
+        "PIC. PARATI CREMOSO TAPIOCA 60G",
+        "PIC. PARATI NINHO TRUFADO 60G"
+      ]
+    },
+    {
+      "pattern": "BOM AR",
+      "count": 12,
+      "examples": [
+        "BOM AR AIR WICK 32ML REFIL C/2",
+        "BOM AR DIF ELET REFIL LAVANDA E GER 30 BOM AR 160ML CX/12",
+        "BOM AR DIFUSOR ELET 16ML + REFIL LAVANDA E GERAN RECKIT",
+        "BOM AR FLORES DE J. 20% DESC. 360ML",
+        "BOM AR JARDIM PEONIA RECKIT 360ML",
+        "BOM AR LAVANDA 400ML"
+      ]
+    },
+    {
+      "pattern": "ANTI SEPTICO",
+      "count": 11,
+      "examples": [
+        "ANTI-SEPTICO BUCAL FLUORDENT TF 250ML",
+        "ANTI-SEPTICO BUCAL KOLYNOS MENTA 250ML",
+        "ANTI-SEPTICO BUCAL LISTERINE HORTELA",
+        "ANTI-SEPTICO BUCAL LISTERINE MENTA",
+        "ANTI-SEPTICO BUCAL ORAL-B HORTELA 250ML",
+        "ANTI-SEPTICO BUCAL ORAL-B MENTA 250ML"
+      ]
+    },
+    {
+      "pattern": "NO AR",
+      "count": 11,
+      "examples": [
+        "NO AR ALEGRIA DE INFANCIA",
+        "NO AR AMOR DE MAE 360ML",
+        "NO AR ESTILO LUXO BOM BRIL 277G.",
+        "NO AR JARDIM E POMAR 360ML",
+        "NO AR JASMIM 360ML",
+        "NO AR LAVANDA 400ML"
+      ]
+    },
+    {
+      "pattern": "SACOS PARA",
+      "count": 11,
+      "examples": [
+        "SACOS PARA LIXO IGUAL 100L FD C24",
+        "SACOS PARA LIXO IGUAL 15L FD C24",
+        "SACOS PARA LIXO IGUAL 30L FD C24",
+        "SACOS PARA LIXO IGUAL 50L FD C24",
+        "SACOS PARA LIXO PRA LIXO 15LT",
+        "SACOS PARA LIXO PRA-LIXO 100L"
+      ]
+    },
+    {
+      "pattern": "GARNIER FRUCTIS",
+      "count": 10,
+      "examples": [
+        "GARNIER FRUCTIS ANTICASPA 300ML.",
+        "GARNIER FRUCTIS CABELOS CACHEADOS 300ML.",
+        "GARNIER FRUCTIS CABELOS COLORIDOS 300ML.",
+        "GARNIER FRUCTIS CABELOS NORMAIS 300ML.",
+        "GARNIER FRUCTIS CABELOS SECOS 300ML.",
+        "GARNIER FRUCTIS COND.CABELOS CACHEADOS."
+      ]
+    },
+    {
+      "pattern": "MAIS VITA",
+      "count": 10,
+      "examples": [
+        "MAIS VITA MARACUJA YOKI 1L",
+        "MAIS VITA PURA SOJA 1L.",
+        "MAIS VITA SOJA CRANBERY COM ROMA 1L",
+        "MAIS VITA SOJA GRANB COM ROMA 200ML",
+        "MAIS VITA SOJA LAR COM ACEROLA 1L",
+        "MAIS VITA SOJA LAR COM ACEROLA 200ML"
+      ]
+    },
+    {
+      "pattern": "PINHO BRIL",
+      "count": 10,
+      "examples": [
+        "PINHO BRIL ACCEPT CL AT 500ML",
+        "PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+        "PINHO BRIL ACCEPT FLOR DE LILLY 500ML",
+        "PINHO BRIL ACCEPT LAV 1 CESTA E 1 BL",
+        "PINHO BRIL ACCEPT LAV REFIL",
+        "PINHO BRIL ACCEPT TIRA LIMO 500ML"
+      ]
+    },
+    {
+      "pattern": "POLPA POMAR",
+      "count": 10,
+      "examples": [
+        "POLPA POMAR ACAI 100G",
+        "POLPA POMAR CACAU 100G",
+        "POLPA POMAR CAJA 100G",
+        "POLPA POMAR CAJA 100G",
+        "POLPA POMAR CUPUACU 100G",
+        "POLPA POMAR GRAVIOLA 100G"
+      ]
+    },
+    {
+      "pattern": "SELETA DE",
+      "count": 10,
+      "examples": [
+        "SELETA DE LEG FUGINI SACHE 170G",
+        "SELETA DE LEG. MIX CLAS CONG. GRANO 300G",
+        "SELETA DE LEGUMES CONG PCT 0,300KG",
+        "SELETA DE LEGUMES OLE 170G",
+        "SELETA DE LEGUMES PREDILECTA 280G",
+        "SELETA DE LEGUMES PREDILECTA 300G"
+      ]
+    },
+    {
+      "pattern": "SORVETE PARATI",
+      "count": 10,
+      "examples": [
+        "SORVETE PARATI BOMBOM 2L",
+        "SORVETE PARATI BRIGADEIRO 2L",
+        "SORVETE PARATI CAJA 2L",
+        "SORVETE PARATI CHOCOTINE 1L",
+        "SORVETE PARATI FLOCOS 2L",
+        "SORVETE PARATI MOUSSE MARACUJA 1L"
+      ]
+    },
+    {
+      "pattern": "CORPO A",
+      "count": 9,
+      "examples": [
+        "CORPO A CORPO ENVOLV. 200ML",
+        "CORPO A CORPO ENVOLVENTE DAVENE 200ML",
+        "CORPO A CORPO MARCANTE DAVENE 200ML",
+        "CORPO A CORPO NAT. DAVENE 200ML",
+        "CORPO A CORPO SEDUCAO 200ML",
+        "CORPO A CORPO SENSIVEL 200ML"
+      ]
+    },
+    {
+      "pattern": "SAPOLIO RADIUM",
+      "count": 9,
+      "examples": [
+        "SAPOLIO RADIUM BOM BRIL CREM MULT 450ML",
+        "SAPOLIO RADIUM CLASSICO 250ML",
+        "SAPOLIO RADIUM CREM LAV. 250ML",
+        "SAPOLIO RADIUM CREM. 300ML",
+        "SAPOLIO RADIUM LIMPA ALUMINNIO 250ML",
+        "SAPOLIO RADIUM LIMPA INOX 300ML"
+      ]
+    },
+    {
+      "pattern": "TENYS PE",
+      "count": 9,
+      "examples": [
+        "TENYS PE AEROSSOL 150ML",
+        "TENYS PE BARUEL 100G",
+        "TENYS PE BARUEL WOMAN 92G",
+        "TENYS PE CANFORADO 150ML",
+        "TENYS PE FRESH 100G",
+        "TENYS PE JATO SECO 150 ML"
+      ]
+    },
+    {
+      "pattern": "BEB LACTEA",
+      "count": 8,
+      "examples": [
+        "BEB LACTEA PARM WHEYFIT MIL VERDE 250 ML",
+        "BEB LACTEA PARMALAT WHEY 250ML ABAC 15G PROT",
+        "BEB LACTEA PARMALAT WHEY 250ML CAPP 15G PROT",
+        "BEB LACTEA PARMALAT WHEY 250ML CHOC 15G PROTEINA",
+        "BEB LACTEA SUSTAGEM CHOC 190ML",
+        "BEB. LACTEA CHOC.BRANCO CHOCOPINHO 200ML"
+      ]
+    },
+    {
+      "pattern": "COLOR CASTING",
+      "count": 8,
+      "examples": [
+        "COLOR CASTING GLOSS KIT 100 PRETO NOITE",
+        "COLOR CASTING GLOSS KIT 200 PRETO",
+        "COLOR CASTING GLOSS KIT 300 CAST ESC",
+        "COLOR CASTING GLOSS KIT 400 CAST NAT",
+        "COLOR CASTING GLOSS KIT 415 CHOC GLACE",
+        "COLOR CASTING GLOSS KIT 500 CAST CLARO"
+      ]
+    },
+    {
+      "pattern": "ESPUMA DE",
+      "count": 8,
+      "examples": [
+        "ESPUMA DE ACO ASSOLAN 45G",
+        "ESPUMA DE BARB.BOZZANO ULTRA MULT.193G",
+        "ESPUMA DE BARBEAR BOZANO HORTELA 150G",
+        "ESPUMA DE BARBEAR BOZZANO 150G.",
+        "ESPUMA DE BARBEAR BOZZANO 190 ML",
+        "ESPUMA DE BARBEAR BOZZANO P.SENS. 150G"
+      ]
+    },
+    {
+      "pattern": "FILE DE",
+      "count": 8,
+      "examples": [
+        "FILE DE CAMARRAO 7 BARBAS 500G",
+        "FILE DE CAMRRAO ESCOLHA 500G",
+        "FILE DE P. POLACA DO AL. BACALANOR 1KG",
+        "FILE DE PEITO DE FR. COPACOL 1KG",
+        "FILE DE PESCADA COSTA SUL 500G",
+        "FILE DE POLACA DO ALASCA 1KG"
+      ]
+    },
+    {
+      "pattern": "NISSIN CUP",
+      "count": 8,
+      "examples": [
+        "NISSIN CUP NECODLES CAMARAO 64G",
+        "NISSIN CUP NOODLES BACON 64G",
+        "NISSIN CUP NOODLES BOLONHESA 72G.",
+        "NISSIN CUP NOODLES CR. 4 QUEIJOS",
+        "NISSIN CUP NOODLES CR. CALABRESA",
+        "NISSIN CUP NOODLES CR. FRANGO E REQ."
+      ]
+    },
+    {
+      "pattern": "SOPAO KITANO",
+      "count": 8,
+      "examples": [
+        "SOPAO KITANO G. MINEIRO 196G",
+        "SOPAO KITANO GAL CAIPIRA APIM. 196G",
+        "SOPAO KITANO GOSTINHO GAUCHO 196G",
+        "SOPAO KITANO GOSTINHO NORDESTINO 196G",
+        "SOPAO KITANO LEGUMES 196G",
+        "SOPAO KITANO LENTILHA 196G"
+      ]
+    },
+    {
+      "pattern": "MAIS SABOR",
+      "count": 7,
+      "examples": [
+        "MAIS SABOR KITANO PARA SALADA 60G.",
+        "MAIS SABOR LEGUMES KITANO 60G",
+        "MAIS SABOR MASSAS 60G",
+        "MAIS SABOR NORDESTINO KITANO 60G",
+        "MAIS SABOR P/AVES KITANO 60G",
+        "MAIS SABOR P/CARNES KITANO 60G"
+      ]
+    },
+    {
+      "pattern": "NATU HAIR",
+      "count": 7,
+      "examples": [
+        "NATU HAIR 80 G CAST. ESCURO",
+        "NATU HAIR COLOR CAST. CLARO 80G",
+        "NATU HAIR COLOR CAST. ESCURO 80G",
+        "NATU HAIR COLOR CAST. NATURAL 80G",
+        "NATU HAIR COLOR PRETO 80G",
+        "NATU HAIR QUER. FLORES E FR. 80G"
+      ]
+    },
+    {
+      "pattern": "PATE DE",
+      "count": 7,
+      "examples": [
+        "PATE DE CARNE SWIFT 130G",
+        "PATE DE CRANE BOVC SWIFT 100G.",
+        "PATE DE FIGADO ANGULO 130G",
+        "PATE DE FIGADO ODERICH 100G",
+        "PATE DE FIGADO SWIFT 130G",
+        "PATE DE GALINHA SWIFT 100G."
+      ]
+    },
+    {
+      "pattern": "PINGO D",
+      "count": 7,
+      "examples": [
+        "PINGO D OURO 48G",
+        "PINGO D OURO ELMA CHIPS BACON 120G",
+        "PINGO D`OURO PICANHA GRELHADA 27G",
+        "PINGO D`OURO PICANHA GRELHADA 65G",
+        "PINGO D`OURO PIZZA 66G",
+        "PINGO D'OURO BACON 40G"
+      ]
+    },
+    {
+      "pattern": "POLIDOR DE",
+      "count": 7,
+      "examples": [
+        "POLIDOR DE ALUM. TROIA 500ML",
+        "POLIDOR DE ALUMINIO LIMPA BOM 500ML",
+        "POLIDOR DE ALUMINIO TROIA 500ML",
+        "POLIDOR DE M. FINOS POLIBRIL 200ML",
+        "POLIDOR DE MET POLIBRIL 200ML",
+        "POLIDOR DE SAPATO PAST PRETO NUGGET 360G"
+      ]
+    },
+    {
+      "pattern": "POP CORN",
+      "count": 7,
+      "examples": [
+        "POP CORN BACON YOKI 100G",
+        "POP CORN DOCE YOKI 100G",
+        "POP CORN MANT. LIGHT YOKI 100G",
+        "POP CORN MANT. SUAVE YOKI 100G",
+        "POP CORN NAT. YOKI 100G",
+        "POP CORN YOKI COB. MANT. ESPECIAL 130G"
+      ]
+    },
+    {
+      "pattern": "PRATOS DESC",
+      "count": 7,
+      "examples": [
+        "PRATOS DESC. BEL PLAST 15CM. 10UND.",
+        "PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+        "PRATOS DESC. BEL PLAST.18CM.10UND.",
+        "PRATOS DESC. COPOBRAS 15CM",
+        "PRATOS DESC. COPOZAN 15CM",
+        "PRATOS DESC. JUNCO 10 UND."
+      ]
+    },
+    {
+      "pattern": "REFRESCO MARATA",
+      "count": 7,
+      "examples": [
+        "REFRESCO MARATA ACEROLA 30G",
+        "REFRESCO MARATA CAJU 25G",
+        "REFRESCO MARATA CAJU 30G",
+        "REFRESCO MARATA GRAVIOLA 25G",
+        "REFRESCO MARATA MARACUJA 25G",
+        "REFRESCO MARATA TANGERINA 25G"
+      ]
+    },
+    {
+      "pattern": "TOALHAS DE",
+      "count": 7,
+      "examples": [
+        "TOALHAS DE PAPEL CAPICE COM 2 ROLOS",
+        "TOALHAS DE PAPEL CHIFFON C/02UN",
+        "TOALHAS DE PAPEL GOURMET C/02 ROLOS",
+        "TOALHAS DE PAPEL INTER. NOVO 1000UND.",
+        "TOALHAS DE PAPEL INTERF NOVO 1000UN",
+        "TOALHAS DE PAPEL KLASS 2 ROLOS"
+      ]
+    },
+    {
+      "pattern": "BATON BIG",
+      "count": 6,
+      "examples": [
+        "BATON BIG UNIV.APOLO 07",
+        "BATON BIG UNIV.APOLO 08",
+        "BATON BIG UNIV.APOLO 09",
+        "BATON BIG UNIV.APOLO 11",
+        "BATON BIG UNIV.APOLO 12",
+        "BATON BIG UNIVERSO APOLO 04"
+      ]
+    },
+    {
+      "pattern": "CORDA P",
+      "count": 6,
+      "examples": [
+        "CORDA P.VARAL CLARUS N.10 EX FORTE 10M",
+        "CORDA P/ VARAL CLARUS N10.",
+        "CORDA P/VARAL BRILHUS 10M",
+        "CORDA P/VARAL CLARUS NO5",
+        "CORDA P/VARAL SUPERCORDA NR.03",
+        "CORDA P/VARAL SUPERCORDA NR.05"
+      ]
+    },
+    {
+      "pattern": "DUPE VIP",
+      "count": 6,
+      "examples": [
+        "DUPE VIP 2 NEW P-PRETO 35/36",
+        "DUPE VIP 2 NEW P-PRETO 39/40",
+        "DUPE VIP NEW KRISTAL P-AZUL CL.33/34",
+        "DUPE VIP NEW KRISTAL P-AZUL CL.35/36",
+        "DUPE VIP NEW KRISTAL P-AZUL CL.37/38",
+        "DUPE VIP NEW KRISTAL P-AZUL CL.39/40"
+      ]
+    },
+    {
+      "pattern": "MAMAD LOLLY",
+      "count": 6,
+      "examples": [
+        "MAMAD. LOLLY LILAS 240ML",
+        "MAMAD. LOLLY REF 1370 AZUL 240ML",
+        "MAMAD. LOLLY REF 1370 ROSA 240ML",
+        "MAMAD. LOLLY REF 1470 AZUL 150ML",
+        "MAMAD. LOLLY REF 1470 ROSA 150ML",
+        "MAMAD. LOLLY VERDE 240ML"
+      ]
+    },
+    {
+      "pattern": "NEGO BOM",
+      "count": 6,
+      "examples": [
+        "NEGO BOM .",
+        "NEGO BOM DA BAHIA 400G",
+        "NEGO BOM SABORITO 40G.",
+        "NEGO BOM SANTANA 200G.",
+        "NEGO BOM SANTANA 400G.",
+        "NEGO BOM SILVANIA 400G."
+      ]
+    },
+    {
+      "pattern": "PASTILHA ADES",
+      "count": 6,
+      "examples": [
+        "PASTILHA ADES PATO CITRUS",
+        "PASTILHA ADES PATO FRESH 3UN",
+        "PASTILHA ADES PATO LAVANDA",
+        "PASTILHA ADES PATO LAVANDA 3UND",
+        "PASTILHA ADES.PRATIK FLOR.3UN",
+        "PASTILHA ADES.PRATIK MARINE 3UN"
+      ]
+    },
+    {
+      "pattern": "S ESTAMPADA",
+      "count": 6,
+      "examples": [
+        "S.ESTAMPADA MASC. DUPE 37/38 ROYAL",
+        "S.ESTAMPADA MASC. DUPE 39/40 BR.",
+        "S.ESTAMPADA MASC. DUPE 39/40 ROYAL",
+        "S.ESTAMPADA MASC. DUPE 41/42 BR.",
+        "S.ESTAMPADA MASC. DUPE 43/44 BR.",
+        "S.ESTAMPADA MASC. DUPE 43/44 ROYAL"
+      ]
+    },
+    {
+      "pattern": "SANDALIA HAV",
+      "count": 6,
+      "examples": [
+        "SANDALIA HAV.K CARS AZUL ESTRELA 23/24",
+        "SANDALIA HAV.K CARS AZUL ESTRELA 25/26",
+        "SANDALIA HAV.K CARS AZUL ESTRELA 27/28",
+        "SANDALIA HAV.K CARS AZUL ESTRELA 29/30",
+        "SANDALIA HAV.K CARS AZUL ESTRELA 31/32",
+        "SANDALIA HAV.ROSA HOLYWOOD 39/40."
+      ]
+    },
+    {
+      "pattern": "SAZON FLOPPY",
+      "count": 6,
+      "examples": [
+        "SAZON FLOPPY AMARELO AJINOMOTO 60G",
+        "SAZON FLOPPY NORDESTE AJINAMOTO 60G",
+        "SAZON FLOPPY NORDESTE AJINOMOTO 40G",
+        "SAZON FLOPPY VERDE AJINOMOTO 40G",
+        "SAZON FLOPPY VERDE AJIOMOTO 60G",
+        "SAZON FLOPPY VERMELHO AJINOMOTO 60G"
+      ]
+    },
+    {
+      "pattern": "STOKY FREEZER",
+      "count": 6,
+      "examples": [
+        "STOKY FREEZER REDONDO PLASTIGEL",
+        "STOKY FREEZER RETANGULAR 1892 ML.",
+        "STOKY FREEZER/MICRO AZUL PLASTIGEL",
+        "STOKY FREEZER/MICRO DEC.PLASTIGEL",
+        "STOKY FREEZER/MICRO DEC.PLASTIGEL",
+        "STOKY FREEZER/MICRO PLASTIGEL"
+      ]
+    }
+  ],
+  "brand_in_unclassified": [
+    {
+      "pattern": "YOKI",
+      "count": 88,
+      "examples": [
+        "ALIMENTO A BASE DE GLICOSE YOKI 360G",
+        "ALPISTE TORI 500GR YOKI",
+        "AMEDOIM DESCASCADO SALGADO YOKI 500G",
+        "AMEDOIM DOCE PRALINE YOKI 500G",
+        "BATARA YOKITOS CHURRASCO 100G",
+        "BROWNIE COOKIE MIX YOKI 500G"
+      ]
+    },
+    {
+      "pattern": "ADES",
+      "count": 57,
+      "examples": [
+        "ADES CALCIO ORIGINAL 1L.",
+        "ADES ORIGINAL 1L",
+        "ADES VERAO MIX ICE 1L",
+        "ADES. FITA S.F.AUTO 3M",
+        "ADESIVO ARALDITE 24H 39.5 G.",
+        "ADESIVO ARALDITE HOBBY 23.4G."
+      ]
+    },
+    {
+      "pattern": "KITANO",
+      "count": 47,
+      "examples": [
+        "ACAFRAO DA TERRA KITANO 50G",
+        "ALECRIM DESIDRATADO KITANO 24G",
+        "ALECRIM DESIDRATADO KITANO 6G",
+        "BICARBONATO 30G KITANO",
+        "BICARBONATO DE SODIO KITANO 80G",
+        "CAMOMILA KITANO 10G"
+      ]
+    },
+    {
+      "pattern": "NESTLE",
+      "count": 44,
+      "examples": [
+        "ALPINO COOKIE NESTLE 60G",
+        "BOMBOM NESTLE ESPECIALIDADES 220G",
+        "BOMBOM NESTLE ESPECIALIDADES 251 G 20/GTS",
+        "BOMBONS ESPECIAIS NESTLE 244G",
+        "CACAU EM LPO SOLUVEL NESTLE 200G",
+        "CHAMBINHO NESTLE 360G."
+      ]
+    },
+    {
+      "pattern": "ORAL",
+      "count": 28,
+      "examples": [
+        "ANTIMOFO DESOFLOR FLORAL 80GR",
+        "ANTIMOFO SECAR FLORAL 180G",
+        "ANTISEP BUCAL HORT ORAL-B L500 P300ML",
+        "ANTI-SEP BUCAL MENTA ORAL-B L500 P300ML",
+        "ANTI-SEPT BUCAL HORT L500 P300ML ORAL-B",
+        "ANTI-SEPTICO BUCAL ORAL-B HORTELA 250ML"
+      ]
+    },
+    {
+      "pattern": "PRATICE",
+      "count": 19,
+      "examples": [
+        "DESENGUR. PRATICE REFIL 2 EM 1 500ML",
+        "DESENGUR.PRATICE 2 EM 1 500ML",
+        "KIT PRATICE L2 + 1LIMP.",
+        "PRATICE 3 EM 1 BOM BRIL SUAVE 500ML",
+        "PRATICE ATRACTIVE 500ML",
+        "PRATICE BRIA SUAVE DREAMING 500ML."
+      ]
+    },
+    {
+      "pattern": "PATO",
+      "count": 18,
+      "examples": [
+        "PASTILHA AD PATO LAV. C/3UN",
+        "PASTILHA ADES PATO CITRUS",
+        "PASTILHA ADES PATO FRESH 3UN",
+        "PASTILHA ADES PATO LAVANDA",
+        "PASTILHA ADES PATO LAVANDA 3UND",
+        "PASTILHA ADESIVA PATO CITRUS C/3UND"
+      ]
+    },
+    {
+      "pattern": "HALLS",
+      "count": 16,
+      "examples": [
+        "DROPS HALLS CEREJA C/03UN",
+        "DROPS HALLS MENTA C/03UN",
+        "DROPS HALLS MRNTOL C/03UN",
+        "HALLS CEREJA 28G",
+        "HALLS EXTRA FORTE 27,5G",
+        "HALLS MENTA 28G"
+      ]
+    },
+    {
+      "pattern": "GARNIER",
+      "count": 16,
+      "examples": [
+        "GARNIER BI-O ENERGY 50ML.",
+        "GARNIER BI-O SOFT50ML.",
+        "GARNIER FRUCTIS ANTICASPA 300ML.",
+        "GARNIER FRUCTIS CABELOS CACHEADOS 300ML.",
+        "GARNIER FRUCTIS CABELOS COLORIDOS 300ML.",
+        "GARNIER FRUCTIS CABELOS NORMAIS 300ML."
+      ]
+    },
+    {
+      "pattern": "LOLA",
+      "count": 15,
+      "examples": [
+        "LOLA COND MORTE SUBITA HIDRAT 250G",
+        "LOLA FINALIZADOR DANOS VORAZES 200ML",
+        "LOLA KIT BOSSA 1KG",
+        "LOLA KIT FEIRA CRONOLOLA 300G",
+        "LOLA MASC MORTE SUBITA SUPER HIDR 450G",
+        "LOLA MASCARA COND DREAM CREAM 200G"
+      ]
+    },
+    {
+      "pattern": "TRIDENT",
+      "count": 10,
+      "examples": [
+        "TRIDENT FRESH INTENSE 32G",
+        "TRIDENT FRESH INTENSE 8G",
+        "TRIDENT HORTELA 34G",
+        "TRIDENT HORTELA 8G",
+        "TRIDENT MENTA 34G",
+        "TRIDENT MENTA 8G"
+      ]
+    },
+    {
+      "pattern": "ALPINO",
+      "count": 3,
+      "examples": [
+        "ALPINO BOMBONS 104G",
+        "ALPINO COOKIE NESTLE 60G",
+        "ALPINO WHITE TOP 90G"
+      ]
+    }
+  ],
+  "false_positive_candidates": [
+    {
+      "category": "Hortifrúti",
+      "name": "ADES LARANJA 250ML.",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES MACA 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES MACA 250ML.",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES MORANGO TP 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES PESSEGO 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES PESSEGO 250ML.",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES SOJA FRAM,LIMAO E HORTELA 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES UVA 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES UVA 200ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES UVA 250ML.",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ADES UVA ZERO 200ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ALIM. COM SOJA ABACAXI ADES 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "ALIM.ADES MORANGO 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LAC. BETANIA AMEIXA E MOR. 540G",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA BAT GUT MORANGO BANANA900G",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA BETANIA MORANGO 900G",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA C POLPA DE AMEIXA BETA 180",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA C POLPA DE FRUTA BETAN 180",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA MIGMIL MORANGO 1KG",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA MORANGO 1000G NATVILLE",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA MORANGO BAND NATVILLE 90G",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA PIRACANJUBA PRO FORCE MORANGO 250ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA PONTA VERDE AMEIXA 1L.",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA LACTEA PONTA VERDE PESSEGO 1L.",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA MISTA CITRUS LARANJA 330ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA MISTA CITRUS UVA 330ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA MISTA LARANJA TANG.LIM.INDAIA 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA MISTA MAAC LIMAO E UVA INDAIA 1L",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA MISTA MACA ACE.MANG INDAIA 1LT",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA MISTA MARATA LARANJA 300ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA MISTA MARATA MORANGO 300ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "BEBIDA MISTA MARATA UVA 300ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "NESQUIK BEBIDA LACTEA MORANGO 200ML",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Hortifrúti",
+      "name": "PALETAS MEXICANA MORANGO COM LEITE CONDENSADO 24 UND",
+      "suspicion": "fruta em produto não fresco"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA 40VOL FARMAX 90ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA BEIRA ALTA V30 90ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA CREMOSA FARMAX 70ML.",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA FARMAX 20VL 90ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA FARMAX 30 VOLUMES 70ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA FARMAX 30VOLUMES 90ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA FARMAX CREMOSA 40 V 70ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA FARMAX V 20 70ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA FLORAMELIA 20 VOL.",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA MARCIA 40VL 70ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA MARCIA VOL.20 70G",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA MARCIA VOL.30 70G",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA ONLY 20V 100ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA ONLY 40V 100ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA POPY 70ML.",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Bebidas",
+      "name": "AGUA OXIGENADA UNIBELLA 30VOL 90ML",
+      "suspicion": "água não potável / higiene"
+    },
+    {
+      "category": "Utilidades e Outros",
+      "name": "ALCAPARRA POTE PRAMESA 100G",
+      "suspicion": "parece alimento/higiene/limpeza"
+    },
+    {
+      "category": "Utilidades e Outros",
+      "name": "ALPINO BEBIDA GARRAFA 280ML",
+      "suspicion": "parece alimento/higiene/limpeza"
+    },
+    {
+      "category": "Utilidades e Outros",
+      "name": "NESTON BEBIDA GARRAFA PLAS 280MLVITAMINA",
+      "suspicion": "parece alimento/higiene/limpeza"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV COLOR CAFE 39/40",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV ELEGANDE PRINT CAFE 35/36",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV HYPE AREIA/CAFE 35/36",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV HYPE AREIA/CAFE 41/42",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV KIDS MARIO B.ICE BL/CAFE 23/24",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV KIDS MARIO B.ICE BL/CAFE 25/26",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV KIDS MARIO B.ICE BL/CAFE 27/28",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV KIDS MARIO B.ICE BL/CAFE 29/30",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV SURF BRANCO/CAFE 35/36",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV SURF BRANCO/CAFE 37/38",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV SURF BRANCO/CAFE 39/40",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV SURF BRANCO/CAFE 41/42",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV SURF BRANCO/CAFE 43/44",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV TPO MAX AREIA/CAFE 37/38",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV TPO MAX AREIA/CAFE 39/40",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV TPO MAX AREIA/CAFE 41/42",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAV TPO MAX AREIA/CAFE 43/44",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND HAVAIANAS SLIM CAFE 39/40",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. DUPE MONO FLORAL S-AVEIA P-AV33/34",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. DUPE MONO FLORAL S-AVEIA P-AV35/36",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. DUPE MONO FLORAL S-AVEIA P-AV37/38",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. DUPE MONO FLORAL S-AVEIA P-AV39/40",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR CAFE 37/38",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR CAFE 41/42",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR CAFE 43/44",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR CHOCOLATE 33/34",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR CHOCOLATE 37/38",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR CHOCOLATE 41/42",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR CHOCOLATE 43/44",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR. CHOCOLATE 35/36",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND. HAV. COLOR. CHOCOLATE 39/40",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND.HAV.CITY BASIC DOUR/CAFE/DOUR 37/8",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND.HAV.CITY BASIC DOUR/CAFE/DOUR 39/0",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND.HAV.CITY BASIC DOUR/CAFE/DOUR 41/2",
+      "suspicion": "não parece mercearia"
+    },
+    {
+      "category": "Mercearia Seca e Básica",
+      "name": "SAND.HAV.CITY BASIC DOUR/CAFE/DOUR 43/4",
+      "suspicion": "não parece mercearia"
+    }
+  ],
+  "false_positive_count": 88,
+  "named_checks": {
+    "ADES": [
+      {
+        "name": "ABS HIG CHARMS COM ABAS COM 8 UNIDADES",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ABSORVENTE ALWAYS SECA 16 UNIDADES",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ABSORVENTE ALWAYS SECA CONTEM 8UNIDADES",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ABSORVENTE ALWAYS SUAVE 16UNIDADES",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ABSORVENTE INTIMUS COM ABAS 16 UNIDADES",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES CALCIO ORIGINAL 1L.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ADES LARANJA 250ML.",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES MACA 1L",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES MACA 250ML.",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES MORANGO TP 1L",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES ORIGINAL 1L",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ADES PESSEGO 1L",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES PESSEGO 250ML.",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES SABOR ORIGINAL ZERO ACUCAR 1L",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES SOJA FRAM,LIMAO E HORTELA 1L",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES UVA 1L",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES UVA 200ML",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES UVA 250ML.",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES UVA ZERO 200ML",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ADES VERAO MIX ICE 1L",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ADES. FITA S.F.AUTO 3M",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ADESIVO ARALDITE 24H 39.5 G.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ADESIVO ARALDITE HOBBY 23.4G.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ADESIVO EPOXI ALRALDITE HOBBY 10M 23,4G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ADESIVO PLASTICO POLITUBES 17G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      }
+    ],
+    "ALCAPARRA": [
+      {
+        "name": "ALCAPARRA POTE PRAMESA 100G",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALCAPARRA QUERO 105G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ALCAPARRA RAIOLA 65GR VIDRO",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ALCAPARRAS LA VIOLETERA 100G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ALCAPARRAS TIO PACO 100G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      }
+    ],
+    "ALPINO": [
+      {
+        "name": "ALPINO BEBIDA GARRAFA 280ML",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALPINO BOMBONS 104G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ALPINO CHOCOLATE 100G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALPINO CHOCOLATE 170G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALPINO CHOCOLATE 80G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALPINO CHOCOLATE 85G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALPINO COOKIE NESTLE 60G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ALPINO WHITE TOP 90G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "CHOCOLATE ALPINO 90G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PAPEL HIG ALPINO F DUPLA NEUTRO 8X30M",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PAPEL HIG ALPINO F.D. NEUTRO 12X30M",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PAPEL HIG ALPINO L16 P14",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PAPEL HIG ALPINO NEUTRO F TRIPLA 4X20M",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PAPEL HIG. ALPINO 8UN",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PAPEL HIG. ALPINO L24 P 22",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PAPEL HING. ALPINO NEUTRO C 4 ROLOS",
+        "category": "Utilidades e Outros",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PSTMP BISCOITO RECH ALPINO 90G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      }
+    ],
+    "POLPA": [
+      {
+        "name": "ACTIVIA POLPA AMEIXA 85G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ACTIVIA POLPA MORANGO DANONE 85G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "BEBIDA LACTEA C POLPA DE AMEIXA BETA 180",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "BEBIDA LACTEA C POLPA DE FRUTA BETAN 180",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "BEBIDA LACTEA POLPA DE FRUTAS 1L",
+        "category": "Bebidas",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "CORPUS POLPA MOR. DANONE 150G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "IOG POLPA DANONIHO MOR VIT 6X95G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "IOG VERDADEIRO POLPA MOR. DANONE 6X90G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "IOG. POLPA KIDS MOR/UVA DANONE 6X95G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "IOG.ACTIVIA POLPA MAMAO E CEREAIS DANONE",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "IOG.VERDAD. POLPA GREGO ORIG/FRUTAS VER. DANONE 85G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "IOG.VERDADEIRO POLPA GREGO LIGHT ORI/MOR DANONE 85G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "IOGURTE POLPA NINHO UN",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "NESTLE IOG POLPA MORANGO 85G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "NESTLE POLPA MORANGO 540G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "NINHO IOG POLPA MOR 0 LACTOSE 360G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "NINHO IOGURTE POLPA 540G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "POLPA BETANIA 90G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "POLPA D LAVIE CAJA 100G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "POLPA D LAVIE MANGABA 100G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "POLPA D LAVIE MARACUJA 100G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "POLPA DANONE MOR/COCO 720G",
+        "category": "Frios e Laticínios",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "POLPA DE FR. MARACUJA POMAR 100G",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "POLPA DE FRUATA SEMPRE VIVA MORANGO",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "POLPA DE FRUTA BOA VIDA 600G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      }
+    ],
+    "ANTI": [
+      {
+        "name": "AEROSOL DOVE ANTIBACTERIANO 150ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALIMEMTO INFANTIL AMEIXA 120G.",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALIMEMTO INFANTIL CARNE,LEGUMES,MAC115G.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ALIMEMTO INFANTIL HEINZ AMEIXA 113G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALIMEMTO INFANTIL MACA 120G.",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALIMENTO INFANTIL BANANA 113G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALIMENTO INFANTIL CEREAIS E FRURAS 120G.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ALIMENTO INFANTIL FRUTAS SORTIDAS 113G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ALIMENTO INFANTIL HENS MACA 113G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ALIMENTO INFANTIL SORTIDA 103G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "AMACIANTE CONCENTRADO YPE ANTIBAC 1L",
+        "category": "Limpeza",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ANTI MOFO NOVICO LAVANDA 80G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ANTI MOFO NOVICO NATURAL 80G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ANTI MOFO NOVICO SOFT 80G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ANTI SEPTICO COLGATE PLAX FRESH 250ML.",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ANTI SSEP BUCAL SENSODYNE COOL M 250ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ANTI SSEP BUCAL SENSODYNE EX.FRESH.250ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ANTI.DOVE PEPINO E CHA VERDE PEPINO 100G",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ANTIC. BUCAL COLGATE PLAX S MINT 250ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "ANTI-CEPTICO BUCAL FLUORDENT MENTA 250ML",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ANTIFERRUGEM SUPER LUB 100ML",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ANTIMOFO DESOFLOR BABY 80GR",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ANTIMOFO DESOFLOR EUCALIPTO 80GR",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ANTIMOFO DESOFLOR FLORAL 80GR",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "ANTIMOFO SECAR FLORAL 180G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      }
+    ],
+    "PASTILHA": [
+      {
+        "name": "BAYGON AP.+ 4PASTILHAS REFIL",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "HARPIC PASTILHA ADES LAVANDA 9G",
+        "category": "Limpeza",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PASTILHA AD PATO LAV. C/3UN",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA ADES PATO CITRUS",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA ADES PATO FRESH 3UN",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA ADES PATO LAVANDA",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA ADES PATO LAVANDA 3UND",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA ADES.PRATIK FLOR.3UN",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA ADES.PRATIK MARINE 3UN",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA ADESIVA PATO CITRUS C/3UND",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA ADESIVA PATO FLORAL 3 UNIDADES",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA GAROTO MORANGO E MENTA 85G.",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PASTILHA GAROTO SABOR LARANJA 85G.",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PASTILHA HARPIC CITRUS 9G",
+        "category": "Limpeza",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PASTILHA HARPIC LEVE 3 PAGUE 2",
+        "category": "Limpeza",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PASTILHA HARPIC PINHO 3 UNIDADES",
+        "category": "Limpeza",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PASTILHA HARPIC PINHO COMPESTRE L3 P 2",
+        "category": "Limpeza",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PASTILHA HORT GAROTO 17G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA HORTELA GAROTO 85G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA PATO ADESIVA CITRUS 3 UNIDADES",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA SAN ORIENTAL EUCALIPTO 25G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA SAN ORIENTAL FLORAL 25G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHA SAN ORIENTAL JASMIM 25G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "PASTILHAS GAROTO LARAN.C/GUARANA 85G",
+        "category": "Bebidas",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "PASTILHAS REPELENTE FORT BOM BRIL",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      }
+    ],
+    "GARNIER": [
+      {
+        "name": "COND. GARNIER CAB. COL. 300ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "COND. GARNIER FRUC. CAB. OLEOSOS 300ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "COND. GARNIER FRUC. RAIZES OLEOSAS 300ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "COND. GARNIER FRUCTIS OIL REPAIR 300ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "COND.FRUCTIS GARNIER CAB.NORMAIS 300ML.",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "GARNIER BI-O ENERGY 50ML.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER BI-O SOFT50ML.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS ANTICASPA 300ML.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS CABELOS CACHEADOS 300ML.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS CABELOS COLORIDOS 300ML.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS CABELOS NORMAIS 300ML.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS CABELOS SECOS 300ML.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS COND.CABELOS CACHEADOS.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS COND.CABELOS COLORIDOS.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS COND.CABELOS NORMAIS.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS COND.CABELOS SECOS.",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER FRUCTIS CONDICIONADFOR ANTICASPA",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER NUTRISSE C.C.VERM. IRI. 562",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER NUTRISSE L.CL. DOUR. 83",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER NUTRISSE L.E. DOUR.ACOB. 677",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "GARNIER NUTRISSE L.N. ACINZ.PR. 711",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "SH. FRUCTIS GARNIER QUIMI-RESIST 300ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "SH. GARNIER FORT. OLEO E REPARACAO 300ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "SH. GARNIER FRUC. CAB. OLEOSOS 300ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "SH. GARNIER FRUC. HYDRA-LESS 300ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      }
+    ],
+    "LOLA": [
+      {
+        "name": "LOLA B GHEE MASC HIDR BANANA 100G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "LOLA B GHEE MASC NUTR ABACAXI 100G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "LOLA B GHEE MASC RECONS MAMAO 100G",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "LOLA COND MORTE SUBITA HIDRAT 250G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA FINALIZADOR DANOS VORAZES 200ML",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA KIT BASICAO SH 250ML+ COND 250ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "LOLA KIT BOSSA 1KG",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA KIT FEIRA CRONOLOLA 300G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA MASC MORTE SUBITA SUPER HIDR 450G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA MASCARA COND DREAM CREAM 200G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA MASCARA COND DREAM CREAM 450G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA MASCARA DANOS VORAZES 450G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA OIL ARGAN 50ML",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA OLEO REPARADOR DANOS VORAZES 50ML",
+        "category": "Mercearia Seca e Básica",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "LOLA PINGA ACAI & PRACAXI 50ML",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA PINGA CENOURA & OLIVA 50ML",
+        "category": "Hortifrúti",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "LOLA PINGA PATAUA & MORINGA 50ML",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA RAPUNZEL MASCARA 450G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA RAPUNZEL TONICO DO CRESCI 250ML",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA REPARACAO MORTE SUBITA 250ML",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      },
+      {
+        "name": "LOLA SH MORTE SUBITA HIDRAT 250ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "LOLA SH RAPUNZEL REJUVENESC 250ML",
+        "category": "Higiene Pessoal",
+        "status": "CLASSIFIED"
+      },
+      {
+        "name": "LOLA XAPADINHA MASC DISCIPLINANTE 100G",
+        "category": null,
+        "status": "UNCLASSIFIED"
+      }
+    ]
+  },
+  "category_sizes": {
+    "Hortifrúti": 1333,
+    "Frios e Laticínios": 1346,
+    "Mercearia Seca e Básica": 3330,
+    "Bebidas": 717,
+    "Padaria e Confeitaria": 195,
+    "Limpeza": 1159,
+    "Higiene Pessoal": 3640,
+    "Utilidades e Outros": 3437,
+    "Produtos Descartáveis": 352
+  }
+}

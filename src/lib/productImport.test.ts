@@ -287,6 +287,57 @@ describe("validateSpreadsheetRows", () => {
     expect(importable).toHaveLength(2);
     expect(importable[0].internal_code).toBe("12803");
   });
+
+  it("CLASSIFIED recebe category_id; UNCLASSIFIED permanece NULL", () => {
+    const { rows } = validateSpreadsheetRows([
+      {
+        rowNumber: 2,
+        internalCode: "1",
+        barcode: "111",
+        name: "ARROZ TIPO 1 5KG",
+        priceRaw: "10,00",
+      },
+      {
+        rowNumber: 3,
+        internalCode: "2",
+        barcode: "222",
+        name: "PRODUTO SEM REGRA XYZABC",
+        priceRaw: "5,00",
+      },
+    ]);
+    rows[0].classificationStatus = "CLASSIFIED";
+    rows[0].suggestedCategoryName = "Mercearia Seca e Básica";
+    rows[1].classificationStatus = "UNCLASSIFIED";
+
+    const categoryMap = new Map([["Mercearia Seca e Básica", "cat-merc"]]);
+    const importable = getImportableProducts(rows, categoryMap);
+
+    expect(importable[0].category_id).toBe("cat-merc");
+    expect(importable[0].classification_status).toBe("CLASSIFIED");
+    expect(importable[1].category_id).toBeNull();
+    expect(importable[1].classification_status).toBe("UNCLASSIFIED");
+  });
+
+  it("conflito EAN não entra em produtos importáveis", () => {
+    const { rows } = validateSpreadsheetRows([
+      {
+        rowNumber: 2,
+        internalCode: "2528",
+        barcode: "7891025121626",
+        name: "BEBIDA LACTEA DANONE 510G",
+        priceRaw: "8,70",
+      },
+      {
+        rowNumber: 3,
+        internalCode: "17974",
+        barcode: "7891025121626",
+        name: "POLPA DANONE 85G",
+        priceRaw: "1,45",
+      },
+    ]);
+    const importable = getImportableProducts(rows);
+    expect(importable).toHaveLength(0);
+  });
 });
 
 describe("parseBeiraRioSpreadsheetFile", () => {

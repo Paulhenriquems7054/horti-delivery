@@ -473,3 +473,13 @@ $$;
 
 GRANT EXECUTE ON FUNCTION public.import_product_batch(UUID, JSONB) TO authenticated;
 REVOKE ALL ON FUNCTION public.import_product_batch(UUID, JSONB) FROM anon;
+
+-- barcode "0" (e sequências de zeros) é placeholder — não entra no índice único
+DROP INDEX IF EXISTS public.idx_products_store_barcode_active;
+CREATE UNIQUE INDEX idx_products_store_barcode_active
+  ON public.products (store_id, barcode)
+  WHERE barcode IS NOT NULL
+    AND barcode <> ''
+    AND barcode <> '0'
+    AND barcode !~ '^0+$'
+    AND active = true;

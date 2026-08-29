@@ -9,6 +9,7 @@ import { ProductWeightSettings } from "@/components/admin/ProductWeightSettings"
 import { useTenant } from "@/contexts/TenantContext";
 import { ProductSpreadsheetImport } from "@/components/admin/ProductSpreadsheetImport";
 import { ProductCategoryReview } from "@/components/admin/ProductCategoryReview";
+import { ProductManualReviewAssist } from "@/components/admin/ProductManualReviewAssist";
 
 export default function AdminBasket() {
   const navigate = useNavigate();
@@ -718,6 +719,8 @@ export default function AdminBasket() {
               </div>
           </div>
         </div>
+
+        <ProductManualReviewAssist />
 
         <ProductCategoryReview storeId={tenantStoreId} />
 

@@ -1,0 +1,126 @@
+{
+  "higiene_prestobarba": {
+    "category": "Higiene Pessoal",
+    "count": 16,
+    "products": [
+      "AP.BARB.PRESTOBARBA 3 SUAVE",
+      "ESP. BARB. PRESTOBARBA NORMAL 150G",
+      "ESP. BARB. PRESTOBARBA SENSIVEL 150G",
+      "PRESTOBARBA UN",
+      "PRESTOBARBA 3 C/2",
+      "PRESTOBARBA C/02UN",
+      "PRESTOBARBA C/2 AP.",
+      "PRESTOBARBA FEMININO UN",
+      "PRESTOBARBA MACH 3 SENSITIVE 1 APARELHO",
+      "PRESTOBARBA PELE SENCIVEL C/2",
+      "PRESTOBARBA U.GRIPE 3LAM.",
+      "PRESTOBARBA ULTR GRIP 1 UNIDADE",
+      "PRESTOBARBA ULTRA GRIP C/2",
+      "PRESTOBARBA ULTRA GRIP SENS. A.VERA UN.",
+      "PRESTOBARBA ULTRAGRIP C/2AP",
+      "PRESTOBARBA UN."
+    ]
+  },
+  "mercearia_sopao": {
+    "category": "Mercearia Seca e Básica",
+    "count": 13,
+    "products": [
+      "SOPAO COSTELA KITANO 196G",
+      "SOPAO GALINHA CAIP MAGGI 200G",
+      "SOPAO KITANO G. MINEIRO 196G",
+      "SOPAO KITANO GAL CAIPIRA APIM. 196G",
+      "SOPAO KITANO GOSTINHO GAUCHO 196G",
+      "SOPAO KITANO GOSTINHO NORDESTINO 196G",
+      "SOPAO KITANO LEGUMES 196G",
+      "SOPAO KITANO LENTILHA 196G",
+      "SOPAO KITANO SABOR DE CARNE 196G.",
+      "SOPAO KITANO SABOR DE GALINHA 196G.",
+      "SOPAO MAGGI ALINA 200G",
+      "SOPAO MAGGI CARNE COM LEGUYUMES 150G",
+      "SOPAO MAGGI GALINHA COM LEGUMES 150G"
+    ]
+  },
+  "utilidades_tigela": {
+    "category": "Utilidades e Outros",
+    "count": 13,
+    "products": [
+      "TIGELA 2300ML C TP DECOR",
+      "TIGELA AMERICANA C TAMPA PAULISTA 150ML",
+      "TIGELA BRASILEIRINHO CISPER",
+      "TIGELA CISPER FLORJE",
+      "TIGELA COM TAMPA REF 10736",
+      "TIGELA DECORADA C/ TAMPA N/4",
+      "TIGELA DECORADA STORAGE PLUS",
+      "TIGELA DURALEX",
+      "TIGELA LISA N-3 C/TAMPA",
+      "TIGELA NADIR MARACATU 145ML",
+      "TIGELA PLAST.JUNDIAI SA.250",
+      "TIGELA REDONDA REF 10050",
+      "TIGELA REDONDA REF 10050"
+    ]
+  },
+  "utilidades_bola_brinquedo": {
+    "category": "Utilidades e Outros",
+    "count": 12,
+    "products": [
+      "BOLA FUT-GOL",
+      "BOLA KI BORA",
+      "BOLA KI BORA AMARELA",
+      "BOLA LEVE LIDER.",
+      "BOLA MEDIA LIDER.",
+      "BOLA PESADA LIDER.",
+      "BOLA PLAST-BRINQ. AMARELA",
+      "BOLA PLAST-BRINQ. AZUL",
+      "BOLA VINIBOL CHUVEIRINHO",
+      "BOLA VINIBOL DIGIMON 1947-8",
+      "BOLA VINIBOL JUNIOR",
+      "BOLA VINIBOL PINGO DE GENTE 3801-1"
+    ]
+  },
+  "limpeza_bom_ar": {
+    "category": "Limpeza",
+    "count": 13,
+    "products": [
+      "BOM AR AIR WICK 32ML REFIL C/2",
+      "BOM AR DIF ELET REFIL LAVANDA E GER 30 BOM AR 160ML CX/12",
+      "BOM AR DIFUSOR ELET 16ML + REFIL LAVANDA E GERAN RECKIT",
+      "BOM AR FLORES DE J. 20% DESC. 360ML",
+      "BOM AR JARDIM PEONIA RECKIT 360ML",
+      "BOM AR LAVANDA 400ML",
+      "BOM AR LAVANDA 6 EM 1 20 DESCANTO 360ML",
+      "BOM AR LAVANDA EMB.EC. 360ML",
+      "BOM AR LAVANDA GR 25 360ML",
+      "BOM AR LIFE SCENTS 302G",
+      "BOM AR LIFE SCENTS 360ML.",
+      "BOM AR LIFE SCENTS FRAGANCIA TRDIME 302G",
+      "BOM AR SACHE 2X16ML ALGODAO RECKIT"
+    ]
+  },
+  "higiene_tesoura_unha": {
+    "category": "Higiene Pessoal",
+    "count": 7,
+    "products": [
+      "TESOURA DE UNHA MUNDIAL INOX.",
+      "TESOURA P/ UNHA MUNDIAL CURVA BC 323",
+      "TESOURA P/ UNHA MUNDIAL RETA BC 322",
+      "TESOURA PARA UNHAS MERHEJE",
+      "TESOURA PARA UNHAS MUNDIAL CURVA BC327",
+      "TESOURA PARA UNHAS PONTA RETA.",
+      "TESOURA UNHA INF MUNDIAL FLEX BC307 UN"
+    ]
+  },
+  "higiene_tesoura_cabeleireiro": {
+    "category": "Higiene Pessoal",
+    "count": 1,
+    "products": [
+      "TESOURA TRAMONTINA CABELELEIRO 25905/107"
+    ]
+  },
+  "utilidades_tesoura_contexto": {
+    "category": "Utilidades e Outros",
+    "count": 1,
+    "products": [
+      "TESOURA DE COSTURA TRAMONTINA 07"
+    ]
+  }
+}

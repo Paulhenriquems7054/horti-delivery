@@ -1,0 +1,155 @@
+{
+  "executed_at": "2026-08-29T16:50:18.656Z",
+  "phase": "P1",
+  "before": {
+    "CLASSIFIED": 16052,
+    "REVIEW_REQUIRED": 8,
+    "UNCLASSIFIED": 3208,
+    "pending": 3216,
+    "decisions_count": 84
+  },
+  "after": {
+    "CLASSIFIED": 16057,
+    "REVIEW_REQUIRED": 8,
+    "UNCLASSIFIED": 3203,
+    "pending": 3211,
+    "decisions_count": 89
+  },
+  "p1": {
+    "groups_found": 4,
+    "groups_reviewed": 4,
+    "products_reclassified_this_run": 5,
+    "group_approvals": 5,
+    "individual_decisions": 0,
+    "kept_unclassified": 0,
+    "pending": 3211,
+    "groups": [
+      {
+        "groupKey": "CR",
+        "quantity": 12,
+        "suggestion": "Higiene Pessoal",
+        "action": "ALREADY_REVIEWED",
+        "productsAffected": 0,
+        "examples": [
+          "CR. HID. BIO NATURAN ABACATE 1KG",
+          "CR. HID. BIO NATURAN ABACATE 250ML",
+          "CR. HID. BIO NATURAN HORMONIO 1KG"
+        ],
+        "reason": "12 produto(s) já tinham decisão"
+      },
+      {
+        "groupKey": "MARG",
+        "quantity": 12,
+        "suggestion": "Frios e Laticínios",
+        "action": "ALREADY_REVIEWED",
+        "productsAffected": 0,
+        "examples": [
+          "MARG DELICIA SUP CS 500G",
+          "MARG DELICIA SUPREMA 250G",
+          "MARG PURO SABOR 500G"
+        ],
+        "reason": "12 produto(s) já tinham decisão"
+      },
+      {
+        "groupKey": "PINHO",
+        "quantity": 12,
+        "suggestion": "Limpeza",
+        "action": "ALREADY_REVIEWED",
+        "productsAffected": 0,
+        "examples": [
+          "PINHO BRIL ACCEPT CL AT 500ML",
+          "PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+          "PINHO BRIL ACCEPT FLOR DE LILLY 500ML"
+        ],
+        "reason": "12 produto(s) já tinham decisão"
+      },
+      {
+        "groupKey": "UMIDIFICADOR",
+        "quantity": 5,
+        "suggestion": "Higiene Pessoal",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 5,
+        "examples": [
+          "UMIDIFICADOR FIO RESTORE 420ML.",
+          "UMIDIFICADOR MAX CAPI BIO-CER. 420ML",
+          "UMIDIFICADOR MAX CAPI MANT DE PES 420ML",
+          "UMIDIFICADOR NUTRI HAIR PROTEINAS 435ML",
+          "UMIDIFICADOR NUTRI HAIR TRADICIONAL 35ML"
+        ]
+      }
+    ]
+  },
+  "byCat": {
+    "Hortifrúti": 1235,
+    "Frios e Laticínios": 1464,
+    "Mercearia Seca e Básica": 3492,
+    "Bebidas": 775,
+    "Padaria e Confeitaria": 195,
+    "Limpeza": 1245,
+    "Higiene Pessoal": 3740,
+    "Utilidades e Outros": 3536,
+    "Produtos Descartáveis": 375
+  },
+  "pipeline": {
+    "CLASSIFIED": 16057,
+    "REVIEW_REQUIRED": 8,
+    "UNCLASSIFIED": 3203
+  },
+  "integrity": {
+    "ok": true,
+    "sum": 19268,
+    "expected": 19268
+  },
+  "new_decisions_sample": [
+    {
+      "reviewId": "12097|7897706201939|UMIDIFICADOR FIO RESTORE 420ML.",
+      "productName": "UMIDIFICADOR FIO RESTORE 420ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "11111|7897706200062|UMIDIFICADOR MAX CAPI BIO-CER. 420ML",
+      "productName": "UMIDIFICADOR MAX CAPI BIO-CER. 420ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "5890|7897706200086|UMIDIFICADOR MAX CAPI MANT DE PES 420ML",
+      "productName": "UMIDIFICADOR MAX CAPI MANT DE PES 420ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "8484|7898928865039|UMIDIFICADOR NUTRI HAIR PROTEINAS 435ML",
+      "productName": "UMIDIFICADOR NUTRI HAIR PROTEINAS 435ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "4271|7898928865015|UMIDIFICADOR NUTRI HAIR TRADICIONAL 35ML",
+      "productName": "UMIDIFICADOR NUTRI HAIR TRADICIONAL 35ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    }
+  ]
+}

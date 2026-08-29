@@ -1,0 +1,10 @@
+{
+  "generated_at": "2026-08-29T18:01:00.000Z",
+  "phase": "DB_PUSH_READINESS_REVIEW",
+  "decision": "APROVADO_PARA_DB_PUSH",
+  "final_audit_report": "scripts/db-push-final-audit.json",
+  "blocker_finish_premature": "RESOLVIDO",
+  "hosted_altered": false,
+  "db_push_executed": false,
+  "tests": { "total": 120, "passed": 120, "failed": 0 }
+}

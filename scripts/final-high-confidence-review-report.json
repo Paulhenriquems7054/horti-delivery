@@ -1,0 +1,632 @@
+{
+  "executed_at": "2026-08-29T17:21:16.714Z",
+  "phase": "FINAL_HIGH_CONFIDENCE",
+  "note": "Última revisão manual — somente 27 candidatos de alta confiança. Classificação encerrada.",
+  "before": {
+    "CLASSIFIED": 16171,
+    "REVIEW_REQUIRED": 0,
+    "UNCLASSIFIED": 3097,
+    "decisions_count": 203,
+    "coverage_percent": "83.93"
+  },
+  "after": {
+    "CLASSIFIED": 16198,
+    "REVIEW_REQUIRED": 0,
+    "UNCLASSIFIED": 3070,
+    "decisions_count": 230,
+    "coverage_percent": "84.07"
+  },
+  "summary": {
+    "grupos_analisados": 5,
+    "produtos_analisados": 27,
+    "grupos_aprovados": 5,
+    "produtos_aprovados": 27,
+    "decisoes_individuais": 0,
+    "produtos_mantidos_unclassified": 0,
+    "group_approvals": 27
+  },
+  "groups": [
+    {
+      "groupKey": "AROMATIZANTE",
+      "categoria": "Limpeza",
+      "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+      "produtos": [
+        {
+          "produto": "AROMATIZANTE AMB COALA CHA BCO 120ML",
+          "codigo": "19096",
+          "ean": "7897744504740",
+          "reviewId": "19096|7897744504740|AROMATIZANTE AMB COALA CHA BCO 120ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        },
+        {
+          "produto": "AROMATIZANTE AMB COALA LAVANDA 120ML",
+          "codigo": "19095",
+          "ean": "7897744502081",
+          "reviewId": "19095|7897744502081|AROMATIZANTE AMB COALA LAVANDA 120ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        },
+        {
+          "produto": "AROMATIZANTE AMB COALA ORQ NEG 120ML",
+          "codigo": "19094",
+          "ean": "7897744505174",
+          "reviewId": "19094|7897744505174|AROMATIZANTE AMB COALA ORQ NEG 120ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        },
+        {
+          "produto": "AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+          "codigo": "10599",
+          "ean": "7896050506271",
+          "reviewId": "10599|7896050506271|AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        },
+        {
+          "produto": "AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+          "codigo": "18582",
+          "ean": "7898056652853",
+          "reviewId": "18582|7898056652853|AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        },
+        {
+          "produto": "AROMATIZANTE KHARIS CARRO NOVO 80ML",
+          "codigo": "10633",
+          "ean": "7898129330817",
+          "reviewId": "10633|7898129330817|AROMATIZANTE KHARIS CARRO NOVO 80ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        },
+        {
+          "produto": "AROMATIZANTE KHARIS TUTI FRUTTI 80ML",
+          "codigo": "10600",
+          "ean": "7898129330084",
+          "reviewId": "10600|7898129330084|AROMATIZANTE KHARIS TUTI FRUTTI 80ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        },
+        {
+          "produto": "AROMATIZANTE LAVANDA KING LIMP 100ML",
+          "codigo": "14182",
+          "ean": "7896050506264",
+          "reviewId": "14182|7896050506264|AROMATIZANTE LAVANDA KING LIMP 100ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        },
+        {
+          "produto": "AROMATIZANTE MEGACAR TUTTI FRUTTI 80ML",
+          "codigo": "14183",
+          "ean": "7898129333047",
+          "reviewId": "14183|7898129333047|AROMATIZANTE MEGACAR TUTTI FRUTTI 80ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Aromatizantes de ambiente e veicular — limpeza/aroma doméstico",
+          "passes": true
+        }
+      ],
+      "homogeneous": true,
+      "action": "GROUP_APPROVAL",
+      "productsApproved": 9,
+      "productsKeptUnclassified": 0
+    },
+    {
+      "groupKey": "PRATOS",
+      "categoria": "Produtos Descartáveis",
+      "motivo": "Pratos descartáveis/de plástico para uso único",
+      "produtos": [
+        {
+          "produto": "PRATOS DESC. BEL PLAST 15CM. 10UND.",
+          "codigo": "8093",
+          "ean": "7898229360028",
+          "reviewId": "8093|7898229360028|PRATOS DESC. BEL PLAST 15CM. 10UND.",
+          "categoria_sugerida": "Produtos Descartáveis",
+          "motivo": "Pratos descartáveis/de plástico para uso único",
+          "passes": true
+        },
+        {
+          "produto": "PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+          "codigo": "8095",
+          "ean": "7898229360059",
+          "reviewId": "8095|7898229360059|PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+          "categoria_sugerida": "Produtos Descartáveis",
+          "motivo": "Pratos descartáveis/de plástico para uso único",
+          "passes": true
+        },
+        {
+          "produto": "PRATOS DESC. BEL PLAST.18CM.10UND.",
+          "codigo": "8094",
+          "ean": "7898229360042",
+          "reviewId": "8094|7898229360042|PRATOS DESC. BEL PLAST.18CM.10UND.",
+          "categoria_sugerida": "Produtos Descartáveis",
+          "motivo": "Pratos descartáveis/de plástico para uso único",
+          "passes": true
+        },
+        {
+          "produto": "PRATOS DESC. COPOBRAS 15CM",
+          "codigo": "10678",
+          "ean": "7896030800153",
+          "reviewId": "10678|7896030800153|PRATOS DESC. COPOBRAS 15CM",
+          "categoria_sugerida": "Produtos Descartáveis",
+          "motivo": "Pratos descartáveis/de plástico para uso único",
+          "passes": true
+        },
+        {
+          "produto": "PRATOS DESC. COPOZAN 15CM",
+          "codigo": "14039",
+          "ean": "7896123402363",
+          "reviewId": "14039|7896123402363|PRATOS DESC. COPOZAN 15CM",
+          "categoria_sugerida": "Produtos Descartáveis",
+          "motivo": "Pratos descartáveis/de plástico para uso único",
+          "passes": true
+        },
+        {
+          "produto": "PRATOS DESC. JUNCO 10 UND.",
+          "codigo": "7900",
+          "ean": "7896523100692",
+          "reviewId": "7900|7896523100692|PRATOS DESC. JUNCO 10 UND.",
+          "categoria_sugerida": "Produtos Descartáveis",
+          "motivo": "Pratos descartáveis/de plástico para uso único",
+          "passes": true
+        },
+        {
+          "produto": "PRATOS DESC.ULTRA COPOS 18 C/10",
+          "codigo": "13798",
+          "ean": "7898339190164",
+          "reviewId": "13798|7898339190164|PRATOS DESC.ULTRA COPOS 18 C/10",
+          "categoria_sugerida": "Produtos Descartáveis",
+          "motivo": "Pratos descartáveis/de plástico para uso único",
+          "passes": true
+        },
+        {
+          "produto": "PRATOS PLASTICOS MARATA C/10 150R",
+          "codigo": "7632",
+          "ean": "7898287990052",
+          "reviewId": "7632|7898287990052|PRATOS PLASTICOS MARATA C/10 150R",
+          "categoria_sugerida": "Produtos Descartáveis",
+          "motivo": "Pratos descartáveis/de plástico para uso único",
+          "passes": true
+        }
+      ],
+      "homogeneous": true,
+      "action": "GROUP_APPROVAL",
+      "productsApproved": 8,
+      "productsKeptUnclassified": 0
+    },
+    {
+      "groupKey": "DESODORIZANTE",
+      "categoria": "Limpeza",
+      "motivo": "Desodorizantes sanitários para vaso sanitário",
+      "produtos": [
+        {
+          "produto": "DESODORIZANTE SANITARIO FLOREL 35G.",
+          "codigo": "1517",
+          "ean": "7896281052004",
+          "reviewId": "1517|7896281052004|DESODORIZANTE SANITARIO FLOREL 35G.",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Desodorizantes sanitários para vaso sanitário",
+          "passes": true
+        },
+        {
+          "produto": "DESODORIZANTE SANITARIO LAVANDA 35G.",
+          "codigo": "1518",
+          "ean": "7896281050000",
+          "reviewId": "1518|7896281050000|DESODORIZANTE SANITARIO LAVANDA 35G.",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Desodorizantes sanitários para vaso sanitário",
+          "passes": true
+        },
+        {
+          "produto": "DESODORIZANTE SANITARIO PINHO 35G.",
+          "codigo": "1515",
+          "ean": "7896281054008",
+          "reviewId": "1515|7896281054008|DESODORIZANTE SANITARIO PINHO 35G.",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Desodorizantes sanitários para vaso sanitário",
+          "passes": true
+        },
+        {
+          "produto": "DESODORIZANTE SANITARIO TUTTI FRUTTI 35G",
+          "codigo": "1516",
+          "ean": "7896281056002",
+          "reviewId": "1516|7896281056002|DESODORIZANTE SANITARIO TUTTI FRUTTI 35G",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Desodorizantes sanitários para vaso sanitário",
+          "passes": true
+        }
+      ],
+      "homogeneous": true,
+      "action": "GROUP_APPROVAL",
+      "productsApproved": 4,
+      "productsKeptUnclassified": 0
+    },
+    {
+      "groupKey": "SABONETES",
+      "categoria": "Higiene Pessoal",
+      "motivo": "Sabonetes em barra La Flores — higiene pessoal",
+      "produtos": [
+        {
+          "produto": "SABONETES LA FLORES FLOR DE CEREJA 180G.",
+          "codigo": "11820",
+          "ean": "7898085944899",
+          "reviewId": "11820|7898085944899|SABONETES LA FLORES FLOR DE CEREJA 180G.",
+          "categoria_sugerida": "Higiene Pessoal",
+          "motivo": "Sabonetes em barra La Flores — higiene pessoal",
+          "passes": true
+        },
+        {
+          "produto": "SABONETES LA FLORES FLOR DE FIGO 180G.",
+          "codigo": "11822",
+          "ean": "7898085945940",
+          "reviewId": "11822|7898085945940|SABONETES LA FLORES FLOR DE FIGO 180G.",
+          "categoria_sugerida": "Higiene Pessoal",
+          "motivo": "Sabonetes em barra La Flores — higiene pessoal",
+          "passes": true
+        },
+        {
+          "produto": "SABONETES LA FLORES FLOR DE JANBO 180G.",
+          "codigo": "11821",
+          "ean": "7898085944912",
+          "reviewId": "11821|7898085944912|SABONETES LA FLORES FLOR DE JANBO 180G.",
+          "categoria_sugerida": "Higiene Pessoal",
+          "motivo": "Sabonetes em barra La Flores — higiene pessoal",
+          "passes": true
+        }
+      ],
+      "homogeneous": true,
+      "action": "GROUP_APPROVAL",
+      "productsApproved": 3,
+      "productsKeptUnclassified": 0
+    },
+    {
+      "groupKey": "ODORIZANTE",
+      "categoria": "Limpeza",
+      "motivo": "Odorizantes automotivos — aroma/limpeza veicular",
+      "produtos": [
+        {
+          "produto": "ODORIZANTE GRAND PRIX CARRO NOVO 42G",
+          "codigo": "18056",
+          "ean": "5020144222743",
+          "reviewId": "18056|5020144222743|ODORIZANTE GRAND PRIX CARRO NOVO 42G",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Odorizantes automotivos — aroma/limpeza veicular",
+          "passes": true
+        },
+        {
+          "produto": "ODORIZANTE PROAUTO CARRO NOVO 80ML",
+          "codigo": "7511",
+          "ean": "7896189225388",
+          "reviewId": "7511|7896189225388|ODORIZANTE PROAUTO CARRO NOVO 80ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Odorizantes automotivos — aroma/limpeza veicular",
+          "passes": true
+        },
+        {
+          "produto": "ODORIZANTE PROAUTO TUTTI FRUTTI 80ML",
+          "codigo": "7512",
+          "ean": "7896189225302",
+          "reviewId": "7512|7896189225302|ODORIZANTE PROAUTO TUTTI FRUTTI 80ML",
+          "categoria_sugerida": "Limpeza",
+          "motivo": "Odorizantes automotivos — aroma/limpeza veicular",
+          "passes": true
+        }
+      ],
+      "homogeneous": true,
+      "action": "GROUP_APPROVAL",
+      "productsApproved": 3,
+      "productsKeptUnclassified": 0
+    }
+  ],
+  "byCat": {
+    "Hortifrúti": 1235,
+    "Frios e Laticínios": 1464,
+    "Mercearia Seca e Básica": 3522,
+    "Bebidas": 787,
+    "Padaria e Confeitaria": 216,
+    "Limpeza": 1294,
+    "Higiene Pessoal": 3746,
+    "Utilidades e Outros": 3551,
+    "Produtos Descartáveis": 383
+  },
+  "pipeline": {
+    "CLASSIFIED": 16198,
+    "REVIEW_REQUIRED": 0,
+    "UNCLASSIFIED": 3070
+  },
+  "integrity": {
+    "ok": true,
+    "sum": 19268,
+    "expected": 19268
+  },
+  "coverage_previous": "83.93",
+  "coverage_final": "84.07",
+  "new_decisions": [
+    {
+      "reviewId": "19096|7897744504740|AROMATIZANTE AMB COALA CHA BCO 120ML",
+      "productName": "AROMATIZANTE AMB COALA CHA BCO 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "19095|7897744502081|AROMATIZANTE AMB COALA LAVANDA 120ML",
+      "productName": "AROMATIZANTE AMB COALA LAVANDA 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "19094|7897744505174|AROMATIZANTE AMB COALA ORQ NEG 120ML",
+      "productName": "AROMATIZANTE AMB COALA ORQ NEG 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10599|7896050506271|AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+      "productName": "AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "18582|7898056652853|AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+      "productName": "AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10633|7898129330817|AROMATIZANTE KHARIS CARRO NOVO 80ML",
+      "productName": "AROMATIZANTE KHARIS CARRO NOVO 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10600|7898129330084|AROMATIZANTE KHARIS TUTI FRUTTI 80ML",
+      "productName": "AROMATIZANTE KHARIS TUTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "14182|7896050506264|AROMATIZANTE LAVANDA KING LIMP 100ML",
+      "productName": "AROMATIZANTE LAVANDA KING LIMP 100ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "14183|7898129333047|AROMATIZANTE MEGACAR TUTTI FRUTTI 80ML",
+      "productName": "AROMATIZANTE MEGACAR TUTTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "8093|7898229360028|PRATOS DESC. BEL PLAST 15CM. 10UND.",
+      "productName": "PRATOS DESC. BEL PLAST 15CM. 10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "8095|7898229360059|PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+      "productName": "PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "8094|7898229360042|PRATOS DESC. BEL PLAST.18CM.10UND.",
+      "productName": "PRATOS DESC. BEL PLAST.18CM.10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "10678|7896030800153|PRATOS DESC. COPOBRAS 15CM",
+      "productName": "PRATOS DESC. COPOBRAS 15CM",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "14039|7896123402363|PRATOS DESC. COPOZAN 15CM",
+      "productName": "PRATOS DESC. COPOZAN 15CM",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "7900|7896523100692|PRATOS DESC. JUNCO 10 UND.",
+      "productName": "PRATOS DESC. JUNCO 10 UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "13798|7898339190164|PRATOS DESC.ULTRA COPOS 18 C/10",
+      "productName": "PRATOS DESC.ULTRA COPOS 18 C/10",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "7632|7898287990052|PRATOS PLASTICOS MARATA C/10 150R",
+      "productName": "PRATOS PLASTICOS MARATA C/10 150R",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "1517|7896281052004|DESODORIZANTE SANITARIO FLOREL 35G.",
+      "productName": "DESODORIZANTE SANITARIO FLOREL 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1518|7896281050000|DESODORIZANTE SANITARIO LAVANDA 35G.",
+      "productName": "DESODORIZANTE SANITARIO LAVANDA 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1515|7896281054008|DESODORIZANTE SANITARIO PINHO 35G.",
+      "productName": "DESODORIZANTE SANITARIO PINHO 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1516|7896281056002|DESODORIZANTE SANITARIO TUTTI FRUTTI 35G",
+      "productName": "DESODORIZANTE SANITARIO TUTTI FRUTTI 35G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "11820|7898085944899|SABONETES LA FLORES FLOR DE CEREJA 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE CEREJA 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "11822|7898085945940|SABONETES LA FLORES FLOR DE FIGO 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE FIGO 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "11821|7898085944912|SABONETES LA FLORES FLOR DE JANBO 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE JANBO 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "18056|5020144222743|ODORIZANTE GRAND PRIX CARRO NOVO 42G",
+      "productName": "ODORIZANTE GRAND PRIX CARRO NOVO 42G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    },
+    {
+      "reviewId": "7511|7896189225388|ODORIZANTE PROAUTO CARRO NOVO 80ML",
+      "productName": "ODORIZANTE PROAUTO CARRO NOVO 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    },
+    {
+      "reviewId": "7512|7896189225302|ODORIZANTE PROAUTO TUTTI FRUTTI 80ML",
+      "productName": "ODORIZANTE PROAUTO TUTTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    }
+  ],
+  "system_state": {
+    "excel_original_alterado": false,
+    "hosted_alterado": false,
+    "produtos_importados": false,
+    "migration_aplicada": false,
+    "deploy": false,
+    "commit": false,
+    "push": false
+  }
+}

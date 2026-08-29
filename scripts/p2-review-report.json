@@ -1,0 +1,399 @@
+{
+  "executed_at": "2026-08-29T17:09:26.068Z",
+  "phase": "P2",
+  "limits": {
+    "max_groups": 10,
+    "max_products": 150
+  },
+  "before": {
+    "CLASSIFIED": 16065,
+    "REVIEW_REQUIRED": 0,
+    "UNCLASSIFIED": 3203,
+    "decisions_count": 97
+  },
+  "after": {
+    "CLASSIFIED": 16171,
+    "REVIEW_REQUIRED": 0,
+    "UNCLASSIFIED": 3097,
+    "decisions_count": 203,
+    "pending": 3000
+  },
+  "p2": {
+    "tier_p1_groups_available": 0,
+    "tier_p2_groups_available": 0,
+    "groups_analyzed": 10,
+    "groups_approved_collectively": 10,
+    "groups_heterogeneous_or_blocked": 0,
+    "products_reclassified_this_run": 106,
+    "group_approvals": 106,
+    "individual_decisions": 0,
+    "kept_unclassified": 0,
+    "pending_unclassified": 3097,
+    "groups": [
+      {
+        "groupKey": "TAMPICO",
+        "quantity": 12,
+        "tier": 4,
+        "score": 6,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Bebidas",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 12,
+        "source": "manual_audit",
+        "examples": [
+          "TAMPICO F CITRICAS 330ML",
+          "TAMPICO FR. CITRICAS 200ML",
+          "TAMPICO FR. CITRICAS SLIM 200ML",
+          "TAMPICO FRUTAS CITRICAS 1L",
+          "TAMPICO FRUTAS CITRICAS 1L."
+        ]
+      },
+      {
+        "groupKey": "TORRADA",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Padaria e Confeitaria",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "TORRADA BAUDUCCO INTEGRAL 142G",
+          "TORRADA BAUDUCCO MULTIGRAOS 142G",
+          "TORRADA BAUDUCO LIGHT 142G",
+          "TORRADA BAUDUCO TRADICIONAL 142G",
+          "TORRADA INTEGRAL VITARELLA 142G"
+        ]
+      },
+      {
+        "groupKey": "TRIDENT",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Mercearia Seca e Básica",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "TRIDENT FRESH INTENSE 32G",
+          "TRIDENT FRESH INTENSE 8G",
+          "TRIDENT HORTELA 34G",
+          "TRIDENT HORTELA 8G",
+          "TRIDENT MENTA 34G"
+        ]
+      },
+      {
+        "groupKey": "PAPINHA",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Mercearia Seca e Básica",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "PAPINHA CREM. BABY CEREAIS 120G",
+          "PAPINHA CREM. BABY F. SORTIDAS 120G",
+          "PAPINHA CREM. BABY FRUTAS 155G",
+          "PAPINHA DE MARACUJA 120G",
+          "PAPINHA NESTLE AMEIXA 120 G."
+        ]
+      },
+      {
+        "groupKey": "PROTEINA",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Mercearia Seca e Básica",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "PROTEINA DE SOJA SORA 400G CARNE",
+          "PROTEINA DE SOJA SORA 400G FRANGO",
+          "PROTEINA TEX DE SOJA CAMIL CARNE 400G",
+          "PROTEINA TEX DE SOJA CAMIL FGO. 400G",
+          "PROTEINA TEX PRONTU SOY BR 400G"
+        ]
+      },
+      {
+        "groupKey": "NO",
+        "quantity": 11,
+        "tier": 4,
+        "score": 5.5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Limpeza",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 11,
+        "source": "manual_audit",
+        "examples": [
+          "NO AR ALEGRIA DE INFANCIA",
+          "NO AR AMOR DE MAE 360ML",
+          "NO AR ESTILO LUXO BOM BRIL 277G.",
+          "NO AR JARDIM E POMAR 360ML",
+          "NO AR JASMIM 360ML"
+        ]
+      },
+      {
+        "groupKey": "ESTOPA",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Limpeza",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "ESTOPA BR. PARA POLIMENTO PRATIK 150G",
+          "ESTOPA DUCARRO SPECIAL",
+          "ESTOPA FLANELIN 150G",
+          "ESTOPA MOURA TEX 150G",
+          "ESTOPA P/ POLIMENTO ANADRI 120G."
+        ]
+      },
+      {
+        "groupKey": "SBP",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Limpeza",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "SBP 45 NOITES 2RF CH SUAVE 2X35ML",
+          "SBP CITRONELA 380ML",
+          "SBP ELETRICO 1AP 4 PAST.",
+          "SBP ELETRICO 35ML REFIL",
+          "SBP ELETRICO APARELHO E 1 FR. 35ML"
+        ]
+      },
+      {
+        "groupKey": "GRANULADO",
+        "quantity": 11,
+        "tier": 4,
+        "score": 5.5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Padaria e Confeitaria",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 11,
+        "source": "manual_audit",
+        "examples": [
+          "GRANULADO COLORIDO DORI 120G",
+          "GRANULADO COLORIDO MIL CORES 150G",
+          "GRANULADO COLORIDO VISCONTI 130G",
+          "GRANULADO DORI 70G.",
+          "GRANULADO MICANGA DR. OETKER 80G"
+        ]
+      },
+      {
+        "groupKey": "TORNEIRA",
+        "quantity": 12,
+        "tier": 4,
+        "score": 6,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Utilidades e Outros",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 12,
+        "source": "manual_audit",
+        "examples": [
+          "TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+          "TORNEIRA FILTRO ALAV BR/AZ GAMA",
+          "TORNEIRA FILTRO AUT. COD.1358",
+          "TORNEIRA FILTRO AUT.BC/AZ GAMA",
+          "TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN"
+        ]
+      }
+    ]
+  },
+  "coverage_percent": "83.93",
+  "byCat": {
+    "Hortifrúti": 1235,
+    "Frios e Laticínios": 1464,
+    "Mercearia Seca e Básica": 3522,
+    "Bebidas": 787,
+    "Padaria e Confeitaria": 216,
+    "Limpeza": 1278,
+    "Higiene Pessoal": 3743,
+    "Utilidades e Outros": 3551,
+    "Produtos Descartáveis": 375
+  },
+  "pipeline": {
+    "CLASSIFIED": 16171,
+    "REVIEW_REQUIRED": 0,
+    "UNCLASSIFIED": 3097
+  },
+  "integrity": {
+    "ok": true,
+    "sum": 19268,
+    "expected": 19268
+  },
+  "new_decisions_sample": [
+    {
+      "reviewId": "6935|0|TAMPICO F CITRICAS 330ML",
+      "productName": "TAMPICO F CITRICAS 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6843|0|TAMPICO FR. CITRICAS 200ML",
+      "productName": "TAMPICO FR. CITRICAS 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6720|0|TAMPICO FR. CITRICAS SLIM 200ML",
+      "productName": "TAMPICO FR. CITRICAS SLIM 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "17|0|TAMPICO FRUTAS CITRICAS 1L",
+      "productName": "TAMPICO FRUTAS CITRICAS 1L",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6615|0|TAMPICO FRUTAS CITRICAS 1L.",
+      "productName": "TAMPICO FRUTAS CITRICAS 1L.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "18|0|TAMPICO FRUTAS CITRICAS 200ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "4374|0|TAMPICO FRUTAS CITRICAS 250ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 250ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "19|0|TAMPICO FRUTAS CITRICAS 330ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6608|0|TAMPICO FRUTAS CITRICAS PLUS 330ML.",
+      "productName": "TAMPICO FRUTAS CITRICAS PLUS 330ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6639|0|TAMPICO PLUS FR. SILVESTRES 1L",
+      "productName": "TAMPICO PLUS FR. SILVESTRES 1L",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6640|0|TAMPICO PLUS FR. SILVESTRES 330ML",
+      "productName": "TAMPICO PLUS FR. SILVESTRES 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6610|0|TAMPICO PLUS FRUTAS CITRICAS 330ML.",
+      "productName": "TAMPICO PLUS FRUTAS CITRICAS 330ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "9178|7891962053196|TORRADA BAUDUCCO INTEGRAL 142G",
+      "productName": "TORRADA BAUDUCCO INTEGRAL 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "4873|7891962053202|TORRADA BAUDUCCO MULTIGRAOS 142G",
+      "productName": "TORRADA BAUDUCCO MULTIGRAOS 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "4981|7891962053226|TORRADA BAUDUCO LIGHT 142G",
+      "productName": "TORRADA BAUDUCO LIGHT 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    }
+  ]
+}

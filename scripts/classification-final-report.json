@@ -1,0 +1,1491 @@
+{
+  "previous": {
+    "CLASSIFIED": 15888,
+    "REVIEW_REQUIRED": 8,
+    "UNCLASSIFIED": 3372
+  },
+  "ready": 19268,
+  "counts": {
+    "CLASSIFIED": 16198,
+    "REVIEW_REQUIRED": 0,
+    "UNCLASSIFIED": 3070
+  },
+  "gain_classified": 80,
+  "byCat": {
+    "Hortifrúti": 1235,
+    "Frios e Laticínios": 1464,
+    "Mercearia Seca e Básica": 3522,
+    "Bebidas": 787,
+    "Padaria e Confeitaria": 216,
+    "Limpeza": 1294,
+    "Higiene Pessoal": 3746,
+    "Utilidades e Outros": 3551,
+    "Produtos Descartáveis": 383
+  },
+  "sum_check": 19268,
+  "new_rules_impact": [
+    {
+      "id": "higiene_prestobarba",
+      "category": "Higiene Pessoal",
+      "reason": "Prestobarba (aparelho / espuma de barbear)",
+      "count": 16,
+      "examples": [
+        "AP.BARB.PRESTOBARBA 3 SUAVE",
+        "ESP. BARB. PRESTOBARBA NORMAL 150G",
+        "ESP. BARB. PRESTOBARBA SENSIVEL 150G",
+        "PRESTOBARBA UN",
+        "PRESTOBARBA 3 C/2",
+        "PRESTOBARBA C/02UN",
+        "PRESTOBARBA C/2 AP.",
+        "PRESTOBARBA FEMININO UN",
+        "PRESTOBARBA MACH 3 SENSITIVE 1 APARELHO",
+        "PRESTOBARBA PELE SENCIVEL C/2"
+      ]
+    },
+    {
+      "id": "mercearia_sopao",
+      "category": "Mercearia Seca e Básica",
+      "reason": "Sopão (sopa seca industrializada)",
+      "count": 13,
+      "examples": [
+        "SOPAO COSTELA KITANO 196G",
+        "SOPAO GALINHA CAIP MAGGI 200G",
+        "SOPAO KITANO G. MINEIRO 196G",
+        "SOPAO KITANO GAL CAIPIRA APIM. 196G",
+        "SOPAO KITANO GOSTINHO GAUCHO 196G",
+        "SOPAO KITANO GOSTINHO NORDESTINO 196G",
+        "SOPAO KITANO LEGUMES 196G",
+        "SOPAO KITANO LENTILHA 196G",
+        "SOPAO KITANO SABOR DE CARNE 196G.",
+        "SOPAO KITANO SABOR DE GALINHA 196G."
+      ]
+    },
+    {
+      "id": "utilidades_tigela",
+      "category": "Utilidades e Outros",
+      "reason": "Tigela utensílio (prefixo; exclui popcorn Yoki Tigela)",
+      "count": 13,
+      "examples": [
+        "TIGELA 2300ML C TP DECOR",
+        "TIGELA AMERICANA C TAMPA PAULISTA 150ML",
+        "TIGELA BRASILEIRINHO CISPER",
+        "TIGELA CISPER FLORJE",
+        "TIGELA COM TAMPA REF 10736",
+        "TIGELA DECORADA C/ TAMPA N/4",
+        "TIGELA DECORADA STORAGE PLUS",
+        "TIGELA DURALEX",
+        "TIGELA LISA N-3 C/TAMPA",
+        "TIGELA NADIR MARACATU 145ML"
+      ]
+    },
+    {
+      "id": "utilidades_bola_brinquedo",
+      "category": "Utilidades e Outros",
+      "reason": "Bola brinquedo/lazer (prefixo; exclui algodão/Cheetos)",
+      "count": 12,
+      "examples": [
+        "BOLA FUT-GOL",
+        "BOLA KI BORA",
+        "BOLA KI BORA AMARELA",
+        "BOLA LEVE LIDER.",
+        "BOLA MEDIA LIDER.",
+        "BOLA PESADA LIDER.",
+        "BOLA PLAST-BRINQ. AMARELA",
+        "BOLA PLAST-BRINQ. AZUL",
+        "BOLA VINIBOL CHUVEIRINHO",
+        "BOLA VINIBOL DIGIMON 1947-8"
+      ]
+    },
+    {
+      "id": "limpeza_bom_ar",
+      "category": "Limpeza",
+      "reason": "Bom Ar (aromatizador / desodorizador ambiente)",
+      "count": 13,
+      "examples": [
+        "BOM AR AIR WICK 32ML REFIL C/2",
+        "BOM AR DIF ELET REFIL LAVANDA E GER 30 BOM AR 160ML CX/12",
+        "BOM AR DIFUSOR ELET 16ML + REFIL LAVANDA E GERAN RECKIT",
+        "BOM AR FLORES DE J. 20% DESC. 360ML",
+        "BOM AR JARDIM PEONIA RECKIT 360ML",
+        "BOM AR LAVANDA 400ML",
+        "BOM AR LAVANDA 6 EM 1 20 DESCANTO 360ML",
+        "BOM AR LAVANDA EMB.EC. 360ML",
+        "BOM AR LAVANDA GR 25 360ML",
+        "BOM AR LIFE SCENTS 302G"
+      ]
+    },
+    {
+      "id": "higiene_tesoura_unha",
+      "category": "Higiene Pessoal",
+      "reason": "Tesoura de unha",
+      "count": 7,
+      "examples": [
+        "TESOURA DE UNHA MUNDIAL INOX.",
+        "TESOURA P/ UNHA MUNDIAL CURVA BC 323",
+        "TESOURA P/ UNHA MUNDIAL RETA BC 322",
+        "TESOURA PARA UNHAS MERHEJE",
+        "TESOURA PARA UNHAS MUNDIAL CURVA BC327",
+        "TESOURA PARA UNHAS PONTA RETA.",
+        "TESOURA UNHA INF MUNDIAL FLEX BC307 UN"
+      ]
+    },
+    {
+      "id": "higiene_tesoura_cabeleireiro",
+      "category": "Higiene Pessoal",
+      "reason": "Tesoura de cabeleireiro",
+      "count": 1,
+      "examples": [
+        "TESOURA TRAMONTINA CABELELEIRO 25905/107"
+      ]
+    },
+    {
+      "id": "utilidades_tesoura_contexto",
+      "category": "Utilidades e Outros",
+      "reason": "Tesoura escolar / costura",
+      "count": 1,
+      "examples": [
+        "TESOURA DE COSTURA TRAMONTINA 07"
+      ]
+    }
+  ],
+  "remaining_total": 3300,
+  "remaining_top_groups": [
+    {
+      "group_key": "CORPO",
+      "quantity": 12,
+      "examples": [
+        "CORPO A CORPO ENVOLV. 200ML",
+        "CORPO A CORPO ENVOLVENTE DAVENE 200ML",
+        "CORPO A CORPO MARCANTE DAVENE 200ML",
+        "CORPO A CORPO NAT. DAVENE 200ML",
+        "CORPO A CORPO SEDUCAO 200ML",
+        "CORPO A CORPO SENSIVEL 200ML"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "CR",
+      "quantity": 12,
+      "examples": [
+        "CR. HID. BIO NATURAN ABACATE 1KG",
+        "CR. HID. BIO NATURAN ABACATE 250ML",
+        "CR. HID. BIO NATURAN HORMONIO 1KG",
+        "CR. HID. BIO NATURAN TUTANO C/SIL. 250ML",
+        "CR. HID. BIO NATURAN TUTANO C/SILI 1KG",
+        "CR. RESTAUR. SULIELKA M.E LANOL. 930ML."
+      ],
+      "suggestion": null,
+      "confidence": "nenhuma",
+      "note": "abreviação insuficiente"
+    },
+    {
+      "group_key": "FEIJOADA",
+      "quantity": 12,
+      "examples": [
+        "FEIJOADA A BRAS. SWIFT 830G",
+        "FEIJOADA ANGLO 310GR",
+        "FEIJOADA ANGLO 430G.",
+        "FEIJOADA ANGULO 830G",
+        "FEIJOADA BORDON 430G",
+        "FEIJOADA BORDON 830G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "KIT",
+      "quantity": 12,
+      "examples": [
+        "KIT CHOC.CHOKITO BR.NESTLE C/ 3 UND.",
+        "KIT FACIL ESCONDIDINHO YOKI 150G",
+        "KIT FACIL ESTROGONOFE YOKI 150G",
+        "KIT FORT ELETR.",
+        "KIT GB PROMOPAC 2 AERO 72H BLUE 150ML",
+        "KIT HIDR INTEN CORP 200ML+CREM 50G VULT"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "MARG",
+      "quantity": 12,
+      "examples": [
+        "MARG DELICIA SUP CS 500G",
+        "MARG DELICIA SUPREMA 250G",
+        "MARG PURO SABOR 500G",
+        "MARG. DELICIA 500G",
+        "MARG. DELICIA MILA C/S 500G",
+        "MARG. DELICIA SEM SAL 500G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "NINHO",
+      "quantity": 12,
+      "examples": [
+        "NINHO 1+ PB101 FASES LEPO SAC 800G",
+        "NINHO 1+ PBIO L800 P700G",
+        "NINHO 3+PBI03 FASES LEPO 400G NESTLE",
+        "NINHO AFFANI CABERNET SAUVIGNON 750ML",
+        "NINHO COMPTO LACT ZERO LACTOSE 380G",
+        "NINHO FORT+ LEVINHO LT 350G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "PINHO",
+      "quantity": 12,
+      "examples": [
+        "PINHO BRIL ACCEPT CL AT 500ML",
+        "PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+        "PINHO BRIL ACCEPT FLOR DE LILLY 500ML",
+        "PINHO BRIL ACCEPT LAV 1 CESTA E 1 BL",
+        "PINHO BRIL ACCEPT LAV REFIL",
+        "PINHO BRIL ACCEPT TIRA LIMO 500ML"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "REP",
+      "quantity": 12,
+      "examples": [
+        "REP PONT NIELY GOLD 42ML L PLENO",
+        "REP PONT NIELY GOLD 42ML N MAGICA",
+        "REP PONT NIELY GOLD 42ML POS Q. PODEROSA",
+        "REP PONTAS GOLD ANTI-STRESS 50ML",
+        "REP PONTAS GOLD EXTRA BRILHO 50ML",
+        "REP PONTAS GOLD ORQUIDEA 50ML"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "TAMPICO",
+      "quantity": 12,
+      "examples": [
+        "TAMPICO F CITRICAS 330ML",
+        "TAMPICO FR. CITRICAS 200ML",
+        "TAMPICO FR. CITRICAS SLIM 200ML",
+        "TAMPICO FRUTAS CITRICAS 1L",
+        "TAMPICO FRUTAS CITRICAS 1L.",
+        "TAMPICO FRUTAS CITRICAS 200ML"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "TORNEIRA",
+      "quantity": 12,
+      "examples": [
+        "TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+        "TORNEIRA FILTRO ALAV BR/AZ GAMA",
+        "TORNEIRA FILTRO AUT. COD.1358",
+        "TORNEIRA FILTRO AUT.BC/AZ GAMA",
+        "TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN",
+        "TORNEIRA FILTRO BARRO AUT. BC HERC"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "BATON",
+      "quantity": 11,
+      "examples": [
+        "BATON BASTAO CHOC BRANCO 30X16G",
+        "BATON BIG UNIV.APOLO 07",
+        "BATON BIG UNIV.APOLO 08",
+        "BATON BIG UNIV.APOLO 09",
+        "BATON BIG UNIV.APOLO 11",
+        "BATON BIG UNIV.APOLO 12"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "COPOS",
+      "quantity": 11,
+      "examples": [
+        "COPOS DESC COPOBRAS 300ML",
+        "COPOS DESC. COPOBRAS 180ML.",
+        "COPOS DESC. COPOBRAS 300ML C/100",
+        "COPOS DESC.TRANSP. MARATA 100X200ML",
+        "COPOS DEVILA 180ML.",
+        "COPOS FLORIE CISPER"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "GRAFITE",
+      "quantity": 11,
+      "examples": [
+        "GRAFITE 0,7MM C/12MINAS",
+        "GRAFITE 07 PARA POLY MERCURE",
+        "GRAFITE AEROSSOL M500 200ML",
+        "GRAFITE EM PO EMAVI 25G",
+        "GRAFITE EM PO JUNTALIDER 25G.",
+        "GRAFITE PO P/FECH. GARRA 15G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "GRANULADO",
+      "quantity": 11,
+      "examples": [
+        "GRANULADO COLORIDO DORI 120G",
+        "GRANULADO COLORIDO MIL CORES 150G",
+        "GRANULADO COLORIDO VISCONTI 130G",
+        "GRANULADO DORI 70G.",
+        "GRANULADO MICANGA DR. OETKER 80G",
+        "GRANULADO MIL CORES 150G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "NO",
+      "quantity": 11,
+      "examples": [
+        "NO AR ALEGRIA DE INFANCIA",
+        "NO AR AMOR DE MAE 360ML",
+        "NO AR ESTILO LUXO BOM BRIL 277G.",
+        "NO AR JARDIM E POMAR 360ML",
+        "NO AR JASMIM 360ML",
+        "NO AR LAVANDA 400ML"
+      ],
+      "suggestion": null,
+      "confidence": "nenhuma",
+      "note": "abreviação insuficiente"
+    },
+    {
+      "group_key": "PENTE",
+      "quantity": 11,
+      "examples": [
+        "PENTE CONDOR K6 JOY UN",
+        "PENTE DARMA 177 CABO LARGO 2UN",
+        "PENTE FINO DARMA 125 SEM CABO PIOLHO 2UN",
+        "PENTE MARCO BONI",
+        "PENTE MARCO BONI KIT C 2 DE BOLSO",
+        "PENTE MARCO BONI MEN KIT COM 2 UNIDADES"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "PINGO",
+      "quantity": 11,
+      "examples": [
+        "PINGO D OURO 48G",
+        "PINGO D OURO ELMA CHIPS BACON 120G",
+        "PINGO D`OURO PICANHA GRELHADA 27G",
+        "PINGO D`OURO PICANHA GRELHADA 65G",
+        "PINGO D`OURO PIZZA 66G",
+        "PINGO DOIRO BACON 30G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "SAPOLIO",
+      "quantity": 11,
+      "examples": [
+        "SAPOLIO RAD PO CLASSICO 300G",
+        "SAPOLIO RADIUM BOM BRIL CREM MULT 450ML",
+        "SAPOLIO RADIUM CLASSICO 250ML",
+        "SAPOLIO RADIUM CREM LAV. 250ML",
+        "SAPOLIO RADIUM CREM. 300ML",
+        "SAPOLIO RADIUM LIMPA ALUMINNIO 250ML"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "SELETA",
+      "quantity": 11,
+      "examples": [
+        "SELETA DE LEG FUGINI SACHE 170G",
+        "SELETA DE LEG. MIX CLAS CONG. GRANO 300G",
+        "SELETA DE LEGUMES CONG PCT 0,300KG",
+        "SELETA DE LEGUMES OLE 170G",
+        "SELETA DE LEGUMES PREDILECTA 280G",
+        "SELETA DE LEGUMES PREDILECTA 300G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "BALOES",
+      "quantity": 10,
+      "examples": [
+        "BALOES IDEATEX AZUL 6,5 50 UNIDADES",
+        "BALOES IDEATEX N6,5 50UNIDADES",
+        "BALOES IDEATEX VERMELHO 6,5 50 UNIDADES",
+        "BALOES IDETEX BRANCO 6,5 50UNIDADES",
+        "BALOES JUNCO AZUL TAM 65.",
+        "BALOES JUNCO BRANCO TAM 65."
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "BEB",
+      "quantity": 10,
+      "examples": [
+        "BEB ADOCADA FRUTAS CIT TAMPICO 330ML",
+        "BEB LAC YOBEM PROT 250ML COCO C/ TAPIOCA",
+        "BEB LACTEA PARM WHEYFIT MIL VERDE 250 ML",
+        "BEB LACTEA PARMALAT WHEY 250ML ABAC 15G PROT",
+        "BEB LACTEA PARMALAT WHEY 250ML CAPP 15G PROT",
+        "BEB LACTEA PARMALAT WHEY 250ML CHOC 15G PROTEINA"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "CAIXA",
+      "quantity": 10,
+      "examples": [
+        "CAIXA PLASTICA 2L REF CP200 MARIPLAST",
+        "CAIXA PLASTICA 3.6L REF CP360 MARIPLAST",
+        "CAIXA PRATICA 2L JUNDIAI",
+        "CAIXA PRATICA 3,6L JUNDIAI",
+        "CAIXA PRATICA 6,8L JUNDIAI",
+        "CAIXA PRATICA 6.8L REF CP680 MARIPLAST"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "COLOR",
+      "quantity": 10,
+      "examples": [
+        "COLOR CASSTING GLOSS KIT 210 PRETO AZ",
+        "COLOR CASTING GLOSS KIT 100 PRETO NOITE",
+        "COLOR CASTING GLOSS KIT 200 PRETO",
+        "COLOR CASTING GLOSS KIT 300 CAST ESC",
+        "COLOR CASTING GLOSS KIT 400 CAST NAT",
+        "COLOR CASTING GLOSS KIT 415 CHOC GLACE"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "ESP",
+      "quantity": 10,
+      "examples": [
+        "ESP BARB BOZZANO REFRESCANTE 193G",
+        "ESP CONDOR L PESADA 1531",
+        "ESP ESFREBOM 3X100X75X42MM",
+        "ESP L ACO ASS PCT 45G",
+        "ESP LIMPPANO S.UNHAS 95X69X40MM",
+        "ESP SINT ASS PERTUTO FIL 4UN"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "ESPELHO",
+      "quantity": 10,
+      "examples": [
+        "ESPELHO 27.19CM.",
+        "ESPELHO CAO FACIL NUMERO 14 20X14",
+        "ESPELHO COA FACIL N 18",
+        "ESPELHO COA FACIL N-18",
+        "ESPELHO COA N 14",
+        "ESPELHO PAVAO - 18"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "ESTOPA",
+      "quantity": 10,
+      "examples": [
+        "ESTOPA BR. PARA POLIMENTO PRATIK 150G",
+        "ESTOPA DUCARRO SPECIAL",
+        "ESTOPA FLANELIN 150G",
+        "ESTOPA MOURA TEX 150G",
+        "ESTOPA P/ POLIMENTO ANADRI 120G.",
+        "ESTOPA P/POLIMENTO BIRIBA 150G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "FILE",
+      "quantity": 10,
+      "examples": [
+        "FILE DE CAMARRAO 7 BARBAS 500G",
+        "FILE DE CAMRRAO ESCOLHA 500G",
+        "FILE DE P. POLACA DO AL. BACALANOR 1KG",
+        "FILE DE PEITO DE FR. COPACOL 1KG",
+        "FILE DE PESCADA COSTA SUL 500G",
+        "FILE DE POLACA DO ALASCA 1KG"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "FRALDAS",
+      "quantity": 10,
+      "examples": [
+        "FRALDAS BIOFRAL CLASSIC M C/9 UNIDADES",
+        "FRALDAS CONFORT CARE TAMANHO G 8UN",
+        "FRALDAS DESC. PLIM PLIM XG",
+        "FRALDAS FOFURA BABY XG 16UNIDADES",
+        "FRALDAS MASTERSOFT ADULTO G 8 UNIDADES",
+        "FRALDAS MAXFRAL ADULTOS G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "MAIS",
+      "quantity": 10,
+      "examples": [
+        "MAIS VITA MARACUJA YOKI 1L",
+        "MAIS VITA PURA SOJA 1L.",
+        "MAIS VITA SOJA CRANBERY COM ROMA 1L",
+        "MAIS VITA SOJA GRANB COM ROMA 200ML",
+        "MAIS VITA SOJA LAR COM ACEROLA 1L",
+        "MAIS VITA SOJA LAR COM ACEROLA 200ML"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "PAPINHA",
+      "quantity": 10,
+      "examples": [
+        "PAPINHA CREM. BABY CEREAIS 120G",
+        "PAPINHA CREM. BABY F. SORTIDAS 120G",
+        "PAPINHA CREM. BABY FRUTAS 155G",
+        "PAPINHA DE MARACUJA 120G",
+        "PAPINHA NESTLE AMEIXA 120 G.",
+        "PAPINHA NESTLE BANANA 120G."
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "PIPOCA",
+      "quantity": 10,
+      "examples": [
+        "PIPOCA BILU CARAMELO SALGADO 40G",
+        "PIPOCA BILU ORIGINAL DOCE 40G",
+        "PIPOCA IMPORTADA YOKI 500G",
+        "PIPOCA MIC MANT MARAVILHA 50G",
+        "PIPOCA MICRO ONDAS SABOR PIZZA 50G",
+        "PIPOCA PR CARAMELO YOKI 50G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "POP",
+      "quantity": 10,
+      "examples": [
+        "POP CORN BACON YOKI 100G",
+        "POP CORN DOCE YOKI 100G",
+        "POP CORN MANT. LIGHT YOKI 100G",
+        "POP CORN MANT. SUAVE YOKI 100G",
+        "POP CORN NAT. YOKI 100G",
+        "POP CORN YOKI COB. MANT. ESPECIAL 130G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "PROTEINA",
+      "quantity": 10,
+      "examples": [
+        "PROTEINA DE SOJA SORA 400G CARNE",
+        "PROTEINA DE SOJA SORA 400G FRANGO",
+        "PROTEINA TEX DE SOJA CAMIL CARNE 400G",
+        "PROTEINA TEX DE SOJA CAMIL FGO. 400G",
+        "PROTEINA TEX PRONTU SOY BR 400G",
+        "PROTEINA TEX PRONTU SOY VER. 400G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "SBP",
+      "quantity": 10,
+      "examples": [
+        "SBP 45 NOITES 2RF CH SUAVE 2X35ML",
+        "SBP CITRONELA 380ML",
+        "SBP ELETRICO 1AP 4 PAST.",
+        "SBP ELETRICO 35ML REFIL",
+        "SBP ELETRICO APARELHO E 1 FR. 35ML",
+        "SBP ELETRICO C/1 APARELHO"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "TORRADA",
+      "quantity": 10,
+      "examples": [
+        "TORRADA BAUDUCCO INTEGRAL 142G",
+        "TORRADA BAUDUCCO MULTIGRAOS 142G",
+        "TORRADA BAUDUCO LIGHT 142G",
+        "TORRADA BAUDUCO TRADICIONAL 142G",
+        "TORRADA INTEGRAL VITARELLA 142G",
+        "TORRADA LEV MAGIC TOAST ORIGINAL 110G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "TRIDENT",
+      "quantity": 10,
+      "examples": [
+        "TRIDENT FRESH INTENSE 32G",
+        "TRIDENT FRESH INTENSE 8G",
+        "TRIDENT HORTELA 34G",
+        "TRIDENT HORTELA 8G",
+        "TRIDENT MENTA 34G",
+        "TRIDENT MENTA 8G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "ALICATE",
+      "quantity": 9,
+      "examples": [
+        "ALICATE MERHEJE BASIC",
+        "ALICATE MUNDIAL CUTICULA SANDY PLAST",
+        "ALICATE MUNDIAL FLEX 168FL",
+        "ALICATE P/ UNHA MUNDIAL",
+        "ALICATE SANDY MUNDIAL 756RO",
+        "ALICATE SANDY MUNDIAL C. LIXA"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "ALIM",
+      "quantity": 9,
+      "examples": [
+        "ALIM EM PO SUPRASOY S/ LACTOSE ORIGINAL 260G",
+        "ALIM SOJA MAIS VITA MARACUJA 200ML",
+        "ALIM. ACHOC. SAO VITO 200G",
+        "ALIM. ACHOC. SAO VITO 400G",
+        "ALIM. COM SOJA ABACAXI ADES 1L",
+        "ALIM. EM PO SUPRA SOY SEM LACTOSE 300G"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "AROMATIZANTE",
+      "quantity": 9,
+      "examples": [
+        "AROMATIZANTE AMB COALA CHA BCO 120ML",
+        "AROMATIZANTE AMB COALA LAVANDA 120ML",
+        "AROMATIZANTE AMB COALA ORQ NEG 120ML",
+        "AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+        "AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+        "AROMATIZANTE KHARIS CARRO NOVO 80ML"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    },
+    {
+      "group_key": "BAYGON",
+      "quantity": 9,
+      "examples": [
+        "BAYGON ACAO TOTAL 475ML",
+        "BAYGON ACAO TOTAL 475ML",
+        "BAYGON ACAO TOTAL LIQUIDO 500ML",
+        "BAYGON AP.+ 4PASTILHAS REFIL",
+        "BAYGON APARELHO E 4 REFIS",
+        "BAYGON ELETRICO REFIL C/12UN"
+      ],
+      "suggestion": null,
+      "confidence": "baixa",
+      "note": "requer decisão manual / comercial"
+    }
+  ],
+  "candidates_manual_only": [
+    {
+      "group": "CORPO",
+      "quantity": 12,
+      "examples": [
+        "CORPO A CORPO ENVOLV. 200ML",
+        "CORPO A CORPO ENVOLVENTE DAVENE 200ML",
+        "CORPO A CORPO MARCANTE DAVENE 200ML",
+        "CORPO A CORPO NAT. DAVENE 200ML",
+        "CORPO A CORPO SEDUCAO 200ML"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "CR",
+      "quantity": 12,
+      "examples": [
+        "CR. HID. BIO NATURAN ABACATE 1KG",
+        "CR. HID. BIO NATURAN ABACATE 250ML",
+        "CR. HID. BIO NATURAN HORMONIO 1KG",
+        "CR. HID. BIO NATURAN TUTANO C/SIL. 250ML",
+        "CR. HID. BIO NATURAN TUTANO C/SILI 1KG"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "FEIJOADA",
+      "quantity": 12,
+      "examples": [
+        "FEIJOADA A BRAS. SWIFT 830G",
+        "FEIJOADA ANGLO 310GR",
+        "FEIJOADA ANGLO 430G.",
+        "FEIJOADA ANGULO 830G",
+        "FEIJOADA BORDON 430G"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "KIT",
+      "quantity": 12,
+      "examples": [
+        "KIT CHOC.CHOKITO BR.NESTLE C/ 3 UND.",
+        "KIT FACIL ESCONDIDINHO YOKI 150G",
+        "KIT FACIL ESTROGONOFE YOKI 150G",
+        "KIT FORT ELETR.",
+        "KIT GB PROMOPAC 2 AERO 72H BLUE 150ML"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "MARG",
+      "quantity": 12,
+      "examples": [
+        "MARG DELICIA SUP CS 500G",
+        "MARG DELICIA SUPREMA 250G",
+        "MARG PURO SABOR 500G",
+        "MARG. DELICIA 500G",
+        "MARG. DELICIA MILA C/S 500G"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "NINHO",
+      "quantity": 12,
+      "examples": [
+        "NINHO 1+ PB101 FASES LEPO SAC 800G",
+        "NINHO 1+ PBIO L800 P700G",
+        "NINHO 3+PBI03 FASES LEPO 400G NESTLE",
+        "NINHO AFFANI CABERNET SAUVIGNON 750ML",
+        "NINHO COMPTO LACT ZERO LACTOSE 380G"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "PINHO",
+      "quantity": 12,
+      "examples": [
+        "PINHO BRIL ACCEPT CL AT 500ML",
+        "PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+        "PINHO BRIL ACCEPT FLOR DE LILLY 500ML",
+        "PINHO BRIL ACCEPT LAV 1 CESTA E 1 BL",
+        "PINHO BRIL ACCEPT LAV REFIL"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "REP",
+      "quantity": 12,
+      "examples": [
+        "REP PONT NIELY GOLD 42ML L PLENO",
+        "REP PONT NIELY GOLD 42ML N MAGICA",
+        "REP PONT NIELY GOLD 42ML POS Q. PODEROSA",
+        "REP PONTAS GOLD ANTI-STRESS 50ML",
+        "REP PONTAS GOLD EXTRA BRILHO 50ML"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "TAMPICO",
+      "quantity": 12,
+      "examples": [
+        "TAMPICO F CITRICAS 330ML",
+        "TAMPICO FR. CITRICAS 200ML",
+        "TAMPICO FR. CITRICAS SLIM 200ML",
+        "TAMPICO FRUTAS CITRICAS 1L",
+        "TAMPICO FRUTAS CITRICAS 1L."
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "TORNEIRA",
+      "quantity": 12,
+      "examples": [
+        "TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+        "TORNEIRA FILTRO ALAV BR/AZ GAMA",
+        "TORNEIRA FILTRO AUT. COD.1358",
+        "TORNEIRA FILTRO AUT.BC/AZ GAMA",
+        "TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "BATON",
+      "quantity": 11,
+      "examples": [
+        "BATON BASTAO CHOC BRANCO 30X16G",
+        "BATON BIG UNIV.APOLO 07",
+        "BATON BIG UNIV.APOLO 08",
+        "BATON BIG UNIV.APOLO 09",
+        "BATON BIG UNIV.APOLO 11"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "COPOS",
+      "quantity": 11,
+      "examples": [
+        "COPOS DESC COPOBRAS 300ML",
+        "COPOS DESC. COPOBRAS 180ML.",
+        "COPOS DESC. COPOBRAS 300ML C/100",
+        "COPOS DESC.TRANSP. MARATA 100X200ML",
+        "COPOS DEVILA 180ML."
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "GRAFITE",
+      "quantity": 11,
+      "examples": [
+        "GRAFITE 0,7MM C/12MINAS",
+        "GRAFITE 07 PARA POLY MERCURE",
+        "GRAFITE AEROSSOL M500 200ML",
+        "GRAFITE EM PO EMAVI 25G",
+        "GRAFITE EM PO JUNTALIDER 25G."
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "GRANULADO",
+      "quantity": 11,
+      "examples": [
+        "GRANULADO COLORIDO DORI 120G",
+        "GRANULADO COLORIDO MIL CORES 150G",
+        "GRANULADO COLORIDO VISCONTI 130G",
+        "GRANULADO DORI 70G.",
+        "GRANULADO MICANGA DR. OETKER 80G"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "NO",
+      "quantity": 11,
+      "examples": [
+        "NO AR ALEGRIA DE INFANCIA",
+        "NO AR AMOR DE MAE 360ML",
+        "NO AR ESTILO LUXO BOM BRIL 277G.",
+        "NO AR JARDIM E POMAR 360ML",
+        "NO AR JASMIM 360ML"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "PENTE",
+      "quantity": 11,
+      "examples": [
+        "PENTE CONDOR K6 JOY UN",
+        "PENTE DARMA 177 CABO LARGO 2UN",
+        "PENTE FINO DARMA 125 SEM CABO PIOLHO 2UN",
+        "PENTE MARCO BONI",
+        "PENTE MARCO BONI KIT C 2 DE BOLSO"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "PINGO",
+      "quantity": 11,
+      "examples": [
+        "PINGO D OURO 48G",
+        "PINGO D OURO ELMA CHIPS BACON 120G",
+        "PINGO D`OURO PICANHA GRELHADA 27G",
+        "PINGO D`OURO PICANHA GRELHADA 65G",
+        "PINGO D`OURO PIZZA 66G"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "SAPOLIO",
+      "quantity": 11,
+      "examples": [
+        "SAPOLIO RAD PO CLASSICO 300G",
+        "SAPOLIO RADIUM BOM BRIL CREM MULT 450ML",
+        "SAPOLIO RADIUM CLASSICO 250ML",
+        "SAPOLIO RADIUM CREM LAV. 250ML",
+        "SAPOLIO RADIUM CREM. 300ML"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "SELETA",
+      "quantity": 11,
+      "examples": [
+        "SELETA DE LEG FUGINI SACHE 170G",
+        "SELETA DE LEG. MIX CLAS CONG. GRANO 300G",
+        "SELETA DE LEGUMES CONG PCT 0,300KG",
+        "SELETA DE LEGUMES OLE 170G",
+        "SELETA DE LEGUMES PREDILECTA 280G"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "BALOES",
+      "quantity": 10,
+      "examples": [
+        "BALOES IDEATEX AZUL 6,5 50 UNIDADES",
+        "BALOES IDEATEX N6,5 50UNIDADES",
+        "BALOES IDEATEX VERMELHO 6,5 50 UNIDADES",
+        "BALOES IDETEX BRANCO 6,5 50UNIDADES",
+        "BALOES JUNCO AZUL TAM 65."
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "BEB",
+      "quantity": 10,
+      "examples": [
+        "BEB ADOCADA FRUTAS CIT TAMPICO 330ML",
+        "BEB LAC YOBEM PROT 250ML COCO C/ TAPIOCA",
+        "BEB LACTEA PARM WHEYFIT MIL VERDE 250 ML",
+        "BEB LACTEA PARMALAT WHEY 250ML ABAC 15G PROT",
+        "BEB LACTEA PARMALAT WHEY 250ML CAPP 15G PROT"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "CAIXA",
+      "quantity": 10,
+      "examples": [
+        "CAIXA PLASTICA 2L REF CP200 MARIPLAST",
+        "CAIXA PLASTICA 3.6L REF CP360 MARIPLAST",
+        "CAIXA PRATICA 2L JUNDIAI",
+        "CAIXA PRATICA 3,6L JUNDIAI",
+        "CAIXA PRATICA 6,8L JUNDIAI"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "COLOR",
+      "quantity": 10,
+      "examples": [
+        "COLOR CASSTING GLOSS KIT 210 PRETO AZ",
+        "COLOR CASTING GLOSS KIT 100 PRETO NOITE",
+        "COLOR CASTING GLOSS KIT 200 PRETO",
+        "COLOR CASTING GLOSS KIT 300 CAST ESC",
+        "COLOR CASTING GLOSS KIT 400 CAST NAT"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "ESP",
+      "quantity": 10,
+      "examples": [
+        "ESP BARB BOZZANO REFRESCANTE 193G",
+        "ESP CONDOR L PESADA 1531",
+        "ESP ESFREBOM 3X100X75X42MM",
+        "ESP L ACO ASS PCT 45G",
+        "ESP LIMPPANO S.UNHAS 95X69X40MM"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    },
+    {
+      "group": "ESPELHO",
+      "quantity": 10,
+      "examples": [
+        "ESPELHO 27.19CM.",
+        "ESPELHO CAO FACIL NUMERO 14 20X14",
+        "ESPELHO COA FACIL N 18",
+        "ESPELHO COA FACIL N-18",
+        "ESPELHO COA N 14"
+      ],
+      "why": "ambíguo / descrição insuficiente / decisão comercial — não forçar regra automática"
+    }
+  ],
+  "history": [
+    {
+      "phase": "pre_manual_review",
+      "counts": {
+        "CLASSIFIED": 15968,
+        "REVIEW_REQUIRED": 8,
+        "UNCLASSIFIED": 3292
+      }
+    },
+    {
+      "phase": "manual_review_assisted",
+      "counts": {
+        "CLASSIFIED": 16040,
+        "REVIEW_REQUIRED": 8,
+        "UNCLASSIFIED": 3220
+      },
+      "stats": {
+        "groupsAvailable": 1275,
+        "groupsReviewed": 6,
+        "productsReviewed": 72,
+        "approvedByGroup": 36,
+        "classifiedIndividually": 36,
+        "keptUnclassified": 0,
+        "pending": 3228
+      }
+    },
+    {
+      "phase": "pre_manual_review",
+      "counts": {
+        "CLASSIFIED": 16040,
+        "REVIEW_REQUIRED": 8,
+        "UNCLASSIFIED": 3220
+      }
+    },
+    {
+      "phase": "manual_review_assisted",
+      "counts": {
+        "CLASSIFIED": 16052,
+        "REVIEW_REQUIRED": 8,
+        "UNCLASSIFIED": 3208
+      },
+      "stats": {
+        "groupsAvailable": 1275,
+        "groupsReviewed": 7,
+        "productsReviewed": 84,
+        "approvedByGroup": 48,
+        "classifiedIndividually": 36,
+        "keptUnclassified": 0,
+        "pending": 3216
+      }
+    },
+    {
+      "phase": "pre_manual_review",
+      "counts": {
+        "CLASSIFIED": 16052,
+        "REVIEW_REQUIRED": 8,
+        "UNCLASSIFIED": 3208
+      }
+    },
+    {
+      "phase": "manual_review_assisted",
+      "counts": {
+        "CLASSIFIED": 16052,
+        "REVIEW_REQUIRED": 8,
+        "UNCLASSIFIED": 3208
+      },
+      "stats": {
+        "groupsAvailable": 1275,
+        "groupsReviewed": 7,
+        "productsReviewed": 84,
+        "approvedByGroup": 48,
+        "classifiedIndividually": 36,
+        "keptUnclassified": 0,
+        "pending": 3216
+      }
+    }
+  ],
+  "previous_before_manual": {
+    "CLASSIFIED": 15968,
+    "REVIEW_REQUIRED": 8,
+    "UNCLASSIFIED": 3292
+  },
+  "manual_review": {
+    "stats": {
+      "groupsAvailable": 1275,
+      "groupsReviewed": 7,
+      "productsReviewed": 84,
+      "approvedByGroup": 48,
+      "classifiedIndividually": 36,
+      "keptUnclassified": 0,
+      "pending": 3216
+    },
+    "decisions_count": 84,
+    "overlay_classified": 84,
+    "main_decisions": [
+      {
+        "group": "PINHO",
+        "type": "GROUP_APPROVAL",
+        "category": "Limpeza"
+      },
+      {
+        "group": "MARG",
+        "type": "GROUP_APPROVAL",
+        "category": "Frios e Laticínios"
+      },
+      {
+        "group": "FEIJOADA",
+        "type": "GROUP_APPROVAL",
+        "category": "Mercearia Seca e Básica"
+      },
+      {
+        "group": "CR",
+        "type": "GROUP_APPROVAL",
+        "category": "Higiene Pessoal"
+      },
+      {
+        "group": "CORPO",
+        "type": "INDIVIDUAL",
+        "note": "CORPO A CORPO→Higiene; CORPO E SABOR→Mercearia"
+      },
+      {
+        "group": "NINHO",
+        "type": "INDIVIDUAL",
+        "note": "leite/pó→Mercearia; Affani vinho→Bebidas"
+      },
+      {
+        "group": "KIT",
+        "type": "INDIVIDUAL",
+        "note": "por evidência; ambíguos pendentes"
+      }
+    ]
+  },
+  "auto_layer_preserved": {
+    "CLASSIFIED": 15968,
+    "REVIEW_REQUIRED": 8,
+    "UNCLASSIFIED": 3292,
+    "byCat": {
+      "Hortifrúti": 1235,
+      "Frios e Laticínios": 1452,
+      "Mercearia Seca e Básica": 3463,
+      "Bebidas": 773,
+      "Padaria e Confeitaria": 195,
+      "Limpeza": 1232,
+      "Higiene Pessoal": 3709,
+      "Utilidades e Outros": 3534,
+      "Produtos Descartáveis": 375
+    }
+  },
+  "p1_review": {
+    "groups_found": 4,
+    "groups_reviewed": 4,
+    "products_reclassified_this_run": 5,
+    "group_approvals": 5,
+    "individual_decisions": 0,
+    "kept_unclassified": 0,
+    "pending": 3211,
+    "groups": [
+      {
+        "groupKey": "CR",
+        "quantity": 12,
+        "suggestion": "Higiene Pessoal",
+        "action": "ALREADY_REVIEWED",
+        "productsAffected": 0,
+        "examples": [
+          "CR. HID. BIO NATURAN ABACATE 1KG",
+          "CR. HID. BIO NATURAN ABACATE 250ML",
+          "CR. HID. BIO NATURAN HORMONIO 1KG"
+        ],
+        "reason": "12 produto(s) já tinham decisão"
+      },
+      {
+        "groupKey": "MARG",
+        "quantity": 12,
+        "suggestion": "Frios e Laticínios",
+        "action": "ALREADY_REVIEWED",
+        "productsAffected": 0,
+        "examples": [
+          "MARG DELICIA SUP CS 500G",
+          "MARG DELICIA SUPREMA 250G",
+          "MARG PURO SABOR 500G"
+        ],
+        "reason": "12 produto(s) já tinham decisão"
+      },
+      {
+        "groupKey": "PINHO",
+        "quantity": 12,
+        "suggestion": "Limpeza",
+        "action": "ALREADY_REVIEWED",
+        "productsAffected": 0,
+        "examples": [
+          "PINHO BRIL ACCEPT CL AT 500ML",
+          "PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+          "PINHO BRIL ACCEPT FLOR DE LILLY 500ML"
+        ],
+        "reason": "12 produto(s) já tinham decisão"
+      },
+      {
+        "groupKey": "UMIDIFICADOR",
+        "quantity": 5,
+        "suggestion": "Higiene Pessoal",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 5,
+        "examples": [
+          "UMIDIFICADOR FIO RESTORE 420ML.",
+          "UMIDIFICADOR MAX CAPI BIO-CER. 420ML",
+          "UMIDIFICADOR MAX CAPI MANT DE PES 420ML",
+          "UMIDIFICADOR NUTRI HAIR PROTEINAS 435ML",
+          "UMIDIFICADOR NUTRI HAIR TRADICIONAL 35ML"
+        ]
+      }
+    ]
+  },
+  "manual_review_decisions": 230,
+  "review_required_resolution": {
+    "review_required_before": 8,
+    "resolved": 8,
+    "kept_review_required": 0,
+    "review_required_after": 0,
+    "individual_decisions": 8,
+    "kept_unclassified": 0
+  },
+  "p2_review": {
+    "tier_p1_groups_available": 0,
+    "tier_p2_groups_available": 0,
+    "groups_analyzed": 10,
+    "groups_approved_collectively": 10,
+    "groups_heterogeneous_or_blocked": 0,
+    "products_reclassified_this_run": 106,
+    "group_approvals": 106,
+    "individual_decisions": 0,
+    "kept_unclassified": 0,
+    "pending_unclassified": 3097,
+    "groups": [
+      {
+        "groupKey": "TAMPICO",
+        "quantity": 12,
+        "tier": 4,
+        "score": 6,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Bebidas",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 12,
+        "source": "manual_audit",
+        "examples": [
+          "TAMPICO F CITRICAS 330ML",
+          "TAMPICO FR. CITRICAS 200ML",
+          "TAMPICO FR. CITRICAS SLIM 200ML",
+          "TAMPICO FRUTAS CITRICAS 1L",
+          "TAMPICO FRUTAS CITRICAS 1L."
+        ]
+      },
+      {
+        "groupKey": "TORRADA",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Padaria e Confeitaria",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "TORRADA BAUDUCCO INTEGRAL 142G",
+          "TORRADA BAUDUCCO MULTIGRAOS 142G",
+          "TORRADA BAUDUCO LIGHT 142G",
+          "TORRADA BAUDUCO TRADICIONAL 142G",
+          "TORRADA INTEGRAL VITARELLA 142G"
+        ]
+      },
+      {
+        "groupKey": "TRIDENT",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Mercearia Seca e Básica",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "TRIDENT FRESH INTENSE 32G",
+          "TRIDENT FRESH INTENSE 8G",
+          "TRIDENT HORTELA 34G",
+          "TRIDENT HORTELA 8G",
+          "TRIDENT MENTA 34G"
+        ]
+      },
+      {
+        "groupKey": "PAPINHA",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Mercearia Seca e Básica",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "PAPINHA CREM. BABY CEREAIS 120G",
+          "PAPINHA CREM. BABY F. SORTIDAS 120G",
+          "PAPINHA CREM. BABY FRUTAS 155G",
+          "PAPINHA DE MARACUJA 120G",
+          "PAPINHA NESTLE AMEIXA 120 G."
+        ]
+      },
+      {
+        "groupKey": "PROTEINA",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Mercearia Seca e Básica",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "PROTEINA DE SOJA SORA 400G CARNE",
+          "PROTEINA DE SOJA SORA 400G FRANGO",
+          "PROTEINA TEX DE SOJA CAMIL CARNE 400G",
+          "PROTEINA TEX DE SOJA CAMIL FGO. 400G",
+          "PROTEINA TEX PRONTU SOY BR 400G"
+        ]
+      },
+      {
+        "groupKey": "NO",
+        "quantity": 11,
+        "tier": 4,
+        "score": 5.5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Limpeza",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 11,
+        "source": "manual_audit",
+        "examples": [
+          "NO AR ALEGRIA DE INFANCIA",
+          "NO AR AMOR DE MAE 360ML",
+          "NO AR ESTILO LUXO BOM BRIL 277G.",
+          "NO AR JARDIM E POMAR 360ML",
+          "NO AR JASMIM 360ML"
+        ]
+      },
+      {
+        "groupKey": "ESTOPA",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Limpeza",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "ESTOPA BR. PARA POLIMENTO PRATIK 150G",
+          "ESTOPA DUCARRO SPECIAL",
+          "ESTOPA FLANELIN 150G",
+          "ESTOPA MOURA TEX 150G",
+          "ESTOPA P/ POLIMENTO ANADRI 120G."
+        ]
+      },
+      {
+        "groupKey": "SBP",
+        "quantity": 10,
+        "tier": 4,
+        "score": 5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Limpeza",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 10,
+        "source": "manual_audit",
+        "examples": [
+          "SBP 45 NOITES 2RF CH SUAVE 2X35ML",
+          "SBP CITRONELA 380ML",
+          "SBP ELETRICO 1AP 4 PAST.",
+          "SBP ELETRICO 35ML REFIL",
+          "SBP ELETRICO APARELHO E 1 FR. 35ML"
+        ]
+      },
+      {
+        "groupKey": "GRANULADO",
+        "quantity": 11,
+        "tier": 4,
+        "score": 5.5,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Padaria e Confeitaria",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 11,
+        "source": "manual_audit",
+        "examples": [
+          "GRANULADO COLORIDO DORI 120G",
+          "GRANULADO COLORIDO MIL CORES 150G",
+          "GRANULADO COLORIDO VISCONTI 130G",
+          "GRANULADO DORI 70G.",
+          "GRANULADO MICANGA DR. OETKER 80G"
+        ]
+      },
+      {
+        "groupKey": "TORNEIRA",
+        "quantity": 12,
+        "tier": 4,
+        "score": 6,
+        "confidence": "baixa",
+        "suggestion": null,
+        "categoryApplied": "Utilidades e Outros",
+        "action": "GROUP_APPROVAL",
+        "productsAffected": 12,
+        "source": "manual_audit",
+        "examples": [
+          "TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+          "TORNEIRA FILTRO ALAV BR/AZ GAMA",
+          "TORNEIRA FILTRO AUT. COD.1358",
+          "TORNEIRA FILTRO AUT.BC/AZ GAMA",
+          "TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN"
+        ]
+      }
+    ]
+  },
+  "final_high_confidence_review": {
+    "grupos_analisados": 5,
+    "produtos_analisados": 27,
+    "grupos_aprovados": 5,
+    "produtos_aprovados": 27,
+    "decisoes_individuais": 0,
+    "produtos_mantidos_unclassified": 0,
+    "group_approvals": 27
+  },
+  "classification_manual_complete": true
+}

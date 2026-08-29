@@ -1,0 +1,885 @@
+{
+  "ready": 19268,
+  "unclassified": 9987,
+  "review": 667,
+  "top_tokens": [
+    [
+      "SAND",
+      1311
+    ],
+    [
+      "HAV",
+      821
+    ],
+    [
+      "BISC",
+      369
+    ],
+    [
+      "500G",
+      349
+    ],
+    [
+      "DUPE",
+      304
+    ],
+    [
+      "ESM",
+      265
+    ],
+    [
+      "COLOR",
+      257
+    ],
+    [
+      "500ML",
+      236
+    ],
+    [
+      "SLIM",
+      224
+    ],
+    [
+      "8ML",
+      218
+    ],
+    [
+      "CHOC",
+      211
+    ],
+    [
+      "KIDS",
+      198
+    ],
+    [
+      "COND",
+      185
+    ],
+    [
+      "REF",
+      183
+    ],
+    [
+      "ROSA",
+      181
+    ],
+    [
+      "MARILAN",
+      178
+    ],
+    [
+      "AZUL",
+      174
+    ],
+    [
+      "100G",
+      156
+    ],
+    [
+      "COLORAMA",
+      156
+    ],
+    [
+      "400G",
+      151
+    ],
+    [
+      "PAPEL",
+      149
+    ],
+    [
+      "VERDE",
+      146
+    ],
+    [
+      "1KG",
+      146
+    ],
+    [
+      "SAB",
+      142
+    ],
+    [
+      "GEL",
+      134
+    ],
+    [
+      "CADERNO",
+      132
+    ],
+    [
+      "HAVAIANAS",
+      132
+    ],
+    [
+      "BRANCO",
+      130
+    ],
+    [
+      "COM",
+      129
+    ],
+    [
+      "CREM",
+      118
+    ],
+    [
+      "200ML",
+      116
+    ],
+    [
+      "200G",
+      114
+    ],
+    [
+      "PRETO",
+      114
+    ],
+    [
+      "80G",
+      113
+    ],
+    [
+      "300G",
+      112
+    ],
+    [
+      "MAC",
+      112
+    ],
+    [
+      "DESOD",
+      112
+    ],
+    [
+      "PARA",
+      110
+    ],
+    [
+      "LIQ",
+      106
+    ],
+    [
+      "SADIA",
+      104
+    ],
+    [
+      "FRANGO",
+      103
+    ],
+    [
+      "90G",
+      103
+    ],
+    [
+      "250ML",
+      102
+    ],
+    [
+      "CARNE",
+      98
+    ],
+    [
+      "LAVANDA",
+      97
+    ],
+    [
+      "CINZA",
+      97
+    ],
+    [
+      "NESTLE",
+      90
+    ],
+    [
+      "COPO",
+      88
+    ],
+    [
+      "JUNCO",
+      85
+    ],
+    [
+      "BCO",
+      84
+    ],
+    [
+      "VITA",
+      82
+    ],
+    [
+      "COCO",
+      82
+    ],
+    [
+      "60G",
+      81
+    ],
+    [
+      "BRASIL",
+      81
+    ],
+    [
+      "YOKI",
+      80
+    ],
+    [
+      "HIG",
+      79
+    ],
+    [
+      "40G",
+      79
+    ],
+    [
+      "LAVA",
+      78
+    ],
+    [
+      "TOP",
+      77
+    ],
+    [
+      "150G",
+      76
+    ],
+    [
+      "ROYAL",
+      75
+    ],
+    [
+      "TREND",
+      75
+    ],
+    [
+      "SUPER",
+      74
+    ],
+    [
+      "ESMALTE",
+      74
+    ],
+    [
+      "TRAD",
+      73
+    ],
+    [
+      "50G",
+      71
+    ],
+    [
+      "85G",
+      71
+    ],
+    [
+      "GARRAFA",
+      69
+    ],
+    [
+      "SUAVE",
+      69
+    ],
+    [
+      "REGINA",
+      69
+    ],
+    [
+      "120G",
+      68
+    ],
+    [
+      "MURIEL",
+      68
+    ],
+    [
+      "RISQUE",
+      68
+    ],
+    [
+      "FRESH",
+      67
+    ],
+    [
+      "RACAO",
+      67
+    ],
+    [
+      "30G",
+      66
+    ],
+    [
+      "FLORAL",
+      66
+    ],
+    [
+      "SABOR",
+      65
+    ],
+    [
+      "350ML",
+      65
+    ],
+    [
+      "AZEITONA",
+      64
+    ]
+  ],
+  "top_bigrams": [
+    [
+      "SAND HAV",
+      782
+    ],
+    [
+      "SAND DUPE",
+      275
+    ],
+    [
+      "37 38",
+      256
+    ],
+    [
+      "39 40",
+      247
+    ],
+    [
+      "35 36",
+      204
+    ],
+    [
+      "HAV SLIM",
+      174
+    ],
+    [
+      "BISC MARILAN",
+      159
+    ],
+    [
+      "HAV KIDS",
+      146
+    ],
+    [
+      "41 42",
+      137
+    ],
+    [
+      "HAV COLOR",
+      121
+    ],
+    [
+      "ESM COLORAMA",
+      119
+    ],
+    [
+      "33 34",
+      111
+    ],
+    [
+      "SAND HAVAIANAS",
+      105
+    ],
+    [
+      "43 44",
+      69
+    ],
+    [
+      "PAPEL HIG",
+      69
+    ],
+    [
+      "25 26",
+      67
+    ],
+    [
+      "29 30",
+      65
+    ],
+    [
+      "HAV TREND",
+      60
+    ],
+    [
+      "ESM RISQUE",
+      59
+    ],
+    [
+      "27 28",
+      58
+    ],
+    [
+      "DUPE MONOCOLOR",
+      57
+    ],
+    [
+      "31 32",
+      57
+    ],
+    [
+      "DE FRANGO",
+      56
+    ],
+    [
+      "23 24",
+      56
+    ],
+    [
+      "SAND IPAN",
+      53
+    ],
+    [
+      "DUPE SUPER",
+      51
+    ],
+    [
+      "VITA CAPILI",
+      49
+    ],
+    [
+      "COND PALMOLIVE",
+      49
+    ],
+    [
+      "HAV TOP",
+      49
+    ],
+    [
+      "BISC CAPRICCHE",
+      42
+    ],
+    [
+      "EM PO",
+      41
+    ],
+    [
+      "DE PAPEL",
+      41
+    ],
+    [
+      "COLORAMA CREM",
+      40
+    ],
+    [
+      "FILE DE",
+      40
+    ],
+    [
+      "REPARADOR DE",
+      40
+    ],
+    [
+      "LAVA ROUPAS",
+      38
+    ],
+    [
+      "SAND DUPEZINHO",
+      38
+    ],
+    [
+      "BEAUTY COLOR",
+      34
+    ],
+    [
+      "CAPA DURA",
+      33
+    ],
+    [
+      "KIDS SLIM",
+      33
+    ],
+    [
+      "AZEITONA VERDE",
+      32
+    ],
+    [
+      "SAB LIQ",
+      32
+    ],
+    [
+      "CADERNO UNIV",
+      31
+    ],
+    [
+      "HAV BRASIL",
+      31
+    ],
+    [
+      "HAV SURF",
+      31
+    ],
+    [
+      "BALAO LISO",
+      30
+    ],
+    [
+      "DE PONTAS",
+      29
+    ],
+    [
+      "SLIM FRESH",
+      29
+    ],
+    [
+      "GARRAFA TERM",
+      27
+    ],
+    [
+      "EM CALDA",
+      26
+    ],
+    [
+      "ESM COL",
+      26
+    ],
+    [
+      "COLORAMA CINT",
+      26
+    ],
+    [
+      "DUPE MONO",
+      26
+    ],
+    [
+      "COLOR AZ",
+      25
+    ],
+    [
+      "COPO CISPER",
+      24
+    ],
+    [
+      "ROLL ON",
+      24
+    ],
+    [
+      "REGINA NR",
+      23
+    ],
+    [
+      "HAV CASUAL",
+      23
+    ],
+    [
+      "ESMALTE COLORAMA",
+      22
+    ],
+    [
+      "TUTTI FRUTTI",
+      21
+    ]
+  ],
+  "top_prefixes": [
+    [
+      "SAND",
+      1311
+    ],
+    [
+      "BISC",
+      367
+    ],
+    [
+      "ESM",
+      258
+    ],
+    [
+      "COND",
+      161
+    ],
+    [
+      "SAB",
+      138
+    ],
+    [
+      "CADERNO",
+      132
+    ],
+    [
+      "DESOD",
+      112
+    ],
+    [
+      "MAC",
+      107
+    ],
+    [
+      "PAPEL",
+      96
+    ],
+    [
+      "LAVA",
+      75
+    ],
+    [
+      "ESMALTE",
+      73
+    ],
+    [
+      "COPO",
+      69
+    ],
+    [
+      "RACAO",
+      67
+    ],
+    [
+      "GEL",
+      65
+    ],
+    [
+      "AZEITONA",
+      64
+    ],
+    [
+      "DESINF",
+      63
+    ],
+    [
+      "GARRAFA",
+      59
+    ],
+    [
+      "ESCOVA",
+      54
+    ],
+    [
+      "CERA",
+      50
+    ],
+    [
+      "CHOC",
+      50
+    ],
+    [
+      "CAD",
+      49
+    ],
+    [
+      "CHUPETA",
+      48
+    ],
+    [
+      "ABS",
+      47
+    ],
+    [
+      "COLA",
+      47
+    ],
+    [
+      "BALAS",
+      46
+    ],
+    [
+      "CHA",
+      46
+    ],
+    [
+      "BACIA",
+      43
+    ],
+    [
+      "LIMPA",
+      42
+    ],
+    [
+      "FILE",
+      41
+    ],
+    [
+      "GELATINA",
+      41
+    ],
+    [
+      "POTE",
+      41
+    ],
+    [
+      "PRATO",
+      41
+    ],
+    [
+      "REPARADOR",
+      40
+    ],
+    [
+      "ESC",
+      39
+    ],
+    [
+      "KOLESTON",
+      39
+    ],
+    [
+      "PASTA",
+      39
+    ],
+    [
+      "FITA",
+      38
+    ],
+    [
+      "JARRA",
+      38
+    ],
+    [
+      "DETERG",
+      37
+    ],
+    [
+      "ALCOOL",
+      36
+    ],
+    [
+      "BALAO",
+      36
+    ],
+    [
+      "FORMA",
+      36
+    ],
+    [
+      "FRISKIES",
+      36
+    ],
+    [
+      "LENCOS",
+      35
+    ],
+    [
+      "AZEITONAS",
+      34
+    ],
+    [
+      "MASSA",
+      34
+    ],
+    [
+      "TINTURA",
+      34
+    ],
+    [
+      "CONJ",
+      33
+    ],
+    [
+      "CANECA",
+      32
+    ],
+    [
+      "FILME",
+      32
+    ],
+    [
+      "BALDE",
+      31
+    ],
+    [
+      "CR",
+      31
+    ],
+    [
+      "EXTENSAO",
+      31
+    ],
+    [
+      "PANO",
+      31
+    ],
+    [
+      "KIT",
+      30
+    ],
+    [
+      "POLPA",
+      30
+    ],
+    [
+      "RUFFLES",
+      29
+    ],
+    [
+      "AMEIXA",
+      28
+    ],
+    [
+      "CEREAL",
+      27
+    ],
+    [
+      "MAMADEIRA",
+      27
+    ]
+  ],
+  "sample_unclassified": [
+    "#TINT.COR&TON 7.1 LOU.CZ.M.50G",
+    "*PRATIK INSECT GEL M.BARATA 10",
+    "18069000",
+    "AA",
+    "ABACATE",
+    "ABRIDOR COMB.LT/GAR. VIEL",
+    "ABRIDOR DE GARRAFA COM 1 UNIDADE.",
+    "ABRIDOR DE GARRAFA PRATIK",
+    "ABRIDOR DE LATA",
+    "ABRIDOR DE LATA E GARRAFA BIO METAL",
+    "ABRIDOR LATA /GARRAFA PRATIK",
+    "ABRIDOR MULT.LT/GARRAFA VIEL",
+    "ABRIDOR MULT.METAL YANGZI",
+    "ABRIDOR MULTI-USO TRAMONTINA",
+    "ABRIDOR MULTI-USO TRAMONTINA 2094",
+    "ABRIDOR SACA-ROLHA MEGAFORTH",
+    "ABS ALWAYA SUAVE L8 P7",
+    "ABS AWAYS NORMAL ABAS C/10",
+    "ABS ELA MAXI COM ABAS 8UN",
+    "ABS ELA MAXI COM ABAS LEVE8 PAGUE6",
+    "ABS FIORE COM ABAS 10UN",
+    "ABS HIG CHARMS COM ABAS COM 8 UNIDADES",
+    "ABS HIG CHARMS SEM ABAS CONTEN 8 UMUDADE",
+    "ABS INTERNOS MIMI OB+1 PORTA OB",
+    "ABS INTERNOS OB MEDIO L10 P8",
+    "ABS LADYSOFT NOTURNO L7 P8",
+    "ABS LIVRE COM ABAS 8UN",
+    "ABS LIVRE SEM ABAS 8UN",
+    "ABS OB INTERNOSS MEDIO 8UN",
+    "ABS S.LIVRE ADAPT SUAVE C/ABAS 8 UN",
+    "ABS SEMPRE LIVRE ADAPT C/ABAS",
+    "ABS SEMPRE LIVRE ADAPT SUAVE",
+    "ABS SEMPRE LIVRE ADAPT SUAVE S/ABAS 10UN",
+    "ABS SEMPRE LIVRE ESP. C/ABAS L8P7",
+    "ABS SEMPRE LIVRE ESP. S.SECA C/ABAS",
+    "ABS SEMPRE LIVRE FIT COM ABAS 8UN",
+    "ABS SEMPRE LIVRE MAX SUAVE L 16 P14",
+    "ABS SEMPRE LIVRE SLIEA FORM C/ABAS",
+    "ABS SEMPRE LIVRE SUAVE C/ABAS 8 UND.",
+    "ABS SEMPRE LIVRE SUAVE LEVE10 PG8"
+  ],
+  "sample_review": [
+    "ABOBORA LEITE",
+    "ABSORVENTE MULTIUSO BIOFRAL MAXI",
+    "ACTIVIA MORANGO DANONE 100G",
+    "ACTIVIA POLPA MORANGO DANONE 85G",
+    "ACTIVIA SENS. ABACAXI/COCO DANONE 120G",
+    "ACTVIA ZERO MORANGO LEVE 800G PAGUE 750G",
+    "AGITE MORANGO DANONE 1KG",
+    "AGUA SAN YPE PR 2L GT200ML",
+    "ALHO & SAL KITANO 300G",
+    "ALVEJANTE BRILUX MULTI 1L",
+    "ALVEJANTE BRILUX MULTI DP LV1L PG900ML",
+    "ALVEJANTE PERF. BRILUX FLORAL",
+    "ALVEJANTE PERF. BRILUX FRESH 1L",
+    "ALVEJANTE PERF. BRILUX LAV. 1L",
+    "AMACIANTE COMFORT CONC OLEO DE LAVA 500G",
+    "AMACIANTE COMFORT OLEO DE ARGANS500ML",
+    "AMACIANTE DE R. SONHO L2 P1,8L",
+    "AMACIANTE DE ROUPA SONHO E DOCE 1,5L",
+    "AMACIANTE DE ROUPA SONHO ERVA DOCE 2L.",
+    "AMACIANTE DE ROUPA SONHO MAGIC 1,5L",
+    "AMACIANTE DE ROUPA SONHO MAGIC 2L",
+    "AMACIANTE DE ROUPA SONHO SOFT 1.5L",
+    "AMACIANTE DE ROUPAS SONHO SOFT 2L",
+    "AMACIANTE DE ROUPAS SONHO SOFTHO 500ML.",
+    "AMACIANTE SONHO LAVANDA 2 L2L P 1,8L",
+    "AMACIANTE SONHO LEVE 500ML PAGUE 450ML",
+    "AMACIANTE SONHO MAGIC 500ML",
+    "AMACIANTE UAU PERFUMES SEDUCAO 2L",
+    "ANTI.DOVE PEPINO E CHA VERDE PEPINO 100G",
+    "APAR.BIC COMFORT 3 P.N.4X1 OF"
+  ]
+}

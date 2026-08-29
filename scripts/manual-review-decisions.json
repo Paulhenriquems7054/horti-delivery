@@ -1,0 +1,4441 @@
+{
+  "generated_at": "2026-08-29T17:21:16.714Z",
+  "source": "assisted_manual_review_local",
+  "note": "Decisões locais auditáveis. Revisão final 27 alta confiança incluída. Classificação manual encerrada.",
+  "latest": [
+    {
+      "reviewId": "8175|7896648800187|CR. HID. BIO NATURAN ABACATE 1KG",
+      "productName": "CR. HID. BIO NATURAN ABACATE 1KG",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8171|0|CR. HID. BIO NATURAN ABACATE 250ML",
+      "productName": "CR. HID. BIO NATURAN ABACATE 250ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8176|7896648800378|CR. HID. BIO NATURAN HORMONIO 1KG",
+      "productName": "CR. HID. BIO NATURAN HORMONIO 1KG",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8170|7896648801115|CR. HID. BIO NATURAN TUTANO C/SIL. 250ML",
+      "productName": "CR. HID. BIO NATURAN TUTANO C/SIL. 250ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8173|7896648800330|CR. HID. BIO NATURAN TUTANO C/SILI 1KG",
+      "productName": "CR. HID. BIO NATURAN TUTANO C/SILI 1KG",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8456|7896766600355|CR. RESTAUR. SULIELKA M.E LANOL. 930ML.",
+      "productName": "CR. RESTAUR. SULIELKA M.E LANOL. 930ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "4232|7896279101721|CR. UMIDIFICANTE CAMOMILA MURIEL 320ML",
+      "productName": "CR. UMIDIFICANTE CAMOMILA MURIEL 320ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "4231|7896279101554|CR. UMIDIFICANTE VITA AFRO MURIEL 320ML",
+      "productName": "CR. UMIDIFICANTE VITA AFRO MURIEL 320ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8812|7896279103398|CR. UMIDILIZ MURIEL TRAD. 350ML",
+      "productName": "CR. UMIDILIZ MURIEL TRAD. 350ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8894|7896229902026|CR.ALISAN.E RELA.GUANI MAX SKAFE 200G.",
+      "productName": "CR.ALISAN.E RELA.GUANI MAX SKAFE 200G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8672|7896229910335|CR.ALISAN.NATU HAIR CAST.ESC. 80G.",
+      "productName": "CR.ALISAN.NATU HAIR CAST.ESC. 80G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8697|7896279103299|CR.UMIDILIZ MURIEL CERA DE ABE. 350ML",
+      "productName": "CR.UMIDILIZ MURIEL CERA DE ABE. 350ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "19521|7894904271573|MARG DELICIA SUP CS 500G",
+      "productName": "MARG DELICIA SUP CS 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "19428|7894904271580|MARG DELICIA SUPREMA 250G",
+      "productName": "MARG DELICIA SUPREMA 250G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "13320|7891152501544|MARG PURO SABOR 500G",
+      "productName": "MARG PURO SABOR 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "13208|7894904271528|MARG. DELICIA 500G",
+      "productName": "MARG. DELICIA 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "2574|7891080400322|MARG. DELICIA MILA C/S 500G",
+      "productName": "MARG. DELICIA MILA C/S 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "2777|7891080400070|MARG. DELICIA SEM SAL 500G",
+      "productName": "MARG. DELICIA SEM SAL 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "3045|7894904574780|MARG. DORIANA C/S 250G",
+      "productName": "MARG. DORIANA C/S 250G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "3046|7894904571956|MARG. DORIANA C/S 500G",
+      "productName": "MARG. DORIANA C/S 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "13330|7891080400599|MARG. PRIMOR CS 500G",
+      "productName": "MARG. PRIMOR CS 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "9882|7891515537531|MARG. QUALY CREM. COM SAL 250G",
+      "productName": "MARG. QUALY CREM. COM SAL 250G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "9167|7893000514973|MARG. QUALY LIGHT 250G COM SAL",
+      "productName": "MARG. QUALY LIGHT 250G COM SAL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "2703|7891515520625|MARG. QUALY VITA 250G",
+      "productName": "MARG. QUALY VITA 250G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "1931|7891022854053|PINHO BRIL ACCEPT CL AT 500ML",
+      "productName": "PINHO BRIL ACCEPT CL AT 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1707|7891022854060|PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+      "productName": "PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1905|7891022854022|PINHO BRIL ACCEPT FLOR DE LILLY 500ML",
+      "productName": "PINHO BRIL ACCEPT FLOR DE LILLY 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "14064|7891022854084|PINHO BRIL ACCEPT LAV 1 CESTA E 1 BL",
+      "productName": "PINHO BRIL ACCEPT LAV 1 CESTA E 1 BL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "14065|7891022854114|PINHO BRIL ACCEPT LAV REFIL",
+      "productName": "PINHO BRIL ACCEPT LAV REFIL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1340|7891022854237|PINHO BRIL ACCEPT TIRA LIMO 500ML",
+      "productName": "PINHO BRIL ACCEPT TIRA LIMO 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1777|7891022854787|PINHO BRIL BRISA DO MAR 500ML",
+      "productName": "PINHO BRIL BRISA DO MAR 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1794|7891022854336|PINHO BRIL C.DE LAVANDA LEV500 PG450",
+      "productName": "PINHO BRIL C.DE LAVANDA LEV500 PG450",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1681|7891022100990|PINHO BRIL LAVANDA 500ML.",
+      "productName": "PINHO BRIL LAVANDA 500ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1682|7891022080025|PINHO BRIL PLUS 500ML.",
+      "productName": "PINHO BRIL PLUS 500ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1973|7891242151680|PINHO TROP LAVANDA 500ML",
+      "productName": "PINHO TROP LAVANDA 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "2000|7891242151673|PINHO TROP PINHO 500ML",
+      "productName": "PINHO TROP PINHO 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "9912|7896031234117|FEIJOADA A BRAS. SWIFT 830G",
+      "productName": "FEIJOADA A BRAS. SWIFT 830G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "19229|7896037518228|FEIJOADA ANGLO 310GR",
+      "productName": "FEIJOADA ANGLO 310GR",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "12748|7896037514824|FEIJOADA ANGLO 430G.",
+      "productName": "FEIJOADA ANGLO 430G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "9498|7896037514831|FEIJOADA ANGULO 830G",
+      "productName": "FEIJOADA ANGULO 830G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "702|7896031224583|FEIJOADA BORDON 430G",
+      "productName": "FEIJOADA BORDON 430G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "701|7896031224088|FEIJOADA BORDON 830G",
+      "productName": "FEIJOADA BORDON 830G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "721|7896037515302|FEIJOADA CABOCLA DO CAMPO 310G",
+      "productName": "FEIJOADA CABOCLA DO CAMPO 310G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "12747|7899567245480|FEIJOADA KITUT 430G.",
+      "productName": "FEIJOADA KITUT 430G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "9571|7896480603052|FEIJOADA MAITA 830G.",
+      "productName": "FEIJOADA MAITA 830G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "4316|7896041103052|FEIJOADA ODERICH 420G",
+      "productName": "FEIJOADA ODERICH 420G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "708|7896031232014|FEIJOADA PREMIUM SWIFT 830G",
+      "productName": "FEIJOADA PREMIUM SWIFT 830G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "13313|7896031234315|FEIJOADA SWIFT 430G",
+      "productName": "FEIJOADA SWIFT 430G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "14642|7891000090480|NINHO 1+ PB101 FASES LEPO SAC 800G",
+      "productName": "NINHO 1+ PB101 FASES LEPO SAC 800G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.114Z"
+    },
+    {
+      "reviewId": "15111|7891000113998|NINHO 1+ PBIO L800 P700G",
+      "productName": "NINHO 1+ PBIO L800 P700G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.114Z"
+    },
+    {
+      "reviewId": "4969|7891000003404|NINHO 3+PBI03 FASES LEPO 400G NESTLE",
+      "productName": "NINHO 3+PBI03 FASES LEPO 400G NESTLE",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.114Z"
+    },
+    {
+      "reviewId": "6906|7897200102107|NINHO AFFANI CABERNET SAUVIGNON 750ML",
+      "productName": "NINHO AFFANI CABERNET SAUVIGNON 750ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Bebidas",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.114Z"
+    },
+    {
+      "reviewId": "14919|7891000109908|NINHO COMPTO LACT ZERO LACTOSE 380G",
+      "productName": "NINHO COMPTO LACT ZERO LACTOSE 380G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "11954|7891000284971|NINHO FORT+ LEVINHO LT 350G",
+      "productName": "NINHO FORT+ LEVINHO LT 350G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Bebidas",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "15637|7891000342213|NINHO FORTI+ 750GPR50G GRATS",
+      "productName": "NINHO FORTI+ 750GPR50G GRATS",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "13343|7891000077610|NINHO FRUTI MOR E BANANA 200ML NESTLE",
+      "productName": "NINHO FRUTI MOR E BANANA 200ML NESTLE",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "4291|7891000248287|NINHO INST. L800 P700",
+      "productName": "NINHO INST. L800 P700",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "15581|7891000311967|NINHO INSTANTANEO FORT+ 625G",
+      "productName": "NINHO INSTANTANEO FORT+ 625G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "2817|7891000082874|NINHO LOLEIL COM BISC COM MEL 125G",
+      "productName": "NINHO LOLEIL COM BISC COM MEL 125G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "2616|7891000020876|NINHO SOLEIL PETIR 320G",
+      "productName": "NINHO SOLEIL PETIR 320G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "11499|7898085944691|CORPO A CORPO ENVOLV. 200ML",
+      "productName": "CORPO A CORPO ENVOLV. 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3669|7896083003327|CORPO A CORPO ENVOLVENTE DAVENE 200ML",
+      "productName": "CORPO A CORPO ENVOLVENTE DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3672|7896083003433|CORPO A CORPO MARCANTE DAVENE 200ML",
+      "productName": "CORPO A CORPO MARCANTE DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3667|7896083003075|CORPO A CORPO NAT. DAVENE 200ML",
+      "productName": "CORPO A CORPO NAT. DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "11990|7898085947043|CORPO A CORPO SEDUCAO 200ML",
+      "productName": "CORPO A CORPO SEDUCAO 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3284|7898085943373|CORPO A CORPO SENSIVEL 200ML",
+      "productName": "CORPO A CORPO SENSIVEL 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3670|7896083003372|CORPO A CORPO SENSIVEL DAVENE 200ML",
+      "productName": "CORPO A CORPO SENSIVEL DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "11500|7898085944684|CORPO A CORPO SUAVE 200ML",
+      "productName": "CORPO A CORPO SUAVE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3671|7898085943410|CORPO A CORPO SUAVE DAVENE 200ML",
+      "productName": "CORPO A CORPO SUAVE DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "14804|7896079861122|CORPO E SABOR BGAN E MEL 75G",
+      "productName": "CORPO E SABOR BGAN E MEL 75G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "14827|7896079860125|CORPO E SABOR CEREJA E CACAU 3X25G",
+      "productName": "CORPO E SABOR CEREJA E CACAU 3X25G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "14829|7896079834126|CORPO E SABOR LIGHT BAN E SEM CH DIES",
+      "productName": "CORPO E SABOR LIGHT BAN E SEM CH DIES",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "9568|7891000015667|KIT CHOC.CHOKITO BR.NESTLE C/ 3 UND.",
+      "productName": "KIT CHOC.CHOKITO BR.NESTLE C/ 3 UND.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "990|7891095019571|KIT FACIL ESCONDIDINHO YOKI 150G",
+      "productName": "KIT FACIL ESCONDIDINHO YOKI 150G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "13418|7891095019533|KIT FACIL ESTROGONOFE YOKI 150G",
+      "productName": "KIT FACIL ESTROGONOFE YOKI 150G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "1933|7891022859003|KIT FORT ELETR.",
+      "productName": "KIT FORT ELETR.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "19195|7898663111859|KIT GB PROMOPAC 2 AERO 72H BLUE 150ML",
+      "productName": "KIT GB PROMOPAC 2 AERO 72H BLUE 150ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "16546|7899852023823|KIT HIDR INTEN CORP 200ML+CREM 50G VULT",
+      "productName": "KIT HIDR INTEN CORP 200ML+CREM 50G VULT",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "14734|7891000248768|KIT KAT NESTLE 41.5G",
+      "productName": "KIT KAT NESTLE 41.5G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "5899|7896000719454|KIT NIELY GOLD OLEOS NUTRITIVOS",
+      "productName": "KIT NIELY GOLD OLEOS NUTRITIVOS",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "1871|7898907687737|KIT PIA DECOR A MAO",
+      "productName": "KIT PIA DECOR A MAO",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.119Z"
+    },
+    {
+      "reviewId": "1870|7891022856026|KIT PRATICE L2 + 1LIMP.",
+      "productName": "KIT PRATICE L2 + 1LIMP.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Limpeza",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.119Z"
+    },
+    {
+      "reviewId": "4210|7891134001871|KIT SENADOR C/2SAB. 1SABONETEIRA 1DESOD.",
+      "productName": "KIT SENADOR C/2SAB. 1SABONETEIRA 1DESOD.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.119Z"
+    },
+    {
+      "reviewId": "11214|7896017785091|KIT SUISSA INTIMUS CLEAN",
+      "productName": "KIT SUISSA INTIMUS CLEAN",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.119Z"
+    },
+    {
+      "reviewId": "12097|7897706201939|UMIDIFICADOR FIO RESTORE 420ML.",
+      "productName": "UMIDIFICADOR FIO RESTORE 420ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "11111|7897706200062|UMIDIFICADOR MAX CAPI BIO-CER. 420ML",
+      "productName": "UMIDIFICADOR MAX CAPI BIO-CER. 420ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "5890|7897706200086|UMIDIFICADOR MAX CAPI MANT DE PES 420ML",
+      "productName": "UMIDIFICADOR MAX CAPI MANT DE PES 420ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "8484|7898928865039|UMIDIFICADOR NUTRI HAIR PROTEINAS 435ML",
+      "productName": "UMIDIFICADOR NUTRI HAIR PROTEINAS 435ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "4271|7898928865015|UMIDIFICADOR NUTRI HAIR TRADICIONAL 35ML",
+      "productName": "UMIDIFICADOR NUTRI HAIR TRADICIONAL 35ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "6053|7896232516104|ACUCAREIRO P/BAR PLASTIGEL-161",
+      "productName": "ACUCAREIRO P/BAR PLASTIGEL-161",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.921Z",
+      "observation": "REVIEW_REQUIRED resolution — Açucareiro plástico para bar (Plastigel) — utensílio, não alimento nem higiene pessoal"
+    },
+    {
+      "reviewId": "1318|7898758147237|CLORO GEL LIMPA BOM 1L",
+      "productName": "CLORO GEL LIMPA BOM 1L",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Cloro gel de limpeza doméstica (marca Limpa Bom, 1L)"
+    },
+    {
+      "reviewId": "7943|7891017000229|COPO CISPER STYLO AGUA C/ 6",
+      "productName": "COPO CISPER STYLO AGUA C/ 6",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Conjunto de 6 copos reutilizáveis Cisper — utensílio doméstico; não descartável nem bebida"
+    },
+    {
+      "reviewId": "11090|7891155003335|COPO NADIR PAUL AGUA 7002 6X1",
+      "productName": "COPO NADIR PAUL AGUA 7002 6X1",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Copos de vidro Nadir reutilizáveis (linha água), pack 6 — utilidade doméstica, não bebida"
+    },
+    {
+      "reviewId": "16156|7896000712981|CREME P. PENT.GOLD AGUA TERMAL 250G",
+      "productName": "CREME P. PENT.GOLD AGUA TERMAL 250G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Creme para pentear capilar; 'água termal' é variante do produto, não bebida"
+    },
+    {
+      "reviewId": "8885|7896279102452|LOCAO DE LIMPEZA BABY MURIEL 100ML.",
+      "productName": "LOCAO DE LIMPEZA BABY MURIEL 100ML.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Loção de limpeza infantil Muriel — cuidado corporal bebê, não limpeza doméstica"
+    },
+    {
+      "reviewId": "8884|7896279102469|LOCAO DE LIMPEZA BABY MURIEL 100ML.",
+      "productName": "LOCAO DE LIMPEZA BABY MURIEL 100ML.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Loção de limpeza infantil Muriel — cuidado corporal bebê, não limpeza doméstica"
+    },
+    {
+      "reviewId": "1358|7891150057517|VIM CLORO GEL 700ML",
+      "productName": "VIM CLORO GEL 700ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.923Z",
+      "observation": "REVIEW_REQUIRED resolution — Vim cloro gel — produto de limpeza doméstica (700ML)"
+    },
+    {
+      "reviewId": "6935|0|TAMPICO F CITRICAS 330ML",
+      "productName": "TAMPICO F CITRICAS 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6843|0|TAMPICO FR. CITRICAS 200ML",
+      "productName": "TAMPICO FR. CITRICAS 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6720|0|TAMPICO FR. CITRICAS SLIM 200ML",
+      "productName": "TAMPICO FR. CITRICAS SLIM 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "17|0|TAMPICO FRUTAS CITRICAS 1L",
+      "productName": "TAMPICO FRUTAS CITRICAS 1L",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6615|0|TAMPICO FRUTAS CITRICAS 1L.",
+      "productName": "TAMPICO FRUTAS CITRICAS 1L.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "18|0|TAMPICO FRUTAS CITRICAS 200ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "4374|0|TAMPICO FRUTAS CITRICAS 250ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 250ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "19|0|TAMPICO FRUTAS CITRICAS 330ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6608|0|TAMPICO FRUTAS CITRICAS PLUS 330ML.",
+      "productName": "TAMPICO FRUTAS CITRICAS PLUS 330ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6639|0|TAMPICO PLUS FR. SILVESTRES 1L",
+      "productName": "TAMPICO PLUS FR. SILVESTRES 1L",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6640|0|TAMPICO PLUS FR. SILVESTRES 330ML",
+      "productName": "TAMPICO PLUS FR. SILVESTRES 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6610|0|TAMPICO PLUS FRUTAS CITRICAS 330ML.",
+      "productName": "TAMPICO PLUS FRUTAS CITRICAS 330ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "9178|7891962053196|TORRADA BAUDUCCO INTEGRAL 142G",
+      "productName": "TORRADA BAUDUCCO INTEGRAL 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "4873|7891962053202|TORRADA BAUDUCCO MULTIGRAOS 142G",
+      "productName": "TORRADA BAUDUCCO MULTIGRAOS 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "4981|7891962053226|TORRADA BAUDUCO LIGHT 142G",
+      "productName": "TORRADA BAUDUCO LIGHT 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "15006|7891962053189|TORRADA BAUDUCO TRADICIONAL 142G",
+      "productName": "TORRADA BAUDUCO TRADICIONAL 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "980|7896213004750|TORRADA INTEGRAL VITARELLA 142G",
+      "productName": "TORRADA INTEGRAL VITARELLA 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "19099|7896003739336|TORRADA LEV MAGIC TOAST ORIGINAL 110G",
+      "productName": "TORRADA LEV MAGIC TOAST ORIGINAL 110G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "12926|7891962052564|TORRADA TRADICIONAL VISCONTI 120G",
+      "productName": "TORRADA TRADICIONAL VISCONTI 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "12925|7896213004743|TORRADA TRADICIONAL VITARELLA 142G",
+      "productName": "TORRADA TRADICIONAL VITARELLA 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "4937|7891962052571|TORRADA VISCONTI INTEGRAL 120G",
+      "productName": "TORRADA VISCONTI INTEGRAL 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "18976|7896213004774|TORRADA VITARELLA MULTIGRAOS 142G",
+      "productName": "TORRADA VITARELLA MULTIGRAOS 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "512|7895800412794|TRIDENT FRESH INTENSE 32G",
+      "productName": "TRIDENT FRESH INTENSE 32G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "13272|7622210564290|TRIDENT FRESH INTENSE 8G",
+      "productName": "TRIDENT FRESH INTENSE 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "511|7895800112632|TRIDENT HORTELA 34G",
+      "productName": "TRIDENT HORTELA 34G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "18287|7895800304211|TRIDENT HORTELA 8G",
+      "productName": "TRIDENT HORTELA 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "4343|7895800112786|TRIDENT MENTA 34G",
+      "productName": "TRIDENT MENTA 34G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "528|7895800304228|TRIDENT MENTA 8G",
+      "productName": "TRIDENT MENTA 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "13329|7895800410547|TRIDENT TOTAL MENTA 2UN",
+      "productName": "TRIDENT TOTAL MENTA 2UN",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "527|7895800430002|TRIDENT TUTTI-FRUTTI 8G",
+      "productName": "TRIDENT TUTTI-FRUTTI 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "14437|7622210564313|TRIDENT X FRESH HERBAL 8G",
+      "productName": "TRIDENT X FRESH HERBAL 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "18288|7895800412787|TRIDENT X-FRESH INT 21UNX8G IMP",
+      "productName": "TRIDENT X-FRESH INT 21UNX8G IMP",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "71|7891000271803|PAPINHA CREM. BABY CEREAIS 120G",
+      "productName": "PAPINHA CREM. BABY CEREAIS 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "73|7891000273005|PAPINHA CREM. BABY F. SORTIDAS 120G",
+      "productName": "PAPINHA CREM. BABY F. SORTIDAS 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "79|7891000296202|PAPINHA CREM. BABY FRUTAS 155G",
+      "productName": "PAPINHA CREM. BABY FRUTAS 155G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "13075|7891000077825|PAPINHA DE MARACUJA 120G",
+      "productName": "PAPINHA DE MARACUJA 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "9258|7891000006191|PAPINHA NESTLE AMEIXA 120 G.",
+      "productName": "PAPINHA NESTLE AMEIXA 120 G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "9353|7891000006207|PAPINHA NESTLE BANANA 120G.",
+      "productName": "PAPINHA NESTLE BANANA 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "12907|7891000064832|PAPINHA NESTLE FRUTAS TROPICAIS 120G",
+      "productName": "PAPINHA NESTLE FRUTAS TROPICAIS 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "9354|7891000273708|PAPINHA NESTLE MACA AMEIXA 120G.",
+      "productName": "PAPINHA NESTLE MACA AMEIXA 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "12797|7891000049136|PAPINHA NESTLE MACA E LARANJA 120G.",
+      "productName": "PAPINHA NESTLE MACA E LARANJA 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "12906|7891000064870|PAPINHA NESTLE MAMAO C/ LARANJA 120G",
+      "productName": "PAPINHA NESTLE MAMAO C/ LARANJA 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "9705|7898614670299|PROTEINA DE SOJA SORA 400G CARNE",
+      "productName": "PROTEINA DE SOJA SORA 400G CARNE",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "9690|7898614670282|PROTEINA DE SOJA SORA 400G FRANGO",
+      "productName": "PROTEINA DE SOJA SORA 400G FRANGO",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "15083|7896006791072|PROTEINA TEX DE SOJA CAMIL CARNE 400G",
+      "productName": "PROTEINA TEX DE SOJA CAMIL CARNE 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "15084|7896006791096|PROTEINA TEX DE SOJA CAMIL FGO. 400G",
+      "productName": "PROTEINA TEX DE SOJA CAMIL FGO. 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "14922|7898219120786|PROTEINA TEX PRONTU SOY BR 400G",
+      "productName": "PROTEINA TEX PRONTU SOY BR 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "14923|7898219120779|PROTEINA TEX PRONTU SOY VER. 400G",
+      "productName": "PROTEINA TEX PRONTU SOY VER. 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "334|7891107109399|PROTEINA TEXT. DE SOJA MAXTEM C 500G",
+      "productName": "PROTEINA TEXT. DE SOJA MAXTEM C 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "12631|7897905732111|PROTEINA TEXT. SOJA BR. VITA CROC 400G",
+      "productName": "PROTEINA TEXT. SOJA BR. VITA CROC 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "12641|7897905733118|PROTEINA TEXT. SOJA VITA CROC 400G",
+      "productName": "PROTEINA TEXT. SOJA VITA CROC 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "9415|7891080400636|PROTEINA TEXTURIZADA DE SOJA SOYA",
+      "productName": "PROTEINA TEXTURIZADA DE SOJA SOYA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "430|7891022853599|NO AR ALEGRIA DE INFANCIA",
+      "productName": "NO AR ALEGRIA DE INFANCIA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1965|7891022859645|NO AR AMOR DE MAE 360ML",
+      "productName": "NO AR AMOR DE MAE 360ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1791|7891022852516|NO AR ESTILO LUXO BOM BRIL 277G.",
+      "productName": "NO AR ESTILO LUXO BOM BRIL 277G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1985|7891022859652|NO AR JARDIM E POMAR 360ML",
+      "productName": "NO AR JARDIM E POMAR 360ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "2001|7891022859683|NO AR JASMIM 360ML",
+      "productName": "NO AR JASMIM 360ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1721|7891022859638|NO AR LAVANDA 400ML",
+      "productName": "NO AR LAVANDA 400ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1804|7891022849684|NO AR LEMB. SEGR. DA LUA 400ML",
+      "productName": "NO AR LEMB. SEGR. DA LUA 400ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1747|7891022849677|NO AR LEMBRANCA BOM BRIL 277G.",
+      "productName": "NO AR LEMBRANCA BOM BRIL 277G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "14336|7891022853575|NO AR PERFUMES LAVANDA ONE TOUCH",
+      "productName": "NO AR PERFUMES LAVANDA ONE TOUCH",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1688|7891022849660|NO AR PETALAS DE JASMIM 400ML.",
+      "productName": "NO AR PETALAS DE JASMIM 400ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1689|7891022849653|NO AR RAMOS DE LAVANDA 400ML.",
+      "productName": "NO AR RAMOS DE LAVANDA 400ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "7462|7896480614737|ESTOPA BR. PARA POLIMENTO PRATIK 150G",
+      "productName": "ESTOPA BR. PARA POLIMENTO PRATIK 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "10723|7898314150015|ESTOPA DUCARRO SPECIAL",
+      "productName": "ESTOPA DUCARRO SPECIAL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "7466|7896979300264|ESTOPA FLANELIN 150G",
+      "productName": "ESTOPA FLANELIN 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "7465|7891860000254|ESTOPA MOURA TEX 150G",
+      "productName": "ESTOPA MOURA TEX 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "10170|7897074200121|ESTOPA P/ POLIMENTO ANADRI 120G.",
+      "productName": "ESTOPA P/ POLIMENTO ANADRI 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "6295|7897487900014|ESTOPA P/POLIMENTO BIRIBA 150G",
+      "productName": "ESTOPA P/POLIMENTO BIRIBA 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "10705|7898307680017|ESTOPA P/POLIMENTO MAX RIL 120G",
+      "productName": "ESTOPA P/POLIMENTO MAX RIL 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "13719|7897074201180|ESTOPA PARA POLIMENTO ANADRI 120G.",
+      "productName": "ESTOPA PARA POLIMENTO ANADRI 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "10364|7897487900045|ESTOPA POP 120G.",
+      "productName": "ESTOPA POP 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "7920|7898290890011|ESTOPA SOBRAL P/ PLIMENTO.",
+      "productName": "ESTOPA SOBRAL P/ PLIMENTO.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "17534|7891035024252|SBP 45 NOITES 2RF CH SUAVE 2X35ML",
+      "productName": "SBP 45 NOITES 2RF CH SUAVE 2X35ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "13899|7891035618550|SBP CITRONELA 380ML",
+      "productName": "SBP CITRONELA 380ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "17141|7898024830474|SBP ELETRICO 1AP 4 PAST.",
+      "productName": "SBP ELETRICO 1AP 4 PAST.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "16964|7891035618239|SBP ELETRICO 35ML REFIL",
+      "productName": "SBP ELETRICO 35ML REFIL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "13725|7891035024535|SBP ELETRICO APARELHO E 1 FR. 35ML",
+      "productName": "SBP ELETRICO APARELHO E 1 FR. 35ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "7157|7898024830030|SBP ELETRICO C/1 APARELHO",
+      "productName": "SBP ELETRICO C/1 APARELHO",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "13724|7891035618536|SBP M.INSET SUAVE 380ML",
+      "productName": "SBP M.INSET SUAVE 380ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "7145|7898024830429|SBP REFIL ELETRICO C/12",
+      "productName": "SBP REFIL ELETRICO C/12",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "1640|7891035024696|SBP REFIL ELETRICO LEVE 12 PAGUE 10 UND",
+      "productName": "SBP REFIL ELETRICO LEVE 12 PAGUE 10 UND",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "14197|7891035990922|SBP SEM CHEIRO LEVE MAIS PAGUE MENOS 450",
+      "productName": "SBP SEM CHEIRO LEVE MAIS PAGUE MENOS 450",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "311|7896058599923|GRANULADO COLORIDO DORI 120G",
+      "productName": "GRANULADO COLORIDO DORI 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "15373|7896072646856|GRANULADO COLORIDO MIL CORES 150G",
+      "productName": "GRANULADO COLORIDO MIL CORES 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "12794|7898292883882|GRANULADO COLORIDO VISCONTI 130G",
+      "productName": "GRANULADO COLORIDO VISCONTI 130G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "12673|7896058501568|GRANULADO DORI 70G.",
+      "productName": "GRANULADO DORI 70G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "197|7891048014110|GRANULADO MICANGA DR. OETKER 80G",
+      "productName": "GRANULADO MICANGA DR. OETKER 80G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "14934|7896072646733|GRANULADO MIL CORES 150G",
+      "productName": "GRANULADO MIL CORES 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "9194|7896062537089|GRANULADO P/ COBERTURA PAN 150G.",
+      "productName": "GRANULADO P/ COBERTURA PAN 150G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "9166|7896062537027|GRANULADO PAN 80G.",
+      "productName": "GRANULADO PAN 80G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "12795|7898292883868|GRANULADO TRADICIONAL VISCONTI 130G",
+      "productName": "GRANULADO TRADICIONAL VISCONTI 130G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "12796|7898292883875|GRANULADO TRADICIONAL VISCONTI 70G",
+      "productName": "GRANULADO TRADICIONAL VISCONTI 70G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "196|7891053216011|GRANULADO VISCONTI TRAD. 90G",
+      "productName": "GRANULADO VISCONTI TRAD. 90G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "13477|7898545650438|TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+      "productName": "TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "16922|7898545650445|TORNEIRA FILTRO ALAV BR/AZ GAMA",
+      "productName": "TORNEIRA FILTRO ALAV BR/AZ GAMA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "13603|7898059545138|TORNEIRA FILTRO AUT. COD.1358",
+      "productName": "TORNEIRA FILTRO AUT. COD.1358",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "17270|7898545650827|TORNEIRA FILTRO AUT.BC/AZ GAMA",
+      "productName": "TORNEIRA FILTRO AUT.BC/AZ GAMA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "19379|7898059544261|TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN",
+      "productName": "TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "16620|7898059545145|TORNEIRA FILTRO BARRO AUT. BC HERC",
+      "productName": "TORNEIRA FILTRO BARRO AUT. BC HERC",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "17925|0|TORNEIRA P JARDIM PRETA",
+      "productName": "TORNEIRA P JARDIM PRETA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "13823|7898545650797|TORNEIRA P/ FILTRO GAMA MARROM",
+      "productName": "TORNEIRA P/ FILTRO GAMA MARROM",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "10408|7898545650803|TORNEIRA PARA FILTRO GAMA",
+      "productName": "TORNEIRA PARA FILTRO GAMA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "10407|7896514801324|TORNEIRA PARA JARDIN COMUM.",
+      "productName": "TORNEIRA PARA JARDIN COMUM.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "10639|7898668363215|TORNEIRA PL JARDIM HERC",
+      "productName": "TORNEIRA PL JARDIM HERC",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "18254|7898059540010|TORNEIRA PL.JARDIM HERC",
+      "productName": "TORNEIRA PL.JARDIM HERC",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "19096|7897744504740|AROMATIZANTE AMB COALA CHA BCO 120ML",
+      "productName": "AROMATIZANTE AMB COALA CHA BCO 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "19095|7897744502081|AROMATIZANTE AMB COALA LAVANDA 120ML",
+      "productName": "AROMATIZANTE AMB COALA LAVANDA 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "19094|7897744505174|AROMATIZANTE AMB COALA ORQ NEG 120ML",
+      "productName": "AROMATIZANTE AMB COALA ORQ NEG 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10599|7896050506271|AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+      "productName": "AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "18582|7898056652853|AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+      "productName": "AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10633|7898129330817|AROMATIZANTE KHARIS CARRO NOVO 80ML",
+      "productName": "AROMATIZANTE KHARIS CARRO NOVO 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10600|7898129330084|AROMATIZANTE KHARIS TUTI FRUTTI 80ML",
+      "productName": "AROMATIZANTE KHARIS TUTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "14182|7896050506264|AROMATIZANTE LAVANDA KING LIMP 100ML",
+      "productName": "AROMATIZANTE LAVANDA KING LIMP 100ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "14183|7898129333047|AROMATIZANTE MEGACAR TUTTI FRUTTI 80ML",
+      "productName": "AROMATIZANTE MEGACAR TUTTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "8093|7898229360028|PRATOS DESC. BEL PLAST 15CM. 10UND.",
+      "productName": "PRATOS DESC. BEL PLAST 15CM. 10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "8095|7898229360059|PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+      "productName": "PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "8094|7898229360042|PRATOS DESC. BEL PLAST.18CM.10UND.",
+      "productName": "PRATOS DESC. BEL PLAST.18CM.10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "10678|7896030800153|PRATOS DESC. COPOBRAS 15CM",
+      "productName": "PRATOS DESC. COPOBRAS 15CM",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "14039|7896123402363|PRATOS DESC. COPOZAN 15CM",
+      "productName": "PRATOS DESC. COPOZAN 15CM",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "7900|7896523100692|PRATOS DESC. JUNCO 10 UND.",
+      "productName": "PRATOS DESC. JUNCO 10 UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "13798|7898339190164|PRATOS DESC.ULTRA COPOS 18 C/10",
+      "productName": "PRATOS DESC.ULTRA COPOS 18 C/10",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "7632|7898287990052|PRATOS PLASTICOS MARATA C/10 150R",
+      "productName": "PRATOS PLASTICOS MARATA C/10 150R",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "1517|7896281052004|DESODORIZANTE SANITARIO FLOREL 35G.",
+      "productName": "DESODORIZANTE SANITARIO FLOREL 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1518|7896281050000|DESODORIZANTE SANITARIO LAVANDA 35G.",
+      "productName": "DESODORIZANTE SANITARIO LAVANDA 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1515|7896281054008|DESODORIZANTE SANITARIO PINHO 35G.",
+      "productName": "DESODORIZANTE SANITARIO PINHO 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1516|7896281056002|DESODORIZANTE SANITARIO TUTTI FRUTTI 35G",
+      "productName": "DESODORIZANTE SANITARIO TUTTI FRUTTI 35G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "11820|7898085944899|SABONETES LA FLORES FLOR DE CEREJA 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE CEREJA 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "11822|7898085945940|SABONETES LA FLORES FLOR DE FIGO 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE FIGO 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "11821|7898085944912|SABONETES LA FLORES FLOR DE JANBO 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE JANBO 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "18056|5020144222743|ODORIZANTE GRAND PRIX CARRO NOVO 42G",
+      "productName": "ODORIZANTE GRAND PRIX CARRO NOVO 42G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    },
+    {
+      "reviewId": "7511|7896189225388|ODORIZANTE PROAUTO CARRO NOVO 80ML",
+      "productName": "ODORIZANTE PROAUTO CARRO NOVO 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    },
+    {
+      "reviewId": "7512|7896189225302|ODORIZANTE PROAUTO TUTTI FRUTTI 80ML",
+      "productName": "ODORIZANTE PROAUTO TUTTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    }
+  ],
+  "history": [
+    {
+      "reviewId": "8175|7896648800187|CR. HID. BIO NATURAN ABACATE 1KG",
+      "productName": "CR. HID. BIO NATURAN ABACATE 1KG",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8171|0|CR. HID. BIO NATURAN ABACATE 250ML",
+      "productName": "CR. HID. BIO NATURAN ABACATE 250ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8176|7896648800378|CR. HID. BIO NATURAN HORMONIO 1KG",
+      "productName": "CR. HID. BIO NATURAN HORMONIO 1KG",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8170|7896648801115|CR. HID. BIO NATURAN TUTANO C/SIL. 250ML",
+      "productName": "CR. HID. BIO NATURAN TUTANO C/SIL. 250ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8173|7896648800330|CR. HID. BIO NATURAN TUTANO C/SILI 1KG",
+      "productName": "CR. HID. BIO NATURAN TUTANO C/SILI 1KG",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8456|7896766600355|CR. RESTAUR. SULIELKA M.E LANOL. 930ML.",
+      "productName": "CR. RESTAUR. SULIELKA M.E LANOL. 930ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "4232|7896279101721|CR. UMIDIFICANTE CAMOMILA MURIEL 320ML",
+      "productName": "CR. UMIDIFICANTE CAMOMILA MURIEL 320ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "4231|7896279101554|CR. UMIDIFICANTE VITA AFRO MURIEL 320ML",
+      "productName": "CR. UMIDIFICANTE VITA AFRO MURIEL 320ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8812|7896279103398|CR. UMIDILIZ MURIEL TRAD. 350ML",
+      "productName": "CR. UMIDILIZ MURIEL TRAD. 350ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8894|7896229902026|CR.ALISAN.E RELA.GUANI MAX SKAFE 200G.",
+      "productName": "CR.ALISAN.E RELA.GUANI MAX SKAFE 200G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8672|7896229910335|CR.ALISAN.NATU HAIR CAST.ESC. 80G.",
+      "productName": "CR.ALISAN.NATU HAIR CAST.ESC. 80G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "8697|7896279103299|CR.UMIDILIZ MURIEL CERA DE ABE. 350ML",
+      "productName": "CR.UMIDILIZ MURIEL CERA DE ABE. 350ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CR",
+      "timestamp": "2026-08-29T16:33:42.014Z"
+    },
+    {
+      "reviewId": "19521|7894904271573|MARG DELICIA SUP CS 500G",
+      "productName": "MARG DELICIA SUP CS 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "19428|7894904271580|MARG DELICIA SUPREMA 250G",
+      "productName": "MARG DELICIA SUPREMA 250G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "13320|7891152501544|MARG PURO SABOR 500G",
+      "productName": "MARG PURO SABOR 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "13208|7894904271528|MARG. DELICIA 500G",
+      "productName": "MARG. DELICIA 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "2574|7891080400322|MARG. DELICIA MILA C/S 500G",
+      "productName": "MARG. DELICIA MILA C/S 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "2777|7891080400070|MARG. DELICIA SEM SAL 500G",
+      "productName": "MARG. DELICIA SEM SAL 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "3045|7894904574780|MARG. DORIANA C/S 250G",
+      "productName": "MARG. DORIANA C/S 250G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "3046|7894904571956|MARG. DORIANA C/S 500G",
+      "productName": "MARG. DORIANA C/S 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "13330|7891080400599|MARG. PRIMOR CS 500G",
+      "productName": "MARG. PRIMOR CS 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "9882|7891515537531|MARG. QUALY CREM. COM SAL 250G",
+      "productName": "MARG. QUALY CREM. COM SAL 250G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "9167|7893000514973|MARG. QUALY LIGHT 250G COM SAL",
+      "productName": "MARG. QUALY LIGHT 250G COM SAL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "2703|7891515520625|MARG. QUALY VITA 250G",
+      "productName": "MARG. QUALY VITA 250G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Frios e Laticínios",
+      "chosenCategory": "Frios e Laticínios",
+      "groupKey": "MARG",
+      "timestamp": "2026-08-29T16:33:42.111Z"
+    },
+    {
+      "reviewId": "1931|7891022854053|PINHO BRIL ACCEPT CL AT 500ML",
+      "productName": "PINHO BRIL ACCEPT CL AT 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1707|7891022854060|PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+      "productName": "PINHO BRIL ACCEPT FLOR DE LILLY 1CEST",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1905|7891022854022|PINHO BRIL ACCEPT FLOR DE LILLY 500ML",
+      "productName": "PINHO BRIL ACCEPT FLOR DE LILLY 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "14064|7891022854084|PINHO BRIL ACCEPT LAV 1 CESTA E 1 BL",
+      "productName": "PINHO BRIL ACCEPT LAV 1 CESTA E 1 BL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "14065|7891022854114|PINHO BRIL ACCEPT LAV REFIL",
+      "productName": "PINHO BRIL ACCEPT LAV REFIL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1340|7891022854237|PINHO BRIL ACCEPT TIRA LIMO 500ML",
+      "productName": "PINHO BRIL ACCEPT TIRA LIMO 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1777|7891022854787|PINHO BRIL BRISA DO MAR 500ML",
+      "productName": "PINHO BRIL BRISA DO MAR 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1794|7891022854336|PINHO BRIL C.DE LAVANDA LEV500 PG450",
+      "productName": "PINHO BRIL C.DE LAVANDA LEV500 PG450",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1681|7891022100990|PINHO BRIL LAVANDA 500ML.",
+      "productName": "PINHO BRIL LAVANDA 500ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1682|7891022080025|PINHO BRIL PLUS 500ML.",
+      "productName": "PINHO BRIL PLUS 500ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "1973|7891242151680|PINHO TROP LAVANDA 500ML",
+      "productName": "PINHO TROP LAVANDA 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "2000|7891242151673|PINHO TROP PINHO 500ML",
+      "productName": "PINHO TROP PINHO 500ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "PINHO",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "9912|7896031234117|FEIJOADA A BRAS. SWIFT 830G",
+      "productName": "FEIJOADA A BRAS. SWIFT 830G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "19229|7896037518228|FEIJOADA ANGLO 310GR",
+      "productName": "FEIJOADA ANGLO 310GR",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "12748|7896037514824|FEIJOADA ANGLO 430G.",
+      "productName": "FEIJOADA ANGLO 430G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "9498|7896037514831|FEIJOADA ANGULO 830G",
+      "productName": "FEIJOADA ANGULO 830G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "702|7896031224583|FEIJOADA BORDON 430G",
+      "productName": "FEIJOADA BORDON 430G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "701|7896031224088|FEIJOADA BORDON 830G",
+      "productName": "FEIJOADA BORDON 830G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "721|7896037515302|FEIJOADA CABOCLA DO CAMPO 310G",
+      "productName": "FEIJOADA CABOCLA DO CAMPO 310G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "12747|7899567245480|FEIJOADA KITUT 430G.",
+      "productName": "FEIJOADA KITUT 430G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "9571|7896480603052|FEIJOADA MAITA 830G.",
+      "productName": "FEIJOADA MAITA 830G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "4316|7896041103052|FEIJOADA ODERICH 420G",
+      "productName": "FEIJOADA ODERICH 420G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "708|7896031232014|FEIJOADA PREMIUM SWIFT 830G",
+      "productName": "FEIJOADA PREMIUM SWIFT 830G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "13313|7896031234315|FEIJOADA SWIFT 430G",
+      "productName": "FEIJOADA SWIFT 430G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "FEIJOADA",
+      "timestamp": "2026-08-29T16:33:42.112Z"
+    },
+    {
+      "reviewId": "14642|7891000090480|NINHO 1+ PB101 FASES LEPO SAC 800G",
+      "productName": "NINHO 1+ PB101 FASES LEPO SAC 800G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.114Z"
+    },
+    {
+      "reviewId": "15111|7891000113998|NINHO 1+ PBIO L800 P700G",
+      "productName": "NINHO 1+ PBIO L800 P700G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.114Z"
+    },
+    {
+      "reviewId": "4969|7891000003404|NINHO 3+PBI03 FASES LEPO 400G NESTLE",
+      "productName": "NINHO 3+PBI03 FASES LEPO 400G NESTLE",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.114Z"
+    },
+    {
+      "reviewId": "6906|7897200102107|NINHO AFFANI CABERNET SAUVIGNON 750ML",
+      "productName": "NINHO AFFANI CABERNET SAUVIGNON 750ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Bebidas",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.114Z"
+    },
+    {
+      "reviewId": "14919|7891000109908|NINHO COMPTO LACT ZERO LACTOSE 380G",
+      "productName": "NINHO COMPTO LACT ZERO LACTOSE 380G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "11954|7891000284971|NINHO FORT+ LEVINHO LT 350G",
+      "productName": "NINHO FORT+ LEVINHO LT 350G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Bebidas",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "15637|7891000342213|NINHO FORTI+ 750GPR50G GRATS",
+      "productName": "NINHO FORTI+ 750GPR50G GRATS",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "13343|7891000077610|NINHO FRUTI MOR E BANANA 200ML NESTLE",
+      "productName": "NINHO FRUTI MOR E BANANA 200ML NESTLE",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "4291|7891000248287|NINHO INST. L800 P700",
+      "productName": "NINHO INST. L800 P700",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "15581|7891000311967|NINHO INSTANTANEO FORT+ 625G",
+      "productName": "NINHO INSTANTANEO FORT+ 625G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "2817|7891000082874|NINHO LOLEIL COM BISC COM MEL 125G",
+      "productName": "NINHO LOLEIL COM BISC COM MEL 125G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "2616|7891000020876|NINHO SOLEIL PETIR 320G",
+      "productName": "NINHO SOLEIL PETIR 320G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "NINHO",
+      "timestamp": "2026-08-29T16:33:42.115Z"
+    },
+    {
+      "reviewId": "11499|7898085944691|CORPO A CORPO ENVOLV. 200ML",
+      "productName": "CORPO A CORPO ENVOLV. 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3669|7896083003327|CORPO A CORPO ENVOLVENTE DAVENE 200ML",
+      "productName": "CORPO A CORPO ENVOLVENTE DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3672|7896083003433|CORPO A CORPO MARCANTE DAVENE 200ML",
+      "productName": "CORPO A CORPO MARCANTE DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3667|7896083003075|CORPO A CORPO NAT. DAVENE 200ML",
+      "productName": "CORPO A CORPO NAT. DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "11990|7898085947043|CORPO A CORPO SEDUCAO 200ML",
+      "productName": "CORPO A CORPO SEDUCAO 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3284|7898085943373|CORPO A CORPO SENSIVEL 200ML",
+      "productName": "CORPO A CORPO SENSIVEL 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3670|7896083003372|CORPO A CORPO SENSIVEL DAVENE 200ML",
+      "productName": "CORPO A CORPO SENSIVEL DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "11500|7898085944684|CORPO A CORPO SUAVE 200ML",
+      "productName": "CORPO A CORPO SUAVE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "3671|7898085943410|CORPO A CORPO SUAVE DAVENE 200ML",
+      "productName": "CORPO A CORPO SUAVE DAVENE 200ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.116Z"
+    },
+    {
+      "reviewId": "14804|7896079861122|CORPO E SABOR BGAN E MEL 75G",
+      "productName": "CORPO E SABOR BGAN E MEL 75G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "14827|7896079860125|CORPO E SABOR CEREJA E CACAU 3X25G",
+      "productName": "CORPO E SABOR CEREJA E CACAU 3X25G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "14829|7896079834126|CORPO E SABOR LIGHT BAN E SEM CH DIES",
+      "productName": "CORPO E SABOR LIGHT BAN E SEM CH DIES",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "CORPO",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "9568|7891000015667|KIT CHOC.CHOKITO BR.NESTLE C/ 3 UND.",
+      "productName": "KIT CHOC.CHOKITO BR.NESTLE C/ 3 UND.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "990|7891095019571|KIT FACIL ESCONDIDINHO YOKI 150G",
+      "productName": "KIT FACIL ESCONDIDINHO YOKI 150G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "13418|7891095019533|KIT FACIL ESTROGONOFE YOKI 150G",
+      "productName": "KIT FACIL ESTROGONOFE YOKI 150G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.117Z"
+    },
+    {
+      "reviewId": "1933|7891022859003|KIT FORT ELETR.",
+      "productName": "KIT FORT ELETR.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "19195|7898663111859|KIT GB PROMOPAC 2 AERO 72H BLUE 150ML",
+      "productName": "KIT GB PROMOPAC 2 AERO 72H BLUE 150ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "16546|7899852023823|KIT HIDR INTEN CORP 200ML+CREM 50G VULT",
+      "productName": "KIT HIDR INTEN CORP 200ML+CREM 50G VULT",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "14734|7891000248768|KIT KAT NESTLE 41.5G",
+      "productName": "KIT KAT NESTLE 41.5G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "5899|7896000719454|KIT NIELY GOLD OLEOS NUTRITIVOS",
+      "productName": "KIT NIELY GOLD OLEOS NUTRITIVOS",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.118Z"
+    },
+    {
+      "reviewId": "1871|7898907687737|KIT PIA DECOR A MAO",
+      "productName": "KIT PIA DECOR A MAO",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.119Z"
+    },
+    {
+      "reviewId": "1870|7891022856026|KIT PRATICE L2 + 1LIMP.",
+      "productName": "KIT PRATICE L2 + 1LIMP.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Limpeza",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.119Z"
+    },
+    {
+      "reviewId": "4210|7891134001871|KIT SENADOR C/2SAB. 1SABONETEIRA 1DESOD.",
+      "productName": "KIT SENADOR C/2SAB. 1SABONETEIRA 1DESOD.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.119Z"
+    },
+    {
+      "reviewId": "11214|7896017785091|KIT SUISSA INTIMUS CLEAN",
+      "productName": "KIT SUISSA INTIMUS CLEAN",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": null,
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "KIT",
+      "timestamp": "2026-08-29T16:33:42.119Z"
+    },
+    {
+      "reviewId": "12097|7897706201939|UMIDIFICADOR FIO RESTORE 420ML.",
+      "productName": "UMIDIFICADOR FIO RESTORE 420ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "11111|7897706200062|UMIDIFICADOR MAX CAPI BIO-CER. 420ML",
+      "productName": "UMIDIFICADOR MAX CAPI BIO-CER. 420ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "5890|7897706200086|UMIDIFICADOR MAX CAPI MANT DE PES 420ML",
+      "productName": "UMIDIFICADOR MAX CAPI MANT DE PES 420ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "8484|7898928865039|UMIDIFICADOR NUTRI HAIR PROTEINAS 435ML",
+      "productName": "UMIDIFICADOR NUTRI HAIR PROTEINAS 435ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "4271|7898928865015|UMIDIFICADOR NUTRI HAIR TRADICIONAL 35ML",
+      "productName": "UMIDIFICADOR NUTRI HAIR TRADICIONAL 35ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "UMIDIFICADOR",
+      "timestamp": "2026-08-29T16:50:18.554Z",
+      "observation": "P1 batch review — UMIDIFICADOR"
+    },
+    {
+      "reviewId": "6053|7896232516104|ACUCAREIRO P/BAR PLASTIGEL-161",
+      "productName": "ACUCAREIRO P/BAR PLASTIGEL-161",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.921Z",
+      "observation": "REVIEW_REQUIRED resolution — Açucareiro plástico para bar (Plastigel) — utensílio, não alimento nem higiene pessoal"
+    },
+    {
+      "reviewId": "1318|7898758147237|CLORO GEL LIMPA BOM 1L",
+      "productName": "CLORO GEL LIMPA BOM 1L",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Cloro gel de limpeza doméstica (marca Limpa Bom, 1L)"
+    },
+    {
+      "reviewId": "7943|7891017000229|COPO CISPER STYLO AGUA C/ 6",
+      "productName": "COPO CISPER STYLO AGUA C/ 6",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Conjunto de 6 copos reutilizáveis Cisper — utensílio doméstico; não descartável nem bebida"
+    },
+    {
+      "reviewId": "11090|7891155003335|COPO NADIR PAUL AGUA 7002 6X1",
+      "productName": "COPO NADIR PAUL AGUA 7002 6X1",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Copos de vidro Nadir reutilizáveis (linha água), pack 6 — utilidade doméstica, não bebida"
+    },
+    {
+      "reviewId": "16156|7896000712981|CREME P. PENT.GOLD AGUA TERMAL 250G",
+      "productName": "CREME P. PENT.GOLD AGUA TERMAL 250G",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Creme para pentear capilar; 'água termal' é variante do produto, não bebida"
+    },
+    {
+      "reviewId": "8885|7896279102452|LOCAO DE LIMPEZA BABY MURIEL 100ML.",
+      "productName": "LOCAO DE LIMPEZA BABY MURIEL 100ML.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Loção de limpeza infantil Muriel — cuidado corporal bebê, não limpeza doméstica"
+    },
+    {
+      "reviewId": "8884|7896279102469|LOCAO DE LIMPEZA BABY MURIEL 100ML.",
+      "productName": "LOCAO DE LIMPEZA BABY MURIEL 100ML.",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.922Z",
+      "observation": "REVIEW_REQUIRED resolution — Loção de limpeza infantil Muriel — cuidado corporal bebê, não limpeza doméstica"
+    },
+    {
+      "reviewId": "1358|7891150057517|VIM CLORO GEL 700ML",
+      "productName": "VIM CLORO GEL 700ML",
+      "decisionType": "INDIVIDUAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "REVIEW_REQUIRED",
+      "timestamp": "2026-08-29T16:59:12.923Z",
+      "observation": "REVIEW_REQUIRED resolution — Vim cloro gel — produto de limpeza doméstica (700ML)"
+    },
+    {
+      "reviewId": "6935|0|TAMPICO F CITRICAS 330ML",
+      "productName": "TAMPICO F CITRICAS 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6843|0|TAMPICO FR. CITRICAS 200ML",
+      "productName": "TAMPICO FR. CITRICAS 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6720|0|TAMPICO FR. CITRICAS SLIM 200ML",
+      "productName": "TAMPICO FR. CITRICAS SLIM 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "17|0|TAMPICO FRUTAS CITRICAS 1L",
+      "productName": "TAMPICO FRUTAS CITRICAS 1L",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6615|0|TAMPICO FRUTAS CITRICAS 1L.",
+      "productName": "TAMPICO FRUTAS CITRICAS 1L.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "18|0|TAMPICO FRUTAS CITRICAS 200ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 200ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "4374|0|TAMPICO FRUTAS CITRICAS 250ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 250ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "19|0|TAMPICO FRUTAS CITRICAS 330ML",
+      "productName": "TAMPICO FRUTAS CITRICAS 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6608|0|TAMPICO FRUTAS CITRICAS PLUS 330ML.",
+      "productName": "TAMPICO FRUTAS CITRICAS PLUS 330ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6639|0|TAMPICO PLUS FR. SILVESTRES 1L",
+      "productName": "TAMPICO PLUS FR. SILVESTRES 1L",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6640|0|TAMPICO PLUS FR. SILVESTRES 330ML",
+      "productName": "TAMPICO PLUS FR. SILVESTRES 330ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "6610|0|TAMPICO PLUS FRUTAS CITRICAS 330ML.",
+      "productName": "TAMPICO PLUS FRUTAS CITRICAS 330ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Bebidas",
+      "chosenCategory": "Bebidas",
+      "groupKey": "TAMPICO",
+      "timestamp": "2026-08-29T17:09:25.986Z",
+      "observation": "P2 manual audit — TAMPICO: Todos são sucos/refrescos Tampico (bebida pronta)"
+    },
+    {
+      "reviewId": "9178|7891962053196|TORRADA BAUDUCCO INTEGRAL 142G",
+      "productName": "TORRADA BAUDUCCO INTEGRAL 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "4873|7891962053202|TORRADA BAUDUCCO MULTIGRAOS 142G",
+      "productName": "TORRADA BAUDUCCO MULTIGRAOS 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "4981|7891962053226|TORRADA BAUDUCO LIGHT 142G",
+      "productName": "TORRADA BAUDUCO LIGHT 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "15006|7891962053189|TORRADA BAUDUCO TRADICIONAL 142G",
+      "productName": "TORRADA BAUDUCO TRADICIONAL 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "980|7896213004750|TORRADA INTEGRAL VITARELLA 142G",
+      "productName": "TORRADA INTEGRAL VITARELLA 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "19099|7896003739336|TORRADA LEV MAGIC TOAST ORIGINAL 110G",
+      "productName": "TORRADA LEV MAGIC TOAST ORIGINAL 110G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "12926|7891962052564|TORRADA TRADICIONAL VISCONTI 120G",
+      "productName": "TORRADA TRADICIONAL VISCONTI 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "12925|7896213004743|TORRADA TRADICIONAL VITARELLA 142G",
+      "productName": "TORRADA TRADICIONAL VITARELLA 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "4937|7891962052571|TORRADA VISCONTI INTEGRAL 120G",
+      "productName": "TORRADA VISCONTI INTEGRAL 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "18976|7896213004774|TORRADA VITARELLA MULTIGRAOS 142G",
+      "productName": "TORRADA VITARELLA MULTIGRAOS 142G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "TORRADA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TORRADA: Tostas Bauducco — produtos de padaria seca"
+    },
+    {
+      "reviewId": "512|7895800412794|TRIDENT FRESH INTENSE 32G",
+      "productName": "TRIDENT FRESH INTENSE 32G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "13272|7622210564290|TRIDENT FRESH INTENSE 8G",
+      "productName": "TRIDENT FRESH INTENSE 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "511|7895800112632|TRIDENT HORTELA 34G",
+      "productName": "TRIDENT HORTELA 34G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "18287|7895800304211|TRIDENT HORTELA 8G",
+      "productName": "TRIDENT HORTELA 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "4343|7895800112786|TRIDENT MENTA 34G",
+      "productName": "TRIDENT MENTA 34G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "528|7895800304228|TRIDENT MENTA 8G",
+      "productName": "TRIDENT MENTA 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "13329|7895800410547|TRIDENT TOTAL MENTA 2UN",
+      "productName": "TRIDENT TOTAL MENTA 2UN",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "527|7895800430002|TRIDENT TUTTI-FRUTTI 8G",
+      "productName": "TRIDENT TUTTI-FRUTTI 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "14437|7622210564313|TRIDENT X FRESH HERBAL 8G",
+      "productName": "TRIDENT X FRESH HERBAL 8G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "18288|7895800412787|TRIDENT X-FRESH INT 21UNX8G IMP",
+      "productName": "TRIDENT X-FRESH INT 21UNX8G IMP",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "TRIDENT",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — TRIDENT: Gomas de mascar Trident — mercearia"
+    },
+    {
+      "reviewId": "71|7891000271803|PAPINHA CREM. BABY CEREAIS 120G",
+      "productName": "PAPINHA CREM. BABY CEREAIS 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "73|7891000273005|PAPINHA CREM. BABY F. SORTIDAS 120G",
+      "productName": "PAPINHA CREM. BABY F. SORTIDAS 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "79|7891000296202|PAPINHA CREM. BABY FRUTAS 155G",
+      "productName": "PAPINHA CREM. BABY FRUTAS 155G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "13075|7891000077825|PAPINHA DE MARACUJA 120G",
+      "productName": "PAPINHA DE MARACUJA 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "9258|7891000006191|PAPINHA NESTLE AMEIXA 120 G.",
+      "productName": "PAPINHA NESTLE AMEIXA 120 G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "9353|7891000006207|PAPINHA NESTLE BANANA 120G.",
+      "productName": "PAPINHA NESTLE BANANA 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "12907|7891000064832|PAPINHA NESTLE FRUTAS TROPICAIS 120G",
+      "productName": "PAPINHA NESTLE FRUTAS TROPICAIS 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "9354|7891000273708|PAPINHA NESTLE MACA AMEIXA 120G.",
+      "productName": "PAPINHA NESTLE MACA AMEIXA 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "12797|7891000049136|PAPINHA NESTLE MACA E LARANJA 120G.",
+      "productName": "PAPINHA NESTLE MACA E LARANJA 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "12906|7891000064870|PAPINHA NESTLE MAMAO C/ LARANJA 120G",
+      "productName": "PAPINHA NESTLE MAMAO C/ LARANJA 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PAPINHA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PAPINHA: Papinhas infantis embaladas — mercearia"
+    },
+    {
+      "reviewId": "9705|7898614670299|PROTEINA DE SOJA SORA 400G CARNE",
+      "productName": "PROTEINA DE SOJA SORA 400G CARNE",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "9690|7898614670282|PROTEINA DE SOJA SORA 400G FRANGO",
+      "productName": "PROTEINA DE SOJA SORA 400G FRANGO",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "15083|7896006791072|PROTEINA TEX DE SOJA CAMIL CARNE 400G",
+      "productName": "PROTEINA TEX DE SOJA CAMIL CARNE 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "15084|7896006791096|PROTEINA TEX DE SOJA CAMIL FGO. 400G",
+      "productName": "PROTEINA TEX DE SOJA CAMIL FGO. 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "14922|7898219120786|PROTEINA TEX PRONTU SOY BR 400G",
+      "productName": "PROTEINA TEX PRONTU SOY BR 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "14923|7898219120779|PROTEINA TEX PRONTU SOY VER. 400G",
+      "productName": "PROTEINA TEX PRONTU SOY VER. 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "334|7891107109399|PROTEINA TEXT. DE SOJA MAXTEM C 500G",
+      "productName": "PROTEINA TEXT. DE SOJA MAXTEM C 500G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "12631|7897905732111|PROTEINA TEXT. SOJA BR. VITA CROC 400G",
+      "productName": "PROTEINA TEXT. SOJA BR. VITA CROC 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "12641|7897905733118|PROTEINA TEXT. SOJA VITA CROC 400G",
+      "productName": "PROTEINA TEXT. SOJA VITA CROC 400G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "9415|7891080400636|PROTEINA TEXTURIZADA DE SOJA SOYA",
+      "productName": "PROTEINA TEXTURIZADA DE SOJA SOYA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Mercearia Seca e Básica",
+      "chosenCategory": "Mercearia Seca e Básica",
+      "groupKey": "PROTEINA",
+      "timestamp": "2026-08-29T17:09:26.051Z",
+      "observation": "P2 manual audit — PROTEINA: Proteína texturizada de soja — mercearia seca"
+    },
+    {
+      "reviewId": "430|7891022853599|NO AR ALEGRIA DE INFANCIA",
+      "productName": "NO AR ALEGRIA DE INFANCIA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1965|7891022859645|NO AR AMOR DE MAE 360ML",
+      "productName": "NO AR AMOR DE MAE 360ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1791|7891022852516|NO AR ESTILO LUXO BOM BRIL 277G.",
+      "productName": "NO AR ESTILO LUXO BOM BRIL 277G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1985|7891022859652|NO AR JARDIM E POMAR 360ML",
+      "productName": "NO AR JARDIM E POMAR 360ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "2001|7891022859683|NO AR JASMIM 360ML",
+      "productName": "NO AR JASMIM 360ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1721|7891022859638|NO AR LAVANDA 400ML",
+      "productName": "NO AR LAVANDA 400ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1804|7891022849684|NO AR LEMB. SEGR. DA LUA 400ML",
+      "productName": "NO AR LEMB. SEGR. DA LUA 400ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1747|7891022849677|NO AR LEMBRANCA BOM BRIL 277G.",
+      "productName": "NO AR LEMBRANCA BOM BRIL 277G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "14336|7891022853575|NO AR PERFUMES LAVANDA ONE TOUCH",
+      "productName": "NO AR PERFUMES LAVANDA ONE TOUCH",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1688|7891022849660|NO AR PETALAS DE JASMIM 400ML.",
+      "productName": "NO AR PETALAS DE JASMIM 400ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "1689|7891022849653|NO AR RAMOS DE LAVANDA 400ML.",
+      "productName": "NO AR RAMOS DE LAVANDA 400ML.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "NO",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — NO: Linha 'NO AR' — aromatizadores/desodorizadores de ambiente (Bom Bril etc.)"
+    },
+    {
+      "reviewId": "7462|7896480614737|ESTOPA BR. PARA POLIMENTO PRATIK 150G",
+      "productName": "ESTOPA BR. PARA POLIMENTO PRATIK 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "10723|7898314150015|ESTOPA DUCARRO SPECIAL",
+      "productName": "ESTOPA DUCARRO SPECIAL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "7466|7896979300264|ESTOPA FLANELIN 150G",
+      "productName": "ESTOPA FLANELIN 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "7465|7891860000254|ESTOPA MOURA TEX 150G",
+      "productName": "ESTOPA MOURA TEX 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "10170|7897074200121|ESTOPA P/ POLIMENTO ANADRI 120G.",
+      "productName": "ESTOPA P/ POLIMENTO ANADRI 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "6295|7897487900014|ESTOPA P/POLIMENTO BIRIBA 150G",
+      "productName": "ESTOPA P/POLIMENTO BIRIBA 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "10705|7898307680017|ESTOPA P/POLIMENTO MAX RIL 120G",
+      "productName": "ESTOPA P/POLIMENTO MAX RIL 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "13719|7897074201180|ESTOPA PARA POLIMENTO ANADRI 120G.",
+      "productName": "ESTOPA PARA POLIMENTO ANADRI 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "10364|7897487900045|ESTOPA POP 120G.",
+      "productName": "ESTOPA POP 120G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "7920|7898290890011|ESTOPA SOBRAL P/ PLIMENTO.",
+      "productName": "ESTOPA SOBRAL P/ PLIMENTO.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ESTOPA",
+      "timestamp": "2026-08-29T17:09:26.052Z",
+      "observation": "P2 manual audit — ESTOPA: Estopas/flanelas para limpeza e polimento"
+    },
+    {
+      "reviewId": "17534|7891035024252|SBP 45 NOITES 2RF CH SUAVE 2X35ML",
+      "productName": "SBP 45 NOITES 2RF CH SUAVE 2X35ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "13899|7891035618550|SBP CITRONELA 380ML",
+      "productName": "SBP CITRONELA 380ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "17141|7898024830474|SBP ELETRICO 1AP 4 PAST.",
+      "productName": "SBP ELETRICO 1AP 4 PAST.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "16964|7891035618239|SBP ELETRICO 35ML REFIL",
+      "productName": "SBP ELETRICO 35ML REFIL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "13725|7891035024535|SBP ELETRICO APARELHO E 1 FR. 35ML",
+      "productName": "SBP ELETRICO APARELHO E 1 FR. 35ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "7157|7898024830030|SBP ELETRICO C/1 APARELHO",
+      "productName": "SBP ELETRICO C/1 APARELHO",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "13724|7891035618536|SBP M.INSET SUAVE 380ML",
+      "productName": "SBP M.INSET SUAVE 380ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "7145|7898024830429|SBP REFIL ELETRICO C/12",
+      "productName": "SBP REFIL ELETRICO C/12",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "1640|7891035024696|SBP REFIL ELETRICO LEVE 12 PAGUE 10 UND",
+      "productName": "SBP REFIL ELETRICO LEVE 12 PAGUE 10 UND",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "14197|7891035990922|SBP SEM CHEIRO LEVE MAIS PAGUE MENOS 450",
+      "productName": "SBP SEM CHEIRO LEVE MAIS PAGUE MENOS 450",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "SBP",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — SBP: Inseticidas/repelentes SBP — limpeza doméstica"
+    },
+    {
+      "reviewId": "311|7896058599923|GRANULADO COLORIDO DORI 120G",
+      "productName": "GRANULADO COLORIDO DORI 120G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "15373|7896072646856|GRANULADO COLORIDO MIL CORES 150G",
+      "productName": "GRANULADO COLORIDO MIL CORES 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "12794|7898292883882|GRANULADO COLORIDO VISCONTI 130G",
+      "productName": "GRANULADO COLORIDO VISCONTI 130G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "12673|7896058501568|GRANULADO DORI 70G.",
+      "productName": "GRANULADO DORI 70G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "197|7891048014110|GRANULADO MICANGA DR. OETKER 80G",
+      "productName": "GRANULADO MICANGA DR. OETKER 80G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "14934|7896072646733|GRANULADO MIL CORES 150G",
+      "productName": "GRANULADO MIL CORES 150G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "9194|7896062537089|GRANULADO P/ COBERTURA PAN 150G.",
+      "productName": "GRANULADO P/ COBERTURA PAN 150G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "9166|7896062537027|GRANULADO PAN 80G.",
+      "productName": "GRANULADO PAN 80G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "12795|7898292883868|GRANULADO TRADICIONAL VISCONTI 130G",
+      "productName": "GRANULADO TRADICIONAL VISCONTI 130G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "12796|7898292883875|GRANULADO TRADICIONAL VISCONTI 70G",
+      "productName": "GRANULADO TRADICIONAL VISCONTI 70G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "196|7891053216011|GRANULADO VISCONTI TRAD. 90G",
+      "productName": "GRANULADO VISCONTI TRAD. 90G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Padaria e Confeitaria",
+      "chosenCategory": "Padaria e Confeitaria",
+      "groupKey": "GRANULADO",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — GRANULADO: Granulados/confeitos coloridos para confeitaria"
+    },
+    {
+      "reviewId": "13477|7898545650438|TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+      "productName": "TORNEIRA DE FILTRO ALAV BRANCA GAMA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "16922|7898545650445|TORNEIRA FILTRO ALAV BR/AZ GAMA",
+      "productName": "TORNEIRA FILTRO ALAV BR/AZ GAMA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "13603|7898059545138|TORNEIRA FILTRO AUT. COD.1358",
+      "productName": "TORNEIRA FILTRO AUT. COD.1358",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "17270|7898545650827|TORNEIRA FILTRO AUT.BC/AZ GAMA",
+      "productName": "TORNEIRA FILTRO AUT.BC/AZ GAMA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "19379|7898059544261|TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN",
+      "productName": "TORNEIRA FILTRO BARRO AUT BRANCA E AZUL HERC UN",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "16620|7898059545145|TORNEIRA FILTRO BARRO AUT. BC HERC",
+      "productName": "TORNEIRA FILTRO BARRO AUT. BC HERC",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "17925|0|TORNEIRA P JARDIM PRETA",
+      "productName": "TORNEIRA P JARDIM PRETA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "13823|7898545650797|TORNEIRA P/ FILTRO GAMA MARROM",
+      "productName": "TORNEIRA P/ FILTRO GAMA MARROM",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "10408|7898545650803|TORNEIRA PARA FILTRO GAMA",
+      "productName": "TORNEIRA PARA FILTRO GAMA",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "10407|7896514801324|TORNEIRA PARA JARDIN COMUM.",
+      "productName": "TORNEIRA PARA JARDIN COMUM.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "10639|7898668363215|TORNEIRA PL JARDIM HERC",
+      "productName": "TORNEIRA PL JARDIM HERC",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "18254|7898059540010|TORNEIRA PL.JARDIM HERC",
+      "productName": "TORNEIRA PL.JARDIM HERC",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Utilidades e Outros",
+      "chosenCategory": "Utilidades e Outros",
+      "groupKey": "TORNEIRA",
+      "timestamp": "2026-08-29T17:09:26.053Z",
+      "observation": "P2 manual audit — TORNEIRA: Torneiras e filtros de pia — utilidades domésticas"
+    },
+    {
+      "reviewId": "19096|7897744504740|AROMATIZANTE AMB COALA CHA BCO 120ML",
+      "productName": "AROMATIZANTE AMB COALA CHA BCO 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "19095|7897744502081|AROMATIZANTE AMB COALA LAVANDA 120ML",
+      "productName": "AROMATIZANTE AMB COALA LAVANDA 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "19094|7897744505174|AROMATIZANTE AMB COALA ORQ NEG 120ML",
+      "productName": "AROMATIZANTE AMB COALA ORQ NEG 120ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10599|7896050506271|AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+      "productName": "AROMATIZANTE AMBIENTE KINGLIMP SINTRONEL",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "18582|7898056652853|AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+      "productName": "AROMATIZANTE CAR.GEL60G LAVAND.SUN",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10633|7898129330817|AROMATIZANTE KHARIS CARRO NOVO 80ML",
+      "productName": "AROMATIZANTE KHARIS CARRO NOVO 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "10600|7898129330084|AROMATIZANTE KHARIS TUTI FRUTTI 80ML",
+      "productName": "AROMATIZANTE KHARIS TUTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "14182|7896050506264|AROMATIZANTE LAVANDA KING LIMP 100ML",
+      "productName": "AROMATIZANTE LAVANDA KING LIMP 100ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "14183|7898129333047|AROMATIZANTE MEGACAR TUTTI FRUTTI 80ML",
+      "productName": "AROMATIZANTE MEGACAR TUTTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "AROMATIZANTE",
+      "timestamp": "2026-08-29T17:21:16.624Z",
+      "observation": "Final high-confidence review — AROMATIZANTE: Aromatizantes de ambiente e veicular — limpeza/aroma doméstico"
+    },
+    {
+      "reviewId": "8093|7898229360028|PRATOS DESC. BEL PLAST 15CM. 10UND.",
+      "productName": "PRATOS DESC. BEL PLAST 15CM. 10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "8095|7898229360059|PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+      "productName": "PRATOS DESC. BEL PLAST. 21CM. 10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "8094|7898229360042|PRATOS DESC. BEL PLAST.18CM.10UND.",
+      "productName": "PRATOS DESC. BEL PLAST.18CM.10UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "10678|7896030800153|PRATOS DESC. COPOBRAS 15CM",
+      "productName": "PRATOS DESC. COPOBRAS 15CM",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "14039|7896123402363|PRATOS DESC. COPOZAN 15CM",
+      "productName": "PRATOS DESC. COPOZAN 15CM",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "7900|7896523100692|PRATOS DESC. JUNCO 10 UND.",
+      "productName": "PRATOS DESC. JUNCO 10 UND.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "13798|7898339190164|PRATOS DESC.ULTRA COPOS 18 C/10",
+      "productName": "PRATOS DESC.ULTRA COPOS 18 C/10",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "7632|7898287990052|PRATOS PLASTICOS MARATA C/10 150R",
+      "productName": "PRATOS PLASTICOS MARATA C/10 150R",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Produtos Descartáveis",
+      "chosenCategory": "Produtos Descartáveis",
+      "groupKey": "PRATOS",
+      "timestamp": "2026-08-29T17:21:16.707Z",
+      "observation": "Final high-confidence review — PRATOS: Pratos descartáveis/de plástico para uso único"
+    },
+    {
+      "reviewId": "1517|7896281052004|DESODORIZANTE SANITARIO FLOREL 35G.",
+      "productName": "DESODORIZANTE SANITARIO FLOREL 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1518|7896281050000|DESODORIZANTE SANITARIO LAVANDA 35G.",
+      "productName": "DESODORIZANTE SANITARIO LAVANDA 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1515|7896281054008|DESODORIZANTE SANITARIO PINHO 35G.",
+      "productName": "DESODORIZANTE SANITARIO PINHO 35G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "1516|7896281056002|DESODORIZANTE SANITARIO TUTTI FRUTTI 35G",
+      "productName": "DESODORIZANTE SANITARIO TUTTI FRUTTI 35G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "DESODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — DESODORIZANTE: Desodorizantes sanitários para vaso sanitário"
+    },
+    {
+      "reviewId": "11820|7898085944899|SABONETES LA FLORES FLOR DE CEREJA 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE CEREJA 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "11822|7898085945940|SABONETES LA FLORES FLOR DE FIGO 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE FIGO 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "11821|7898085944912|SABONETES LA FLORES FLOR DE JANBO 180G.",
+      "productName": "SABONETES LA FLORES FLOR DE JANBO 180G.",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Higiene Pessoal",
+      "chosenCategory": "Higiene Pessoal",
+      "groupKey": "SABONETES",
+      "timestamp": "2026-08-29T17:21:16.708Z",
+      "observation": "Final high-confidence review — SABONETES: Sabonetes em barra La Flores — higiene pessoal"
+    },
+    {
+      "reviewId": "18056|5020144222743|ODORIZANTE GRAND PRIX CARRO NOVO 42G",
+      "productName": "ODORIZANTE GRAND PRIX CARRO NOVO 42G",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    },
+    {
+      "reviewId": "7511|7896189225388|ODORIZANTE PROAUTO CARRO NOVO 80ML",
+      "productName": "ODORIZANTE PROAUTO CARRO NOVO 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    },
+    {
+      "reviewId": "7512|7896189225302|ODORIZANTE PROAUTO TUTTI FRUTTI 80ML",
+      "productName": "ODORIZANTE PROAUTO TUTTI FRUTTI 80ML",
+      "decisionType": "GROUP_APPROVAL",
+      "suggestedCategory": "Limpeza",
+      "chosenCategory": "Limpeza",
+      "groupKey": "ODORIZANTE",
+      "timestamp": "2026-08-29T17:21:16.709Z",
+      "observation": "Final high-confidence review — ODORIZANTE: Odorizantes automotivos — aroma/limpeza veicular"
+    }
+  ]
+}

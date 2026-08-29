@@ -1,0 +1,306 @@
+{
+  "generated_at": "2026-08-29T17:40:00.000Z",
+  "phase": "PRE_HOSTED_FINAL_AUDIT",
+  "store": "beira-rio",
+  "constraints": {
+    "migration_applied": false,
+    "products_imported": false,
+    "deploy": false,
+    "commit": false,
+    "push": false
+  },
+  "source_file": {
+    "path": "E:\\HortiDelivery\\Lista de Produtos\\RELAÇÃO DE PRODUTOS - BEIRA RIO.xlsx",
+    "sha256": "d48499a4302ec7a9dd339df0dd3234c6c65a19edad522a40271eadd783b373ec",
+    "intact": true,
+    "sheet": "RELAÇÃO DE PRODUTOS"
+  },
+  "catalog_validation": {
+    "rows_found": 19270,
+    "valid_rows": 19268,
+    "barcode_conflicts": 2,
+    "invalid_rows": 0,
+    "equation_rows": "19270 = 19268 + 2 ✓",
+    "classified": 16198,
+    "unclassified": 3070,
+    "review_required": 0,
+    "equation_classification": "16198 + 3070 + 0 = 19268 ✓",
+    "integrity_ok": true
+  },
+  "importable": {
+    "total": 19268,
+    "classified_with_category_id": 16198,
+    "unclassified_category_null": 3070,
+    "blocked": 2,
+    "preview_equals_import": true,
+    "batches_of_300": 65,
+    "last_batch_size": 68
+  },
+  "ean_conflicts": {
+    "ean": "7891025121626",
+    "status": "CONFLITO_DE_CODIGO_BARRAS",
+    "auto_resolution": false,
+    "products": [
+      {
+        "codigo": "2528",
+        "produto": "BEBIDA LACTEA DANONE 510G",
+        "preco": "8.70",
+        "importavel": false
+      },
+      {
+        "codigo": "17974",
+        "produto": "POLPA DANONE 85G",
+        "preco": "1.45",
+        "importavel": false
+      }
+    ]
+  },
+  "barcode_zero": {
+    "placeholder_rule": "barcode '0' não é identidade única",
+    "products_with_placeholder": 640,
+    "dedupe_conflicts_from_zero": 0,
+    "unique_index_excludes_zero_after_local_fix": true
+  },
+  "ean_string": {
+    "treatment": "string via cellValueToString + normalizeIdentifier",
+    "leading_zeros_preserved": true,
+    "example": "0789123456789 permanece textual"
+  },
+  "prices": {
+    "conversion_ok": true,
+    "samples": [
+      { "raw": "R$ 17,90", "db": "17.90" },
+      { "raw": "R$ 3,25", "db": "3.25" },
+      { "raw": "8,70", "db": "8.70" }
+    ],
+    "no_cents_multiplication": true,
+    "no_comma_as_thousands_for_simple_values": true
+  },
+  "categories": {
+    "allowed": [
+      "Hortifrúti",
+      "Frios e Laticínios",
+      "Mercearia Seca e Básica",
+      "Bebidas",
+      "Padaria e Confeitaria",
+      "Limpeza",
+      "Higiene Pessoal",
+      "Utilidades e Outros",
+      "Produtos Descartáveis"
+    ],
+    "distribution": {
+      "Hortifrúti": 1235,
+      "Frios e Laticínios": 1464,
+      "Mercearia Seca e Básica": 3522,
+      "Bebidas": 787,
+      "Padaria e Confeitaria": 216,
+      "Limpeza": 1294,
+      "Higiene Pessoal": 3746,
+      "Utilidades e Outros": 3551,
+      "Produtos Descartáveis": 383,
+      "UNCLASSIFIED": 3070
+    },
+    "unclassified_gets_null_category_id": true,
+    "no_artificial_utilidades_fallback": true,
+    "cross_tenant_category_id_rejected_server_side": true
+  },
+  "multi_tenancy": {
+    "store_id_from_client": false,
+    "tenant_id_from_client": false,
+    "store_id_resolution": "get_my_store_id() em SECURITY DEFINER",
+    "category_id_validated_against_store": true,
+    "classification_status_not_used_for_rejection": true,
+    "verdict": "APROVADO — INSERT sempre com v_store_id do servidor"
+  },
+  "authorization": {
+    "rpcs": [
+      "begin_product_import",
+      "import_product_batch",
+      "finish_product_import",
+      "ensure_store_catalog_categories"
+    ],
+    "checks": [
+      "auth.uid() IS NOT NULL",
+      "get_my_store_id() IS NOT NULL",
+      "is_store_owner(v_store_id)",
+      "import pertence ao user_id + store_id (batch/finish)"
+    ],
+    "anon_revoked": true,
+    "expected_matrix": {
+      "nao_autenticado": "REJEITADO",
+      "outra_loja": "REJEITADO",
+      "sem_permissao_admin": "REJEITADO",
+      "owner_beira_rio": "PERMITIDO"
+    },
+    "note": "Matriz validada por auditoria estática das migrations; testes de integração RPC requerem Hosted"
+  },
+  "rls_audit": {
+    "products": {
+      "rls_enabled": true,
+      "policies": [
+        "products_public_read — SELECT active=true + store não bloqueada",
+        "products_owner_read — SELECT is_store_owner(store_id)",
+        "products_owner_insert — WITH CHECK is_store_owner(store_id)",
+        "products_owner_update — USING/WITH CHECK is_store_owner(store_id)",
+        "products_owner_delete — USING is_store_owner(store_id)"
+      ],
+      "permissive_true_policies": false,
+      "cross_tenant": false
+    },
+    "product_imports": {
+      "rls_enabled": true,
+      "policies": [
+        "product_imports_owner_select — SELECT is_store_owner OR is_platform_admin"
+      ],
+      "insert_via_rpc_only": true,
+      "permissive_true_policies": false
+    },
+    "categories": {
+      "rls_enabled": true,
+      "policies": "is_store_owner(store_id) — migration 20260826120000",
+      "seed_beira_rio": "DO block em 20260828280000 — por store_id, não global"
+    },
+    "verdict": "APROVADO — sem USING(true)/WITH CHECK(true) permissivos em products/product_imports"
+  },
+  "idempotency": {
+    "first_run": { "importable": 19268, "would_insert": 19268, "would_skip": 0 },
+    "second_run": { "importable": 0, "would_insert": 0, "would_skip": 19268 },
+    "mechanism": [
+      "Cliente: fetchExistingIdentifiers + DUPLICATE_EXISTING no preview",
+      "Servidor v2: skip por internal_code OU barcode significativo (exclui '0')",
+      "unique_violation → skipped (não duplica)"
+    ],
+    "verdict": "APROVADO (simulação local + lógica RPC v2)"
+  },
+  "batching": {
+    "batch_size": 300,
+    "total_batches": 65,
+    "atomicity": "cada import_product_batch é transação atômica (plpgsql)",
+    "on_batch_error": "hook lança exceção — finish NÃO é chamado",
+    "silent_loss": false,
+    "counts_from_server": true
+  },
+  "finish_import": {
+    "premature_finish_possible_via_direct_rpc": true,
+    "client_fabricates_counts": false,
+    "counts_derived_server_side": true,
+    "severity": "GAP — não BLOCKER para piloto se UI for único caller"
+  },
+  "partial_failure": {
+    "batch_1_ok_batch_2_ok_batch_3_error": "import permanece status=running; finish não executado pela UI",
+    "failed_status_auto": false,
+    "severity": "GAP — import órfão em running requer limpeza manual ou retry"
+  },
+  "payload_security": {
+    "store_id_in_payload": "ignorado — RPC não aceita parâmetro",
+    "tenant_id_in_payload": "ignorado — RPC não aceita parâmetro",
+    "category_id_cross_tenant": "silenciosamente NULL se inválido (v2 migration)",
+    "classification_status_in_payload": "ignorado pelo servidor"
+  },
+  "preview_vs_import": {
+    "importable": { "preview": 19268, "import": 19268 },
+    "blocked": { "preview": 2, "import": 2 },
+    "aligned": true,
+    "note": "v2 RPC remove skip por nome — alinhado com preview client-side"
+  },
+  "tests": {
+    "total": 104,
+    "passed": 104,
+    "failed": 0,
+    "files": 12,
+    "new_tests_added": [
+      "CLASSIFIED recebe category_id; UNCLASSIFIED permanece NULL",
+      "conflito EAN não entra em produtos importáveis"
+    ]
+  },
+  "local_corrections": [
+    {
+      "file": "supabase/migrations/20260828280000_store_catalog_categories.sql",
+      "change": "DROP/CREATE idx_products_store_barcode_active excluindo barcode '0' e ^0+$",
+      "reason": "640 produtos com placeholder '0' colidiriam no índice único",
+      "applied_to_hosted": false
+    },
+    {
+      "file": "scripts/pre-hosted-audit-validation.ts",
+      "change": "mock category map + validação category split",
+      "reason": "relatório programático completo"
+    },
+    {
+      "file": "src/lib/productImport.test.ts",
+      "change": "testes UNCLASSIFIED NULL + EAN conflito fora do lote",
+      "reason": "cobertura pré-hosted"
+    }
+  ],
+  "blockers_resolved_locally": [
+    {
+      "id": "BARCODE_ZERO_UNIQUE_INDEX",
+      "arquivo": "supabase/migrations/20260828280000_store_catalog_categories.sql",
+      "funcao": "idx_products_store_barcode_active",
+      "problema": "Índice único incluía barcode='0' — 639 produtos adicionais falhariam após o 1º insert",
+      "impacto": "Importação real inseriria ~18.629 em vez de 19.268",
+      "correcao": "Aplicada localmente — aguarda db push autorizado",
+      "status": "CORRIGIDO_LOCAL_NAO_APLICADO"
+    }
+  ],
+  "gaps_nao_bloqueantes": [
+    {
+      "id": "FINISH_PREMATURE",
+      "arquivo": "supabase/migrations/20260828270000_product_spreadsheet_import.sql",
+      "funcao": "finish_product_import",
+      "problema": "RPC não valida se todos os lotes foram processados antes de marcar completed",
+      "impacto": "Chamada direta à RPC poderia concluir importação incompleta",
+      "correcao_recomendada": "Registrar expected_batches no begin e validar no finish; ou exigir batches_completed >= expected"
+    },
+    {
+      "id": "IMPORT_ORPHAN_RUNNING",
+      "arquivo": "src/hooks/useProductSpreadsheetImport.ts",
+      "funcao": "importProducts",
+      "problema": "Falha mid-batch deixa product_imports em status=running sem transição para failed",
+      "impacto": "Auditoria incompleta; retry manual necessário",
+      "correcao_recomendada": "RPC fail_product_import ou catch no hook que marca failed"
+    },
+    {
+      "id": "PREVIEW_STORE_ID_CLIENT",
+      "arquivo": "src/hooks/useProductSpreadsheetImport.ts",
+      "funcao": "fetchExistingIdentifiers",
+      "problema": "Preview usa storeId do TenantContext (cliente) para DUPLICATE_EXISTING",
+      "impacto": "Preview poderia divergir em cenário multi-loja mal configurado; INSERT permanece seguro",
+      "correcao_recomendada": "RPC server-side para existing identifiers ou validar storeId === get_my_store_id()"
+    }
+  ],
+  "approval_checklist": {
+    "19_270_linhas_confirmadas": true,
+    "19_268_importaveis_confirmados": true,
+    "2_conflitos_bloqueados": true,
+    "0_invalidos": true,
+    "16_198_classificados": true,
+    "3_070_unclassified": true,
+    "0_review_required": true,
+    "unclassified_entra_com_category_id_null": true,
+    "barcode_0_preservado": true,
+    "ean_tratado_como_string": true,
+    "precos_corretamente_convertidos": true,
+    "store_id_server_side": true,
+    "multi_tenancy_protegido": true,
+    "rls_auditado": true,
+    "rpcs_autorizadas": true,
+    "idempotencia_comprovada": true,
+    "batching_auditado": true,
+    "falha_parcial_tratada": "PARCIAL — GAP documentado",
+    "finish_protegido": "PARCIAL — GAP documentado",
+    "preview_igual_importacao": true,
+    "arquivo_original_intacto": true,
+    "testes_passando": true,
+    "blocker_barcode_zero_index": "CORRIGIDO_LOCAL — REQUER MIGRATION NO HOSTED"
+  },
+  "verdict": "APROVADO_COM_RESSALVAS",
+  "ready_for_hosted_migration": true,
+  "ready_for_real_import": false,
+  "next_steps": [
+    "Autorizar supabase db push das migrations 20260828270000 + 20260828280000 (inclui fix índice barcode)",
+    "Confirmar owner Beira Rio autenticado no Hosted",
+    "Executar importação real via UI admin",
+    "Resolver manualmente os 2 conflitos EAN 7891025121626",
+    "Classificar posteriormente os 3.070 UNCLASSIFIED via UI"
+  ]
+}

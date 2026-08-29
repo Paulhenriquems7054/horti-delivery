@@ -95,6 +95,7 @@ export function useProductSpreadsheetImport(storeId: string | undefined) {
         const { data: importId, error: beginError } = await supabase.rpc("begin_product_import", {
           p_filename: filename,
           p_total_rows: stats.totalRows,
+          p_importable_count: products.length,
         });
 
         if (beginError) throw beginError;
@@ -102,10 +103,12 @@ export function useProductSpreadsheetImport(storeId: string | undefined) {
 
         for (let offset = 0; offset < products.length; offset += IMPORT_BATCH_SIZE) {
           const batch = products.slice(offset, offset + IMPORT_BATCH_SIZE);
+          const batchNumber = Math.floor(offset / IMPORT_BATCH_SIZE) + 1;
           const payload = batch.map(toRpcItem);
 
           const { data: batchResult, error: batchError } = await supabase.rpc("import_product_batch", {
             p_import_id: importId,
+            p_batch_number: batchNumber,
             p_items: payload,
           });
 

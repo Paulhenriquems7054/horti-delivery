@@ -1,0 +1,79 @@
+{
+  "generated_at": "2026-08-29T18:01:09.673Z",
+  "phase": "PRE_HOSTED_AUDIT",
+  "file_hash_ok": true,
+  "file_sha256": "d48499a4302ec7a9dd339df0dd3234c6c65a19edad522a40271eadd783b373ec",
+  "sheet": "RELAÇÃO DE PRODUTOS",
+  "catalog": {
+    "rows_found": 19270,
+    "valid_rows": 19268,
+    "barcode_conflicts": 2,
+    "invalid_rows": 0,
+    "classified": 16198,
+    "unclassified": 3070,
+    "review_required": 0,
+    "integrity_ok": true
+  },
+  "ean_conflict_7891025121626": [
+    {
+      "codigo": "2528",
+      "produto": "BEBIDA LACTEA DANONE 510G",
+      "preco": "8.70",
+      "status": "BARCODE_CONFLICT",
+      "dedupeKind": "CONFLITO_DE_CODIGO_BARRAS",
+      "importavel": false
+    },
+    {
+      "codigo": "17974",
+      "produto": "POLPA DANONE 85G",
+      "preco": "1.45",
+      "status": "BARCODE_CONFLICT",
+      "dedupeKind": "CONFLITO_DE_CODIGO_BARRAS",
+      "importavel": false
+    }
+  ],
+  "importable": {
+    "total": 19268,
+    "classified_with_category_id": 16198,
+    "unclassified_category_null": 3070,
+    "batches_of_300": 65
+  },
+  "barcode_zero_unique_index_simulation": {
+    "would_insert": 18629,
+    "would_skip_unique_barcode0": 639
+  },
+  "price_checks": [
+    {
+      "raw": "R$ 17,90",
+      "expected": "17.90",
+      "got": "17.90",
+      "ok": true
+    },
+    {
+      "raw": "R$ 3,25",
+      "expected": "3.25",
+      "got": "3.25",
+      "ok": true
+    },
+    {
+      "raw": "8,70",
+      "expected": "8.70",
+      "got": "8.70",
+      "ok": true
+    }
+  ],
+  "categories": {
+    "Hortifrúti": 1235,
+    "Frios e Laticínios": 1464,
+    "Mercearia Seca e Básica": 3522,
+    "Bebidas": 787,
+    "Padaria e Confeitaria": 216,
+    "Limpeza": 1294,
+    "Higiene Pessoal": 3746,
+    "Utilidades e Outros": 3551,
+    "Produtos Descartáveis": 383,
+    "UNCLASSIFIED": 3070
+  },
+  "blockers": [],
+  "blocker_count": 0
+}
