@@ -157,9 +157,10 @@ export default function OrderTracking() {
           </button>
           {store && (
             <>
-              <div className="h-10 w-10 rounded-xl bg-card/20 flex items-center justify-center overflow-hidden p-1.5">
+              <div className="h-12 w-12 rounded-xl bg-card/20 flex items-center justify-center overflow-hidden p-1">
                 <StoreLogo
                   logoPath={store.logo_path}
+                  logoVersion={store.updated_at}
                   alt={store.name}
                   className="h-full w-full"
                 />

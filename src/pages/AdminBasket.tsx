@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useDeliveryZones, useManageDeliveryZone } from "@/hooks/useDeliveryZones";
 import { ProductWeightSettings } from "@/components/admin/ProductWeightSettings";
 import { useTenant } from "@/contexts/TenantContext";
+import { ProductSpreadsheetImport } from "@/components/admin/ProductSpreadsheetImport";
 
 export default function AdminBasket() {
   const navigate = useNavigate();
@@ -702,8 +703,16 @@ export default function AdminBasket() {
                   className="w-full h-11 rounded-xl border border-dashed border-primary/50 text-primary bg-primary/5 hover:bg-primary/10 transition-colors text-sm font-bold flex items-center justify-center gap-2"
                 >
                   {bulkImportMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
-                  <span>Importar Mercadorias (Arquivo)</span>
+                  <span>Importar Mercadorias (CSV/TXT)</span>
                 </button>
+
+                <ProductSpreadsheetImport
+                  storeId={tenantStoreId}
+                  onImported={() => {
+                    queryClient.invalidateQueries({ queryKey: STORE_PRODUCTS_KEY });
+                    queryClient.invalidateQueries({ queryKey: ["admin-active-basket", tenantStoreId] });
+                  }}
+                />
               </div>
           </div>
         </div>

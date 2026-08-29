@@ -9,6 +9,7 @@ export interface Store {
   description?: string;
   logo_url?: string;
   logo_path?: string | null;
+  updated_at?: string;
   phone?: string;
   email?: string;
   address?: string;

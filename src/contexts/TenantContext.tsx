@@ -19,6 +19,7 @@ export interface TenantStore {
   slug: string;
   name: string;
   logo_path?: string | null;
+  updated_at?: string;
   subscription_status?: string;
   active?: boolean;
 }

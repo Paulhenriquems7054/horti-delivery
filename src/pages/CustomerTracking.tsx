@@ -225,9 +225,10 @@ export default function CustomerTracking() {
           <button onClick={() => navigate(`/${slug}`)} className="text-white hover:opacity-80 transition-opacity">
             <ArrowLeft className="h-6 w-6" />
           </button>
-          <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
+          <div className="h-12 w-12 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1">
             <StoreLogo
               logoPath={store?.logo_path}
+              logoVersion={store?.updated_at}
               alt={store?.name || "Logo"}
               className="h-full w-full"
             />

@@ -21,12 +21,14 @@ import {
   Scale,
   Camera,
   Printer,
+  Eye,
+  LogOut,
+  DollarSign,
 } from "lucide-react";
 import { toast } from "sonner";
 import { useState, useEffect } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { useNavigate } from "react-router-dom";
-import { LogOut, DollarSign } from "lucide-react";
 import { logAuditEvent } from "@/hooks/useAuditLog";
 import { useTenant } from "@/contexts/TenantContext";
 import { StoreLogo } from "@/components/StoreLogo";
@@ -202,9 +204,10 @@ export default function Admin() {
       <header className="gradient-hero px-4 py-5 shadow-md sticky top-0 z-20">
         <div className="mx-auto max-w-6xl flex items-center justify-between gap-3">
           <div className="flex items-center gap-3">
-            <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
+            <div className="h-12 w-12 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1 shrink-0">
               <StoreLogo
                 logoPath={tenantStore?.logo_path}
+                logoVersion={tenantStore?.updated_at}
                 alt={storeName || "Logo"}
                 className="h-full w-full"
               />

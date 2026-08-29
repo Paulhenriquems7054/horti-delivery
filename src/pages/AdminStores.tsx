@@ -139,6 +139,7 @@ export default function AdminStores() {
             storeId={myStore.id}
             storeName={myStore.name}
             logoPath={myStore.logo_path}
+            logoVersion={myStore.updated_at}
             onUpdated={() => {
               void refetch();
               refreshTenant();
@@ -152,6 +153,7 @@ export default function AdminStores() {
               <div className="flex items-start gap-3">
                 <StoreLogo
                   logoPath={store.logo_path}
+                  logoVersion={store.updated_at}
                   alt={store.name}
                   className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center overflow-hidden p-1 shrink-0"
                 />

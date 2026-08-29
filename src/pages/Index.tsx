@@ -265,9 +265,10 @@ export default function Index() {
       <div className="flex min-h-screen flex-col bg-background">
         <header className="gradient-hero px-4 py-5">
           <div className="mx-auto max-w-lg flex items-center gap-2">
-            <div className="h-7 w-7 rounded-lg bg-white/20 flex items-center justify-center overflow-hidden p-1">
+            <div className="h-12 w-12 rounded-lg bg-white/20 flex items-center justify-center overflow-hidden p-1">
               <StoreLogo
                 logoPath={store.logo_path}
+                logoVersion={store.updated_at}
                 alt={store.name}
                 className="h-full w-full"
               />
@@ -393,11 +394,13 @@ export default function Index() {
       {/* Header */}
       <header className="gradient-hero px-4 py-5 shadow-md">
         <div className="mx-auto max-w-lg flex items-center gap-3">
-          <div className="h-10 w-10 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5">
+          <div className="h-16 w-16 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1 shrink-0">
             <StoreLogo
               logoPath={store.logo_path}
+              logoVersion={store.updated_at}
               alt={store.name}
               className="h-full w-full"
+              imgClassName="w-full h-full object-contain"
             />
           </div>
           <div className="flex-1">

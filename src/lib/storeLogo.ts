@@ -9,10 +9,13 @@ export function isValidStoreLogoPath(logoPath: string, storeId: string): boolean
   return logoPath.startsWith(`${ALLOWED_LOGO_PREFIX}${storeId}/`);
 }
 
-export function resolveStoreLogoUrl(logoPath?: string | null): string {
+export function resolveStoreLogoUrl(logoPath?: string | null, cacheVersion?: string | number | null): string {
   if (!logoPath?.trim()) return DEFAULT_STORE_LOGO;
   const { data } = supabase.storage.from(STORE_LOGOS_BUCKET).getPublicUrl(logoPath);
-  return data.publicUrl || DEFAULT_STORE_LOGO;
+  const base = data.publicUrl || DEFAULT_STORE_LOGO;
+  if (!cacheVersion || base === DEFAULT_STORE_LOGO) return base;
+  const sep = base.includes("?") ? "&" : "?";
+  return `${base}${sep}v=${encodeURIComponent(String(cacheVersion))}`;
 }
 
 export function logoExtensionFromMime(mime: string): "png" | "jpg" | "webp" | null {
@@ -33,5 +36,5 @@ export function buildStoreLogoPath(storeId: string, ext: "png" | "jpg" | "webp")
   return `${ALLOWED_LOGO_PREFIX}${storeId}/logo.${ext}`;
 }
 
-export const MAX_STORE_LOGO_BYTES = 2 * 1024 * 1024;
+export const MAX_STORE_LOGO_BYTES = 5 * 1024 * 1024;
 export const ALLOWED_STORE_LOGO_MIMES = ["image/png", "image/jpeg", "image/jpg", "image/webp"] as const;

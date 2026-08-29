@@ -1,3 +1,4 @@
+import { useQueryClient } from "@tanstack/react-query";
 import { useRef, useState } from "react";
 import { Loader2, ImageIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -9,10 +10,12 @@ interface Props {
   storeId: string;
   storeName: string;
   logoPath?: string | null;
+  logoVersion?: string | number | null;
   onUpdated: () => void;
 }
 
-export function StoreLogoUpload({ storeId, storeName, logoPath, onUpdated }: Props) {
+export function StoreLogoUpload({ storeId, storeName, logoPath, logoVersion, onUpdated }: Props) {
+  const queryClient = useQueryClient();
   const inputRef = useRef<HTMLInputElement>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [uploading, setUploading] = useState(false);
@@ -26,6 +29,8 @@ export function StoreLogoUpload({ storeId, storeName, logoPath, onUpdated }: Pro
       await uploadStoreLogo(storeId, file);
       toast.success("Logomarca salva com sucesso!");
       setPreviewUrl(null);
+      await queryClient.invalidateQueries({ queryKey: ["store-info"] });
+      await queryClient.invalidateQueries({ queryKey: ["my-store"] });
       onUpdated();
     } catch (err) {
       setPreviewUrl(null);
@@ -53,6 +58,7 @@ export function StoreLogoUpload({ storeId, storeName, logoPath, onUpdated }: Pro
         ) : (
           <StoreLogo
             logoPath={logoPath}
+            logoVersion={logoVersion}
             alt={storeName}
             className="h-16 w-16 rounded-xl bg-muted flex items-center justify-center overflow-hidden p-2 shrink-0"
           />
@@ -79,7 +85,7 @@ export function StoreLogoUpload({ storeId, storeName, logoPath, onUpdated }: Pro
             )}
             {uploading ? "Salvando…" : "Selecionar imagem"}
           </Button>
-          <p className="text-[11px] text-muted-foreground">PNG, JPG ou WEBP · máx. 2 MB</p>
+          <p className="text-[11px] text-muted-foreground">PNG, JPG ou WEBP · máx. 5 MB</p>
         </div>
       </div>
     </div>

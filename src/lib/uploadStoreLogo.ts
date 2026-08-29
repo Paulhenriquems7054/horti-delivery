@@ -7,12 +7,21 @@ import {
   STORE_LOGOS_BUCKET,
 } from "@/lib/storeLogo";
 
+const LOGO_EXTENSIONS = ["png", "jpg", "webp"] as const;
+
+async function removeOtherLogoFiles(storeId: string, keepExt: "png" | "jpg" | "webp") {
+  const paths = LOGO_EXTENSIONS.filter((ext) => ext !== keepExt).map((ext) =>
+    buildStoreLogoPath(storeId, ext),
+  );
+  await supabase.storage.from(STORE_LOGOS_BUCKET).remove(paths);
+}
+
 export async function uploadStoreLogo(storeId: string, file: File): Promise<string> {
   if (!ALLOWED_STORE_LOGO_MIMES.includes(file.type as (typeof ALLOWED_STORE_LOGO_MIMES)[number])) {
     throw new Error("Formato inválido. Use PNG, JPG ou WEBP.");
   }
   if (file.size > MAX_STORE_LOGO_BYTES) {
-    throw new Error("Arquivo muito grande. Máximo 2 MB.");
+    throw new Error("Arquivo muito grande. Máximo 5 MB.");
   }
 
   const ext = logoExtensionFromMime(file.type);
@@ -22,7 +31,7 @@ export async function uploadStoreLogo(storeId: string, file: File): Promise<stri
 
   const { error: uploadError } = await supabase.storage
     .from(STORE_LOGOS_BUCKET)
-    .upload(path, file, { upsert: true, contentType: file.type });
+    .upload(path, file, { upsert: true, contentType: file.type, cacheControl: "3600" });
 
   if (uploadError) {
     console.error("[uploadStoreLogo]", uploadError);
@@ -43,6 +52,8 @@ export async function uploadStoreLogo(storeId: string, file: File): Promise<stri
   });
 
   if (rpcError) throw new Error("Upload concluído, mas não foi possível vincular a logo à loja.");
+
+  await removeOtherLogoFiles(storeId, ext);
 
   return path;
 }

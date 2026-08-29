@@ -1,35 +1,10 @@
--- Corrige upload/leitura de logomarcas no bucket store-logos
+-- Hotfix: upload de logo — remove dependência de EXECUTE em store_logo_object_owned
+-- Usa is_store_owner inline (mesmo padrão de order-receipts)
 
-INSERT INTO storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
-VALUES (
-  'store-logos',
-  'store-logos',
-  true,
-  2097152,
-  ARRAY['image/jpeg', 'image/jpg', 'image/png', 'image/webp']
-)
-ON CONFLICT (id) DO UPDATE SET
-  public = EXCLUDED.public,
-  file_size_limit = EXCLUDED.file_size_limit,
-  allowed_mime_types = EXCLUDED.allowed_mime_types;
+GRANT EXECUTE ON FUNCTION public.store_logo_object_owned(TEXT) TO authenticated, anon, PUBLIC;
 
-CREATE OR REPLACE FUNCTION public.store_logo_object_owned(p_object_name TEXT)
-RETURNS BOOLEAN
-LANGUAGE sql
-STABLE
-SECURITY DEFINER
-SET search_path = public
-AS $$
-  SELECT
-    COALESCE(p_object_name, '') ~ '^logos/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/'
-    AND (
-      public.is_store_owner(substring(p_object_name from '^logos/([^/]+)/')::uuid)
-      OR public.is_platform_admin()
-    );
-$$;
-
-REVOKE ALL ON FUNCTION public.store_logo_object_owned(TEXT) FROM PUBLIC, anon;
-GRANT EXECUTE ON FUNCTION public.store_logo_object_owned(TEXT) TO authenticated;
+GRANT EXECUTE ON FUNCTION public.get_my_store() TO authenticated;
+GRANT EXECUTE ON FUNCTION public.get_my_store_id() TO authenticated;
 
 DROP POLICY IF EXISTS store_logos_public_select ON storage.objects;
 CREATE POLICY store_logos_public_select ON storage.objects
