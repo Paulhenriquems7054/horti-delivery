@@ -24,7 +24,19 @@ export async function uploadStoreLogo(storeId: string, file: File): Promise<stri
     .from(STORE_LOGOS_BUCKET)
     .upload(path, file, { upsert: true, contentType: file.type });
 
-  if (uploadError) throw new Error("Falha ao enviar a imagem. Tente novamente.");
+  if (uploadError) {
+    console.error("[uploadStoreLogo]", uploadError);
+    if (uploadError.message?.toLowerCase().includes("row-level security")) {
+      throw new Error("Sem permissão para enviar a logomarca. Entre como dono da loja.");
+    }
+    if (uploadError.message?.toLowerCase().includes("bucket not found")) {
+      throw new Error("Bucket de logos não configurado. Aplique a migration store-logos no Supabase.");
+    }
+    if (uploadError.message?.toLowerCase().includes("mime type")) {
+      throw new Error("Formato não permitido pelo servidor. Use PNG, JPG ou WEBP.");
+    }
+    throw new Error(`Falha ao enviar a imagem: ${uploadError.message}`);
+  }
 
   const { error: rpcError } = await supabase.rpc("update_store_logo_path", {
     p_logo_path: path,

@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchMyStore } from "@/lib/resolveMyStore";
 
 export interface Store {
   id: string;
@@ -23,15 +24,7 @@ export function useMyStore() {
     queryFn: async () => {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user) throw new Error("Usuário não autenticado");
-
-      const { data, error } = await supabase
-        .from("stores")
-        .select("*")
-        .eq("user_id", user.id)
-        .maybeSingle();
-      
-      if (error) throw error;
-      return data as Store | null;
+      return fetchMyStore();
     },
   });
 }

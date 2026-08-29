@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "sonner";
 import { logAuditEvent } from "@/hooks/useAuditLog";
+import { fetchMyStore } from "@/lib/resolveMyStore";
 import { Eye, EyeOff } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -27,11 +28,7 @@ export default function Login() {
             navigate(next === "/superadmin" ? "/superadmin" : "/superadmin");
             return;
         }
-        const { data: store } = await (supabase as any)
-            .from("stores")
-            .select("slug")
-            .eq("user_id", (await supabase.auth.getUser()).data.user?.id)
-            .maybeSingle();
+        const store = await fetchMyStore();
         navigate(store?.slug ? `/${store.slug}/admin` : "/admin");
     };
 
@@ -69,8 +66,7 @@ export default function Login() {
         if (error) {
             toast.error(error.message);
         } else {
-            const { data: store } = await (supabase as any)
-                .from("stores").select("id").eq("user_id", (await supabase.auth.getUser()).data.user?.id).maybeSingle();
+            const store = await fetchMyStore();
             await logAuditEvent("login", store?.id, { email });
             toast.success("Login bem-sucedido");
             await redirectAfterAuth();

@@ -1,5 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import { fetchMyStoreId } from "@/lib/resolveMyStore";
 
 export interface Product {
   id: string;
@@ -27,9 +28,7 @@ export function useProducts(storeId?: string) {
       if (!targetStoreId) {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) return [];
-        const { data: store } = await (supabase as any)
-          .from("stores").select("id").eq("user_id", user.id).maybeSingle();
-        targetStoreId = store?.id;
+        targetStoreId = (await fetchMyStoreId()) ?? undefined;
       }
 
       let query = supabase.from("products").select("*").order("name");
@@ -55,14 +54,9 @@ export function useCreateProduct() {
         const { data: { user } } = await supabase.auth.getUser();
         if (!user) throw new Error("Usuário não autenticado");
 
-        const { data: store, error: storeError } = await (supabase as any)
-          .from("stores")
-          .select("id")
-          .eq("user_id", user.id)
-          .maybeSingle();
-        if (storeError) throw storeError;
-        if (!store?.id) throw new Error("Loja não encontrada para o usuário");
-        payload = { ...payload, store_id: store.id };
+        const storeId = await fetchMyStoreId();
+        if (!storeId) throw new Error("Loja não encontrada para o usuário");
+        payload = { ...payload, store_id: storeId };
       }
 
       const defaultAverageWeight = 0.3;

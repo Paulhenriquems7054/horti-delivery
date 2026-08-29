@@ -34,4 +34,4 @@ export function buildStoreLogoPath(storeId: string, ext: "png" | "jpg" | "webp")
 }
 
 export const MAX_STORE_LOGO_BYTES = 2 * 1024 * 1024;
-export const ALLOWED_STORE_LOGO_MIMES = ["image/png", "image/jpeg", "image/webp"] as const;
+export const ALLOWED_STORE_LOGO_MIMES = ["image/png", "image/jpeg", "image/jpg", "image/webp"] as const;

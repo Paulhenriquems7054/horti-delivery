@@ -2,7 +2,7 @@
  * TenantContext — Central multi-tenant context
  *
  * Provides the current store (tenant) to all components.
- * Admin: resolved from auth.uid() → stores.user_id
+ * Admin: resolved from auth.uid() → stores.user_id ou store_members
  * Customer: resolved from URL slug → stores.slug
  *
  * All hooks should consume this context instead of resolving
@@ -10,7 +10,7 @@
  */
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { isStorePubliclyBlocked } from "@/lib/storeAccess";
+import { fetchMyStore } from "@/lib/resolveMyStore";
 import { StoreUnavailable } from "@/components/StoreUnavailable";
 
 export interface TenantStore {
@@ -52,15 +52,17 @@ export function AdminTenantProvider({ children }: { children: ReactNode }) {
       const { data: { user } } = await supabase.auth.getUser();
       if (!user || cancelled) { setIsLoading(false); return; }
 
-      const { data } = await (supabase as any)
-        .from("stores")
-        .select("id, slug, name, logo_path, subscription_status, active")
-        .eq("user_id", user.id)
-        .maybeSingle();
-
-      if (!cancelled) {
-        setStore(data ?? null);
-        setIsLoading(false);
+      try {
+        const data = await fetchMyStore();
+        if (!cancelled) {
+          setStore(data ?? null);
+          setIsLoading(false);
+        }
+      } catch {
+        if (!cancelled) {
+          setStore(null);
+          setIsLoading(false);
+        }
       }
     };
 

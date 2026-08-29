@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useRealtimeDirectDeliveries, useCreateDirectDelivery, useSetDeliveryFee, useUpdateDirectDeliveryStatus } from "@/hooks/useDirectDelivery";
 import { ArrowLeft, Plus, MapPin, Phone, DollarSign, Bike, CheckCircle2, Loader2, RefreshCw, X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { supabase } from "@/integrations/supabase/client";
+import { fetchMyStoreId } from "@/lib/resolveMyStore";
 import { toast } from "sonner";
 
 const STATUS_LABEL: Record<string, { label: string; color: string; bg: string }> = {
@@ -27,10 +27,8 @@ export default function AdminDirectDelivery() {
   const [feeInputs, setFeeInputs] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    supabase.auth.getUser().then(({ data }) => {
-      if (!data.user) return;
-      (supabase as any).from("stores").select("id").eq("user_id", data.user.id).maybeSingle()
-        .then(({ data: s }: any) => { if (s) setStoreId(s.id); });
+    void fetchMyStoreId().then((id) => {
+      if (id) setStoreId(id);
     });
   }, []);
 
