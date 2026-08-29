@@ -19,7 +19,10 @@ export function parseBrazilianPrice(input: string): PriceParseResult {
   s = s.replace(/^R\$\s*/i, "").trim();
   s = s.replace(/\s/g, "");
 
-  if (/^\d{1,3}(\.\d{3})*,\d{1,2}$/.test(s)) {
+  // R$ 1,800.00 ou 1,033.40 (vírgula milhar + ponto decimal)
+  if (/^\d{1,3}(,\d{3})+\.\d{1,2}$/.test(s)) {
+    s = s.replace(/,/g, "");
+  } else if (/^\d{1,3}(\.\d{3})*,\d{1,2}$/.test(s)) {
     s = s.replace(/\./g, "").replace(",", ".");
   } else if (/^\d+,\d{1,2}$/.test(s)) {
     s = s.replace(",", ".");

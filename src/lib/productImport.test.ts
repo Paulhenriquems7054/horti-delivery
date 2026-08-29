@@ -66,6 +66,14 @@ describe("parseBrazilianPrice", () => {
     expect(parseBrazilianPrice("17.90")).toEqual({ ok: true, value: "17.90", cents: 1790 });
   });
 
+  it("parseia R$ 1,800.00 (milhar US com prefixo R$)", () => {
+    expect(parseBrazilianPrice("R$ 1,800.00")).toEqual({ ok: true, value: "1800.00", cents: 180000 });
+  });
+
+  it("parseia R$ 1,033.40", () => {
+    expect(parseBrazilianPrice("R$ 1,033.40")).toEqual({ ok: true, value: "1033.40", cents: 103340 });
+  });
+
   it("rejeita preço inválido", () => {
     expect(parseBrazilianPrice("R$ abc").ok).toBe(false);
   });

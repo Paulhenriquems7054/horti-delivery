@@ -1,5 +1,5 @@
 import { useMemo, useRef, useState } from "react";
-import { Loader2, FileSpreadsheet, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Loader2, FileSpreadsheet, AlertTriangle, CheckCircle2, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 import {
   Dialog,
@@ -31,7 +31,9 @@ interface ProductSpreadsheetImportProps {
   onImported?: () => void;
 }
 
-const PREVIEW_LIMIT = 50;
+const PAGE_SIZE = 100;
+
+type PreviewFilter = "valid" | "problems" | "all";
 
 export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreadsheetImportProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -48,13 +50,40 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
     errors: number;
     total: number;
   } | null>(null);
+  const [previewFilter, setPreviewFilter] = useState<PreviewFilter>("valid");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [previewPage, setPreviewPage] = useState(0);
 
   const { fetchExistingIdentifiers, importProducts, isImporting, progress } =
     useProductSpreadsheetImport(storeId);
 
-  const previewRows = useMemo(() => rows.slice(0, PREVIEW_LIMIT), [rows]);
+  const filteredPreviewRows = useMemo(() => {
+    let list = rows;
+    if (previewFilter === "valid") {
+      list = rows.filter((row) => row.status === "VALID");
+    } else if (previewFilter === "problems") {
+      list = rows.filter((row) => row.status !== "VALID");
+    }
+
+    const query = searchQuery.trim().toLowerCase();
+    if (!query) return list;
+
+    return list.filter(
+      (row) =>
+        row.name.toLowerCase().includes(query) ||
+        row.internalCode.toLowerCase().includes(query) ||
+        row.barcode.toLowerCase().includes(query),
+    );
+  }, [rows, previewFilter, searchQuery]);
+
+  const totalPreviewPages = Math.max(1, Math.ceil(filteredPreviewRows.length / PAGE_SIZE));
+  const previewRows = useMemo(() => {
+    const start = previewPage * PAGE_SIZE;
+    return filteredPreviewRows.slice(start, start + PAGE_SIZE);
+  }, [filteredPreviewRows, previewPage]);
+
   const problemRows = useMemo(
-    () => rows.filter((row) => row.status !== "VALID" && row.status !== "DUPLICATE_EXISTING").slice(0, 20),
+    () => rows.filter((row) => row.status !== "VALID" && row.status !== "DUPLICATE_EXISTING").slice(0, 50),
     [rows],
   );
 
@@ -65,6 +94,9 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
     setStats(null);
     setParseError(null);
     setImportSummary(null);
+    setPreviewFilter("valid");
+    setSearchQuery("");
+    setPreviewPage(0);
     if (fileInputRef.current) fileInputRef.current.value = "";
   };
 
@@ -82,24 +114,34 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
 
     setIsAnalyzing(true);
     setParseError(null);
+    const loadingId = "spreadsheet-analyze";
 
     try {
+      toast.loading("Lendo planilha...", { id: loadingId });
       const existing = await fetchExistingIdentifiers();
       const result = await parseBeiraRioSpreadsheetFile(selectedFile, existing);
       if (!result.ok) {
         setParseError(result.error);
         setRows([]);
         setStats(null);
+        toast.error(result.error, { id: loadingId });
         return;
       }
 
       setRows(result.rows);
       setStats(result.stats);
+      setPreviewPage(0);
+      setPreviewFilter("valid");
+      setSearchQuery("");
       setStep("preview");
+      toast.success(
+        `${result.stats.validRows.toLocaleString("pt-BR")} produtos válidos de ${result.stats.totalRows.toLocaleString("pt-BR")} linhas`,
+        { id: loadingId },
+      );
     } catch (error) {
       const message = error instanceof Error ? error.message : "Erro ao analisar planilha";
       setParseError(message);
-      toast.error(message);
+      toast.error(message, { id: loadingId });
     } finally {
       setIsAnalyzing(false);
     }
@@ -197,6 +239,41 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
                 <StatCard label="Duplicadas" value={stats.duplicateRows + stats.duplicateExistingRows} tone="warn" />
               </div>
 
+              <div className="flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
+                <div className="flex flex-wrap gap-2">
+                  {(["valid", "problems", "all"] as const).map((filter) => (
+                    <button
+                      key={filter}
+                      type="button"
+                      onClick={() => {
+                        setPreviewFilter(filter);
+                        setPreviewPage(0);
+                      }}
+                      className={`h-8 px-3 rounded-lg text-xs font-semibold border transition-colors ${
+                        previewFilter === filter
+                          ? "bg-primary text-primary-foreground border-primary"
+                          : "bg-card text-muted-foreground border-border hover:bg-muted"
+                      }`}
+                    >
+                      {filter === "valid" ? "Válidos" : filter === "problems" ? "Com problemas" : "Todos"}
+                    </button>
+                  ))}
+                </div>
+                <div className="relative flex-1 max-w-sm">
+                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <input
+                    type="search"
+                    value={searchQuery}
+                    onChange={(e) => {
+                      setSearchQuery(e.target.value);
+                      setPreviewPage(0);
+                    }}
+                    placeholder="Buscar por nome, código ou barras..."
+                    className="w-full h-9 pl-9 pr-3 rounded-lg border border-border bg-card text-sm"
+                  />
+                </div>
+              </div>
+
               <div className="rounded-xl border overflow-hidden">
                 <Table>
                   <TableHeader>
@@ -228,11 +305,37 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
                 </Table>
               </div>
 
-              {rows.length > PREVIEW_LIMIT && (
-                <p className="text-xs text-muted-foreground">
-                  Mostrando {PREVIEW_LIMIT} de {rows.length} linhas analisadas.
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-muted-foreground">
+                <p>
+                  Exibindo {previewRows.length.toLocaleString("pt-BR")} de{" "}
+                  {filteredPreviewRows.length.toLocaleString("pt-BR")} linhas
+                  {previewFilter === "valid" ? " válidas" : previewFilter === "problems" ? " com problemas" : ""}
+                  {searchQuery.trim() ? ` (filtro: "${searchQuery.trim()}")` : ""}
                 </p>
-              )}
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    disabled={previewPage <= 0}
+                    onClick={() => setPreviewPage((p) => Math.max(0, p - 1))}
+                    className="h-8 px-2 rounded-lg border disabled:opacity-40 inline-flex items-center gap-1"
+                  >
+                    <ChevronLeft className="h-4 w-4" />
+                    Anterior
+                  </button>
+                  <span>
+                    Página {previewPage + 1} / {totalPreviewPages}
+                  </span>
+                  <button
+                    type="button"
+                    disabled={previewPage >= totalPreviewPages - 1}
+                    onClick={() => setPreviewPage((p) => Math.min(totalPreviewPages - 1, p + 1))}
+                    className="h-8 px-2 rounded-lg border disabled:opacity-40 inline-flex items-center gap-1"
+                  >
+                    Próxima
+                    <ChevronRight className="h-4 w-4" />
+                  </button>
+                </div>
+              </div>
 
               {problemRows.length > 0 && (
                 <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 space-y-2">
