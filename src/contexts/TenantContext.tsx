@@ -11,6 +11,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { fetchMyStore } from "@/lib/resolveMyStore";
+import { isStorePubliclyBlocked } from "@/lib/storeAccess";
 import { StoreUnavailable } from "@/components/StoreUnavailable";
 
 export interface TenantStore {
