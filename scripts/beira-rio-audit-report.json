@@ -1,0 +1,54 @@
+{
+  "arquivo": "E:\\HortiDelivery\\Lista de Produtos\\RELAÇÃO DE PRODUTOS - BEIRA RIO.xlsx",
+  "aba": "RELAÇÃO DE PRODUTOS",
+  "linhas_matriz_com_cabecalho": 19271,
+  "linhas_dados": 19270,
+  "linhas_vazias": 0,
+  "barcodes_placeholder_0": 640,
+  "diagnostico_logica_antiga": {
+    "marcadas_como_duplicadas": 642,
+    "validas_estimadas": 18628,
+    "causa_principal": "Barcode '0' compartilhado por ~640 produtos distintos foi tratado como identidade"
+  },
+  "diagnostico_corrigido": {
+    "produtos_unicos_prontos": 19268,
+    "duplicatas_exatas_extras_removiveis": 0,
+    "conflitos_de_codigo_grupos": 0,
+    "conflitos_de_codigo_linhas": 0,
+    "conflitos_de_barcode_grupos": 1,
+    "conflitos_de_barcode_linhas": 2,
+    "falsos_positivos_corrigidos_barcode_0": 640,
+    "conflito_real_exemplo": {
+      "barcode": "7891025121626",
+      "produtos": [
+        "2528 | BEBIDA LACTEA DANONE 510G | 8.70",
+        "17974 | POLPA DANONE 85G | 1.45"
+      ]
+    }
+  },
+  "classificacao_nos_prontos": {
+    "prontos": 19268,
+    "CLASSIFIED": 8614,
+    "REVIEW_REQUIRED": 667,
+    "UNCLASSIFIED": 9987,
+    "por_categoria": {
+      "Mercearia Seca e Básica": 2227,
+      "Frios e Laticínios": 809,
+      "Higiene Pessoal": 2418,
+      "Hortifrúti": 1232,
+      "Limpeza": 710,
+      "Bebidas": 525,
+      "Padaria e Confeitaria": 249,
+      "Utilidades e Outros": 289,
+      "Produtos Descartáveis": 155
+    },
+    "review_required_plus_unclassified": 10654
+  },
+  "resumo_ui_esperado": {
+    "linhas_encontradas": 19270,
+    "produtos_prontos_para_importar": 19268,
+    "duplicatas_exatas": 0,
+    "conflitos_para_revisao": 2,
+    "com_erro": 0
+  }
+}

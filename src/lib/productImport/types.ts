@@ -1,9 +1,13 @@
 export type ImportRowStatus =
   | "VALID"
   | "INVALID"
-  | "DUPLICATE"
+  | "EXACT_DUPLICATE"
+  | "CODE_CONFLICT"
+  | "BARCODE_CONFLICT"
   | "DUPLICATE_EXISTING"
-  | "WARNING";
+  | "WARNING"
+  /** @deprecated use EXACT_DUPLICATE / CODE_CONFLICT / BARCODE_CONFLICT */
+  | "DUPLICATE";
 
 export interface ParsedImportRow {
   rowNumber: number;
@@ -14,6 +18,10 @@ export interface ParsedImportRow {
   price: string | null;
   status: ImportRowStatus;
   messages: string[];
+  classificationStatus?: "CLASSIFIED" | "REVIEW_REQUIRED" | "UNCLASSIFIED";
+  suggestedCategoryName?: string | null;
+  classificationReason?: string;
+  dedupeKind?: string;
 }
 
 export type SpreadsheetParseResult =
@@ -32,10 +40,18 @@ export interface ImportPreviewStats {
   totalRows: number;
   validRows: number;
   invalidRows: number;
+  /** extras exatos removidos do lote (mantém 1) */
+  exactDuplicateRows: number;
+  codeConflictRows: number;
+  barcodeConflictRows: number;
+  /** @deprecated soma legada — preferir campos específicos */
   duplicateRows: number;
   duplicateExistingRows: number;
   warningRows: number;
   skippedEmptyRows: number;
+  classifiedRows: number;
+  reviewRequiredRows: number;
+  unclassifiedRows: number;
 }
 
 export interface ImportableProduct {
@@ -44,6 +60,8 @@ export interface ImportableProduct {
   name: string;
   price: string;
   sourceRow: number;
+  category_id?: string | null;
+  classification_status?: string;
 }
 
 export const BEIRA_RIO_REQUIRED_COLUMNS = [

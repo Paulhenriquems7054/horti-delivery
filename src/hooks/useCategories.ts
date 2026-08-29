@@ -9,6 +9,7 @@ export interface Category {
   icon?: string;
   active: boolean;
   created_at: string;
+  sort_order?: number;
 }
 
 export function useCategories(storeId?: string) {
@@ -17,8 +18,15 @@ export function useCategories(storeId?: string) {
     queryFn: async () => {
       let query = supabase.from("categories").select("*").eq("active", true);
       if (storeId) query = query.eq("store_id", storeId);
-      const { data, error } = await query.order("name");
-      if (error) throw error;
+      const { data, error } = await query.order("sort_order", { ascending: true }).order("name");
+      if (error) {
+        // fallback se sort_order ainda não existir no Hosted
+        const fallback = supabase.from("categories").select("*").eq("active", true);
+        const q = storeId ? fallback.eq("store_id", storeId) : fallback;
+        const { data: data2, error: error2 } = await q.order("name");
+        if (error2) throw error2;
+        return data2 as Category[];
+      }
       return data as Category[];
     },
     enabled: !!storeId,

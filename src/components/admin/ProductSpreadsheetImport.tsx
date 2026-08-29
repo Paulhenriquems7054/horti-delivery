@@ -49,6 +49,8 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
     skippedExisting: number;
     errors: number;
     total: number;
+    classifiedOnInsert: number;
+    pendingReview: number;
   } | null>(null);
   const [previewFilter, setPreviewFilter] = useState<PreviewFilter>("valid");
   const [searchQuery, setSearchQuery] = useState("");
@@ -156,8 +158,10 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
       setImportSummary({
         inserted: result.inserted,
         skippedExisting: result.skippedExisting + stats.duplicateExistingRows,
-        errors: result.errors + stats.invalidRows + stats.duplicateRows,
+        errors: result.errors + stats.invalidRows + stats.codeConflictRows + stats.barcodeConflictRows,
         total: stats.totalRows,
+        classifiedOnInsert: result.classifiedOnInsert,
+        pendingReview: result.pendingReview,
       });
       setStep("done");
       toast.success("Importação concluída");
@@ -232,12 +236,26 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
 
           {step === "preview" && stats && (
             <div className="space-y-4">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 <StatCard label="Linhas encontradas" value={stats.totalRows} />
-                <StatCard label="Válidas" value={stats.validRows} tone="success" />
+                <StatCard label="Prontos p/ importar" value={stats.validRows} tone="success" />
+                <StatCard label="Já existentes na loja" value={stats.duplicateExistingRows} tone="warn" />
+                <StatCard label="Duplicatas exatas" value={stats.exactDuplicateRows} tone="warn" />
+                <StatCard label="Conflitos (código/barras)" value={stats.codeConflictRows + stats.barcodeConflictRows} tone="danger" />
                 <StatCard label="Com erro" value={stats.invalidRows} tone="danger" />
-                <StatCard label="Duplicadas" value={stats.duplicateRows + stats.duplicateExistingRows} tone="warn" />
               </div>
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <StatCard label="Com categoria sugerida" value={stats.classifiedRows} tone="success" />
+                <StatCard label="Revisão de categoria" value={stats.reviewRequiredRows + stats.unclassifiedRows} tone="warn" />
+                <StatCard label="Linhas vazias ignoradas" value={stats.skippedEmptyRows} />
+              </div>
+              {(stats.codeConflictRows > 0 || stats.barcodeConflictRows > 0) && (
+                <p className="text-xs text-amber-900 bg-amber-50 border border-amber-200 rounded-lg p-3">
+                  Conflitos de código/barcode <strong>não são apagados</strong> automaticamente — ficam fora
+                  do lote e exigem revisão. Código de barras &quot;0&quot; (placeholder) não gera mais
+                  falso positivo de duplicidade.
+                </p>
+              )}
 
               <div className="flex flex-col sm:flex-row gap-2 sm:items-center sm:justify-between">
                 <div className="flex flex-wrap gap-2">
@@ -377,9 +395,17 @@ export function ProductSpreadsheetImport({ storeId, onImported }: ProductSpreads
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <StatCard label="Total analisado" value={importSummary.total} />
                 <StatCard label="Importados" value={importSummary.inserted} tone="success" />
+                <StatCard label="Com categoria" value={importSummary.classifiedOnInsert} tone="success" />
+                <StatCard label="Revisão de categoria" value={importSummary.pendingReview} tone="warn" />
                 <StatCard label="Duplicados / ignorados" value={importSummary.skippedExisting} tone="warn" />
                 <StatCard label="Erros" value={importSummary.errors} tone="danger" />
               </div>
+              {importSummary.pendingReview > 0 && (
+                <p className="text-xs text-amber-800 bg-amber-50 border border-amber-200 rounded-lg p-3">
+                  Produtos sem classificação segura ficaram sem categoria. Use a seção
+                  &quot;Revisão de categorias&quot; no painel para atribuir manualmente.
+                </p>
+              )}
             </div>
           )}
 
@@ -473,16 +499,22 @@ function StatusBadge({ row }: { row: ParsedImportRow }) {
       ? "Válida"
       : row.status === "INVALID"
         ? "Inválida"
-        : row.status === "DUPLICATE"
-          ? "Duplicada"
-          : row.status === "DUPLICATE_EXISTING"
-            ? "Já existe"
-            : "Aviso";
+        : row.status === "EXACT_DUPLICATE"
+          ? "Duplicata exata"
+          : row.status === "CODE_CONFLICT"
+            ? "Conflito código"
+            : row.status === "BARCODE_CONFLICT"
+              ? "Conflito barras"
+              : row.status === "DUPLICATE"
+                ? "Duplicada"
+                : row.status === "DUPLICATE_EXISTING"
+                  ? "Já existe"
+                  : "Aviso";
 
   const className =
     row.status === "VALID"
       ? "text-emerald-700"
-      : row.status === "DUPLICATE_EXISTING"
+      : row.status === "DUPLICATE_EXISTING" || row.status === "EXACT_DUPLICATE" || row.status === "WARNING"
         ? "text-amber-700"
         : "text-destructive";
 

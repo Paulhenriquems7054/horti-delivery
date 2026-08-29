@@ -3,6 +3,11 @@ import {
   normalizeIdentifier,
   normalizeProductName,
 } from "@/lib/productImport/normalize";
+import { classifyProductName } from "@/lib/productCategory/classifyProduct";
+import {
+  annotateSpreadsheetDuplicates,
+  isMeaningfulBarcode,
+} from "@/lib/productImport/dedupe";
 import type {
   ImportPreviewStats,
   ImportableProduct,
@@ -33,15 +38,47 @@ function isRowEmpty(row: RawSpreadsheetRow): boolean {
 }
 
 function buildStats(rows: ParsedImportRow[], skippedEmptyRows: number): ImportPreviewStats {
+  const exactDuplicateRows = rows.filter((r) => r.status === "EXACT_DUPLICATE").length;
+  const codeConflictRows = rows.filter((r) => r.status === "CODE_CONFLICT").length;
+  const barcodeConflictRows = rows.filter((r) => r.status === "BARCODE_CONFLICT").length;
+  const legacyDup = rows.filter((r) => r.status === "DUPLICATE").length;
+
   return {
     totalRows: rows.length,
     validRows: rows.filter((r) => r.status === "VALID").length,
     invalidRows: rows.filter((r) => r.status === "INVALID").length,
-    duplicateRows: rows.filter((r) => r.status === "DUPLICATE").length,
+    exactDuplicateRows,
+    codeConflictRows,
+    barcodeConflictRows,
+    duplicateRows: exactDuplicateRows + codeConflictRows + barcodeConflictRows + legacyDup,
     duplicateExistingRows: rows.filter((r) => r.status === "DUPLICATE_EXISTING").length,
     warningRows: rows.filter((r) => r.status === "WARNING").length,
     skippedEmptyRows,
+    classifiedRows: rows.filter(
+      (r) => r.status === "VALID" && r.classificationStatus === "CLASSIFIED",
+    ).length,
+    reviewRequiredRows: rows.filter(
+      (r) => r.status === "VALID" && r.classificationStatus === "REVIEW_REQUIRED",
+    ).length,
+    unclassifiedRows: rows.filter(
+      (r) => r.status === "VALID" && r.classificationStatus === "UNCLASSIFIED",
+    ).length,
   };
+}
+
+function mapDedupeKindToStatus(
+  kind: string,
+): ParsedImportRow["status"] | null {
+  switch (kind) {
+    case "DUPLICATA_EXATA":
+      return "EXACT_DUPLICATE";
+    case "CONFLITO_DE_CODIGO":
+      return "CODE_CONFLICT";
+    case "CONFLITO_DE_CODIGO_BARRAS":
+      return "BARCODE_CONFLICT";
+    default:
+      return null;
+  }
 }
 
 export function validateSpreadsheetRows(
@@ -96,61 +133,69 @@ export function validateSpreadsheetRows(
     });
   }
 
-  const codeCounts = new Map<string, number[]>();
-  const barcodeCounts = new Map<string, number[]>();
-
+  // Classificação determinística
   for (const row of parsed) {
-    if (row.internalCode) {
-      const list = codeCounts.get(row.internalCode) ?? [];
-      list.push(row.rowNumber);
-      codeCounts.set(row.internalCode, list);
-    }
-    if (row.barcode) {
-      const list = barcodeCounts.get(row.barcode) ?? [];
-      list.push(row.rowNumber);
-      barcodeCounts.set(row.barcode, list);
+    if (row.status === "INVALID") continue;
+    const classification = classifyProductName(row.name);
+    row.classificationStatus = classification.status;
+    row.suggestedCategoryName = classification.categoryName;
+    row.classificationReason = classification.reason;
+    if (classification.status === "REVIEW_REQUIRED" || classification.status === "UNCLASSIFIED") {
+      row.messages.push(`Categoria: ${classification.reason}`);
+    } else if (classification.categoryName) {
+      row.messages.push(`Categoria sugerida: ${classification.categoryName}`);
     }
   }
+
+  // Deduplicação auditável (não trata barcode "0" como identidade)
+  const eligibleForDedupe = parsed.filter((r) => r.status !== "INVALID");
+  const { annotations } = annotateSpreadsheetDuplicates(
+    eligibleForDedupe.map((r) => ({
+      rowNumber: r.rowNumber,
+      internalCode: r.internalCode,
+      barcode: r.barcode,
+      name: r.name,
+      price: r.price,
+    })),
+  );
 
   for (const row of parsed) {
     if (row.status === "INVALID") continue;
-
-    if (row.internalCode) {
-      const rowsWithCode = codeCounts.get(row.internalCode) ?? [];
-      if (rowsWithCode.length > 1) {
-        row.status = "DUPLICATE";
-        row.messages.push(`Código ${row.internalCode} aparece ${rowsWithCode.length} vezes na planilha`);
-      }
-    }
-
-    if (row.status !== "DUPLICATE" && row.barcode) {
-      const rowsWithBarcode = barcodeCounts.get(row.barcode) ?? [];
-      if (rowsWithBarcode.length > 1) {
-        row.status = "DUPLICATE";
-        row.messages.push(`Código de barras ${row.barcode} aparece ${rowsWithBarcode.length} vezes na planilha`);
-      }
+    const ann = annotations.get(row.rowNumber);
+    if (!ann) continue;
+    row.dedupeKind = ann.kind;
+    const mapped = mapDedupeKindToStatus(ann.kind);
+    if (mapped) {
+      row.status = mapped;
+      if (ann.message) row.messages.push(ann.message);
     }
   }
 
+  // Produtos já existentes na mesma loja (código / barcode significativo)
+  // Nome igual sozinho NÃO bloqueia importação — só aviso.
   if (existing) {
     for (const row of parsed) {
-      if (row.status === "INVALID" || row.status === "DUPLICATE") continue;
+      if (row.status !== "VALID") continue;
 
-      if (existing.internalCodes.has(row.internalCode)) {
+      if (row.internalCode && existing.internalCodes.has(row.internalCode)) {
         row.status = "DUPLICATE_EXISTING";
         row.messages.push(`Código ${row.internalCode} já existe na loja`);
         continue;
       }
 
-      if (row.barcode && existing.barcodes.has(row.barcode)) {
+      if (
+        isMeaningfulBarcode(row.barcode) &&
+        existing.barcodes.has(row.barcode)
+      ) {
         row.status = "DUPLICATE_EXISTING";
         row.messages.push(`Código de barras ${row.barcode} já existe na loja`);
         continue;
       }
 
       if (existing.namesLower.has(row.name.toLowerCase())) {
-        row.status = "DUPLICATE_EXISTING";
-        row.messages.push(`Produto "${row.name}" já existe na loja`);
+        row.messages.push(
+          `Aviso: nome "${row.name}" já existe na loja com outro código — importação não bloqueada`,
+        );
       }
     }
   }
@@ -161,18 +206,31 @@ export function validateSpreadsheetRows(
   };
 }
 
-export function getImportableProducts(rows: ParsedImportRow[]): ImportableProduct[] {
+export function getImportableProducts(
+  rows: ParsedImportRow[],
+  categoryIdByName?: Map<string, string>,
+): ImportableProduct[] {
   return rows
     .filter((row) => row.status === "VALID" && row.price != null)
-    .map((row) => ({
-      internal_code: row.internalCode,
-      barcode: row.barcode,
-      name: row.name,
-      price: row.price!,
-      sourceRow: row.rowNumber,
-    }));
+    .map((row) => {
+      const classified =
+        row.classificationStatus === "CLASSIFIED" && row.suggestedCategoryName
+          ? categoryIdByName?.get(row.suggestedCategoryName) ?? null
+          : null;
+
+      return {
+        internal_code: row.internalCode,
+        barcode: row.barcode,
+        name: row.name,
+        price: row.price!,
+        sourceRow: row.rowNumber,
+        category_id: classified,
+        classification_status: row.classificationStatus ?? "UNCLASSIFIED",
+      };
+    });
 }
 
 export function hasCriticalSpreadsheetErrors(stats: ImportPreviewStats): boolean {
+  // Conflitos não bloqueiam importação dos VALID; só falta de válidos bloqueia
   return stats.validRows === 0;
 }

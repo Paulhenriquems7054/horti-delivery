@@ -19,11 +19,15 @@ describe("planilha real Beira Rio", () => {
     if (!result.ok) return;
 
     expect(result.stats.totalRows).toBe(19270);
-    expect(result.stats.validRows).toBe(18628);
     expect(result.stats.invalidRows).toBe(0);
-    expect(result.stats.duplicateRows).toBe(642);
+    // barcode "0" não conta mais como duplicata; só conflito real 7891025121626 (2 linhas)
+    expect(result.stats.barcodeConflictRows).toBe(2);
+    expect(result.stats.exactDuplicateRows).toBe(0);
+    expect(result.stats.codeConflictRows).toBe(0);
+    expect(result.stats.validRows).toBe(19268);
 
     const chia = result.rows.find((row) => row.internalCode === "12803");
+    expect(chia?.status).toBe("VALID");
     expect(chia?.name).toBe("CHIA TIA SONIA 100G");
     expect(chia?.barcode).toBe("7898115755600");
     expect(chia?.price).toBe("17.90");
@@ -31,5 +35,9 @@ describe("planilha real Beira Rio", () => {
     const grego = result.rows.find((row) => row.internalCode === "18189");
     expect(grego?.name).toBe("GREGO DANONE ORIGINAL 85G");
     expect(grego?.price).toBe("3.25");
+
+    const placeholderBarcode = result.rows.filter((r) => r.barcode === "0");
+    expect(placeholderBarcode.length).toBeGreaterThan(100);
+    expect(placeholderBarcode.every((r) => r.status === "VALID")).toBe(true);
   }, 60_000);
 });

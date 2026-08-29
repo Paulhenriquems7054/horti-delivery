@@ -17,6 +17,8 @@ export interface ImportExecutionResult {
   skippedExisting: number;
   errors: number;
   totalProcessed: number;
+  classifiedOnInsert: number;
+  pendingReview: number;
 }
 
 export function useProductSpreadsheetImport(storeId: string | undefined) {
@@ -50,6 +52,21 @@ export function useProductSpreadsheetImport(storeId: string | undefined) {
     return { internalCodes, barcodes, namesLower };
   }, [storeId]);
 
+  const ensureCategories = useCallback(async (): Promise<Map<string, string>> => {
+    const { data, error } = await supabase.rpc("ensure_store_catalog_categories");
+    if (error) throw error;
+
+    const map = new Map<string, string>();
+    const payload = data as {
+      categories?: Array<{ id: string; name: string }>;
+    } | null;
+
+    for (const cat of payload?.categories ?? []) {
+      map.set(cat.name, cat.id);
+    }
+    return map;
+  }, []);
+
   const importProducts = useCallback(
     async (
       filename: string,
@@ -58,10 +75,14 @@ export function useProductSpreadsheetImport(storeId: string | undefined) {
     ): Promise<ImportExecutionResult> => {
       if (!storeId) throw new Error("Loja não carregada");
 
-      const products = getImportableProducts(rows);
+      const categoryMap = await ensureCategories();
+      const products = getImportableProducts(rows, categoryMap);
       if (products.length === 0) {
         throw new Error("Nenhum produto válido para importar");
       }
+
+      const classifiedOnInsert = products.filter((p) => !!p.category_id).length;
+      const pendingReview = products.filter((p) => !p.category_id).length;
 
       setIsImporting(true);
       setProgress({ done: 0, total: products.length });
@@ -109,6 +130,8 @@ export function useProductSpreadsheetImport(storeId: string | undefined) {
             client_invalid_rows: stats.invalidRows,
             client_duplicate_rows: stats.duplicateRows,
             client_duplicate_existing_rows: stats.duplicateExistingRows,
+            classified_on_insert: classifiedOnInsert,
+            pending_category_review: pendingReview,
           },
         });
 
@@ -120,17 +143,20 @@ export function useProductSpreadsheetImport(storeId: string | undefined) {
           skippedExisting,
           errors,
           totalProcessed: products.length,
+          classifiedOnInsert,
+          pendingReview,
         };
       } finally {
         setIsImporting(false);
       }
     },
-    [storeId],
+    [storeId, ensureCategories],
   );
 
   return {
     fetchExistingIdentifiers,
     importProducts,
+    ensureCategories,
     isImporting,
     progress,
   };
@@ -143,5 +169,7 @@ function toRpcItem(product: ImportableProduct) {
     name: product.name,
     price: product.price,
     source_row: product.sourceRow,
+    category_id: product.category_id ?? null,
+    classification_status: product.classification_status ?? null,
   };
 }

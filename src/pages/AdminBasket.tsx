@@ -8,6 +8,7 @@ import { useDeliveryZones, useManageDeliveryZone } from "@/hooks/useDeliveryZone
 import { ProductWeightSettings } from "@/components/admin/ProductWeightSettings";
 import { useTenant } from "@/contexts/TenantContext";
 import { ProductSpreadsheetImport } from "@/components/admin/ProductSpreadsheetImport";
+import { ProductCategoryReview } from "@/components/admin/ProductCategoryReview";
 
 export default function AdminBasket() {
   const navigate = useNavigate();
@@ -711,11 +712,14 @@ export default function AdminBasket() {
                   onImported={() => {
                     queryClient.invalidateQueries({ queryKey: STORE_PRODUCTS_KEY });
                     queryClient.invalidateQueries({ queryKey: ["admin-active-basket", tenantStoreId] });
+                    queryClient.invalidateQueries({ queryKey: ["admin-uncategorized-products", tenantStoreId] });
                   }}
                 />
               </div>
           </div>
         </div>
+
+        <ProductCategoryReview storeId={tenantStoreId} />
 
         {/* Lista de Produtos */}
         {false && (

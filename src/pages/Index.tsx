@@ -157,8 +157,14 @@ export default function Index() {
     if (!basket?.products) return [];
     
     let filtered = basket.products;
+
+    // Catálogo por categoria: sem seleção, não misturar todos os produtos
+    if (!selectedCategory) {
+      return [];
+    }
     
-    // Apply search filter
+    filtered = filtered.filter(p => p.category_id === selectedCategory);
+    
     if (searchQuery) {
       const query = searchQuery.toLowerCase();
       filtered = filtered.filter(p => 
@@ -167,13 +173,13 @@ export default function Index() {
       );
     }
     
-    // Apply category filter
-    if (selectedCategory) {
-      filtered = filtered.filter(p => p.category_id === selectedCategory);
-    }
-    
     return filtered;
   }, [basket?.products, searchQuery, selectedCategory]);
+
+  const selectedCategoryHasNoProducts =
+    !!selectedCategory &&
+    !!basket?.products &&
+    !basket.products.some((p) => p.category_id === selectedCategory);
 
   if (isStoreLoading) {
     return (
@@ -391,10 +397,10 @@ export default function Index() {
   /* ─── Cesta + Checkout ─── */
   return (
     <div className="min-h-screen bg-background dark:bg-slate-900 flex flex-col">
-      {/* Header */}
-      <header className="gradient-hero px-4 py-5 shadow-md">
+      {/* Header — identidade da loja (não da plataforma) */}
+      <header className="gradient-hero px-4 py-6 shadow-md">
         <div className="mx-auto max-w-lg flex items-center gap-3">
-          <div className="h-16 w-16 rounded-xl bg-white/20 flex items-center justify-center overflow-hidden p-1 shrink-0">
+          <div className="h-20 w-20 rounded-2xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5 shrink-0 ring-2 ring-white/30">
             <StoreLogo
               logoPath={store.logo_path}
               logoVersion={store.updated_at}
@@ -403,16 +409,18 @@ export default function Index() {
               imgClassName="w-full h-full object-contain"
             />
           </div>
-          <div className="flex-1">
-            <h1 className="text-base font-extrabold text-white leading-tight">
+          <div className="flex-1 min-w-0">
+            <h1 className="text-xl font-extrabold text-white leading-tight truncate">
               {store.name}
             </h1>
-            <p className="text-xs text-white/75">{store.description || "Hortifruti fresquinho na sua porta 🌿"}</p>
+            <p className="text-sm text-white/85 mt-0.5">
+              Escolha seus produtos e faça seu pedido.
+            </p>
           </div>
           <button
             type="button"
             onClick={() => navigate(`/${slug}/rastrear`)}
-            className="h-10 px-3 rounded-xl bg-white/20 text-white text-xs font-bold inline-flex items-center gap-1.5 hover:bg-white/30"
+            className="h-10 px-3 rounded-xl bg-white/20 text-white text-xs font-bold inline-flex items-center gap-1.5 hover:bg-white/30 shrink-0"
           >
             <ClipboardList className="h-4 w-4" />
             Meus pedidos
@@ -510,23 +518,43 @@ export default function Index() {
             {/* Lista de produtos */}
             <div className="mt-5 space-y-3">
               <h3 className="text-sm font-extrabold text-muted-foreground uppercase tracking-wider px-1">
-                Catálogo da Semana
+                Catálogo
               </h3>
               
-              {/* Search and Filter */}
               <div className="space-y-3">
-                <ProductSearch onSearch={setSearchQuery} />
                 <CategoryFilter 
                   storeId={store.id} 
                   selectedCategory={selectedCategory}
                   onSelectCategory={setSelectedCategory}
+                  requireSelection
                 />
+                {selectedCategory && (
+                  <ProductSearch onSearch={setSearchQuery} />
+                )}
               </div>
 
-              {filteredProducts.length === 0 && (
+              {!selectedCategory && (
+                <div className="text-center py-10 rounded-2xl border border-dashed border-border bg-card/50">
+                  <Package className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
+                  <p className="text-sm font-semibold text-foreground">Selecione uma categoria</p>
+                  <p className="text-xs text-muted-foreground mt-1 px-6">
+                    Os produtos aparecem filtrados pela categoria escolhida nesta loja.
+                  </p>
+                </div>
+              )}
+
+              {selectedCategory && selectedCategoryHasNoProducts && (
+                <div className="text-center py-10 rounded-2xl border border-border bg-card">
+                  <p className="text-sm font-medium text-muted-foreground">
+                    Esta categoria ainda não possui produtos disponíveis.
+                  </p>
+                </div>
+              )}
+
+              {selectedCategory && !selectedCategoryHasNoProducts && filteredProducts.length === 0 && (
                 <div className="text-center py-12">
                   <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
-                  <p className="text-muted-foreground">Nenhum produto encontrado</p>
+                  <p className="text-muted-foreground">Nenhum produto encontrado nesta busca</p>
                 </div>
               )}
 
@@ -541,7 +569,7 @@ export default function Index() {
                   .reduce((s, l) => s + l.weightKg, 0);
 
                 return (
-                <div key={p.id} className="animate-slide-up" style={{ animationDelay: `${i * 60}ms`, opacity: 0 }}>
+                <div key={p.id} className="animate-slide-up" style={{ animationDelay: `${i * 40}ms`, opacity: 0 }}>
                   <ProductCard
                     product={p}
                     cartQty={mode === 'unit' ? cartQty : productLines.filter((l) => l.soldBy === 'weight').length}
@@ -664,9 +692,14 @@ export default function Index() {
         onConfirm={handleWeightConfirm}
       />
 
-      {/* Footer com link para Administração */}
+      {/* Footer — plataforma secundária */}
       <footer className="py-6 text-center border-t mt-auto">
-        <p className="text-[10px] text-slate-400 font-medium">© {new Date().getFullYear()} {store?.name || "HortiDelivery"} • Pedidos Seguros</p>
+        <p className="text-[10px] text-slate-400 font-medium">
+          © {new Date().getFullYear()} {store?.name} · Pedidos seguros
+        </p>
+        <p className="text-[10px] text-slate-400/80 font-medium mt-1">
+          Tecnologia HortiDelivery
+        </p>
       </footer>
 
     </div>

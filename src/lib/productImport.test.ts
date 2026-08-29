@@ -159,7 +159,7 @@ describe("validateSpreadsheetRows", () => {
     expect(rows[0].messages.some((m) => m.includes("Preço inválido"))).toBe(true);
   });
 
-  it("detecta duplicidade de código na planilha", () => {
+  it("marca conflito quando mesmo código tem dados diferentes", () => {
     const { rows, stats } = validateSpreadsheetRows([
       ...baseRows,
       {
@@ -170,17 +170,115 @@ describe("validateSpreadsheetRows", () => {
         priceRaw: "1,00",
       },
     ]);
-    expect(stats.duplicateRows).toBe(2);
-    expect(rows.filter((r) => r.status === "DUPLICATE").length).toBe(2);
+    expect(stats.codeConflictRows).toBe(2);
+    expect(rows.filter((r) => r.status === "CODE_CONFLICT").length).toBe(2);
+    expect(getImportableProducts(rows).every((p) => p.internal_code !== "12803")).toBe(true);
   });
 
-  it("detecta duplicidade com produtos existentes", () => {
+  it("remove apenas extras de duplicata exata", () => {
+    const { rows, stats } = validateSpreadsheetRows([
+      {
+        rowNumber: 2,
+        internalCode: "12803",
+        barcode: "7898115755600",
+        name: "CHIA TIA SONIA 100G",
+        priceRaw: "R$ 17,90",
+      },
+      {
+        rowNumber: 3,
+        internalCode: "12803",
+        barcode: "7898115755600",
+        name: "CHIA TIA SONIA 100G",
+        priceRaw: "17,90",
+      },
+    ]);
+    expect(stats.exactDuplicateRows).toBe(1);
+    expect(stats.validRows).toBe(1);
+    expect(rows[0].status).toBe("VALID");
+    expect(rows[1].status).toBe("EXACT_DUPLICATE");
+  });
+
+  it("não trata barcode 0 como identidade (falso positivo)", () => {
+    const { rows, stats } = validateSpreadsheetRows([
+      {
+        rowNumber: 2,
+        internalCode: "100",
+        barcode: "0",
+        name: "PRODUTO A",
+        priceRaw: "1,00",
+      },
+      {
+        rowNumber: 3,
+        internalCode: "200",
+        barcode: "0",
+        name: "PRODUTO B",
+        priceRaw: "2,00",
+      },
+    ]);
+    expect(stats.validRows).toBe(2);
+    expect(stats.barcodeConflictRows).toBe(0);
+    expect(rows.every((r) => r.status === "VALID")).toBe(true);
+  });
+
+  it("detecta conflito de código de barras significativo", () => {
+    const { rows, stats } = validateSpreadsheetRows([
+      {
+        rowNumber: 2,
+        internalCode: "2528",
+        barcode: "7891025121626",
+        name: "BEBIDA LACTEA DANONE 510G",
+        priceRaw: "8,70",
+      },
+      {
+        rowNumber: 3,
+        internalCode: "17974",
+        barcode: "7891025121626",
+        name: "POLPA DANONE 85G",
+        priceRaw: "1,45",
+      },
+    ]);
+    expect(stats.barcodeConflictRows).toBe(2);
+    expect(rows.every((r) => r.status === "BARCODE_CONFLICT")).toBe(true);
+  });
+
+  it("mesmo nome com códigos diferentes NÃO é duplicata", () => {
+    const { rows, stats } = validateSpreadsheetRows([
+      {
+        rowNumber: 2,
+        internalCode: "1",
+        barcode: "111",
+        name: "LEITE INTEGRAL 1L",
+        priceRaw: "5,00",
+      },
+      {
+        rowNumber: 3,
+        internalCode: "2",
+        barcode: "222",
+        name: "LEITE INTEGRAL 1L",
+        priceRaw: "5,50",
+      },
+    ]);
+    expect(stats.validRows).toBe(2);
+    expect(rows.every((r) => r.status === "VALID")).toBe(true);
+  });
+
+  it("detecta duplicidade com produtos existentes por código", () => {
     const { rows } = validateSpreadsheetRows(baseRows, {
       internalCodes: new Set(["12803"]),
       barcodes: new Set(),
       namesLower: new Set(),
     });
     expect(rows[0].status).toBe("DUPLICATE_EXISTING");
+  });
+
+  it("nome existente na loja não bloqueia se códigos diferem", () => {
+    const { rows } = validateSpreadsheetRows(baseRows, {
+      internalCodes: new Set(),
+      barcodes: new Set(),
+      namesLower: new Set(["chia tia sonia 100g"]),
+    });
+    expect(rows[0].status).toBe("VALID");
+    expect(rows[0].messages.some((m) => m.includes("Aviso"))).toBe(true);
   });
 
   it("retorna produtos importáveis apenas das linhas válidas", () => {
