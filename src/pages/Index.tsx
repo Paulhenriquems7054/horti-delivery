@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useActiveBasket } from "@/hooks/useActiveBasket";
 import { useCreateOrder } from "@/hooks/useCreateOrder";
 import { ProductCard } from "@/components/ProductCard";
@@ -8,7 +8,7 @@ import { CategoryFilter } from "@/components/CategoryFilter";
 import { WeightPickerModal } from "@/components/WeightPickerModal";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { CartEstimateWarning } from "@/components/CartEstimateWarning";
-import { ShoppingCart, CheckCircle2, Leaf, Package, Store, ClipboardList } from "lucide-react";
+import { ShoppingCart, CheckCircle2, Leaf, Package, Store, ClipboardList, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useParams, useNavigate } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
@@ -24,31 +24,68 @@ import { useStoreOperationalSettings } from "@/hooks/useStoreOperationalSettings
 import { isWithinDeliveryHours } from "@/lib/storeHours";
 import type { CartLineItem } from "@/types/cart";
 import { newCartLine, resolveCartLines } from "@/types/cart";
+import { useCategories } from "@/hooks/useCategories";
+import { useCategoryProductCounts } from "@/hooks/useCategoryProductCounts";
+import {
+  flattenCatalogPages,
+  useStoreCatalogProducts,
+} from "@/hooks/useStoreCatalogProducts";
+import { useProductsByIds } from "@/hooks/useProductsByIds";
 
 type Step = "basket" | "checkout" | "confirmation";
 
 export default function Index() {
   const { slug } = useParams();
   const navigate = useNavigate();
-  const { data: store, isLoading: isStoreLoading, isError: isStoreError } = useStoreInfo(slug);
-  const blocked = isStorePubliclyBlocked(store);
-  const { data: basket, isLoading: isBasketLoading, isError: isBasketError } = useActiveBasket(
-    blocked ? undefined : store?.id,
-  );
-  const createOrder = useCreateOrder();
-  const { data: operationalSettings } = useStoreOperationalSettings(slug);
-  
   const [step, setStep] = useState<Step>("basket");
   const [cartLines, setCartLines] = useState<CartLineItem[]>([]);
   const [productMode, setProductMode] = useState<Record<string, 'unit' | 'weight'>>({});
   const [weightModalProduct, setWeightModalProduct] = useState<BasketProduct | null>(null);
   const [confirmedTotal, setConfirmedTotal] = useState(0);
-  const [confirmedItems, setConfirmedItems] = useState<any[]>([]); // itens do pedido confirmado
-  const [confirmedOrderId, setConfirmedOrderId] = useState<string>(""); // ID do pedido confirmado
+  const [confirmedItems, setConfirmedItems] = useState<any[]>([]);
+  const [confirmedOrderId, setConfirmedOrderId] = useState<string>("");
   const [confirmedPhone, setConfirmedPhone] = useState<string>("");
-  const [confirmedPayment, setConfirmedPayment] = useState<string>(""); // telefone do pedido confirmado
+  const [confirmedPayment, setConfirmedPayment] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+
+  const { data: store, isLoading: isStoreLoading, isError: isStoreError } = useStoreInfo(slug);
+  const blocked = isStorePubliclyBlocked(store);
+  const { data: basket, isLoading: isBasketLoading, isError: isBasketError } = useActiveBasket(
+    blocked ? undefined : store?.id,
+    { loadProducts: false },
+  );
+  const { data: categories } = useCategories(blocked ? undefined : store?.id);
+  const categoryIds = useMemo(() => (categories ?? []).map((c) => c.id), [categories]);
+  const { data: categoryCounts } = useCategoryProductCounts(store?.id, categoryIds);
+
+  const {
+    data: catalogPages,
+    isLoading: isCatalogLoading,
+    isError: isCatalogError,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    refetch: refetchCatalog,
+  } = useStoreCatalogProducts(store?.id, selectedCategory, searchQuery);
+
+  const catalogProducts = useMemo(
+    () => flattenCatalogPages(catalogPages?.pages),
+    [catalogPages?.pages],
+  );
+
+  const cartProductIds = useMemo(
+    () => [...new Set(cartLines.map((l) => l.productId))],
+    [cartLines],
+  );
+  const { data: cartProducts = [] } = useProductsByIds(store?.id, cartProductIds);
+
+  const handleSelectCategory = useCallback((categoryId: string | null) => {
+    setSelectedCategory(categoryId);
+    setSearchQuery("");
+  }, []);
+  const createOrder = useCreateOrder();
+  const { data: operationalSettings } = useStoreOperationalSettings(slug);
 
   const getProductMode = (product: BasketProduct): 'unit' | 'weight' => {
     const sellBy = product.sell_by || 'unit';
@@ -110,8 +147,8 @@ export default function Index() {
   };
 
   const resolvedCartLines = useMemo(
-    () => (basket?.products ? resolveCartLines(cartLines, basket.products) : []),
-    [cartLines, basket?.products]
+    () => resolveCartLines(cartLines, cartProducts),
+    [cartLines, cartProducts]
   );
 
   const cartEstimates = useMemo(
@@ -152,34 +189,15 @@ export default function Index() {
     ? !isWithinDeliveryHours(operationalSettings)
     : false;
 
-  // Filter products based on search and category
-  const filteredProducts = useMemo(() => {
-    if (!basket?.products) return [];
-    
-    let filtered = basket.products;
-
-    // Catálogo por categoria: sem seleção, não misturar todos os produtos
-    if (!selectedCategory) {
-      return [];
-    }
-    
-    filtered = filtered.filter(p => p.category_id === selectedCategory);
-    
-    if (searchQuery) {
-      const query = searchQuery.toLowerCase();
-      filtered = filtered.filter(p => 
-        p.name.toLowerCase().includes(query) ||
-        p.description?.toLowerCase().includes(query)
-      );
-    }
-    
-    return filtered;
-  }, [basket?.products, searchQuery, selectedCategory]);
+  const selectedCategoryCount =
+    selectedCategory && categoryCounts
+      ? categoryCounts.byCategoryId.get(selectedCategory) ?? 0
+      : 0;
 
   const selectedCategoryHasNoProducts =
-    !!selectedCategory &&
-    !!basket?.products &&
-    !basket.products.some((p) => p.category_id === selectedCategory);
+    !!selectedCategory && !isCatalogLoading && selectedCategoryCount === 0;
+
+  const catalogTotalInCategory = catalogPages?.pages[0]?.totalCount ?? selectedCategoryCount;
 
   if (isStoreLoading) {
     return (
@@ -471,7 +489,8 @@ export default function Index() {
                   {/* Informações dos itens */}
                   <div className="mt-2 space-y-0.5">
                     <p className="text-xs text-muted-foreground">
-                      {totalItems} item(s) selecionado(s) - {basket.products.length} no catálogo
+                      {totalItems} item(s) selecionado(s)
+                      {categoryCounts ? ` — ${categoryCounts.totalActive.toLocaleString("pt-BR")} no catálogo` : null}
                     </p>
                     
                     {/* Itens por peso (com valor confirmado) */}
@@ -525,8 +544,9 @@ export default function Index() {
                 <CategoryFilter 
                   storeId={store.id} 
                   selectedCategory={selectedCategory}
-                  onSelectCategory={setSelectedCategory}
+                  onSelectCategory={handleSelectCategory}
                   requireSelection
+                  productCounts={categoryCounts?.byCategoryId}
                 />
                 {selectedCategory && (
                   <ProductSearch onSearch={setSearchQuery} />
@@ -543,7 +563,28 @@ export default function Index() {
                 </div>
               )}
 
-              {selectedCategory && selectedCategoryHasNoProducts && (
+              {selectedCategory && isCatalogError && (
+                <div className="text-center py-10 rounded-2xl border border-destructive/30 bg-destructive/5">
+                  <p className="text-sm font-medium text-destructive">
+                    Não foi possível carregar os produtos desta categoria.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => refetchCatalog()}
+                    className="mt-3 text-sm font-bold text-primary underline"
+                  >
+                    Tentar novamente
+                  </button>
+                </div>
+              )}
+
+              {selectedCategory && isCatalogLoading && (
+                <div className="flex justify-center py-12">
+                  <Loader2 className="h-8 w-8 animate-spin text-primary" />
+                </div>
+              )}
+
+              {selectedCategory && selectedCategoryHasNoProducts && !isCatalogLoading && (
                 <div className="text-center py-10 rounded-2xl border border-border bg-card">
                   <p className="text-sm font-medium text-muted-foreground">
                     Esta categoria ainda não possui produtos disponíveis.
@@ -551,14 +592,14 @@ export default function Index() {
                 </div>
               )}
 
-              {selectedCategory && !selectedCategoryHasNoProducts && filteredProducts.length === 0 && (
+              {selectedCategory && !selectedCategoryHasNoProducts && !isCatalogLoading && !isCatalogError && catalogProducts.length === 0 && searchQuery && (
                 <div className="text-center py-12">
                   <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
                   <p className="text-muted-foreground">Nenhum produto encontrado nesta busca</p>
                 </div>
               )}
 
-              {filteredProducts.map((p, i) => {
+              {selectedCategory && !isCatalogLoading && !isCatalogError && catalogProducts.map((p, i) => {
                 const mode = getProductMode(p);
                 const productLines = resolvedCartLines.filter((l) => l.productId === p.id);
                 const cartQty = productLines
@@ -582,6 +623,26 @@ export default function Index() {
                   />
                 </div>
               );})}
+
+              {selectedCategory && hasNextPage && !isCatalogError && (
+                <div className="pt-2 pb-4">
+                  <button
+                    type="button"
+                    disabled={isFetchingNextPage}
+                    onClick={() => fetchNextPage()}
+                    className="w-full h-11 rounded-xl border border-border bg-card text-sm font-bold text-foreground hover:bg-muted disabled:opacity-60 inline-flex items-center justify-center gap-2"
+                  >
+                    {isFetchingNextPage ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Carregando...
+                      </>
+                    ) : (
+                      <>Carregar mais ({catalogProducts.length} de {catalogTotalInCategory.toLocaleString("pt-BR")})</>
+                    )}
+                  </button>
+                </div>
+              )}
             </div>
 
             {/* CTA */}

@@ -7,6 +7,8 @@ interface Props {
   onSelectCategory: (categoryId: string | null) => void;
   /** Quando true, exige escolher uma categoria antes de listar produtos */
   requireSelection?: boolean;
+  /** Contagens server-side por category_id */
+  productCounts?: Map<string, number>;
 }
 
 function shortLabelFor(name: string): string {
@@ -19,6 +21,7 @@ export function CategoryFilter({
   selectedCategory,
   onSelectCategory,
   requireSelection = false,
+  productCounts,
 }: Props) {
   const { data: categories } = useCategories(storeId);
 
@@ -63,7 +66,12 @@ export function CategoryFilter({
               }`}
             >
               {cat.icon ? <span aria-hidden>{cat.icon}</span> : null}
-              <span>{shortLabelFor(cat.name)}</span>
+              <span>
+                {shortLabelFor(cat.name)}
+                {productCounts?.has(cat.id) ? (
+                  <span className="opacity-80 font-semibold"> ({productCounts.get(cat.id)})</span>
+                ) : null}
+              </span>
             </button>
           );
         })}
