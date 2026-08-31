@@ -1,0 +1,814 @@
+{
+  "generated_at": "2026-08-31T17:07:59.076Z",
+  "VEREDITO": "APROVADO PARA EXECUÇÃO DO BACKFILL (condicional: confirmar grants PUBLIC)",
+  "NUMEROS_EXATOS": {
+    "WOULD_UPDATE": 15610,
+    "NOT_FOUND": 159,
+    "AMBIGUOUS_MATCH": 0,
+    "ALREADY_CORRECT": 429,
+    "ALREADY_DIFFERENT": 0,
+    "CATEGORY_NOT_FOUND": 0,
+    "CLASSIFIED_LOCAL": 16198,
+    "UNCLASSIFIED_LOCAL": 3070,
+    "HOSTED_ACTIVE": 19125,
+    "EQUATION": "16198 = WOULD_UPDATE + ALREADY_CORRECT + ALREADY_DIFFERENT + NOT_FOUND + AMBIGUOUS + CATEGORY_NOT_FOUND",
+    "EQUATION_OK": true
+  },
+  "TESTES": {
+    "TOTAL": 148,
+    "APROVADOS": 148,
+    "FALHOS": 0,
+    "NOVOS": 5,
+    "arquivos": [
+      "src/lib/productCategory/categoryBackfill.test.ts",
+      "src/lib/productCategory/backfillBatches.test.ts",
+      "src/hooks/useStoreCatalogProducts.test.ts"
+    ]
+  },
+  "SEGURANCA": {
+    "multi_tenancy": "OK — store_id via get_my_store_id()",
+    "auth": "OK — auth.uid() obrigatório",
+    "owner": "OK — is_store_owner()",
+    "payload_store_id": "OK — cliente não escolhe store_id",
+    "category_same_store": "OK — validação na RPC",
+    "only_category_id_null": "OK — UPDATE ... AND category_id IS NULL",
+    "anon_public_grants": "WARNING — confirmar no Hosted após 20260828310000",
+    "cross_tenant_product": "OK — match scoped à loja do caller",
+    "cross_tenant_category": "OK — skipped se categoria de outra loja",
+    "rpc_recomendada": "backfill_product_categories_batch",
+    "rpc_nao_usar_para_backfill": "assign_product_categories_batch (sobrescreve + product_id)"
+  },
+  "PLANO_LOTES": {
+    "batch_size": 300,
+    "total_assignments": 15610,
+    "total_batches": 53,
+    "batches": [
+      {
+        "batch_number": 1,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12803",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 2,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "2388",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 3,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "1624",
+            "category_id": "aaa0d05c-2c96-453a-9811-23720434d05a"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 4,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9505",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 5,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9390",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 6,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "14655",
+            "category_id": "089a605d-f29f-4904-93ed-6ea2402dda7c"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 7,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15433",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 8,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9315",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 9,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "17358",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 10,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "813",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 11,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12655",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 12,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "7888",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 13,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12407",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 14,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "16189",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 15,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "11711",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 16,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "8496",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 17,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "19615",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 18,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "11725",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 19,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "55",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 20,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "3483",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 21,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "17062",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 22,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9524",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 23,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9840",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 24,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "17357",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 25,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "18991",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 26,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "2855",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 27,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "19409",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 28,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "10783",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 29,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9821",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 30,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "18291",
+            "category_id": "aaa0d05c-2c96-453a-9811-23720434d05a"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 31,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15365",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 32,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9586",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 33,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15790",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 34,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12438",
+            "category_id": "cd36688c-11be-41f5-8518-5e868eee3ead"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 35,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15318",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 36,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "3217",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 37,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "723",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 38,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "19041",
+            "category_id": "089a605d-f29f-4904-93ed-6ea2402dda7c"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 39,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "5330",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 40,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "16064",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 41,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9077",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 42,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12018",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 43,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "16637",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 44,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "16728",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 45,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "7671",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 46,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "7521",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 47,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "10130",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 48,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12117",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 49,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "8676",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 50,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15230",
+            "category_id": "cd36688c-11be-41f5-8518-5e868eee3ead"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 51,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "19506",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 52,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "5713",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 53,
+        "size": 10,
+        "payload_preview_first": [
+          {
+            "internal_code": "13173",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 10,
+          "barcode": 0
+        }
+      }
+    ],
+    "rpc": "backfill_product_categories_batch",
+    "resume": "reenviar a partir do lote falho; lotes anteriores idempotentes (NULL-only update)"
+  },
+  "BLOCKERS_GAPS": [
+    {
+      "id": "GRANTS_PUBLIC_CONFIRMATION",
+      "severity": "WARNING",
+      "detail": "Confirmar no SQL Editor que PUBLIC/anon NÃO têm EXECUTE em backfill_product_categories_batch (migration 20260828310000). Leitura de grants exige privilégio admin — não verificável via anon key."
+    }
+  ],
+  "H_estado_final": {
+    "Hosted_alterado": "NÃO",
+    "Backfill_executado": "NÃO",
+    "Produtos_atualizados": "NÃO",
+    "Produtos_inseridos": "NÃO",
+    "Produtos_excluidos": "NÃO",
+    "Migration_aplicada": "NÃO",
+    "supabase_db_push": "NÃO",
+    "Excel_original_alterado": "NÃO",
+    "Deploy": "NÃO",
+    "Commit": "NÃO",
+    "Push": "NÃO",
+    "Snapshot_lido": "SIM (somente leitura)"
+  },
+  "confirmacao": "Nenhum backfill foi executado no Hosted. Aguardo autorização explícita e separada para iniciar a atualização real."
+}

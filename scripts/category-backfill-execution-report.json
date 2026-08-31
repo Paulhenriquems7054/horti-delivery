@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-08-31T17:30:15.408Z",
+  "status": "completed",
+  "store_slug": "beira-rio",
+  "store_id": "1309bc5b-79ab-43a7-99e9-ac28ca4b1440",
+  "expected_would_update": 15610,
+  "total_updated": 15610,
+  "total_skipped": 0,
+  "batches_completed": 53,
+  "batches_expected": 53,
+  "post_check": {
+    "active_with_category": 16039,
+    "active_without_category": 3086,
+    "note": "UNCLASSIFIED (~3070) + NOT_FOUND devem permanecer NULL"
+  },
+  "progress_file": "scripts\\category-backfill-execution-progress.json",
+  "confirmation": {
+    "only_null_updated_by_rpc": true,
+    "unclassified_not_in_payload": true,
+    "already_categorized_not_overwritten": true
+  }
+}

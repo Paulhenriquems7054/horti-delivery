@@ -1,0 +1,1152 @@
+{
+  "generated_at": "2026-08-31T17:07:59.057Z",
+  "write_operations": "NONE",
+  "hosted_write": false,
+  "rpc_write_called": false,
+  "snapshot_mode": "hosted_readonly",
+  "fetch_error": null,
+  "A_estado_hosted": {
+    "store_slug": "beira-rio",
+    "store_id": "1309bc5b-79ab-43a7-99e9-ac28ca4b1440",
+    "total_ativos": 19125,
+    "com_categoria": 429,
+    "sem_categoria": 18696,
+    "por_categoria": {
+      "NULL": 18696,
+      "Utilidades e Outros": 96,
+      "Produtos Descartáveis": 20,
+      "Limpeza": 15,
+      "Higiene Pessoal": 139,
+      "Mercearia Seca e Básica": 53,
+      "Bebidas": 24,
+      "Frios e Laticínios": 41,
+      "Hortifrúti": 36,
+      "Padaria e Confeitaria": 5
+    },
+    "categories_count": 9,
+    "source": "hosted_readonly"
+  },
+  "B_fonte_local": {
+    "planilha_sha256": "d48499a4302ec7a9dd339df0dd3234c6c65a19edad522a40271eadd783b373ec",
+    "planilha_aba": "RELAÇÃO DE PRODUTOS",
+    "total_importable": 19268,
+    "CLASSIFIED_LOCAL": 16198,
+    "UNCLASSIFIED_LOCAL": 3070,
+    "decisions_loaded": 230,
+    "matching_identity_priority": [
+      "internal_code",
+      "meaningful_barcode"
+    ],
+    "name_matching": false
+  },
+  "C_resultado_matching": {
+    "MATCHED": 16039,
+    "WOULD_UPDATE": 15610,
+    "SAFE_MATCH_INTERNAL_CODE": 15610,
+    "SAFE_MATCH_BARCODE": 0,
+    "ALREADY_CORRECT": 429,
+    "ALREADY_DIFFERENT": 0,
+    "NOT_FOUND": 159,
+    "AMBIGUOUS_MATCH": 0,
+    "CATEGORY_NOT_FOUND": 0,
+    "ERROR": 0,
+    "UNCLASSIFIED_SKIPPED": 3070
+  },
+  "D_por_categoria": {
+    "Hortifrúti": {
+      "already_correct": 36,
+      "would_update": 1187,
+      "not_found": 12,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    },
+    "Frios e Laticínios": {
+      "already_correct": 41,
+      "would_update": 1416,
+      "not_found": 7,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    },
+    "Mercearia Seca e Básica": {
+      "already_correct": 53,
+      "would_update": 3437,
+      "not_found": 32,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    },
+    "Bebidas": {
+      "already_correct": 24,
+      "would_update": 754,
+      "not_found": 9,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    },
+    "Padaria e Confeitaria": {
+      "already_correct": 5,
+      "would_update": 211,
+      "not_found": 0,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    },
+    "Limpeza": {
+      "already_correct": 15,
+      "would_update": 1274,
+      "not_found": 5,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    },
+    "Higiene Pessoal": {
+      "already_correct": 139,
+      "would_update": 3575,
+      "not_found": 32,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    },
+    "Utilidades e Outros": {
+      "already_correct": 96,
+      "would_update": 3403,
+      "not_found": 52,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    },
+    "Produtos Descartáveis": {
+      "already_correct": 20,
+      "would_update": 353,
+      "not_found": 10,
+      "ambiguous": 0,
+      "already_different": 0,
+      "category_not_found": 0
+    }
+  },
+  "E_integridade": {
+    "classified_equation": {
+      "CLASSIFIED_LOCAL": 16198,
+      "WOULD_UPDATE": 15610,
+      "ALREADY_CORRECT": 429,
+      "ALREADY_DIFFERENT": 0,
+      "NOT_FOUND": 159,
+      "AMBIGUOUS_MATCH": 0,
+      "CATEGORY_NOT_FOUND": 0,
+      "OTHER_CLASSIFIED_SKIP": 0
+    },
+    "classified_equation_ok": true,
+    "gap": {
+      "sourceImportableTotal": 19268,
+      "dbActiveTotal": 19125,
+      "delta": 143,
+      "sourceOnlyInternalCodes": [
+        "10327",
+        "10603",
+        "10694",
+        "10836",
+        "10913",
+        "11039",
+        "1105",
+        "11051",
+        "11156",
+        "11177",
+        "11611",
+        "11617",
+        "11636",
+        "11664",
+        "11721",
+        "11814",
+        "11871",
+        "11882",
+        "12580",
+        "1270",
+        "12812",
+        "13051",
+        "1326",
+        "13378",
+        "13461",
+        "13462",
+        "13491",
+        "13496",
+        "13497",
+        "13533",
+        "13582",
+        "13639",
+        "13656",
+        "13709",
+        "13941",
+        "13942",
+        "13943",
+        "13945",
+        "13946",
+        "13985",
+        "14193",
+        "14195",
+        "14196",
+        "14207",
+        "14816",
+        "14856",
+        "14939",
+        "14948",
+        "15041",
+        "151",
+        "15631",
+        "15795",
+        "15855",
+        "16",
+        "16003",
+        "16491",
+        "16667",
+        "16720",
+        "16864",
+        "1687",
+        "16968",
+        "16969",
+        "17169",
+        "17179",
+        "17239",
+        "17316",
+        "17484",
+        "17692",
+        "17693",
+        "17695",
+        "17712",
+        "17716",
+        "17742",
+        "17772",
+        "17782",
+        "17847",
+        "17864",
+        "17901",
+        "17902",
+        "18137",
+        "18138",
+        "18140",
+        "18468",
+        "1853",
+        "19399",
+        "215",
+        "2344",
+        "2741",
+        "30",
+        "3057",
+        "3131",
+        "3322",
+        "3369",
+        "3391",
+        "3418",
+        "3497",
+        "3511",
+        "3520",
+        "3548",
+        "3762",
+        "3921",
+        "4539",
+        "456",
+        "4593",
+        "4630",
+        "4655",
+        "482",
+        "4953",
+        "4966",
+        "5128",
+        "5261",
+        "5304",
+        "5443",
+        "5453",
+        "5592",
+        "5602",
+        "5610",
+        "5632",
+        "5646",
+        "5699",
+        "5783",
+        "5791",
+        "580",
+        "5807",
+        "5809",
+        "5811",
+        "5937",
+        "6023",
+        "6059",
+        "610",
+        "6101",
+        "6141",
+        "617",
+        "619",
+        "6228",
+        "6229",
+        "6230",
+        "6305",
+        "6327",
+        "6363",
+        "6438",
+        "6445",
+        "6471",
+        "6582",
+        "6992",
+        "7012",
+        "7241",
+        "7505",
+        "7865",
+        "7918",
+        "8013",
+        "8014",
+        "8032",
+        "8246",
+        "8248",
+        "8315",
+        "8370",
+        "8473",
+        "8508",
+        "8531",
+        "8636",
+        "8872",
+        "8884",
+        "891",
+        "892",
+        "893",
+        "8973",
+        "8981",
+        "9108",
+        "9165",
+        "918",
+        "9300",
+        "959",
+        "9600",
+        "9632",
+        "9820",
+        "9823",
+        "989"
+      ],
+      "dbOnlyInternalCodes": [],
+      "dbInactiveCount": 0,
+      "sourceImportBlockedCount": 0,
+      "ambiguousInternalCodeInDb": [],
+      "ambiguousBarcodeInDb": []
+    },
+    "expected_delta_source_vs_hosted": 143,
+    "ean_conflicts_excluded": 2,
+    "invariant_note": "WOULD_UPDATE conta apenas category_id IS NULL (RPC backfill não sobrescreve ALREADY_DIFFERENT)"
+  },
+  "F_seguranca": {
+    "recommended_rpc": "backfill_product_categories_batch",
+    "deprecated_for_backfill": "assign_product_categories_batch",
+    "assign_product_categories_batch_risks": [
+      "Recebe product_id UUID (não internal_code) — exige join prévio no cliente",
+      "Sobrescreve category_id mesmo se já preenchido (e pode setar NULL)",
+      "REVOKE apenas FROM anon — PUBLIC pode permanecer com EXECUTE (mesmo padrão antigo)"
+    ],
+    "backfill_rpc_contract": {
+      "auth_uid_required": true,
+      "is_store_owner_required": true,
+      "store_id_from": "get_my_store_id()",
+      "payload_cannot_choose_store_id": true,
+      "updates_only_category_id_null": true,
+      "validates_category_same_store": true,
+      "matches_by": [
+        "internal_code",
+        "meaningful barcode"
+      ],
+      "name_matching": false
+    }
+  },
+  "G_idempotencia": {
+    "status": "OK",
+    "run1_updated": 15610,
+    "run1_skipped": 0,
+    "run2_updated": 0,
+    "run2_skipped": 15610,
+    "expected_run2_updated_zero": true
+  },
+  "H_falha_parcial_retry": {
+    "status": "OK",
+    "batches_applied_before_simulated_fail": 10,
+    "updated_before_fail": 3000,
+    "retry_batch_number": 11,
+    "retry_updated": 300,
+    "resume_safe": true,
+    "note": "Retry de lote não aplicado → aplica restantes com segurança"
+  },
+  "I_frontend": {
+    "limite_1000_corrigido": true,
+    "evidencia": "src/hooks/useStoreCatalogProducts.ts usa .range() + useInfiniteQuery",
+    "page_size": 50,
+    "filtro_server_side": "store_id + active + category_id (+ ilike name)",
+    "contagens": "useCategoryProductCounts (count exact head)",
+    "uncategorized_ui": "produtos com category_id NULL não aparecem em nenhuma aba de categoria"
+  },
+  "J_blockers": [
+    {
+      "id": "GRANTS_PUBLIC_CONFIRMATION",
+      "severity": "WARNING",
+      "detail": "Confirmar no SQL Editor que PUBLIC/anon NÃO têm EXECUTE em backfill_product_categories_batch (migration 20260828310000). Leitura de grants exige privilégio admin — não verificável via anon key."
+    }
+  ],
+  "K_plano_batches": {
+    "batch_size": 300,
+    "total_assignments": 15610,
+    "total_batches": 53,
+    "batches": [
+      {
+        "batch_number": 1,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12803",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 2,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "2388",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 3,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "1624",
+            "category_id": "aaa0d05c-2c96-453a-9811-23720434d05a"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 4,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9505",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 5,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9390",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 6,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "14655",
+            "category_id": "089a605d-f29f-4904-93ed-6ea2402dda7c"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 7,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15433",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 8,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9315",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 9,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "17358",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 10,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "813",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 11,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12655",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 12,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "7888",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 13,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12407",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 14,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "16189",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 15,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "11711",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 16,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "8496",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 17,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "19615",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 18,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "11725",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 19,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "55",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 20,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "3483",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 21,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "17062",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 22,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9524",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 23,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9840",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 24,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "17357",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 25,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "18991",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 26,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "2855",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 27,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "19409",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 28,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "10783",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 29,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9821",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 30,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "18291",
+            "category_id": "aaa0d05c-2c96-453a-9811-23720434d05a"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 31,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15365",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 32,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9586",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 33,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15790",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 34,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12438",
+            "category_id": "cd36688c-11be-41f5-8518-5e868eee3ead"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 35,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15318",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 36,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "3217",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 37,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "723",
+            "category_id": "66312aea-27cd-4762-8856-c4a629547c57"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 38,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "19041",
+            "category_id": "089a605d-f29f-4904-93ed-6ea2402dda7c"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 39,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "5330",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 40,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "16064",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 41,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "9077",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 42,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12018",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 43,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "16637",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 44,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "16728",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 45,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "7671",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 46,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "7521",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 47,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "10130",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 48,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "12117",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 49,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "8676",
+            "category_id": "e0d08fff-9b2a-4d4f-859f-27c699ae63f4"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 50,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "15230",
+            "category_id": "cd36688c-11be-41f5-8518-5e868eee3ead"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 51,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "19506",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 52,
+        "size": 300,
+        "payload_preview_first": [
+          {
+            "internal_code": "5713",
+            "category_id": "2b8d3585-c024-4d30-985e-5eb6dbf693fe"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 300,
+          "barcode": 0
+        }
+      },
+      {
+        "batch_number": 53,
+        "size": 10,
+        "payload_preview_first": [
+          {
+            "internal_code": "13173",
+            "category_id": "f854cfa9-bf70-4f6a-90f4-e177c3db898b"
+          }
+        ],
+        "identity_types": {
+          "internal_code": 10,
+          "barcode": 0
+        }
+      }
+    ],
+    "rpc": "backfill_product_categories_batch",
+    "resume": "reenviar a partir do lote falho; lotes anteriores idempotentes (NULL-only update)"
+  },
+  "projected_distribution": {
+    "Mercearia Seca e Básica": 3490,
+    "Frios e Laticínios": 1457,
+    "NULL": 3086,
+    "Hortifrúti": 1223,
+    "Bebidas": 778,
+    "Padaria e Confeitaria": 216,
+    "Utilidades e Outros": 3499,
+    "Limpeza": 1289,
+    "Produtos Descartáveis": 373,
+    "Higiene Pessoal": 3714
+  }
+}

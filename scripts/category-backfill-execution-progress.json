@@ -1,0 +1,435 @@
+{
+  "started_at": "2026-08-31T17:29:39.426Z",
+  "updated_at": "2026-08-31T17:30:13.885Z",
+  "store_id": "1309bc5b-79ab-43a7-99e9-ac28ca4b1440",
+  "last_completed_batch": 53,
+  "total_updated": 15610,
+  "total_skipped": 0,
+  "batches": [
+    {
+      "batch_number": 1,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:40.939Z"
+    },
+    {
+      "batch_number": 2,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:41.785Z"
+    },
+    {
+      "batch_number": 3,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:42.509Z"
+    },
+    {
+      "batch_number": 4,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:43.604Z"
+    },
+    {
+      "batch_number": 5,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:44.625Z"
+    },
+    {
+      "batch_number": 6,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:45.564Z"
+    },
+    {
+      "batch_number": 7,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:46.158Z"
+    },
+    {
+      "batch_number": 8,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:46.744Z"
+    },
+    {
+      "batch_number": 9,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:47.433Z"
+    },
+    {
+      "batch_number": 10,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:48.001Z"
+    },
+    {
+      "batch_number": 11,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:48.501Z"
+    },
+    {
+      "batch_number": 12,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:49.451Z"
+    },
+    {
+      "batch_number": 13,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:49.963Z"
+    },
+    {
+      "batch_number": 14,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:50.499Z"
+    },
+    {
+      "batch_number": 15,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:51.020Z"
+    },
+    {
+      "batch_number": 16,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:51.557Z"
+    },
+    {
+      "batch_number": 17,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:52.091Z"
+    },
+    {
+      "batch_number": 18,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:52.591Z"
+    },
+    {
+      "batch_number": 19,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:53.113Z"
+    },
+    {
+      "batch_number": 20,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:53.605Z"
+    },
+    {
+      "batch_number": 21,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:54.125Z"
+    },
+    {
+      "batch_number": 22,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:54.651Z"
+    },
+    {
+      "batch_number": 23,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:55.547Z"
+    },
+    {
+      "batch_number": 24,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:56.053Z"
+    },
+    {
+      "batch_number": 25,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:56.548Z"
+    },
+    {
+      "batch_number": 26,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:57.066Z"
+    },
+    {
+      "batch_number": 27,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:57.606Z"
+    },
+    {
+      "batch_number": 28,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:58.101Z"
+    },
+    {
+      "batch_number": 29,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:58.620Z"
+    },
+    {
+      "batch_number": 30,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:59.155Z"
+    },
+    {
+      "batch_number": 31,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:29:59.650Z"
+    },
+    {
+      "batch_number": 32,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:00.165Z"
+    },
+    {
+      "batch_number": 33,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:00.673Z"
+    },
+    {
+      "batch_number": 34,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:01.167Z"
+    },
+    {
+      "batch_number": 35,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:01.678Z"
+    },
+    {
+      "batch_number": 36,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:02.211Z"
+    },
+    {
+      "batch_number": 37,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:02.729Z"
+    },
+    {
+      "batch_number": 38,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:03.238Z"
+    },
+    {
+      "batch_number": 39,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:03.921Z"
+    },
+    {
+      "batch_number": 40,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:05.257Z"
+    },
+    {
+      "batch_number": 41,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:06.009Z"
+    },
+    {
+      "batch_number": 42,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:06.624Z"
+    },
+    {
+      "batch_number": 43,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:07.273Z"
+    },
+    {
+      "batch_number": 44,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:07.972Z"
+    },
+    {
+      "batch_number": 45,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:08.650Z"
+    },
+    {
+      "batch_number": 46,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:09.293Z"
+    },
+    {
+      "batch_number": 47,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:09.976Z"
+    },
+    {
+      "batch_number": 48,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:10.696Z"
+    },
+    {
+      "batch_number": 49,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:11.270Z"
+    },
+    {
+      "batch_number": 50,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:11.763Z"
+    },
+    {
+      "batch_number": 51,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:12.551Z"
+    },
+    {
+      "batch_number": 52,
+      "size": 300,
+      "updated": 300,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:13.266Z"
+    },
+    {
+      "batch_number": 53,
+      "size": 10,
+      "updated": 10,
+      "skipped": 0,
+      "ok": true,
+      "at": "2026-08-31T17:30:13.719Z"
+    }
+  ],
+  "status": "completed"
+}
