@@ -8,6 +8,7 @@ import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
 import Login from "./pages/Login";
 import AdminBasket from "./pages/AdminBasket";
+import AdminLegacyCatalogReview from "./pages/AdminLegacyCatalogReview";
 import AdminCoupons from "./pages/AdminCoupons";
 import AdminStores from "./pages/AdminStores";
 import AdminDeliveryZones from "./pages/AdminDeliveryZones";
@@ -53,6 +54,7 @@ const App = () => (
           {/* ── Admin (protegidas) ── */}
           <Route path="/admin" element={<ProtectedRoute><Admin /></ProtectedRoute>} />
           <Route path="/admin/basket" element={<ProtectedRoute><AdminBasket /></ProtectedRoute>} />
+          <Route path="/admin/basket/legacy-review" element={<ProtectedRoute><AdminLegacyCatalogReview /></ProtectedRoute>} />
           <Route path="/admin/coupons" element={<ProtectedRoute><AdminCoupons /></ProtectedRoute>} />
           <Route path="/admin/stores" element={<ProtectedRoute><AdminStores /></ProtectedRoute>} />
           <Route path="/admin/delivery-zones" element={<ProtectedRoute><AdminDeliveryZones /></ProtectedRoute>} />

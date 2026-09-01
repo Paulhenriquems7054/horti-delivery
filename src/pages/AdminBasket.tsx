@@ -1,15 +1,19 @@
 import { useState, useRef } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
-import { Leaf, Plus, Trash2, ArrowLeft, Loader2, Save, Truck, Package, Scale, Search } from "lucide-react";
+import { Leaf, Plus, Trash2, ArrowLeft, Loader2, Save, Truck, Scale } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useDeliveryZones, useManageDeliveryZone } from "@/hooks/useDeliveryZones";
 import { ProductWeightSettings } from "@/components/admin/ProductWeightSettings";
 import { useTenant } from "@/contexts/TenantContext";
-import { ProductSpreadsheetImport } from "@/components/admin/ProductSpreadsheetImport";
 import { ProductCategoryReview } from "@/components/admin/ProductCategoryReview";
-import { ProductManualReviewAssist } from "@/components/admin/ProductManualReviewAssist";
+import { AdminCatalogMetrics } from "@/components/admin/AdminCatalogMetrics";
+import { AdminProductCatalogSection } from "@/components/admin/AdminProductCatalogSection";
+import { AdminMigrationTools } from "@/components/admin/AdminMigrationTools";
+import { ProductImportHistory } from "@/components/admin/ProductImportHistory";
+import { AdminPdvIntegrationPanel } from "@/components/admin/AdminPdvIntegrationPanel";
+import { CATALOG_STATS_KEY } from "@/hooks/useCatalogStats";
 
 export default function AdminBasket() {
   const navigate = useNavigate();
@@ -35,10 +39,17 @@ export default function AdminBasket() {
   const { addZone, deleteZone } = useManageDeliveryZone();
 
   const [editingItem, setEditingItem] = useState<any>(null);
-  const [editingProduct, setEditingProduct] = useState<any>(null);
-  const [showAllProducts, setShowAllProducts] = useState(false);
-  const [productFilter, setProductFilter] = useState("");
   const [editingWeightProductId, setEditingWeightProductId] = useState<string | null>(null);
+
+  const invalidateCatalogQueries = () => {
+    if (!tenantStoreId) return;
+    queryClient.invalidateQueries({ queryKey: STORE_PRODUCTS_KEY });
+    queryClient.invalidateQueries({ queryKey: ["admin-active-basket", tenantStoreId] });
+    queryClient.invalidateQueries({ queryKey: ["admin-uncategorized-products", tenantStoreId] });
+    queryClient.invalidateQueries({ queryKey: [CATALOG_STATS_KEY, tenantStoreId] });
+    queryClient.invalidateQueries({ queryKey: ["admin-catalog-products", tenantStoreId] });
+    queryClient.invalidateQueries({ queryKey: ["product-import-history", tenantStoreId] });
+  };
 
   const uploadProductImageFile = async (productId: string, file: File) => {
     const fileExt = file.name.split(".").pop() || "jpg";
@@ -86,29 +97,6 @@ export default function AdminBasket() {
     },
     enabled: !!tenantStoreId,
   });
-
-  /** Mesma origem que o cliente em useActiveBasket: todos os produtos ativos da loja */
-  const { data: allProducts = [], isLoading: isStoreProductsLoading } = useQuery({
-    queryKey: STORE_PRODUCTS_KEY,
-    queryFn: async () => {
-      if (!tenantStoreId) return [];
-
-      const { data, error } = await supabase
-        .from("products")
-        .select("*")
-        .eq("store_id", tenantStoreId)
-        .eq("active", true)
-        .order("name");
-
-      if (error) throw error;
-      return data || [];
-    },
-    enabled: !!tenantStoreId && showAllProducts,
-  });
-
-  const filteredProducts = allProducts.filter((product: any) =>
-    product.name?.toLowerCase().includes(productFilter.toLowerCase())
-  );
 
   const isLoading = isTenantLoading || isBasketLoading;
 
@@ -228,7 +216,7 @@ export default function AdminBasket() {
 
       return prodData;
     },
-    onSuccess: (createdProduct) => {
+    onSuccess: () => {
       toast.success("Produto adicionado à cesta!");
       setNewProductName("");
       setNewProductPrice("");
@@ -236,18 +224,8 @@ export default function AdminBasket() {
       setNewProductUnit("un");
       setNewProductImageUrl("");
       setNewProductImageFile(null);
-      setProductFilter("");
-      setShowAllProducts(true);
       queryClient.invalidateQueries({ queryKey: ["admin-active-basket"] });
-      if (tenantStoreId) {
-        queryClient.invalidateQueries({ queryKey: ["admin-store-products", tenantStoreId] });
-        queryClient.setQueryData(["admin-store-products", tenantStoreId], (prev: any) => {
-          if (!createdProduct) return prev;
-          const prevList = Array.isArray(prev) ? prev : [];
-          if (prevList.some((p: any) => p.id === createdProduct.id)) return prevList;
-          return [createdProduct, ...prevList];
-        });
-      }
+      invalidateCatalogQueries();
     },
     onError: (err: any) => toast.error(err.message)
   });
@@ -389,72 +367,6 @@ export default function AdminBasket() {
     }
   });
 
-  const editProductMutation = useMutation({
-    mutationFn: async (data: { productId: string; name: string; price: number; unit: string; image_url: string; image_file?: File | null }) => {
-      let imageUrl = data.image_url;
-      if (data.image_file) {
-        imageUrl = await uploadProductImageFile(data.productId, data.image_file);
-      }
-
-      const { data: updated, error } = await supabase
-        .from("products")
-        .update({ name: data.name, price: data.price, unit: data.unit, image_url: imageUrl })
-        .eq("id", data.productId);
-      if (error) throw error;
-      return { productId: data.productId, imageUrl, name: data.name, price: data.price, unit: data.unit, updated };
-    },
-    onSuccess: ({ productId, imageUrl, name, price, unit }) => {
-      toast.success("Produto atualizado!");
-      setEditingProduct(null);
-      queryClient.invalidateQueries({ queryKey: ["admin-active-basket"] });
-      if (tenantStoreId) {
-        queryClient.invalidateQueries({ queryKey: ["admin-store-products", tenantStoreId] });
-        queryClient.setQueryData(["admin-store-products", tenantStoreId], (prev: any) => {
-          if (!prev || !Array.isArray(prev)) return prev;
-          return prev.map((p: any) =>
-            p.id === productId ? { ...p, image_url: imageUrl, name, price, unit } : p
-          );
-        });
-      }
-    },
-    onError: (err: any) => toast.error("Erro ao salvar: " + err.message)
-  });
-
-  const deleteProductMutation = useMutation({
-    mutationFn: async (productId: string) => {
-      // Remove itens vinculados à cesta antes de excluir o produto
-      const { error: itemErr } = await supabase
-        .from("basket_items")
-        .delete()
-        .eq("product_id", productId);
-      if (itemErr) throw itemErr;
-
-      const { data: deletedProducts, error } = await supabase
-        .from("products")
-        .delete()
-        .eq("id", productId)
-        .select("id");
-      if (error) throw error;
-      if (!deletedProducts || deletedProducts.length === 0) {
-        throw new Error("Produto não foi excluído no banco.");
-      }
-    },
-    onSuccess: (_data, productId) => {
-      toast.success("Produto excluído!");
-      queryClient.invalidateQueries({ queryKey: ["admin-active-basket"] });
-      queryClient.invalidateQueries({ queryKey: ["active-basket"] });
-      queryClient.invalidateQueries({ queryKey: ["products"] });
-      if (tenantStoreId) {
-        queryClient.invalidateQueries({ queryKey: ["admin-store-products", tenantStoreId] });
-        queryClient.setQueryData(["admin-store-products", tenantStoreId], (prev: any) => {
-          if (!Array.isArray(prev)) return prev;
-          return prev.filter((p: any) => p.id !== productId);
-        });
-      }
-    },
-    onError: (err: any) => toast.error("Erro ao excluir: " + err.message)
-  });
-
   if (isLoading) {
     return (
       <div className="min-h-screen bg-background flex flex-col items-center justify-center">
@@ -526,6 +438,17 @@ export default function AdminBasket() {
             </button>
           </div>
         </div>
+
+        <div className="bg-card p-5 rounded-2xl shadow-sm border border-border space-y-3">
+          <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground">
+            Resumo do catálogo
+          </h2>
+          <AdminCatalogMetrics storeId={tenantStoreId} />
+        </div>
+
+        <AdminProductCatalogSection storeId={tenantStoreId} />
+
+        <ProductCategoryReview storeId={tenantStoreId} onCategoriesSaved={invalidateCatalogQueries} />
 
         {/* Zonas de Entrega */}
         <div className="bg-card p-5 rounded-2xl shadow-sm border border-border">
@@ -643,88 +566,87 @@ export default function AdminBasket() {
                 )}
                 <span>Adicionar</span>
               </button>
-
-              <div className="pt-3 border-t border-border">
-                <p className="text-xs text-muted-foreground text-center mb-2">Ou adicione vários itens usando CSV ou TXT (Nome, Preço, Kg/Un)</p>
-                <input 
-                  type="file" 
-                  ref={fileInputRef} 
-                  className="hidden" 
-                  accept=".csv,.txt"
-                  onChange={async (e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                         try {
-                           const rawText = await file.text();
-                           // Limpa quebras nulas, contra-barras perigosas ou caracteres nulos que o Postgres rejeita
-                           const text = rawText
-                             .replace(/\x00/g, '')
-                             .replace(/\\u/gi, 'u') 
-                             .replace(/\\/g, '-');
-
-                           const lines = text.split('\n').filter(l => l.trim().length > 0);
-                           
-                           const startIndex = lines[0].toLowerCase().includes('nome') ? 1 : 0;
-                           const productsToInsert = [];
-                           
-                           for (let i = startIndex; i < lines.length; i++) {
-                               const parts = lines[i].split(',').map(s => s.trim().replace(/[\x00-\x1F\x7F]/g, ''));
-                               const name = parts[0];
-                               if (!name) continue;
-                               
-                               const price = parseFloat(parts[1]?.replace(',', '.') || "0");
-                               const unit = parts[2]?.toLowerCase().includes('kg') ? 'kg' : 'un';
-                               
-                               productsToInsert.push({ 
-                                 name, 
-                                 price: isNaN(price) ? 0 : price, 
-                                 unit, 
-                                 active: true 
-                               });
-                           }
-                           
-                           if (productsToInsert.length > 0) {
-                              toast.loading(`Importando ${productsToInsert.length} produtos...`, { id: "import-toast" });
-                              bulkImportMutation.mutate(productsToInsert, {
-                                onSuccess: () => toast.success("Sucesso!", { id: "import-toast" }),
-                                onError: () => toast.error("Erro ao importar", { id: "import-toast" })
-                              });
-                           } else {
-                              toast.error("Nenhum produto válido encontrado.");
-                           }
-                         } catch (error) {
-                           toast.error("Erro ao ler arquivo.");
-                         }
-                      }
-                      e.target.value = ''; // Reset input
-                  }}
-                />
-                <button 
-                  onClick={() => fileInputRef.current?.click()}
-                  disabled={bulkImportMutation.isPending}
-                  className="w-full h-11 rounded-xl border border-dashed border-primary/50 text-primary bg-primary/5 hover:bg-primary/10 transition-colors text-sm font-bold flex items-center justify-center gap-2"
-                >
-                  {bulkImportMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : <Plus className="h-4 w-4" />}
-                  <span>Importar Mercadorias (CSV/TXT)</span>
-                </button>
-
-                <ProductSpreadsheetImport
-                  storeId={tenantStoreId}
-                  onImported={() => {
-                    queryClient.invalidateQueries({ queryKey: STORE_PRODUCTS_KEY });
-                    queryClient.invalidateQueries({ queryKey: ["admin-active-basket", tenantStoreId] });
-                    queryClient.invalidateQueries({ queryKey: ["admin-uncategorized-products", tenantStoreId] });
-                  }}
-                />
-              </div>
           </div>
         </div>
 
-        <ProductManualReviewAssist />
+        <AdminMigrationTools
+          storeId={tenantStoreId}
+          csvImportPending={bulkImportMutation.isPending}
+          onCsvImportClick={() => fileInputRef.current?.click()}
+          onImported={invalidateCatalogQueries}
+        />
 
-        <ProductCategoryReview storeId={tenantStoreId} />
+        <input
+          type="file"
+          ref={fileInputRef}
+          className="hidden"
+          accept=".csv,.txt"
+          onChange={async (e) => {
+            const file = e.target.files?.[0];
+            if (file) {
+              try {
+                const rawText = await file.text();
+                const text = rawText
+                  .replace(/\x00/g, "")
+                  .replace(/\\u/gi, "u")
+                  .replace(/\\/g, "-");
 
-        {/* Lista de Produtos */}
+                const lines = text.split("\n").filter((l) => l.trim().length > 0);
+                const startIndex = lines[0].toLowerCase().includes("nome") ? 1 : 0;
+                const productsToInsert = [];
+
+                for (let i = startIndex; i < lines.length; i++) {
+                  const parts = lines[i].split(",").map((s) => s.trim().replace(/[\x00-\x1F\x7F]/g, ""));
+                  const name = parts[0];
+                  if (!name) continue;
+
+                  const price = parseFloat(parts[1]?.replace(",", ".") || "0");
+                  const unit = parts[2]?.toLowerCase().includes("kg") ? "kg" : "un";
+
+                  productsToInsert.push({
+                    name,
+                    price: isNaN(price) ? 0 : price,
+                    unit,
+                    active: true,
+                  });
+                }
+
+                if (productsToInsert.length > 0) {
+                  toast.loading(`Importando ${productsToInsert.length} produtos...`, { id: "import-toast" });
+                  bulkImportMutation.mutate(productsToInsert, {
+                    onSuccess: () => {
+                      toast.success("Sucesso!", { id: "import-toast" });
+                      invalidateCatalogQueries();
+                    },
+                    onError: () => toast.error("Erro ao importar", { id: "import-toast" }),
+                  });
+                } else {
+                  toast.error("Nenhum produto válido encontrado.");
+                }
+              } catch {
+                toast.error("Erro ao ler arquivo.");
+              }
+            }
+            e.target.value = "";
+          }}
+        />
+
+        <ProductImportHistory storeId={tenantStoreId} />
+
+        <AdminPdvIntegrationPanel storeId={tenantStoreId} />
+
+        <p className="text-center text-[11px] text-muted-foreground pb-2">
+          Migração histórica da planilha:{" "}
+          <button
+            type="button"
+            onClick={() => navigate("/admin/basket/legacy-review")}
+            className="text-primary font-bold hover:underline"
+          >
+            revisão legada (snapshot)
+          </button>
+        </p>
+
+        {/* Lista de Produtos — cesta (desativada) */}
         {false && (
         <div>
           <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground mb-3 px-1">
@@ -933,233 +855,6 @@ export default function AdminBasket() {
           </div>
         </div>
         )}
-
-        {/* Todos os Produtos da Loja */}
-        <div className="bg-card p-5 rounded-2xl shadow-sm border border-border">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
-              <Package className="h-4 w-4 text-primary" /> Todos os Produtos da Loja
-            </h2>
-            <button
-              onClick={() => setShowAllProducts(!showAllProducts)}
-              className="text-xs font-bold text-primary hover:underline"
-            >
-              {showAllProducts ? "Ocultar" : "Mostrar Todos"}
-            </button>
-          </div>
-
-          {showAllProducts && (
-            <div className="space-y-3">
-              <div className="relative">
-                <Search className="h-4 w-4 text-muted-foreground absolute left-3 top-1/2 -translate-y-1/2" />
-                <input
-                  type="text"
-                  value={productFilter}
-                  onChange={(e) => setProductFilter(e.target.value)}
-                  placeholder="Buscar produto..."
-                  className="w-full h-10 pl-9 pr-3 border border-border rounded-lg text-sm bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50"
-                />
-              </div>
-              {isStoreProductsLoading && (
-                <div className="text-center py-4">
-                  <Loader2 className="h-6 w-6 text-primary animate-spin mx-auto" />
-                  <p className="text-xs text-muted-foreground mt-2">Carregando produtos...</p>
-                </div>
-              )}
-
-              {!isStoreProductsLoading && allProducts.length === 0 && (
-                <p className="text-center text-sm py-4 text-muted-foreground">
-                  Nenhum produto cadastrado na loja ainda.
-                </p>
-              )}
-
-              {!isStoreProductsLoading && allProducts.length > 0 && filteredProducts.length === 0 && (
-                <p className="text-center text-sm py-4 text-muted-foreground">
-                  Nenhum produto encontrado para esse filtro.
-                </p>
-              )}
-
-              {!isStoreProductsLoading && allProducts.length > 0 && (
-                <div className="space-y-2">
-                  {filteredProducts.map((product: any) => {
-                    const isEditingThisProduct = editingProduct?.id === product.id;
-                    const inBasket = basket.items.some((item: any) => item.products.id === product.id);
-
-                    return (
-                      <div key={product.id} className={`bg-card border border-border rounded-lg p-2 transition-all ${isEditingThisProduct ? 'ring-2 ring-primary/30 border-primary/50' : ''}`}>
-                        {isEditingThisProduct ? (
-                          <div className="space-y-3">
-                            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                              <div className="col-span-2 sm:col-span-3">
-                                <label className="text-xs font-bold text-muted-foreground">Nome</label>
-                                <input 
-                                  type="text" 
-                                  value={editingProduct.name} 
-                                  onChange={(e) => setEditingProduct({ ...editingProduct, name: e.target.value })}
-                                  className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
-                                />
-                              </div>
-                              <div>
-                                <label className="text-xs font-bold text-muted-foreground">Medida</label>
-                                <select 
-                                  value={editingProduct.unit} 
-                                  onChange={(e) => setEditingProduct({ ...editingProduct, unit: e.target.value })}
-                                  className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
-                                >
-                                  <option value="un">UN</option>
-                                  <option value="kg">KG</option>
-                                </select>
-                              </div>
-                              <div className="col-span-1 sm:col-span-2">
-                                <label className="text-xs font-bold text-muted-foreground">Preço (R$)</label>
-                                <input 
-                                  type="number" 
-                                  step="0.01"
-                                  value={editingProduct.price} 
-                                  onChange={(e) => setEditingProduct({ ...editingProduct, price: parseFloat(e.target.value) || 0 })}
-                                  className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
-                                />
-                              </div>
-                              <div className="col-span-2 sm:col-span-3 flex items-center gap-2">
-                                <div className="h-9 w-9 shrink-0 bg-muted border border-border rounded-lg flex items-center justify-center overflow-hidden">
-                                  {editingProduct.image_file ? (
-                                    <img src={URL.createObjectURL(editingProduct.image_file)} alt="" className="w-full h-full object-cover" />
-                                  ) : editingProduct.image_url ? (
-                                    <img src={editingProduct.image_url} alt="" className="w-full h-full object-cover" />
-                                  ) : (
-                                    <span className="text-xs">🖼️</span>
-                                  )}
-                                </div>
-                                <div className="flex-1">
-                                  <label className="text-xs font-bold text-muted-foreground">Link da Foto (Internet)</label>
-                                  <input 
-                                    type="text" 
-                                    value={editingProduct.image_url || ""} 
-                                    onChange={(e) => setEditingProduct({ ...editingProduct, image_url: e.target.value })}
-                                    className="w-full h-9 px-3 border border-border rounded-lg text-sm bg-card text-foreground"
-                                    placeholder="https://..."
-                                  />
-                                </div>
-                              </div>
-                              <div className="col-span-2 sm:col-span-3">
-                                <label className="text-xs font-bold text-muted-foreground">Upload de foto (galeria/câmera)</label>
-                                <input
-                                  type="file"
-                                  accept="image/*"
-                                  capture="environment"
-                                  onChange={(e) => setEditingProduct({ ...editingProduct, image_file: e.target.files?.[0] || null })}
-                                  className="w-full h-9 px-3 py-1 border border-border rounded-lg text-xs bg-card text-foreground file:mr-2 file:rounded-md file:border-0 file:bg-primary/10 file:px-2 file:py-1 file:text-primary file:font-semibold"
-                                />
-                              </div>
-                            </div>
-                            <div className="flex gap-2">
-                              <button 
-                                onClick={() => setEditingProduct(null)}
-                                className="flex-1 h-9 rounded-lg border border-border text-sm font-bold text-muted-foreground hover:bg-muted"
-                              >
-                                Cancelar
-                              </button>
-                              <button 
-                                onClick={() => editProductMutation.mutate({
-                                  productId: product.id,
-                                  name: editingProduct.name,
-                                  price: editingProduct.price,
-                                  unit: editingProduct.unit,
-                                  image_url: editingProduct.image_url,
-                                  image_file: editingProduct.image_file
-                                })}
-                                disabled={editProductMutation.isPending}
-                                className="flex-1 h-9 rounded-lg bg-primary text-white text-sm font-bold flex items-center justify-center gap-1 hover:bg-primary/90"
-                              >
-                                {editProductMutation.isPending ? <Loader2 className="h-4 w-4 animate-spin" /> : "Salvar"}
-                              </button>
-                            </div>
-                          </div>
-                        ) : (
-                          <div className="flex items-center gap-2">
-                            <label className="h-8 w-8 shrink-0 bg-muted rounded-lg flex items-center justify-center overflow-hidden cursor-pointer relative group" title="Alterar foto (galeria/câmera)">
-                              {product.image_url ? (
-                                <img src={product.image_url} alt="" className="w-full h-full object-cover" />
-                              ) : (
-                                <span className="text-sm">🥬</span>
-                              )}
-                              <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                <Plus className="h-3 w-3 text-white" />
-                              </div>
-                              <input
-                                type="file"
-                                className="hidden"
-                                accept="image/*"
-                                capture="environment"
-                                onChange={(e) => {
-                                  if (e.target.files?.[0]) {
-                                    toast.loading("Enviando foto...", { id: `up-prod-${product.id}` });
-                                    uploadImageMutation.mutate(
-                                      { productId: product.id, file: e.target.files[0] },
-                                      {
-                                        onSuccess: () => toast.success("Foto atualizada!", { id: `up-prod-${product.id}` }),
-                                        onError: () => toast.error("Erro no envio", { id: `up-prod-${product.id}` }),
-                                      }
-                                    );
-                                  }
-                                }}
-                              />
-                            </label>
-                            <div className="flex-1 min-w-0">
-                              <p className="font-bold text-xs text-foreground truncate">{product.name}</p>
-                              <div className="flex items-center gap-2 flex-wrap">
-                                <p className="text-[10px] text-muted-foreground">
-                                  R$ {product.price?.toFixed(2)} / {product.unit}
-                                </p>
-                                <button
-                                  onClick={() => toggleStockMutation.mutate({ productId: product.id, inStock: !product.in_stock })}
-                                  className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-md transition-colors ${
-                                    product.in_stock ? "bg-emerald-100 text-emerald-700 hover:bg-emerald-200" : "bg-red-100 text-red-700 hover:bg-red-200"
-                                  }`}
-                                >
-                                  {product.in_stock ? "Disponível" : "Indisponível"}
-                                </button>
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-1 shrink-0">
-                              <button
-                                onClick={() => setEditingProduct({ 
-                                  id: product.id, 
-                                  name: product.name, 
-                                  price: product.price,
-                                  unit: product.unit || "un",
-                                  image_url: product.image_url
-                                })}
-                                className="h-7 w-7 bg-blue-50 dark:bg-blue-950/30 text-blue-600 dark:text-blue-400 rounded-lg flex items-center justify-center hover:bg-blue-100 dark:hover:bg-blue-950/50 transition-colors border border-blue-200 dark:border-blue-800"
-                                title="Editar produto"
-                              >
-                                <svg className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                                  <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                </svg>
-                              </button>
-                              <button
-                                onClick={() => {
-                                  if (window.confirm(`Excluir ${product.name} permanentemente?`)) {
-                                    deleteProductMutation.mutate(product.id);
-                                  }
-                                }}
-                                disabled={deleteProductMutation.isPending}
-                                className="h-7 w-7 bg-red-50 dark:bg-red-950/30 text-red-500 dark:text-red-400 rounded-lg flex items-center justify-center hover:bg-red-100 dark:hover:bg-red-950/50 transition-colors border border-red-200 dark:border-red-800"
-                                title="Excluir produto"
-                              >
-                                <Trash2 className="h-3 w-3" />
-                              </button>
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          )}
-        </div>
 
       </main>
     </div>

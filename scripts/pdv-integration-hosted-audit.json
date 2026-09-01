@@ -1,0 +1,119 @@
+{
+  "audited_at": "2026-09-01T14:28:29.160Z",
+  "supabase_url": "https://ggtdnczmmoxagmbzopsf.supabase.co",
+  "tables": [
+    "store_integrations",
+    "product_external_identifiers",
+    "catalog_sync_runs",
+    "catalog_sync_items"
+  ],
+  "open_api_columns": {},
+  "probes": [
+    {
+      "table": "store_integrations",
+      "role": "anon",
+      "operation": "SELECT",
+      "ok": false,
+      "rowCount": 0,
+      "errorMessage": ""
+    },
+    {
+      "table": "product_external_identifiers",
+      "role": "anon",
+      "operation": "SELECT",
+      "ok": false,
+      "rowCount": 0,
+      "errorMessage": ""
+    },
+    {
+      "table": "catalog_sync_runs",
+      "role": "anon",
+      "operation": "SELECT",
+      "ok": false,
+      "rowCount": 0,
+      "errorMessage": ""
+    },
+    {
+      "table": "catalog_sync_items",
+      "role": "anon",
+      "operation": "SELECT",
+      "ok": false,
+      "rowCount": 0,
+      "errorMessage": ""
+    },
+    {
+      "table": "store_integrations",
+      "role": "authenticated_owner",
+      "operation": "SELECT",
+      "ok": true,
+      "rowCount": 0
+    },
+    {
+      "table": "store_integrations",
+      "role": "authenticated_owner",
+      "operation": "INSERT_PROBE",
+      "ok": true,
+      "errorCode": "42501",
+      "errorMessage": "new row violates row-level security policy for table \"store_integrations\""
+    },
+    {
+      "table": "product_external_identifiers",
+      "role": "authenticated_owner",
+      "operation": "SELECT",
+      "ok": true,
+      "rowCount": 0
+    },
+    {
+      "table": "product_external_identifiers",
+      "role": "authenticated_owner",
+      "operation": "INSERT_PROBE",
+      "ok": true,
+      "errorCode": "42501",
+      "errorMessage": "new row violates row-level security policy for table \"product_external_identifiers\""
+    },
+    {
+      "table": "catalog_sync_runs",
+      "role": "authenticated_owner",
+      "operation": "SELECT",
+      "ok": true,
+      "rowCount": 0
+    },
+    {
+      "table": "catalog_sync_runs",
+      "role": "authenticated_owner",
+      "operation": "INSERT_PROBE",
+      "ok": true,
+      "errorCode": "42501",
+      "errorMessage": "new row violates row-level security policy for table \"catalog_sync_runs\""
+    },
+    {
+      "table": "catalog_sync_items",
+      "role": "authenticated_owner",
+      "operation": "SELECT",
+      "ok": true,
+      "rowCount": 0
+    },
+    {
+      "table": "catalog_sync_items",
+      "role": "authenticated_owner",
+      "operation": "INSERT_PROBE",
+      "ok": true,
+      "errorCode": "42501",
+      "errorMessage": "new row violates row-level security policy for table \"catalog_sync_items\""
+    }
+  ],
+  "expected_from_migration": {
+    "rls": "ENABLED on all 4 tables",
+    "policies": "owner_select only — is_store_owner(store_id) OR is_platform_admin()",
+    "grants": "REVOKE ALL FROM anon; GRANT SELECT TO authenticated only",
+    "unique_constraints": [
+      "store_integrations (store_id, provider, integration_type)",
+      "product_external_identifiers (store_id, provider, external_id)"
+    ],
+    "gaps": [
+      "No INSERT/UPDATE/DELETE policies for authenticated — writes must use SECURITY DEFINER RPC or service_role edge function",
+      "service_role bypasses RLS by design — sync RPC must validate integration_id → store_id",
+      "catalog_sync_items.store_id must match catalog_sync_runs.store_id — no DB CHECK yet (application/RPC responsibility)"
+    ]
+  }
+}

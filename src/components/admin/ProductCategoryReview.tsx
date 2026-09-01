@@ -4,10 +4,12 @@ import { Loader2, Tags, Wand2 } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { useCategories } from "@/hooks/useCategories";
+import { CATALOG_STATS_KEY } from "@/hooks/useCatalogStats";
 import { classifyProductName } from "@/lib/productCategory/classifyProduct";
 
 interface Props {
   storeId: string | undefined;
+  onCategoriesSaved?: () => void;
 }
 
 type UncategorizedProduct = {
@@ -17,7 +19,7 @@ type UncategorizedProduct = {
   internal_code?: string | null;
 };
 
-export function ProductCategoryReview({ storeId }: Props) {
+export function ProductCategoryReview({ storeId, onCategoriesSaved }: Props) {
   const queryClient = useQueryClient();
   const { data: categories = [] } = useCategories(storeId);
   const [assignments, setAssignments] = useState<Record<string, string>>({});
@@ -80,6 +82,9 @@ export function ProductCategoryReview({ storeId }: Props) {
       setAssignments({});
       queryClient.invalidateQueries({ queryKey: ["admin-uncategorized-products", storeId] });
       queryClient.invalidateQueries({ queryKey: ["admin-store-products", storeId] });
+      queryClient.invalidateQueries({ queryKey: [CATALOG_STATS_KEY, storeId] });
+      queryClient.invalidateQueries({ queryKey: ["admin-catalog-products", storeId] });
+      onCategoriesSaved?.();
     },
     onError: (err: Error) => toast.error(err.message),
   });
@@ -111,7 +116,7 @@ export function ProductCategoryReview({ storeId }: Props) {
         <div>
           <h3 className="text-sm font-extrabold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
             <Tags className="h-4 w-4" />
-            Revisão de categorias
+            Produtos sem categoria
           </h3>
           <p className="text-xs text-muted-foreground mt-1">
             Produtos sem categoria não entram no filtro por botão da vitrine. Classificações ambíguas

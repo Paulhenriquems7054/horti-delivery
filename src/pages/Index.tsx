@@ -416,34 +416,49 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background dark:bg-slate-900 flex flex-col">
       {/* Header — identidade da loja (não da plataforma) */}
-      <header className="gradient-hero px-4 py-6 shadow-md">
-        <div className="mx-auto max-w-lg flex items-center gap-3">
-          <div className="h-20 w-20 rounded-2xl bg-white/20 flex items-center justify-center overflow-hidden p-1.5 shrink-0 ring-2 ring-white/30">
-            <StoreLogo
-              logoPath={store.logo_path}
-              logoVersion={store.updated_at}
-              alt={store.name}
-              className="h-full w-full"
-              imgClassName="w-full h-full object-contain"
-            />
+      <header className="gradient-hero px-3 py-4 sm:px-4 sm:py-6 shadow-md">
+        <div className="mx-auto max-w-lg">
+          <div className="flex items-center gap-2.5 sm:gap-3">
+            <div className="h-14 w-14 sm:h-20 sm:w-20 rounded-xl sm:rounded-2xl bg-white/20 flex items-center justify-center overflow-hidden p-1 sm:p-1.5 shrink-0 ring-2 ring-white/30">
+              <StoreLogo
+                logoPath={store.logo_path}
+                logoVersion={store.updated_at}
+                alt={store.name}
+                className="h-full w-full"
+                imgClassName="w-full h-full object-contain"
+              />
+            </div>
+            <div className="flex-1 min-w-0">
+              <h1 className="text-lg sm:text-xl font-extrabold text-white leading-tight truncate">
+                {store.name}
+              </h1>
+              <p className="text-xs sm:text-sm text-white/85 mt-0.5 line-clamp-2 sm:line-clamp-none">
+                Escolha seus produtos e faça seu pedido.
+              </p>
+            </div>
+            <div className="hidden sm:flex items-center gap-2 shrink-0">
+              <button
+                type="button"
+                onClick={() => navigate(`/${slug}/rastrear`)}
+                className="h-10 px-3 rounded-xl bg-white/20 text-white text-xs font-bold inline-flex items-center gap-1.5 hover:bg-white/30"
+              >
+                <ClipboardList className="h-4 w-4 shrink-0" />
+                Meus pedidos
+              </button>
+              <ThemeToggle className="shrink-0" />
+            </div>
+            <ThemeToggle variant="compact" className="sm:hidden shrink-0" />
           </div>
-          <div className="flex-1 min-w-0">
-            <h1 className="text-xl font-extrabold text-white leading-tight truncate">
-              {store.name}
-            </h1>
-            <p className="text-sm text-white/85 mt-0.5">
-              Escolha seus produtos e faça seu pedido.
-            </p>
+          <div className="mt-2.5 sm:hidden">
+            <button
+              type="button"
+              onClick={() => navigate(`/${slug}/rastrear`)}
+              className="h-9 w-full px-3 rounded-xl bg-white/20 text-white text-xs font-bold inline-flex items-center justify-center gap-1.5 hover:bg-white/30"
+            >
+              <ClipboardList className="h-4 w-4 shrink-0" />
+              Meus pedidos
+            </button>
           </div>
-          <button
-            type="button"
-            onClick={() => navigate(`/${slug}/rastrear`)}
-            className="h-10 px-3 rounded-xl bg-white/20 text-white text-xs font-bold inline-flex items-center gap-1.5 hover:bg-white/30 shrink-0"
-          >
-            <ClipboardList className="h-4 w-4" />
-            Meus pedidos
-          </button>
-          <ThemeToggle />
         </div>
       </header>
 
