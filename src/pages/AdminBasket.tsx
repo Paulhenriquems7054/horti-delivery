@@ -14,6 +14,7 @@ import { AdminMigrationTools } from "@/components/admin/AdminMigrationTools";
 import { ProductImportHistory } from "@/components/admin/ProductImportHistory";
 import { AdminPdvIntegrationPanel } from "@/components/admin/AdminPdvIntegrationPanel";
 import { CATALOG_STATS_KEY } from "@/hooks/useCatalogStats";
+import { isProductInStock, useToggleProductInStock } from "@/hooks/useToggleProductInStock";
 
 export default function AdminBasket() {
   const navigate = useNavigate();
@@ -328,19 +329,7 @@ export default function AdminBasket() {
     onError: (err: any) => toast.error("Erro ao salvar: " + err.message)
   });
 
-  const toggleStockMutation = useMutation({
-    mutationFn: async ({ productId, inStock }: { productId: string, inStock: boolean }) => {
-      const { error } = await supabase.from("products").update({ in_stock: inStock } as any).eq("id", productId);
-      if (error) throw error;
-    },
-    onSuccess: () => {
-      toast.success("Estoque atualizado!");
-      queryClient.invalidateQueries({ queryKey: ["admin-active-basket"] });
-      if (tenantStoreId) {
-        queryClient.invalidateQueries({ queryKey: ["admin-store-products", tenantStoreId] });
-      }
-    }
-  });
+  const toggleStock = useToggleProductInStock(tenantStoreId);
 
   const uploadImageMutation = useMutation({
     mutationFn: async ({ productId, file }: { productId: string, file: File }) => {
@@ -391,7 +380,7 @@ export default function AdminBasket() {
   return (
     <div className="min-h-screen bg-background flex flex-col">
       <header className="gradient-hero px-4 py-5 shadow-md sticky top-0 z-20">
-        <div className="mx-auto max-w-2xl flex items-center gap-3">
+        <div className="mx-auto max-w-5xl w-full flex items-center gap-3">
           <button onClick={() => navigate("/admin")} className="h-10 w-10 bg-white/20 rounded-xl flex items-center justify-center text-white hover:bg-white/30 transition-colors">
             <ArrowLeft className="h-5 w-5" />
           </button>
@@ -402,7 +391,7 @@ export default function AdminBasket() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-2xl w-full px-4 py-6 flex-1 space-y-6">
+      <main className="mx-auto max-w-5xl w-full px-4 py-6 flex-1 space-y-6">
         
         {/* Configurações Gerais da Cesta */}
         <div className="bg-card p-5 rounded-2xl shadow-sm border border-border">
@@ -780,10 +769,25 @@ export default function AdminBasket() {
                               Por {item.products.unit === "kg" ? "kg" : "und"} • R$ {item.products.price?.toFixed(2)}
                             </p>
                             <button 
-                              onClick={() => toggleStockMutation.mutate({ productId: item.products.id, inStock: !item.products.in_stock })}
-                              className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-md transition-colors ${item.products.in_stock ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' : 'bg-red-100 text-red-700 hover:bg-red-200'}`}
+                              type="button"
+                              title={
+                                isProductInStock(item.products.in_stock)
+                                  ? "Clique para marcar indisponível"
+                                  : "Clique para marcar disponível"
+                              }
+                              onClick={() =>
+                                toggleStock.mutate({
+                                  productId: item.products.id,
+                                  inStock: !isProductInStock(item.products.in_stock),
+                                })
+                              }
+                              disabled={
+                                toggleStock.isPending &&
+                                toggleStock.variables?.productId === item.products.id
+                              }
+                              className={`text-[10px] uppercase font-bold px-2 py-0.5 rounded-md transition-colors cursor-pointer disabled:opacity-50 ${isProductInStock(item.products.in_stock) ? 'bg-emerald-100 text-emerald-700 hover:bg-emerald-200' : 'bg-red-100 text-red-700 hover:bg-red-200'}`}
                             >
-                              {item.products.in_stock ? 'Disponível' : 'Esgotado!'}
+                              {isProductInStock(item.products.in_stock) ? 'Disponível' : 'Indisponível'}
                             </button>
                           </div>
                         </div>

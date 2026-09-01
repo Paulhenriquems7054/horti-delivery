@@ -6,6 +6,7 @@ import { useDeliveryZones } from "@/hooks/useDeliveryZones";
 import { useValidateCoupon } from "@/hooks/useCoupons";
 import { toast } from "sonner";
 import { CartEstimateWarning } from "@/components/CartEstimateWarning";
+import { formatCurrency } from "@/utils/priceEstimation";
 import {
   clearLegacyCustomerProfile,
   getCheckoutAddress,
@@ -17,9 +18,17 @@ import {
 } from "@/lib/customerSession";
 import type { StoreOperationalSettings } from "@/hooks/useStoreOperationalSettings";
 
+const HCAPTCHA_TEST_SITE_KEY = "10000000-ffff-ffff-ffff-000000000001";
 const HCAPTCHA_SITE_KEY =
-  import.meta.env.VITE_HCAPTCHA_SITE_KEY || "10000000-ffff-ffff-ffff-000000000001";
-const HCAPTCHA_REQUIRED = Boolean(import.meta.env.VITE_HCAPTCHA_SITE_KEY);
+  import.meta.env.VITE_HCAPTCHA_SITE_KEY || HCAPTCHA_TEST_SITE_KEY;
+/** Só exige captcha em produção com chave real (não a de teste do hCaptcha). */
+const HCAPTCHA_REQUIRED =
+  Boolean(import.meta.env.VITE_HCAPTCHA_SITE_KEY?.trim()) &&
+  import.meta.env.VITE_HCAPTCHA_SITE_KEY !== HCAPTCHA_TEST_SITE_KEY;
+
+function roundMoney(value: number): number {
+  return Math.round(value * 100) / 100;
+}
 
 interface Props {
   loading: boolean;
@@ -115,19 +124,26 @@ export function CheckoutForm({
 
   const currentZoneData = zones?.find(z => z.id === selectedZone);
   const deliveryFee = currentZoneData ? currentZoneData.fee : 0;
-  const couponValidationTotal = Math.max(basketPrice, estimatedTotal || 0);
+  const couponValidationTotal = Math.max(roundMoney(basketPrice), roundMoney(estimatedTotal || 0));
   
   // Calculate discount
   let discount = 0;
   if (appliedCoupon) {
     if (appliedCoupon.discount_type === "percentage") {
-      discount = (basketPrice * appliedCoupon.discount_value) / 100;
+      discount = roundMoney((basketPrice * appliedCoupon.discount_value) / 100);
     } else {
-      discount = appliedCoupon.discount_value;
+      discount = roundMoney(appliedCoupon.discount_value);
     }
   }
-  
-  const finalTotal = Math.max(0, basketPrice - discount + deliveryFee);
+
+  const tagSubtotal = roundMoney(basketPrice);
+  const productsEstimate = roundMoney(estimatedTotal ?? basketPrice);
+  const productsBase = hasUnitItems ? productsEstimate : tagSubtotal;
+  const showTagReference = hasUnitItems && Math.abs(tagSubtotal - productsEstimate) > 0.01;
+  const finalTotal = roundMoney(Math.max(0, productsBase - discount + deliveryFee));
+  const displayGrandTotal = roundMoney(
+    Math.max(0, (hasUnitItems ? productsEstimate : tagSubtotal) - discount + deliveryFee),
+  );
 
   const errors = {
     name: name.trim().length < 2 ? "Informe seu nome completo" : "",
@@ -239,35 +255,69 @@ export function CheckoutForm({
         </div>
       </div>
 
-      <div className="rounded-2xl gradient-card border border-primary/20 p-4 mb-6 flex flex-col gap-1">
-        {/* Subtotal - diferencia entre confirmado e estimado */}
-        <div className="flex justify-between text-sm font-semibold text-muted-foreground">
-          <span className="flex items-center gap-1">
-            Subtotal (confirmado):
+      <div className="rounded-2xl border border-border bg-card p-4 mb-4 space-y-3">
+        <div className="flex items-center justify-between gap-2">
+          <h3 className="text-sm font-extrabold text-foreground">Itens do pedido</h3>
+          <span className="text-xs font-bold text-muted-foreground">
+            {itemCount} {itemCount === 1 ? "item" : "itens"}
           </span>
-          <span>R$ {basketPrice.toFixed(2).replace(".", ",")}</span>
         </div>
-        
-        {/* Estimativa de itens por unidade */}
-        {estimatedTotal && estimatedTotal > basketPrice && (
-          <div className="flex justify-between text-sm font-semibold text-amber-600">
-            <span className="flex items-center gap-1">
-              <Scale className="h-3.5 w-3.5" />
-              Estimativa (por unidade):
-            </span>
-            <span>+ R$ {(estimatedTotal - basketPrice).toFixed(2).replace(".", ",")}</span>
-          </div>
+        {cartLines.length === 0 ? (
+          <p className="text-sm text-muted-foreground">Nenhum item na cesta.</p>
+        ) : (
+          <ul className="space-y-2 max-h-48 overflow-y-auto pr-1">
+            {cartLines.map((line, index) => (
+              <li
+                key={`${line.name}-${line.detail}-${index}`}
+                className="flex justify-between gap-3 text-sm border-b border-border/50 pb-2 last:border-0 last:pb-0"
+              >
+                <div className="min-w-0">
+                  <p className="font-semibold text-foreground break-words leading-snug">{line.name}</p>
+                  <p className="text-xs text-muted-foreground">{line.detail}</p>
+                  {line.itemNotes?.trim() ? (
+                    <p className="text-xs text-amber-700 mt-0.5">Obs: {line.itemNotes.trim()}</p>
+                  ) : null}
+                </div>
+                <span className="font-bold text-foreground shrink-0">
+                  {formatCurrency(roundMoney(line.subtotal))}
+                </span>
+              </li>
+            ))}
+          </ul>
         )}
+      </div>
+
+      <div className="rounded-2xl gradient-card border border-primary/20 p-4 mb-6 space-y-2">
+        {showTagReference ? (
+          <div className="flex justify-between text-xs text-muted-foreground">
+            <span>Referência por etiqueta</span>
+            <span>{formatCurrency(tagSubtotal)}</span>
+          </div>
+        ) : null}
+
+        <div className="flex justify-between text-sm font-semibold text-foreground">
+          <span className="flex items-center gap-1">
+            {hasUnitItems ? (
+              <>
+                <Scale className="h-3.5 w-3.5 text-amber-600" />
+                Estimativa dos produtos
+              </>
+            ) : (
+              "Subtotal dos produtos"
+            )}
+          </span>
+          <span>{formatCurrency(productsBase)}</span>
+        </div>
         
         {discount > 0 && (
           <div className="flex justify-between text-sm font-semibold text-emerald-600">
-            <span>Desconto ({appliedCoupon.code}):</span>
-            <span>- R$ {discount.toFixed(2).replace(".", ",")}</span>
+            <span>Desconto ({appliedCoupon.code})</span>
+            <span>- {formatCurrency(discount)}</span>
           </div>
         )}
-        <div className="flex justify-between text-sm font-semibold text-muted-foreground mb-1">
-          <span>Taxa de Entrega:</span>
-          <span>+ R$ {deliveryFee.toFixed(2).replace(".", ",")}</span>
+        <div className="flex justify-between text-sm font-semibold text-muted-foreground">
+          <span>Taxa de entrega</span>
+          <span>+ {formatCurrency(roundMoney(deliveryFee))}</span>
         </div>
         <div className="flex items-center justify-between pt-2 border-t border-primary/20">
           <div>
@@ -276,18 +326,17 @@ export function CheckoutForm({
             </span>
             {hasUnitItems && (
               <p className="text-[10px] text-muted-foreground">
-                Valor final após pesagem
+                Valor final confirmado na pesagem
               </p>
             )}
           </div>
           <span className="text-2xl font-extrabold text-primary">
-            R$ {(estimatedTotal ? Math.max(0, estimatedTotal - discount + deliveryFee) : finalTotal).toFixed(2).replace(".", ",")}
+            {formatCurrency(displayGrandTotal)}
           </span>
         </div>
         
-        {/* Aviso de variação para itens por unidade */}
         {hasUnitItems && (
-          <div className="mt-3">
+          <div className="mt-1">
             <CartEstimateWarning 
               hasUnitItems={true}
               itemsWithoutEstimate={itemsWithoutEstimate}
@@ -528,47 +577,38 @@ export function CheckoutForm({
         </label>
 
         {HCAPTCHA_REQUIRED && (
-          <div className="flex justify-center">
-            <HCaptcha
-              ref={captchaRef}
-              sitekey={HCAPTCHA_SITE_KEY}
-              onVerify={(token) => setCaptchaToken(token)}
-              onExpire={() => setCaptchaToken(null)}
-            />
+          <div className="rounded-xl border border-border bg-muted/30 p-4 space-y-2">
+            <p className="text-sm font-bold text-foreground text-center">
+              Verificação de segurança
+            </p>
+            <p className="text-xs text-muted-foreground text-center">
+              Marque a caixa abaixo para continuar com o pedido.
+            </p>
+            <div className="flex justify-center min-h-[78px]">
+              <HCaptcha
+                ref={captchaRef}
+                sitekey={HCAPTCHA_SITE_KEY}
+                onVerify={(token) => setCaptchaToken(token)}
+                onExpire={() => setCaptchaToken(null)}
+              />
+            </div>
           </div>
         )}
 
         {reviewing && (
-          <div className="rounded-2xl border border-primary/20 bg-card p-4 space-y-2">
-            <p className="text-sm font-extrabold text-foreground">Resumo do pedido</p>
-            {cartLines.map((line) => (
-              <div key={`${line.name}-${line.detail}-${line.itemNotes ?? ""}`} className="flex justify-between text-sm gap-2">
-                <div>
-                  <span>{line.name} ({line.detail})</span>
-                  {line.itemNotes?.trim() && (
-                    <p className="text-xs text-amber-700">Obs: {line.itemNotes.trim()}</p>
-                  )}
-                </div>
-                <span className="font-bold shrink-0">R$ {line.subtotal.toFixed(2).replace(".", ",")}</span>
-              </div>
-            ))}
-            <p className="text-sm text-muted-foreground">Quantidade de itens: {itemCount}</p>
-            {discount > 0 && (
-              <div className="flex justify-between text-sm text-emerald-700">
-                <span>Desconto</span>
-                <span>- R$ {discount.toFixed(2).replace(".", ",")}</span>
-              </div>
-            )}
-            <div className="flex justify-between text-sm">
-              <span>Entrega</span>
-              <span>R$ {deliveryFee.toFixed(2).replace(".", ",")}</span>
-            </div>
-            <div className="flex justify-between text-lg font-extrabold text-primary pt-2 border-t">
-              <span>Total do pedido</span>
-              <span>R$ {(estimatedTotal ? Math.max(0, estimatedTotal - discount + deliveryFee) : finalTotal).toFixed(2).replace(".", ",")}</span>
-            </div>
-            <p className="text-sm">Forma de pagamento: {paymentLabel(paymentMethod)}</p>
-            <p className="text-sm text-emerald-700">Pagamento: somente no momento da entrega.</p>
+          <div className="rounded-2xl border border-primary/30 bg-primary/5 p-4 space-y-2">
+            <p className="text-sm font-extrabold text-foreground">Confira antes de enviar</p>
+            <p className="text-sm text-foreground">
+              <span className="font-semibold">Entrega:</span>{" "}
+              {street}, {number} — {neighborhood}
+              {currentZoneData?.name ? ` (${currentZoneData.name})` : ""}
+            </p>
+            <p className="text-sm text-foreground">
+              <span className="font-semibold">Pagamento:</span> {paymentLabel(paymentMethod)}
+            </p>
+            <p className="text-sm text-emerald-700 font-medium">
+              Pagamento somente na entrega — total estimado {formatCurrency(displayGrandTotal)}.
+            </p>
           </div>
         )}
 
@@ -581,9 +621,9 @@ export function CheckoutForm({
           {loading ? (
              <Loader2 className="h-5 w-5 animate-spin" />
           ) : reviewing ? (
-            "Confirmar pedido"
+            `Confirmar pedido — ${formatCurrency(displayGrandTotal)}`
           ) : (
-            "Revisar e confirmar"
+            "Continuar para revisão"
           )}
         </button>
         {reviewing && (

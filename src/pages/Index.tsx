@@ -634,10 +634,10 @@ export default function Index() {
 
         {/* Etapa 2: Checkout */}
         {step === "checkout" && (
-          <div className="mt-6">
+          <div className="mt-6 pb-8">
             <CheckoutForm
               loading={createOrder.isPending}
-              basketName={basket.name}
+              basketName={store.name}
               basketPrice={cartTotal}
               storeId={store.id}
               storeSlug={store.slug}

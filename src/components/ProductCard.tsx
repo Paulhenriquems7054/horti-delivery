@@ -1,6 +1,7 @@
 import { Scale, Info } from "lucide-react";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
 import { calculateUnitPriceEstimate, formatCurrency, formatPriceRange } from "@/utils/priceEstimation";
+import { isProductInStock } from "@/hooks/useToggleProductInStock";
 
 const EMOJI_MAP: Record<string, string> = {
   banana: "🍌", tomate: "🍅", alface: "🥬", batata: "🥔",
@@ -45,7 +46,7 @@ export function ProductCard({
   const isBoth = sellBy === 'both';
   const currentMode: 'unit' | 'weight' = isBoth ? (selectedMode || 'unit') : (sellBy === 'weight' ? 'weight' : 'unit');
   const isWeight = currentMode === 'weight';
-  const isAvailable = product.in_stock !== false;
+  const isAvailable = isProductInStock(product.in_stock);
   
   const pricePerKg = product.price_per_kg ?? product.price;
   const pricePerUnit = (product as any).price_per_unit ?? product.price;
