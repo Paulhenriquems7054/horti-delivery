@@ -38,21 +38,22 @@ export interface StoreCatalogPage {
 
 export function storeCatalogQueryKey(
   storeId: string | undefined,
-  categoryId: string | null | undefined,
+  categoryIds: string[],
   searchQuery: string,
 ) {
-  return ["store-catalog-products", storeId, categoryId, searchQuery.trim().toLowerCase()] as const;
+  const categoriesKey = [...categoryIds].sort().join(",");
+  return ["store-catalog-products", storeId, categoriesKey, searchQuery.trim().toLowerCase()] as const;
 }
 
 export function useStoreCatalogProducts(
   storeId: string | undefined,
-  categoryId: string | null,
+  categoryIds: string[],
   searchQuery: string,
 ) {
   return useInfiniteQuery({
-    queryKey: storeCatalogQueryKey(storeId, categoryId, searchQuery),
+    queryKey: storeCatalogQueryKey(storeId, categoryIds, searchQuery),
     queryFn: async ({ pageParam = 0 }): Promise<StoreCatalogPage> => {
-      if (!storeId || !categoryId) {
+      if (!storeId || categoryIds.length === 0) {
         return { products: [], totalCount: 0, page: 0, hasMore: false };
       }
 
@@ -65,7 +66,7 @@ export function useStoreCatalogProducts(
         .select(PRODUCT_SELECT, { count: "exact" })
         .eq("store_id", storeId)
         .eq("active", true)
-        .eq("category_id", categoryId)
+        .in("category_id", categoryIds)
         .order("name", { ascending: true });
 
       if (q) {
@@ -87,7 +88,7 @@ export function useStoreCatalogProducts(
     },
     initialPageParam: 0,
     getNextPageParam: (lastPage) => (lastPage.hasMore ? lastPage.page + 1 : undefined),
-    enabled: !!storeId && !!categoryId,
+    enabled: !!storeId && categoryIds.length > 0,
     staleTime: 30_000,
   });
 }

@@ -3,12 +3,10 @@ import { CATALOG_CATEGORY_SEEDS } from "@/lib/productCategory/classifyProduct";
 
 interface Props {
   storeId?: string;
-  selectedCategory: string | null;
-  onSelectCategory: (categoryId: string | null) => void;
-  /** Quando true, exige escolher uma categoria antes de listar produtos */
+  selectedCategories: string[];
+  onToggleCategory: (categoryId: string) => void;
+  /** Quando true, exige ao menos uma categoria antes de listar produtos */
   requireSelection?: boolean;
-  /** Contagens server-side por category_id */
-  productCounts?: Map<string, number>;
 }
 
 function shortLabelFor(name: string): string {
@@ -18,10 +16,9 @@ function shortLabelFor(name: string): string {
 
 export function CategoryFilter({
   storeId,
-  selectedCategory,
-  onSelectCategory,
+  selectedCategories,
+  onToggleCategory,
   requireSelection = false,
-  productCounts,
 }: Props) {
   const { data: categories } = useCategories(storeId);
 
@@ -36,29 +33,17 @@ export function CategoryFilter({
   return (
     <div className="space-y-2">
       <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">
-        Escolha uma categoria
+        {requireSelection ? "Escolha uma ou mais categorias" : "Categorias"}
       </p>
       <div className="flex flex-wrap gap-2">
-        {!requireSelection && (
-          <button
-            type="button"
-            onClick={() => onSelectCategory(null)}
-            className={`h-10 px-3 rounded-xl text-sm font-bold border shrink-0 transition-colors ${
-              selectedCategory === null
-                ? "bg-primary text-primary-foreground border-primary"
-                : "bg-card text-foreground border-border hover:bg-muted"
-            }`}
-          >
-            Todos
-          </button>
-        )}
         {categories.map((cat) => {
-          const selected = selectedCategory === cat.id;
+          const selected = selectedCategories.includes(cat.id);
           return (
             <button
               key={cat.id}
               type="button"
-              onClick={() => onSelectCategory(cat.id)}
+              onClick={() => onToggleCategory(cat.id)}
+              aria-pressed={selected}
               className={`h-10 px-3 rounded-xl text-sm font-bold border shrink-0 transition-colors inline-flex items-center gap-1.5 ${
                 selected
                   ? "bg-primary text-primary-foreground border-primary"
@@ -66,12 +51,7 @@ export function CategoryFilter({
               }`}
             >
               {cat.icon ? <span aria-hidden>{cat.icon}</span> : null}
-              <span>
-                {shortLabelFor(cat.name)}
-                {productCounts?.has(cat.id) ? (
-                  <span className="opacity-80 font-semibold"> ({productCounts.get(cat.id)})</span>
-                ) : null}
-              </span>
+              <span>{shortLabelFor(cat.name)}</span>
             </button>
           );
         })}

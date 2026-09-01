@@ -54,7 +54,7 @@ export function ProductCard({
   const unitEstimate = !isWeight ? calculateUnitPriceEstimate(product, cartQty || 1) : null;
 
   return (
-    <div className={`flex items-center gap-3 rounded-2xl bg-card p-3 shadow-card border transition-all ${inCart ? "border-primary/40 bg-emerald-50/30 dark:bg-emerald-950/20" : "border-border/60"} ${!isAvailable ? "opacity-60" : ""}`}>
+    <div className={`flex items-start gap-3 rounded-2xl bg-card p-3 shadow-card border transition-all ${inCart ? "border-primary/40 bg-emerald-50/30 dark:bg-emerald-950/20" : "border-border/60"} ${!isAvailable ? "opacity-60" : ""}`}>
       {/* Imagem / Emoji */}
       <div className="flex-shrink-0 h-14 w-14 rounded-xl gradient-card flex items-center justify-center overflow-hidden">
         {product.image_url ? (
@@ -66,8 +66,8 @@ export function ProductCard({
 
       {/* Infos */}
       <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-2 flex-wrap">
-          <p className="font-bold text-foreground truncate">{product.name}</p>
+        <div className="flex items-start gap-2 flex-wrap">
+          <p className="font-bold text-foreground break-words leading-snug min-w-0 flex-1">{product.name}</p>
           {!isAvailable && (
             <span className="text-[10px] uppercase font-bold px-2 py-0.5 rounded-md bg-red-100 text-red-700">
               Indisponível
@@ -148,7 +148,7 @@ export function ProductCard({
       </div>
 
       {/* Controles */}
-      <div className="flex-shrink-0">
+      <div className="flex-shrink-0 pt-0.5">
         {isWeight ? (
           /* Modo peso — sempre mostra botão que abre modal */
           <button

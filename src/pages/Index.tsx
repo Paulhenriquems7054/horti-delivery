@@ -47,7 +47,7 @@ export default function Index() {
   const [confirmedPhone, setConfirmedPhone] = useState<string>("");
   const [confirmedPayment, setConfirmedPayment] = useState<string>("");
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
 
   const { data: store, isLoading: isStoreLoading, isError: isStoreError } = useStoreInfo(slug);
   const blocked = isStorePubliclyBlocked(store);
@@ -67,7 +67,7 @@ export default function Index() {
     hasNextPage,
     isFetchingNextPage,
     refetch: refetchCatalog,
-  } = useStoreCatalogProducts(store?.id, selectedCategory, searchQuery);
+  } = useStoreCatalogProducts(store?.id, selectedCategories, searchQuery);
 
   const catalogProducts = useMemo(
     () => flattenCatalogPages(catalogPages?.pages),
@@ -80,8 +80,12 @@ export default function Index() {
   );
   const { data: cartProducts = [] } = useProductsByIds(store?.id, cartProductIds);
 
-  const handleSelectCategory = useCallback((categoryId: string | null) => {
-    setSelectedCategory(categoryId);
+  const handleToggleCategory = useCallback((categoryId: string) => {
+    setSelectedCategories((prev) =>
+      prev.includes(categoryId)
+        ? prev.filter((id) => id !== categoryId)
+        : [...prev, categoryId],
+    );
     setSearchQuery("");
   }, []);
   const createOrder = useCreateOrder();
@@ -189,15 +193,20 @@ export default function Index() {
     ? !isWithinDeliveryHours(operationalSettings)
     : false;
 
-  const selectedCategoryCount =
-    selectedCategory && categoryCounts
-      ? categoryCounts.byCategoryId.get(selectedCategory) ?? 0
-      : 0;
+  const hasSelectedCategories = selectedCategories.length > 0;
 
-  const selectedCategoryHasNoProducts =
-    !!selectedCategory && !isCatalogLoading && selectedCategoryCount === 0;
+  const selectedCategoriesProductCount = useMemo(() => {
+    if (!categoryCounts || !hasSelectedCategories) return 0;
+    return selectedCategories.reduce(
+      (sum, id) => sum + (categoryCounts.byCategoryId.get(id) ?? 0),
+      0,
+    );
+  }, [categoryCounts, hasSelectedCategories, selectedCategories]);
 
-  const catalogTotalInCategory = catalogPages?.pages[0]?.totalCount ?? selectedCategoryCount;
+  const selectedCategoriesHaveNoProducts =
+    hasSelectedCategories && !isCatalogLoading && selectedCategoriesProductCount === 0;
+
+  const catalogTotalInSelection = catalogPages?.pages[0]?.totalCount ?? selectedCategoriesProductCount;
 
   if (isStoreLoading) {
     return (
@@ -558,30 +567,29 @@ export default function Index() {
               <div className="space-y-3">
                 <CategoryFilter 
                   storeId={store.id} 
-                  selectedCategory={selectedCategory}
-                  onSelectCategory={handleSelectCategory}
+                  selectedCategories={selectedCategories}
+                  onToggleCategory={handleToggleCategory}
                   requireSelection
-                  productCounts={categoryCounts?.byCategoryId}
                 />
-                {selectedCategory && (
+                {hasSelectedCategories && (
                   <ProductSearch onSearch={setSearchQuery} />
                 )}
               </div>
 
-              {!selectedCategory && (
+              {!hasSelectedCategories && (
                 <div className="text-center py-10 rounded-2xl border border-dashed border-border bg-card/50">
                   <Package className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
-                  <p className="text-sm font-semibold text-foreground">Selecione uma categoria</p>
+                  <p className="text-sm font-semibold text-foreground">Selecione uma ou mais categorias</p>
                   <p className="text-xs text-muted-foreground mt-1 px-6">
-                    Os produtos aparecem filtrados pela categoria escolhida nesta loja.
+                    Você pode combinar categorias na mesma compra. Os produtos aparecem conforme sua seleção.
                   </p>
                 </div>
               )}
 
-              {selectedCategory && isCatalogError && (
+              {hasSelectedCategories && isCatalogError && (
                 <div className="text-center py-10 rounded-2xl border border-destructive/30 bg-destructive/5">
                   <p className="text-sm font-medium text-destructive">
-                    Não foi possível carregar os produtos desta categoria.
+                    Não foi possível carregar os produtos das categorias selecionadas.
                   </p>
                   <button
                     type="button"
@@ -593,28 +601,28 @@ export default function Index() {
                 </div>
               )}
 
-              {selectedCategory && isCatalogLoading && (
+              {hasSelectedCategories && isCatalogLoading && (
                 <div className="flex justify-center py-12">
                   <Loader2 className="h-8 w-8 animate-spin text-primary" />
                 </div>
               )}
 
-              {selectedCategory && selectedCategoryHasNoProducts && !isCatalogLoading && (
+              {hasSelectedCategories && selectedCategoriesHaveNoProducts && !isCatalogLoading && (
                 <div className="text-center py-10 rounded-2xl border border-border bg-card">
                   <p className="text-sm font-medium text-muted-foreground">
-                    Esta categoria ainda não possui produtos disponíveis.
+                    As categorias selecionadas ainda não possuem produtos disponíveis.
                   </p>
                 </div>
               )}
 
-              {selectedCategory && !selectedCategoryHasNoProducts && !isCatalogLoading && !isCatalogError && catalogProducts.length === 0 && searchQuery && (
+              {hasSelectedCategories && !selectedCategoriesHaveNoProducts && !isCatalogLoading && !isCatalogError && catalogProducts.length === 0 && searchQuery && (
                 <div className="text-center py-12">
                   <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
                   <p className="text-muted-foreground">Nenhum produto encontrado nesta busca</p>
                 </div>
               )}
 
-              {selectedCategory && !isCatalogLoading && !isCatalogError && catalogProducts.map((p, i) => {
+              {hasSelectedCategories && !isCatalogLoading && !isCatalogError && catalogProducts.map((p, i) => {
                 const mode = getProductMode(p);
                 const productLines = resolvedCartLines.filter((l) => l.productId === p.id);
                 const cartQty = productLines
@@ -639,7 +647,7 @@ export default function Index() {
                 </div>
               );})}
 
-              {selectedCategory && hasNextPage && !isCatalogError && (
+              {hasSelectedCategories && hasNextPage && !isCatalogError && (
                 <div className="pt-2 pb-4">
                   <button
                     type="button"
@@ -653,7 +661,7 @@ export default function Index() {
                         Carregando...
                       </>
                     ) : (
-                      <>Carregar mais ({catalogProducts.length} de {catalogTotalInCategory.toLocaleString("pt-BR")})</>
+                      <>Carregar mais ({catalogProducts.length} de {catalogTotalInSelection.toLocaleString("pt-BR")})</>
                     )}
                   </button>
                 </div>

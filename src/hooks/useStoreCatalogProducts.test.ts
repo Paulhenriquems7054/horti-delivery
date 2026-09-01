@@ -7,15 +7,21 @@ import {
 } from "./useStoreCatalogProducts";
 
 describe("useStoreCatalogProducts helpers", () => {
-  it("query key muda ao trocar categoria (reinicia paginação)", () => {
-    const k1 = storeCatalogQueryKey("store-1", "cat-a", "");
-    const k2 = storeCatalogQueryKey("store-1", "cat-b", "");
+  it("query key muda ao trocar categorias (reinicia paginação)", () => {
+    const k1 = storeCatalogQueryKey("store-1", ["cat-a"], "");
+    const k2 = storeCatalogQueryKey("store-1", ["cat-b"], "");
     expect(k1).not.toEqual(k2);
   });
 
+  it("query key é estável independente da ordem das categorias", () => {
+    const k1 = storeCatalogQueryKey("store-1", ["cat-b", "cat-a"], "");
+    const k2 = storeCatalogQueryKey("store-1", ["cat-a", "cat-b"], "");
+    expect(k1).toEqual(k2);
+  });
+
   it("query key muda ao trocar busca", () => {
-    const k1 = storeCatalogQueryKey("store-1", "cat-a", "arroz");
-    const k2 = storeCatalogQueryKey("store-1", "cat-a", "");
+    const k1 = storeCatalogQueryKey("store-1", ["cat-a"], "arroz");
+    const k2 = storeCatalogQueryKey("store-1", ["cat-a"], "");
     expect(k1).not.toEqual(k2);
   });
 
