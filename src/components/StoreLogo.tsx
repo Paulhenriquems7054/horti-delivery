@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { DEFAULT_STORE_LOGO, resolveStoreLogoUrl } from "@/lib/storeLogo";
+import { cn } from "@/lib/utils";
 
 interface StoreLogoProps {
   logoPath?: string | null;
@@ -8,6 +9,8 @@ interface StoreLogoProps {
   alt?: string;
   className?: string;
   imgClassName?: string;
+  /** Ajuste fino quando a arte não ocupa o centro do arquivo (ex.: "center 35%") */
+  objectPosition?: string;
 }
 
 export function StoreLogo({
@@ -15,7 +18,8 @@ export function StoreLogo({
   logoVersion,
   alt = "Logo",
   className,
-  imgClassName = "w-full h-full object-contain",
+  imgClassName = "h-full w-full object-contain",
+  objectPosition,
 }: StoreLogoProps) {
   const [useFallback, setUseFallback] = useState(false);
 
@@ -28,12 +32,13 @@ export function StoreLogo({
     : resolveStoreLogoUrl(logoPath, logoVersion);
 
   return (
-    <div className={className}>
+    <div className={cn("flex items-center justify-center", className)}>
       <img
         key={`${logoPath ?? "default"}-${logoVersion ?? "0"}`}
         src={src}
         alt={alt}
         className={imgClassName}
+        style={objectPosition ? { objectPosition } : undefined}
         onError={() => setUseFallback(true)}
       />
     </div>

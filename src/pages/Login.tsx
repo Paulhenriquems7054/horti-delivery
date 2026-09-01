@@ -9,6 +9,8 @@ import { logAuditEvent } from "@/hooks/useAuditLog";
 import { fetchMyStore } from "@/lib/resolveMyStore";
 import { Eye, EyeOff } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { StoreLogo } from "@/components/StoreLogo";
+import { useLandingStore } from "@/hooks/useLandingStore";
 
 export default function Login() {
     const [email, setEmail] = useState("");
@@ -20,6 +22,7 @@ export default function Login() {
     const [showNewPassword, setShowNewPassword] = useState(false);
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
+    const { data: store } = useLandingStore();
 
     const redirectAfterAuth = async () => {
         const { data: isAdmin } = await supabase.rpc("is_platform_admin" as never);
@@ -123,10 +126,11 @@ export default function Login() {
             <div className="w-full max-w-sm space-y-6 relative z-10">
                 <div className="text-center space-y-2">
                     <div className="h-14 w-14 rounded-2xl gradient-hero flex items-center justify-center text-white shadow-md mx-auto mb-4 overflow-hidden p-2">
-                        <img
-                          src="/play_store_512.png"
-                          alt="Logo"
-                          className="w-full h-full object-contain"
+                        <StoreLogo
+                          logoPath={store?.logo_path}
+                          logoVersion={store?.updated_at}
+                          alt={store?.name ?? "Logo"}
+                          className="h-full w-full"
                         />
                     </div>
                     <h1 className="text-3xl font-black text-foreground">Painel da loja</h1>
