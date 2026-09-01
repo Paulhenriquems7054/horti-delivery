@@ -5,6 +5,7 @@ import { ProductCard } from "@/components/ProductCard";
 import { CheckoutForm } from "@/components/CheckoutForm";
 import { ProductSearch } from "@/components/ProductSearch";
 import { CategoryFilter } from "@/components/CategoryFilter";
+import { CategoryCatalogSection } from "@/components/CategoryCatalogSection";
 import { WeightPickerModal } from "@/components/WeightPickerModal";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { CartEstimateWarning } from "@/components/CartEstimateWarning";
@@ -26,10 +27,6 @@ import type { CartLineItem } from "@/types/cart";
 import { newCartLine, resolveCartLines } from "@/types/cart";
 import { useCategories } from "@/hooks/useCategories";
 import { useCategoryProductCounts } from "@/hooks/useCategoryProductCounts";
-import {
-  flattenCatalogPages,
-  useStoreCatalogProducts,
-} from "@/hooks/useStoreCatalogProducts";
 import { useProductsByIds } from "@/hooks/useProductsByIds";
 
 type Step = "basket" | "checkout" | "confirmation";
@@ -59,19 +56,9 @@ export default function Index() {
   const categoryIds = useMemo(() => (categories ?? []).map((c) => c.id), [categories]);
   const { data: categoryCounts } = useCategoryProductCounts(store?.id, categoryIds);
 
-  const {
-    data: catalogPages,
-    isLoading: isCatalogLoading,
-    isError: isCatalogError,
-    fetchNextPage,
-    hasNextPage,
-    isFetchingNextPage,
-    refetch: refetchCatalog,
-  } = useStoreCatalogProducts(store?.id, selectedCategories, searchQuery);
-
-  const catalogProducts = useMemo(
-    () => flattenCatalogPages(catalogPages?.pages),
-    [catalogPages?.pages],
+  const selectedCategoryList = useMemo(
+    () => (categories ?? []).filter((c) => selectedCategories.includes(c.id)),
+    [categories, selectedCategories],
   );
 
   const cartProductIds = useMemo(
@@ -195,18 +182,16 @@ export default function Index() {
 
   const hasSelectedCategories = selectedCategories.length > 0;
 
-  const selectedCategoriesProductCount = useMemo(() => {
-    if (!categoryCounts || !hasSelectedCategories) return 0;
-    return selectedCategories.reduce(
-      (sum, id) => sum + (categoryCounts.byCategoryId.get(id) ?? 0),
-      0,
-    );
-  }, [categoryCounts, hasSelectedCategories, selectedCategories]);
-
-  const selectedCategoriesHaveNoProducts =
-    hasSelectedCategories && !isCatalogLoading && selectedCategoriesProductCount === 0;
-
-  const catalogTotalInSelection = catalogPages?.pages[0]?.totalCount ?? selectedCategoriesProductCount;
+  const cartCountByCategory = useMemo(() => {
+    const map = new Map<string, number>();
+    for (const line of resolvedCartLines) {
+      const categoryId = line.product.category_id;
+      if (!categoryId) continue;
+      const add = line.soldBy === "unit" ? line.quantity : 1;
+      map.set(categoryId, (map.get(categoryId) ?? 0) + add);
+    }
+    return map;
+  }, [resolvedCartLines]);
 
   if (isStoreLoading) {
     return (
@@ -471,7 +456,7 @@ export default function Index() {
         </div>
       </header>
 
-      <main className="mx-auto w-full max-w-lg px-4 pb-10 flex-1">
+      <main className={`mx-auto w-full max-w-lg px-4 flex-1 ${step === "basket" ? "pb-32" : "pb-10"}`}>
         {/* Etapa 1: Carrinho/Cesta */}
         {step === "basket" && (
           <div className="animate-slide-up">
@@ -569,6 +554,7 @@ export default function Index() {
                   storeId={store.id} 
                   selectedCategories={selectedCategories}
                   onToggleCategory={handleToggleCategory}
+                  cartCountByCategory={cartCountByCategory}
                   requireSelection
                 />
                 {hasSelectedCategories && (
@@ -581,110 +567,70 @@ export default function Index() {
                   <Package className="h-10 w-10 text-muted-foreground/40 mx-auto mb-3" />
                   <p className="text-sm font-semibold text-foreground">Selecione uma ou mais categorias</p>
                   <p className="text-xs text-muted-foreground mt-1 px-6">
-                    Você pode combinar categorias na mesma compra. Os produtos aparecem conforme sua seleção.
+                    Marque Hortifrúti, Mercearia e outras ao mesmo tempo. Cada categoria aparece em sua própria lista.
                   </p>
                 </div>
               )}
 
-              {hasSelectedCategories && isCatalogError && (
-                <div className="text-center py-10 rounded-2xl border border-destructive/30 bg-destructive/5">
-                  <p className="text-sm font-medium text-destructive">
-                    Não foi possível carregar os produtos das categorias selecionadas.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => refetchCatalog()}
-                    className="mt-3 text-sm font-bold text-primary underline"
-                  >
-                    Tentar novamente
-                  </button>
+              {hasSelectedCategories ? (
+                <div className="space-y-8">
+                  {selectedCategoryList.map((category) => (
+                    <CategoryCatalogSection
+                      key={category.id}
+                      storeId={store.id}
+                      category={category}
+                      searchQuery={searchQuery}
+                      getProductMode={getProductMode}
+                      productMode={productMode}
+                      resolvedCartLines={resolvedCartLines}
+                      onAdd={handleAdd}
+                      onRemove={handleRemove}
+                      onSelectWeight={setWeightModalProduct}
+                      onToggleMode={handleToggleMode}
+                    />
+                  ))}
                 </div>
-              )}
-
-              {hasSelectedCategories && isCatalogLoading && (
-                <div className="flex justify-center py-12">
-                  <Loader2 className="h-8 w-8 animate-spin text-primary" />
-                </div>
-              )}
-
-              {hasSelectedCategories && selectedCategoriesHaveNoProducts && !isCatalogLoading && (
-                <div className="text-center py-10 rounded-2xl border border-border bg-card">
-                  <p className="text-sm font-medium text-muted-foreground">
-                    As categorias selecionadas ainda não possuem produtos disponíveis.
-                  </p>
-                </div>
-              )}
-
-              {hasSelectedCategories && !selectedCategoriesHaveNoProducts && !isCatalogLoading && !isCatalogError && catalogProducts.length === 0 && searchQuery && (
-                <div className="text-center py-12">
-                  <Package className="h-12 w-12 text-muted-foreground/30 mx-auto mb-3" />
-                  <p className="text-muted-foreground">Nenhum produto encontrado nesta busca</p>
-                </div>
-              )}
-
-              {hasSelectedCategories && !isCatalogLoading && !isCatalogError && catalogProducts.map((p, i) => {
-                const mode = getProductMode(p);
-                const productLines = resolvedCartLines.filter((l) => l.productId === p.id);
-                const cartQty = productLines
-                  .filter((l) => l.soldBy === 'unit')
-                  .reduce((s, l) => s + l.quantity, 0);
-                const cartWeight = productLines
-                  .filter((l) => l.soldBy === 'weight')
-                  .reduce((s, l) => s + l.weightKg, 0);
-
-                return (
-                <div key={p.id} className="animate-slide-up" style={{ animationDelay: `${i * 40}ms`, opacity: 0 }}>
-                  <ProductCard
-                    product={p}
-                    cartQty={mode === 'unit' ? cartQty : productLines.filter((l) => l.soldBy === 'weight').length}
-                    cartWeight={cartWeight > 0 ? cartWeight : undefined}
-                    onAdd={() => handleAdd(p)}
-                    onRemove={() => handleRemove(p)}
-                    onSelectWeight={() => setWeightModalProduct(p)}
-                    selectedMode={productMode[p.id]}
-                    onToggleMode={() => handleToggleMode(p.id)}
-                  />
-                </div>
-              );})}
-
-              {hasSelectedCategories && hasNextPage && !isCatalogError && (
-                <div className="pt-2 pb-4">
-                  <button
-                    type="button"
-                    disabled={isFetchingNextPage}
-                    onClick={() => fetchNextPage()}
-                    className="w-full h-11 rounded-xl border border-border bg-card text-sm font-bold text-foreground hover:bg-muted disabled:opacity-60 inline-flex items-center justify-center gap-2"
-                  >
-                    {isFetchingNextPage ? (
-                      <>
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                        Carregando...
-                      </>
-                    ) : (
-                      <>Carregar mais ({catalogProducts.length} de {catalogTotalInSelection.toLocaleString("pt-BR")})</>
-                    )}
-                  </button>
-                </div>
-              )}
+              ) : null}
             </div>
+          </div>
+        )}
 
-            {/* CTA */}
-            <div className="mt-7 space-y-3">
-              <button
-                id="btn-comprar-agora"
-                disabled={totalItems === 0}
-                onClick={() => setStep("checkout")}
-                className="w-full h-14 rounded-2xl bg-primary text-white text-lg font-extrabold shadow-button flex items-center justify-center gap-2 transition-transform active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100"
-              >
-                <ShoppingCart className="h-5 w-5" />
-                Ir p/ Checkout ({totalItems})
-              </button>
-              <p className="text-center text-xs text-muted-foreground">
+        {step === "basket" ? (
+          <div
+            className="fixed bottom-0 inset-x-0 z-40 border-t border-border/80 bg-background/95 backdrop-blur-md shadow-[0_-8px_30px_rgba(0,0,0,0.08)] dark:shadow-[0_-8px_30px_rgba(0,0,0,0.35)]"
+            style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
+          >
+            <div className="mx-auto max-w-lg px-4 pt-3 space-y-1.5">
+              <div className="flex items-stretch gap-3">
+                {totalItems > 0 ? (
+                  <div className="flex flex-col justify-center shrink-0 min-w-[5.5rem]">
+                    <span className="text-[10px] font-bold uppercase tracking-wide text-muted-foreground">
+                      Cesta
+                    </span>
+                    <span className="text-lg font-extrabold text-primary leading-tight">
+                      {formatCurrency(cartTotal)}
+                    </span>
+                    <span className="text-[10px] text-muted-foreground">
+                      {totalItems} item{totalItems !== 1 ? "s" : ""}
+                    </span>
+                  </div>
+                ) : null}
+                <button
+                  id="btn-comprar-agora"
+                  disabled={totalItems === 0}
+                  onClick={() => setStep("checkout")}
+                  className="flex-1 h-14 rounded-2xl bg-primary text-white text-base sm:text-lg font-extrabold shadow-button flex items-center justify-center gap-2 transition-transform active:scale-[0.98] disabled:opacity-50 disabled:active:scale-100"
+                >
+                  <ShoppingCart className="h-5 w-5 shrink-0" />
+                  Ir p/ Checkout{totalItems > 0 ? ` (${totalItems})` : ""}
+                </button>
+              </div>
+              <p className="text-center text-[10px] text-muted-foreground leading-snug">
                 Pagamento realizado somente no momento da entrega.
               </p>
             </div>
           </div>
-        )}
+        ) : null}
 
         {/* Etapa 2: Checkout */}
         {step === "checkout" && (
