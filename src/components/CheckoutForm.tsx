@@ -122,6 +122,12 @@ export function CheckoutForm({
     }
   }, []);
 
+  useEffect(() => {
+    if (!zones?.length || !selectedZone) return;
+    const zoneStillValid = zones.some((zone) => zone.id === selectedZone);
+    if (!zoneStillValid) setSelectedZone("");
+  }, [zones, selectedZone]);
+
   const currentZoneData = zones?.find(z => z.id === selectedZone);
   const deliveryFee = currentZoneData ? currentZoneData.fee : 0;
   const couponValidationTotal = Math.max(roundMoney(basketPrice), roundMoney(estimatedTotal || 0));
@@ -145,13 +151,27 @@ export function CheckoutForm({
     Math.max(0, (hasUnitItems ? productsEstimate : tagSubtotal) - discount + deliveryFee),
   );
 
+  const orderSubtotalForMin = couponValidationTotal;
+  const minOrderGap =
+    currentZoneData && currentZoneData.min_order > orderSubtotalForMin
+      ? currentZoneData.min_order - orderSubtotalForMin
+      : 0;
+
   const errors = {
     name: name.trim().length < 2 ? "Informe seu nome completo" : "",
     phone: phone.replace(/\D/g, "").length < 10 ? "Informe um telefone válido" : "",
     street: street.trim().length < 3 ? "Informe a rua" : "",
     number: number.trim().length < 1 ? "Informe o número" : "",
     neighborhood: neighborhood.trim().length < 2 ? "Informe o bairro" : "",
-    zone: zones?.length && !selectedZone ? "Selecione seu bairro" : "",
+    zone: zones?.length
+      ? !selectedZone
+        ? "Selecione seu bairro"
+        : !currentZoneData
+          ? "Bairro inválido — selecione novamente na lista"
+          : minOrderGap > 0
+            ? `Pedido mínimo para ${currentZoneData.name}: ${formatCurrency(currentZoneData.min_order)} (faltam ${formatCurrency(minOrderGap)})`
+            : ""
+      : "",
   };
 
   const isValid =
@@ -210,7 +230,7 @@ export function CheckoutForm({
       number: number.trim(),
       neighborhood: neighborhood.trim(),
       reference: reference.trim(),
-      zone: selectedZone,
+      zone: currentZoneData?.id ?? "",
     });
 
     const notes = paymentMethod === "cash" && changeFor.trim()
@@ -227,7 +247,7 @@ export function CheckoutForm({
       phone,
       address: fullAddress,
       total_with_fee: finalTotal,
-      neighborhood_id: selectedZone || undefined,
+      neighborhood_id: currentZoneData?.id,
     coupon_id: appliedCoupon?.id,
     coupon_code: appliedCoupon?.code,
     discount,

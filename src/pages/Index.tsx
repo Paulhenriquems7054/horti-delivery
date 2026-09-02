@@ -29,6 +29,7 @@ import { newCartLine, resolveCartLines } from "@/types/cart";
 import { useCategories } from "@/hooks/useCategories";
 import { useCategoryProductCounts } from "@/hooks/useCategoryProductCounts";
 import { useProductsByIds } from "@/hooks/useProductsByIds";
+import { mapOrderErrorMessage } from "@/lib/orderErrors";
 
 type Step = "basket" | "checkout" | "confirmation";
 
@@ -719,12 +720,7 @@ export default function Index() {
                       setStep("confirmation");
                     },
                     onError: (err: any) => {
-                      const msg = String(err?.message || "");
-                      if (msg.toLowerCase().includes("active order exists")) {
-                        toast.error("Você já possui um pedido em andamento. Aguarde a entrega ou a finalização do pedido antes de realizar uma nova compra.");
-                        return;
-                      }
-                      toast.error("Erro ao enviar pedido. Verifique sua conexão.");
+                      toast.error(mapOrderErrorMessage(err?.message));
                     },
                   }
                 );

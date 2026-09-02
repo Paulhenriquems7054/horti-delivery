@@ -3,6 +3,8 @@ import { supabase } from "@/integrations/supabase/client";
 import type { BasketProduct } from "./useActiveBasket";
 
 export interface CreateOrderLine extends BasketProduct {
+  sold_by?: "unit" | "weight";
+  weight_kg?: number;
   item_notes?: string;
 }
 
@@ -28,19 +30,32 @@ export function useCreateOrder() {
           product_id: p.id,
           item_notes: p.item_notes?.trim() || null,
         };
-        if (p.sold_by === "weight") {
+        const mode = p.sold_by === "weight" ? "weight" : "unit";
+        if (mode === "weight") {
+          const weightKg = Number(p.weight_kg);
+          if (!Number.isFinite(weightKg) || weightKg <= 0) {
+            throw new Error("invalid weight");
+          }
           return {
             ...base,
-            sold_by: "weight",
-            weight_kg: p.weight_kg,
+            sold_by: "weight" as const,
+            weight_kg: weightKg,
           };
+        }
+        const quantity = Number(p.quantity) || 1;
+        if (quantity <= 0) {
+          throw new Error("invalid quantity");
         }
         return {
           ...base,
-          sold_by: "unit",
-          quantity: p.quantity || 1,
+          sold_by: "unit" as const,
+          quantity,
         };
       });
+
+      if (items.length === 0) {
+        throw new Error("empty cart");
+      }
 
       const { data, error } = await supabase.rpc("create_customer_order", {
         p_store_slug: input.storeSlug,
