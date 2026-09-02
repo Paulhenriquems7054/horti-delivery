@@ -16,6 +16,8 @@ const ORDER_ERROR_MESSAGES: Record<string, string> = {
   "invalid coupon": "Cupom inválido.",
   "coupon expired": "Cupom expirado.",
   "coupon exhausted": "Cupom esgotado.",
+  "orders_payment_method_check":
+    "Forma de pagamento não suportada. Atualize a loja ou escolha dinheiro/cartão.",
 };
 
 export function mapOrderErrorMessage(raw: string | undefined | null): string {

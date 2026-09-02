@@ -8,6 +8,12 @@ describe("mapOrderErrorMessage", () => {
     expect(mapOrderErrorMessage("minimum order not met")).toContain("mínimo");
   });
 
+  it("traduz violação de constraint de pagamento", () => {
+    expect(
+      mapOrderErrorMessage('new row for relation "orders" violates check constraint "orders_payment_method_check"'),
+    ).toContain("pagamento");
+  });
+
   it("repassa mensagem desconhecida", () => {
     expect(mapOrderErrorMessage("erro customizado")).toBe("erro customizado");
   });
