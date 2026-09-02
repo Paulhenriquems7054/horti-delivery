@@ -15,6 +15,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useStoreInfo } from "@/hooks/useStoreInfo";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
 import { calculateCartLinesEstimate, formatCurrency } from "@/utils/priceEstimation";
+import { normalizeProductSelling } from "@/lib/productSelling";
 import { isStorePubliclyBlocked } from "@/lib/storeAccess";
 import { StoreUnavailable } from "@/components/StoreUnavailable";
 import { paymentLabel, toStoredPaymentMethod } from "@/lib/paymentMethods";
@@ -66,6 +67,23 @@ export default function Index() {
     [cartLines],
   );
   const { data: cartProducts = [] } = useProductsByIds(store?.id, cartProductIds);
+
+  const categoryNameById = useMemo(() => {
+    const map = new Map<string, string>();
+    for (const category of categories ?? []) map.set(category.id, category.name);
+    return map;
+  }, [categories]);
+
+  const normalizedCartProducts = useMemo(
+    () =>
+      cartProducts.map((product) =>
+        normalizeProductSelling(
+          product,
+          product.category_id ? categoryNameById.get(product.category_id) : undefined,
+        ),
+      ),
+    [cartProducts, categoryNameById],
+  );
 
   const handleToggleCategory = useCallback((categoryId: string) => {
     setSelectedCategories((prev) =>
@@ -119,12 +137,13 @@ export default function Index() {
     setWeightModalProduct(null);
   };
   
-  const handleToggleMode = (productId: string) => {
-    setProductMode(prev => ({
-      ...prev,
-      [productId]: prev[productId] === 'weight' ? 'unit' : 'weight'
-    }));
-    setCartLines((prev) => prev.filter((l) => l.productId !== productId));
+  const handleSetProductMode = (productId: string, mode: "unit" | "weight") => {
+    setProductMode((prev) => {
+      const current = prev[productId] || "unit";
+      if (current === mode) return prev;
+      setCartLines((lines) => lines.filter((l) => l.productId !== productId));
+      return { ...prev, [productId]: mode };
+    });
   };
 
   const updateLineNotes = (lineId: string, notes: string) => {
@@ -138,8 +157,8 @@ export default function Index() {
   };
 
   const resolvedCartLines = useMemo(
-    () => resolveCartLines(cartLines, cartProducts),
-    [cartLines, cartProducts]
+    () => resolveCartLines(cartLines, normalizedCartProducts),
+    [cartLines, normalizedCartProducts]
   );
 
   const cartEstimates = useMemo(
@@ -586,7 +605,7 @@ export default function Index() {
                       onAdd={handleAdd}
                       onRemove={handleRemove}
                       onSelectWeight={setWeightModalProduct}
-                      onToggleMode={handleToggleMode}
+                      onSelectMode={handleSetProductMode}
                     />
                   ))}
                 </div>

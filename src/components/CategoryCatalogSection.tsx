@@ -24,7 +24,7 @@ interface Props {
   onAdd: (product: BasketProduct) => void;
   onRemove: (product: BasketProduct) => void;
   onSelectWeight: (product: BasketProduct) => void;
-  onToggleMode: (productId: string) => void;
+  onSelectMode: (productId: string, mode: "unit" | "weight") => void;
 }
 
 export function CategoryCatalogSection({
@@ -37,7 +37,7 @@ export function CategoryCatalogSection({
   onAdd,
   onRemove,
   onSelectWeight,
-  onToggleMode,
+  onSelectMode,
 }: Props) {
   const {
     data: catalogPages,
@@ -47,7 +47,7 @@ export function CategoryCatalogSection({
     hasNextPage,
     isFetchingNextPage,
     refetch,
-  } = useStoreCatalogProducts(storeId, [category.id], searchQuery);
+  } = useStoreCatalogProducts(storeId, [category.id], searchQuery, category.name);
 
   const products = flattenCatalogPages(catalogPages?.pages);
   const totalCount = catalogPages?.pages[0]?.totalCount ?? products.length;
@@ -125,7 +125,7 @@ export function CategoryCatalogSection({
                   onRemove={() => onRemove(p)}
                   onSelectWeight={() => onSelectWeight(p)}
                   selectedMode={productMode[p.id]}
-                  onToggleMode={() => onToggleMode(p.id)}
+                  onSelectMode={(mode) => onSelectMode(p.id, mode)}
                 />
               </div>
             );

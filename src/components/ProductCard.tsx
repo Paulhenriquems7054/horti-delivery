@@ -27,8 +27,8 @@ interface Props {
   onAdd?: () => void;       // unit mode
   onRemove?: () => void;    // unit mode
   onSelectWeight?: () => void; // weight mode — abre modal
-  selectedMode?: 'unit' | 'weight'; // modo selecionado quando sell_by = 'both'
-  onToggleMode?: () => void; // alterna entre unit e weight
+  selectedMode?: "unit" | "weight";
+  onSelectMode?: (mode: "unit" | "weight") => void;
 }
 
 export function ProductCard({ 
@@ -39,17 +39,21 @@ export function ProductCard({
   onRemove, 
   onSelectWeight,
   selectedMode,
-  onToggleMode 
+  onSelectMode,
 }: Props) {
   const emoji = getEmoji(product.name);
   const sellBy = (product.sell_by || 'unit') as 'unit' | 'weight' | 'both';
-  const isBoth = sellBy === 'both';
-  const currentMode: 'unit' | 'weight' = isBoth ? (selectedMode || 'unit') : (sellBy === 'weight' ? 'weight' : 'unit');
-  const isWeight = currentMode === 'weight';
+  const isBoth = sellBy === "both";
+  const currentMode: "unit" | "weight" = isBoth
+    ? selectedMode || "unit"
+    : sellBy === "weight"
+      ? "weight"
+      : "unit";
+  const isWeight = currentMode === "weight";
   const isAvailable = isProductInStock(product.in_stock);
-  
+
   const pricePerKg = product.price_per_kg ?? product.price;
-  const pricePerUnit = (product as any).price_per_unit ?? product.price;
+  const pricePerUnit = product.price_per_unit ?? product.price;
   const inCart = isWeight ? (cartWeight ?? 0) > 0 : cartQty > 0;
   
   const unitEstimate = !isWeight ? calculateUnitPriceEstimate(product, cartQty || 1) : null;
@@ -76,10 +80,27 @@ export function ProductCard({
           )}
         </div>
         
-        {/* Preço por kg - SEMPRE visível */}
+        {/* Preço conforme modo selecionado */}
         <p className="text-sm mt-0.5">
-          <span className="text-primary font-bold">{formatCurrency(pricePerKg)}</span>
-          <span className="text-xs text-muted-foreground ml-1">/ kg</span>
+          {isWeight ? (
+            <>
+              <span className="text-primary font-bold">{formatCurrency(pricePerKg)}</span>
+              <span className="text-xs text-muted-foreground ml-1">/ kg</span>
+            </>
+          ) : isBoth ? (
+            <>
+              <span className="text-primary font-bold">{formatCurrency(pricePerUnit)}</span>
+              <span className="text-xs text-muted-foreground ml-1">/ un</span>
+              <span className="text-[10px] text-muted-foreground ml-1.5">
+                ({formatCurrency(pricePerKg)}/kg)
+              </span>
+            </>
+          ) : (
+            <>
+              <span className="text-primary font-bold">{formatCurrency(pricePerUnit)}</span>
+              <span className="text-xs text-muted-foreground ml-1">/ un</span>
+            </>
+          )}
         </p>
         
         {/* Estimativa para produtos por unidade (quando não está no modo peso) */}
@@ -104,30 +125,32 @@ export function ProductCard({
           </div>
         )}
         
-        {/* Toggle de modo (quando sell_by = 'both') */}
-        {isBoth && onToggleMode && (
-          <div className="flex gap-1 mt-1">
+        {/* Escolha kg ou unidade (hortifrúti) */}
+        {isBoth && onSelectMode && (
+          <div className="flex gap-1 mt-1.5">
             <button
-              onClick={onToggleMode}
+              type="button"
+              onClick={() => onSelectMode("unit")}
               disabled={!isAvailable}
-              className={`text-[10px] px-2 py-0.5 rounded-full font-bold transition-colors ${
-                currentMode === 'unit' 
-                  ? 'bg-primary text-white' 
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              className={`flex-1 text-[10px] px-2 py-1 rounded-full font-bold transition-colors ${
+                currentMode === "unit"
+                  ? "bg-primary text-white"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
-              Por Unidade
+              Unidade
             </button>
             <button
-              onClick={onToggleMode}
+              type="button"
+              onClick={() => onSelectMode("weight")}
               disabled={!isAvailable}
-              className={`text-[10px] px-2 py-0.5 rounded-full font-bold transition-colors ${
-                currentMode === 'weight' 
-                  ? 'bg-primary text-white' 
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              className={`flex-1 text-[10px] px-2 py-1 rounded-full font-bold transition-colors ${
+                currentMode === "weight"
+                  ? "bg-primary text-white"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
-              Por Peso
+              Kg
             </button>
           </div>
         )}

@@ -2,14 +2,15 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
 import type { BasketProduct } from "@/hooks/useActiveBasket";
 import { CATALOG_PAGE_SIZE } from "@/lib/catalog/constants";
+import { normalizeProductSelling } from "@/lib/productSelling";
 
 export { CATALOG_PAGE_SIZE };
 
 const PRODUCT_SELECT =
   "id, name, price, image_url, unit, description, category_id, active, in_stock, sell_by, price_per_kg, min_weight, step_weight, average_weight, weight_variance, price_per_unit";
 
-function mapRow(product: Record<string, unknown>): BasketProduct {
-  return {
+function mapRow(product: Record<string, unknown>, categoryName?: string | null): BasketProduct {
+  const mapped: BasketProduct = {
     id: product.id as string,
     name: product.name as string,
     price: product.price as number,
@@ -27,6 +28,7 @@ function mapRow(product: Record<string, unknown>): BasketProduct {
     weight_variance: (product.weight_variance as number | undefined) ?? 0.15,
     price_per_unit: product.price_per_unit as number | undefined,
   };
+  return normalizeProductSelling(mapped, categoryName);
 }
 
 export interface StoreCatalogPage {
@@ -49,9 +51,10 @@ export function useStoreCatalogProducts(
   storeId: string | undefined,
   categoryIds: string[],
   searchQuery: string,
+  categoryName?: string | null,
 ) {
   return useInfiniteQuery({
-    queryKey: storeCatalogQueryKey(storeId, categoryIds, searchQuery),
+    queryKey: [...storeCatalogQueryKey(storeId, categoryIds, searchQuery), categoryName ?? ""] as const,
     queryFn: async ({ pageParam = 0 }): Promise<StoreCatalogPage> => {
       if (!storeId || categoryIds.length === 0) {
         return { products: [], totalCount: 0, page: 0, hasMore: false };
@@ -76,7 +79,9 @@ export function useStoreCatalogProducts(
       const { data, error, count } = await query.range(from, to);
       if (error) throw error;
 
-      const products = (data ?? []).map((row) => mapRow(row as Record<string, unknown>));
+      const products = (data ?? []).map((row) =>
+        mapRow(row as Record<string, unknown>, categoryName),
+      );
       const totalCount = count ?? products.length;
 
       return {
